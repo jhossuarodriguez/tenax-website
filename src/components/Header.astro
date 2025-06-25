@@ -1,0 +1,107 @@
+<header class="fixed px-20 py-3 w-full h-auto z-10">
+    <div class="flex flex-row justify-between items-end">
+        <div class="flex justify-start md:flex-grow md:basis-0 items-center">
+            <a
+                class="flex items-center hover:scale-105 transition-transform duration-200"
+                href="/"
+                title="Ir a la página principal de Tenax Construction"
+                aria-label="Ir a la página principal"
+            >
+                <img
+                    class="w-40 h-auto"
+                    src="/logo-tenax.webp"
+                    alt="Logo tenax Construction"
+                />
+            </a>
+        </div>
+        <nav
+            class="flex justify-center items-center gap-8 uppercase text-[14px] font-semibold"
+        >
+            <a
+                href="#"
+                class="relative inline-block text-[15px] text-white hover:text-[#F46738] pb-1 group tracking-tight"
+                title="Ir a la página de inicio"
+                aria-label="Ir a la página de inicio"
+            >
+                Inicio
+                <span
+                    class="absolute left-0 bottom-0 w-full h-0.5 bg-[#F46738] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+                ></span>
+            </a>
+            <a
+                class="relative inline-block text-[15px] text-white hover:text-[#F46738] pb-1 group tracking-tight"
+                href="#"
+                title="Ir a la página de nosotros"
+                aria-label="Ir a la página de nosotros"
+                >Nosotros
+                <span
+                    class="absolute left-0 bottom-0 w-full h-0.5 bg-[#F46738] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+                ></span>
+            </a>
+            <a
+                class="relative inline-block text-[15px] text-white hover:text-[#F46738] pb-1 group tracking-tight"
+                href="#"
+                title="Ir a la página de servicios"
+                aria-label="Ir a la página de servicios"
+                >Servicios
+                <span
+                    class="absolute left-0 bottom-0 w-full h-0.5 bg-[#F46738] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+                ></span>
+            </a>
+            <a
+                class="relative inline-block text-[15px] text-white hover:text-[#F46738] pb-1 group tracking-tight font-medium"
+                href="#"
+                title="Ir a la página de proyectos"
+                aria-label="Ir a la página de proyectos"
+                >Proyectos
+                <span
+                    class="absolute left-0 bottom-0 w-full h-0.5 bg-[#F46738] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+                ></span>
+            </a>
+            <a
+                class="relative inline-block text-[15px] text-white hover:text-[#F46738] pb-1 group tracking-tight"
+                href="#"
+                title="Ir a la página de noticias"
+                aria-label="Ir a la página de noticias"
+                >Noticias
+                <span
+                    class="absolute left-0 bottom-0 w-full h-0.5 bg-[#F46738] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+                ></span>
+            </a>
+            <a
+                class="relative inline-block text-[15px] text-white hover:text-[#F46738] pb-1 group tracking-tight"
+                href="#"
+                title="Ir a la página de contacto"
+                aria-label="Ir a la página de contacto"
+                >Contacto
+                <span
+                    class="absolute left-0 bottom-0 w-full h-0.5 bg-[#F46738] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"
+                ></span>
+            </a>
+        </nav>
+    </div>
+</header>
+
+<style>
+    header {
+        background: rgba(0, 0, 0, 0.6);
+        animation: header-blur-scroll 0.3s linear both;
+        animation-timeline: scroll();
+        animation-range: 0 200px;
+        border-bottom: 1.3px solid transparent;
+    }
+
+    @keyframes header-blur-scroll {
+        0% {
+            backdrop-filter: bluer(0px);
+            background: transparent;
+        }
+
+        100% {
+            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.6);
+            border-bottom-color: white;
+            box-shadow: 0px 0px 5px 0px;
+        }
+    }
+</style>

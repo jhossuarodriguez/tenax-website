@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin '@midudev/tailwind-animations';
+
+@keyframes kenburns {
+  from {
+    transform: scale(1.15);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@layer utilities {
+    .animate-kenburns {
+        animation: kenburns 15s ease-out forwards;
+    }
+}

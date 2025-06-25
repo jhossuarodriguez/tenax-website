@@ -1,0 +1,95 @@
+---
+const IMAGES = [
+    {
+        image: "/banner1.webp",
+        alt: "Proyecto 1",
+        title: "Proyecto 1",
+        location: "Santo Domingo, RD",
+    },
+    {
+        image: "/banner2.webp",
+        alt: "Proyecto 2",
+        title: "Proyecto 2",
+        location: "Santo Domingo, RD",
+    },
+    {
+        image: "/banner3.webp",
+        alt: "Proyecto 3",
+        title: "Proyecto 3",
+        location: "Santo Domingo, RD",
+    },
+    {
+        image: "/banner4.webp",
+        alt: "Proyecto 4",
+        title: "Proyecto 4",
+        location: "Santo Domingo, RD",
+    },
+    {
+        image: "/banner5.webp",
+        alt: "Proyecto 5",
+        title: "Proyecto 5",
+        location: "Santo Domingo, RD",
+    },
+];
+---
+
+<div id="carousel" class="relative w-full h-[670px] overflow-hidden z-0">
+    {
+        IMAGES.map((project, index) => (
+            <div
+                class={`absolute inset-0 transition-opacity duration-1000 ${
+                    index === 0 ? "opacity-100" : "opacity-0"
+                }`}
+                data-index={index}
+            >
+                <img
+                    src={project.image}
+                    alt={project.alt}
+                    class="w-full h-full object-cover animate-kenburns"
+                    loading="lazy"
+                />
+                <div class="absolute inset-0 bg-black opacity-30" />
+            </div>
+        ))
+    }
+    <div class="absolute translate-y-72 left-0 w-full px-36 z-[9999]">
+        <h1
+            class="text-white text-4xl font-bold uppercase mb-2 line-clamp-2 tracking-tight animate-fade-in animate-delay-300"
+        >
+            Bienvenido a <br />Tenax Construction
+        </h1>
+        <p
+            class="text-white text-xl mt-6 tracking-tight uppercase animate-fade-in animate-delay-500"
+        >
+            Reforzamos suelos, elevamos tus proyectos
+        </p>
+        <div class="mt-20">
+            <a
+                href="/contacto"
+                class="bg-[#F46738] text-white px-6 py-4 rounded hover:bg-[#e35d2c] transition-transform duration-300 animate-range-exit animate-duration-700"
+                title="Contáctanos"
+                aria-label="Contáctanos"
+            >
+                PROYECTOS
+            </a>
+        </div>
+    </div>
+</div>
+
+<script type="module" is:inline>
+    const images = document.querySelectorAll("#carousel > div");
+    let currentIndex = 0;
+    const totalImages = images.length;
+
+    setInterval(() => {
+        images[currentIndex].classList.remove("opacity-100");
+        images[currentIndex].classList.add("opacity-0");
+
+        currentIndex = (currentIndex + 1) % totalImages;
+
+        setTimeout(() => {
+            images[currentIndex].classList.remove("opacity-0");
+            images[currentIndex].classList.add("opacity-100");
+        }, 50);
+    }, 4000);
+</script>
