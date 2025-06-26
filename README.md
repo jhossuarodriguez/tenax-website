@@ -1,48 +1,54 @@
-# Astro Starter Kit: Basics
+# Tenax Construction
 
-```sh
-bun create astro@latest -- --template basics
-```
+**Somos una constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles.** Además, ofrecemos servicios de estudios de viabilidad socio-económico y ambiental, asegurando que cada proyecto esté respaldado por un análisis integral y sostenible.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+---
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🌟 **Nuestra Misión**
+Brindar soluciones innovadoras y de alta calidad en el sector de la construcción, adaptándonos a las necesidades de nuestros clientes y contribuyendo al desarrollo sostenible de la República Dominicana.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## 🏗️ **Nuestros Servicios**
+### 1. **Administración de Proyectos**
+   - Planificación y gestión eficiente de recursos.
+   - Coordinación integral para cumplir con los objetivos de tiempo y presupuesto.
 
-## 🚀 Project Structure
+### 2. **Diseño y Construcción**
+   - Desarrollo de diseños funcionales y estéticamente atractivos.
+   - Construcción con altos estándares de calidad y seguridad.
 
-Inside of your Astro project, you'll see the following folders and files:
+### 3. **Supervisión de Obras Civiles**
+   - Garantizamos el cumplimiento de las normativas vigentes.
+   - Seguimiento detallado para asegurar resultados óptimos.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### 4. **Estudios de Viabilidad**
+   - Análisis socioeconómico y ambiental.
+   - Evaluaciones completas para determinar la factibilidad de proyectos.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+---
 
-## 🧞 Commands
+## 🌍 **Por qué elegirnos**
+- **Experiencia Local:** Profundo conocimiento del contexto dominicano.
+- **Equipo Experto:** Profesionales altamente capacitados en diversas áreas.
+- **Compromiso con la Sostenibilidad:** Fomentamos prácticas responsables con el medio ambiente.
+- **Resultados Garantizados:** Entregamos proyectos que superan las expectativas.
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+## 📞 **Contáctanos**
+¿Listo para trabajar con nosotros? Ponte en contacto:
 
-## 👀 Want to learn more?
+- **Teléfono:** +1 (809) 898-6028  
+- **Correo Electrónico:** info@tenaxconstruction.com.do
+- **Dirección:** Av. 27 de Febrero, Esquina Calle el Seminario #261 Plaza Comercial APH, 4to Piso,local 27 Santo Domingo, República Dominicana. Síguenos en nuestras redes sociales para más actualizaciones y proyectos destacados.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+
+## 🛠️ **Tecnologías y Herramientas**
+La página web de Tenax Construction ha sido diseñada utilizando:
+- **Frontend:** Astro, Tailwind, JavaScript.
+
+---
+
+## 🏆 **Nuestro Compromiso**
+En Tenax Construction, no solo construimos edificios; construimos sueños y futuro. ¡Gracias por confiar en nosotros!
+
