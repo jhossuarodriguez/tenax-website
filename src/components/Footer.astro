@@ -1,15 +1,15 @@
 ---
-import NextButton from "/icons/send-button.svg";
+import NextButton from "../assets/icons/send-button.svg";
 ---
 
-<div class="w-full h-auto flex flex-row items-start px-36 mt-20 gap-x-16 mb-10">
-    <div class="flex flex-col">
+<div class="flex flex-row items-start justify-center mx-16 mb-10 gap-x-28">
+    <div class="flex flex-col mt-20">
         <span class="text-black text-sm font-semibold uppercase">Producto</span>
         <div class="flex flex-col py-6">
             <ul class="text-black flex flex-col gap-y-2">
                 <li>
                     <a class="transition-transform duration-300" href="/">
-                        Employee database
+                        Employee
                     </a>
                 </li>
                 <li>
@@ -22,25 +22,10 @@ import NextButton from "/icons/send-button.svg";
                         Absences
                     </a>
                 </li>
-                <li>
-                    <a class="transition-transform duration-300" href="/">
-                        Time tracking
-                    </a>
-                </li>
-                <li>
-                    <a class="transition-transform duration-300" href="/">
-                        Shift planner
-                    </a>
-                </li>
-                <li>
-                    <a class="transition-transform duration-300" href="/">
-                        Recruiting
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
-    <div class="flex flex-col">
+    <div class="flex flex-col mt-20">
         <span class="text-black text-sm font-semibold uppercase">
             Information
         </span>
@@ -64,7 +49,7 @@ import NextButton from "/icons/send-button.svg";
             </ul>
         </div>
     </div>
-    <div class="flex flex-col translate-x-32">
+    <div class="flex flex-col mt-20">
         <span class="text-black text-sm font-semibold uppercase">Company</span>
         <div class="flex flex-col py-6">
             <ul class="text-black flex flex-col gap-y-2">
@@ -83,37 +68,39 @@ import NextButton from "/icons/send-button.svg";
                         Contact us
                     </a>
                 </li>
-                <li>
-                    <a class="transition-transform duration-300" href="/">
-                        Lift Media
-                    </a>
-                </li>
             </ul>
         </div>
     </div>
-    <div
-        class="w-[642px] h-auto flex flex-col translate-x-32 p-10 bg-[#FEC00F]/25"
-    >
-        <header class="text-black font-semibold mt-16">Subscribe</header>
+    <div class="w-[600px] flex flex-col p-10 bg-black/88 translate-x-10">
+        <header class="text-white font-semibold">Subscribe</header>
         <div class="mt-6 flex flex-row">
             <input
                 type="email"
                 placeholder="Enter your email"
                 class="w-full p-3 border border-gray-300 rounded text-black bg-white"
             />
-            <button class="mt-2 w-full">
-                <NextButton />
-            </button>
         </div>
-        <div class="mt-6 text-black text-sm">
-            <h1>Stay in the loop with our newsletter!</h1>
-            <p class="mt-10 leading-7">
-                Subscribe to our newsletter and unlock a world of exclusive
-                benefits. Be the first to know about our latest products,
-                special promotions, and exciting updates. Join our community of
-                like-minded individuals who share a passion for [your
-                niche/industry].
+        <div class="mt-6 text-white text-sm">
+            <p class="mt-2 leading-7">
+                Suscribete a nuestro boletín para recibir las últimas novedades
+                y actualizaciones de Tenax Construction.
             </p>
         </div>
     </div>
-</div>; ---
+</div>
+<hr
+    class="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
+/>
+
+<div class="flex justify-between items-center mx-16">
+    <div class="flex items-center gap-x-6">
+        <img
+            class="w-28 h-auto mb-5"
+            src="/logo-tenax.webp"
+            alt="Tenax Construction Logo"
+        />
+        <span class="text-black text-sm">
+            © Todos los derechos reservados.
+        </span>
+    </div>
+</div>
