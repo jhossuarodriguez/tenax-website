@@ -2,7 +2,7 @@
 import { IMAGES } from "./consts/Images";
 ---
 
-<div id="carousel" class="relative w-full h-[670px] overflow-hidden z-0">
+<div id="carousel" class="relative w-full h-screen overflow-hidden z-0">
     {
         IMAGES.map((project, index) => (
             <div
@@ -23,12 +23,12 @@ import { IMAGES } from "./consts/Images";
     }
     <div class="absolute translate-y-72 left-0 w-full px-36 z-[9999]">
         <h1
-            class="text-white text-5xl font-semibold uppercase mb-2 line-clamp-2 tracking-tight animate-fade-in animate-delay-300"
+            class="text-white text-5xl font-semibold uppercase mb-2 animate-fade-in animate-delay-300"
         >
             Bienvenido a <br />Tenax Construction
         </h1>
         <p
-            class="text-white text-xl mt-6 tracking-tight uppercase animate-fade-in animate-delay-500"
+            class="text-white text-xl mt-6 uppercase animate-fade-in animate-delay-500"
         >
             Reforzamos suelos, elevamos tus proyectos
         </p>
