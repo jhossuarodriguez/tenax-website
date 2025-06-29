@@ -1,8 +1,12 @@
 ---
 import NextButton from "../assets/icons/send-button.svg";
+import Facebook from "../assets/icons/facebook.svg";
+import Instagram from "../assets/icons/instagram.svg";
+import Linkedin from "../assets/icons/linkedin.svg";
+import TikTok from "../assets/icons/tiktok.svg";
 ---
 
-<div class="flex flex-row items-start justify-center mx-16 mb-10 gap-x-28">
+<div class="flex flex-row items-start justify-center mx-16 gap-x-28">
     <div class="flex flex-col mt-20">
         <span class="text-black text-sm font-semibold uppercase">Producto</span>
         <div class="flex flex-col py-6">
@@ -72,7 +76,7 @@ import NextButton from "../assets/icons/send-button.svg";
         </div>
     </div>
     <div class="w-[600px] flex flex-col p-10 bg-black/88 translate-x-10">
-        <header class="text-white font-semibold">Subscribe</header>
+        <header class="text-white font-semibold">Suscribete</header>
         <div class="mt-6 flex flex-row">
             <input
                 type="email"
@@ -89,18 +93,59 @@ import NextButton from "../assets/icons/send-button.svg";
     </div>
 </div>
 <hr
-    class="my-12 h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
+    class="h-px border-t-0 bg-transparent bg-gradient-to-r from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400"
 />
 
 <div class="flex justify-between items-center mx-16">
     <div class="flex items-center gap-x-6">
-        <img
-            class="w-28 h-auto mb-5"
-            src="/logo-tenax.webp"
-            alt="Tenax Construction Logo"
-        />
+        <a href="#home">
+            <img
+                class="w-28 h-auto mb-5"
+                src="/logo-tenax.webp"
+                alt="Tenax Construction Logo"
+            />
+        </a>
         <span class="text-black text-sm">
             © Todos los derechos reservados.
         </span>
+    </div>
+    <div class="flex items-center gap-x-6">
+        <a
+            href="https://www.facebook.com/Tnaxconstruction"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <Facebook
+                class="w-6 h-6 hover:scale-110 transition-transform duration-100"
+            />
+        </a>
+        <a
+            href="https://www.instagram.com/tenaxconstruction/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <Instagram
+                class="w-6 h-6 hover:scale-110 transition-transform duration-100"
+            />
+        </a>
+        <a
+            href="https://www.linkedin.com/company/tenax-construction-srl/"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <Linkedin
+                class="w-6 h-6 hover:scale-110 transition-transform duration-100"
+            />
+        </a>
+        <a
+            href="https://www.tiktok.com/@tenaxconstruction"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <TikTok
+                class="w-6 h-6 hover:scale-110 transition-transform duration-100"
+                fill="currentColor"
+            />
+        </a>
     </div>
 </div>
