@@ -5,9 +5,15 @@ import SliderControl from "../assets/icons/sliderControl.svg";
 ---
 
 <div class="w-full h-auto py-20">
-    <div class="flex flex-col items-center justify-center text-black/75">
-        <h1 class="text-4xl font-semibold">Proyectos</h1>
-        <div class="mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="flex flex-col items-center justify-center">
+        <h1 class="relative text-4xl font-semibold text-black/75">
+            Proyectos
+            <span
+                class="absolute top-12 left-0 bottom-0 w-full h-0.5 bg-[#F46738] scale-x-100 origin-left"
+            ></span>
+        </h1>
+
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {
                 PROJECTS_IMAGES.map((project) => (
                     <figure class="max-w-md mx-auto">
@@ -19,8 +25,10 @@ import SliderControl from "../assets/icons/sliderControl.svg";
                             class="rounded-lg shadow-lg "
                         />
                         <figcaption class="mt-2 text-center">
-                            <h3 class="font-semibold">{project.title}</h3>
-                            <p class="text-sm text-black-300">
+                            <h3 class="font-semibold text-black/75">
+                                {project.title}
+                            </h3>
+                            <p class="text-sm text-black/75">
                                 {project.location}
                             </p>
                         </figcaption>
@@ -32,7 +40,9 @@ import SliderControl from "../assets/icons/sliderControl.svg";
             <div class="mt-10">
                 <SliderControl class="size-40 h-auto" />
             </div>
-            <p class="text-lg">Explora nuestros proyectos destacados</p>
+            <p class="text-lg text-black/75">
+                Explora nuestros proyectos destacados
+            </p>
             <a
                 href="/contacto"
                 class="bg-[#F46738] text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300"
