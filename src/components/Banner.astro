@@ -2,7 +2,7 @@
 import { BANNER_IMAGES } from "./consts/Images";
 ---
 
-<div id="carousel" class="relative w-full h-screen overflow-hidden z-0">
+<section id="carousel" class="relative w-full h-screen overflow-hidden z-0">
     {
         BANNER_IMAGES.map((project, index) => (
             <div
@@ -43,7 +43,7 @@ import { BANNER_IMAGES } from "./consts/Images";
             </a>
         </div>
     </div>
-</div>
+</section>
 
 <script type="module" is:inline>
     const images = document.querySelectorAll("#carousel > div");
