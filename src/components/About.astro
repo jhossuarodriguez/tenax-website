@@ -1,41 +1,38 @@
-<section
-    class="w-full h-screen flex items-center justify-end perspective mt-20 -translate-x-16 md:-translate-x-16"
->
+---
+import { Image } from "astro:assets";
+import Profile from "../assets/images/testing.png";
+---
+
+<section class="w-full min-h-screen flex justify-center items-center mt-20">
     <div
-        class="w-[870px] h-[580px] bg-[url(/images/banner1.webp)] bg-cover opacity-80 flex items-center justify-end rounded-2xl backdrop-blur-lg transform-gpu rotate-x-5 -rotate-y-15"
+        class="mt-20 relative flex flex-col md:flex-row justify-center items-center"
     >
-        <div class="absolute inset-0 bg-black opacity-70 -z-10 rounded-2xl">
-        </div>
-
+        <Image
+            src={Profile}
+            class="w-full md:w-[900px] h-auto object-cover shadow-2xl -translate-x-40"
+            alt="CEO Tenax Construction SRL"
+        />
         <div
-            class="w-[500px] h-full flex flex-col justify-center items-start mt-10 mx-10"
+            class="absolute top-0 translate-x-96 w-[500px] h-full flex flex-col justify-center items-start mt-10 mx-10 bg-white/90 backdrop-blur-lg rounded-lg p-10 shadow-lg"
         >
-            <h1 class="text-4xl font-semibold mt-10">En Tenax</h1>
-
-            <p class="text-[16px] font-normal mt-10 leading-[1.8rem]">
+            <h1 class="text-3xl md:text-4xl font-semibold text-black/75">
+                En Tenax
+            </h1>
+            <p class="text-black/75 mt-5 leading-relaxed text-sm md:text-base">
                 Brindamos soluciones innovadoras y de alta calidad en el sector
                 de la construcción, adaptándonos a las necesidades de nuestros
                 clientes y contribuyendo al desarrollo sostenible de la
-                República Dominicana.
-            </p>
-            <p class="text-[16px] font-normal mt-10 leading-[1.8rem]">
-                Contamos con equipos especializados y maquinaria pesada de
+                República Dominicana. <br />
+                <br />Contamos con equipos especializados y maquinaria pesada de
                 última tecnología para realizar proyectos con eficiencia y
                 precisión.
             </p>
             <div class="mt-10">
                 <a
-                    class="px-6 py-4 rounded bg-[#F46738] text-white hover:bg-[#e35d2c] transition-transform duration-300 animate-range-exit animate-duration-700"
+                    class="px-5 py-3 rounded bg-[#F46738] text-white hover:bg-[#e35d2c] transition-transform duration-300 animate-range-exit animate-duration-700"
                     href="">Conoce mas</a
                 >
             </div>
         </div>
-    </div>
-    <div class="absolute -translate-x-[600px] mt-20">
-        <img
-            class="w-[700px] rounded-2xl shadow-lg"
-            src="/background-blur.webp"
-            alt="Testing"
-        />
     </div>
 </section>
