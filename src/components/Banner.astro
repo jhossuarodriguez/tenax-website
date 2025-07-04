@@ -4,7 +4,7 @@ import { BANNER_IMAGES } from "./consts/Images";
 
 <section id="carousel" class="relative w-full h-screen overflow-hidden z-0">
     {
-        BANNER_IMAGES.map((project, index) => (
+        BANNER_IMAGES.map((banner, index) => (
             <div
                 class={`absolute inset-0 transition-opacity duration-1000 ${
                     index === 0 ? "opacity-100" : "opacity-0"
@@ -12,10 +12,11 @@ import { BANNER_IMAGES } from "./consts/Images";
                 data-index={index}
             >
                 <img
-                    src={project.image}
-                    alt={project.alt}
-                    class="w-full h-full object-cover animate-kenburns"
-                    loading="lazy"
+                    src={banner.image}
+                    alt={banner.alt}
+                    style="width: 100%; aspect-ratio: 400:267;"
+                    class="w-full h-full object-cover animate-kenburns aspect-auto"
+                    loading="eager"
                 />
                 <div class="absolute inset-0 bg-black opacity-30" />
             </div>
