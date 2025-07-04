@@ -1,59 +1,89 @@
 ---
-
+import Grua from "../assets/icons/grua.svg";
+import Hammer from "../assets/icons/hammer.svg";
+import DumpDumper from "../assets/icons/dumpDumper.svg";
+import Measure from "../assets/icons/measure.svg";
 ---
 
-<section class="w-full min-h-screen mt-20">
-    <div class="flex justify-center items-center flex-col">
-        <h1 class="relative text-4xl font-semibold text-black/75">
+<section class="w-full h-screen relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-90 z-[9999px]"></div>
+
+    <video
+        class="w-full h-screen object-cover opacity-30"
+        src="/video.webm"
+        autoplay
+        loop
+        muted
+    >
+    </video>
+    <div
+        class="absolute inset-0 flex items-start justify-center z-10 m-auto py-20"
+    >
+        <h1 class="relative text-4xl font-semibold text-center text-white">
             Nuestros Servicios
             <span
-                class="absolute top-12 left-0 bottom-0 w-full h-0.5 bg-[#F46738] scale-x-100 origin-left"
+                class="absolute top-12 left-0 bottom-0 w-full h-1 bg-[#F46738] scale-x-100 origin-left"
             ></span>
         </h1>
-        <p class="text-black/75 w-80 md:w-1/2 mt-10">
-            En Tenax Construction, contamos con equipos especializados y
-            maquinaria pesada de última tecnología para realizar proyectos con
-            eficiencia y precisión.
-        </p>
+    </div>
+    <div
+        class="flex justify-center items-center flex-col z-10 absolute inset-0 m-auto mt-20"
+    >
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 max-w-5xl w-full">
+            <div
+                class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
+            >
+                <div class="bg-white/20 p-3 rounded-full">
+                    <Grua class="w-10 h-10" />
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold">Excavación</h3>
+                    <p class="text-sm text-white/80 mt-2">
+                        Comprometidos con la seguridad en el terreno
+                    </p>
+                </div>
+            </div>
 
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-auto gap-6 md:gap-8 lg:gap-12 mt-16 px-4 w-[900px]"
-        >
             <div
-                class="col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-3 shadow-2xl rounded-2xl"
+                class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
             >
-                <img
-                    class="w-full h-auto object-cover rounded-2xl"
-                    src="images/banner1.webp"
-                    alt="Banner 1"
-                />
+                <div class="bg-white/20 p-3 rounded-full">
+                    <Hammer class="w-10 h-10" />
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold">Perforación</h3>
+                    <p class="text-sm text-white/80 mt-2">
+                        Comprometidos con la seguridad en el terreno
+                    </p>
+                </div>
             </div>
+
             <div
-                class="col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-3 shadow-2xl rounded-2xl"
+                class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
             >
-                <img
-                    class="w-full h-auto object-cover rounded-2xl"
-                    src="images/banner1.webp"
-                    alt="Banner 1"
-                />
+                <div class="bg-white/20 p-3 rounded-full">
+                    <DumpDumper class="w-10 h-10" />
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold">Transporte</h3>
+                    <p class="text-sm text-white/80 mt-2">
+                        Comprometidos con la seguridad en el terreno
+                    </p>
+                </div>
             </div>
+
             <div
-                class="col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-3 shadow-2xl rounded-2xl"
+                class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
             >
-                <img
-                    class="w-full h-auto object-cover rounded-2xl"
-                    src="images/banner1.webp"
-                    alt="Banner 1"
-                />
-            </div>
-            <div
-                class="col-span-1 md:col-span-1 lg:col-span-2 lg:row-span-3 shadow-2xl rounded-2xl"
-            >
-                <img
-                    class="w-full h-auto object-cover rounded-2xl"
-                    src="images/banner1.webp"
-                    alt="Banner 1"
-                />
+                <div class="bg-white/20 p-3 rounded-full">
+                    <Measure class="w-10 h-10" />
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold">Inspección</h3>
+                    <p class="text-sm text-white/80 mt-2">
+                        Comprometidos con la seguridad en el terreno
+                    </p>
+                </div>
             </div>
         </div>
     </div>
