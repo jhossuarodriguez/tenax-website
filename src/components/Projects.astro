@@ -12,31 +12,44 @@ import SliderControl from "../assets/icons/sliderControl.svg";
                 class="absolute top-12 left-0 bottom-0 w-full h-1 bg-[#F46738] scale-x-100 origin-left"
             ></span>
         </header>
+        <div class="flex justify-between w-full max-w-7xl mt-20">
+            <aside class="justify-start hidden md:block">
+                <ul class="text-black">
+                    <li>All</li>
+                    <ul>
+                        <li>Residential</li>
+                        <li>Commercial</li>
+                        <li>Industrial</li>
+                    </ul>
+                </ul>
+            </aside>
 
-        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {
-                PROJECTS_IMAGES.map((project) => (
-                    <figure class="max-w-md mx-auto">
-                        <Picture
-                            src={project.image}
-                            alt={project.alt}
-                            width={400}
-                            height={300}
-                            class="rounded-lg shadow-lg"
-                            loading={"lazy"}
-                        />
-                        <figcaption class="mt-2 text-center">
-                            <h2 class="font-semibold text-xl text-black/75">
-                                {project.title}
-                            </h2>
-                            <p class="text-sm text-black/75">
-                                {project.location}
-                            </p>
-                        </figcaption>
-                    </figure>
-                ))
-            }
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {
+                    PROJECTS_IMAGES.map((project) => (
+                        <figure class="max-w-md mx-auto">
+                            <Picture
+                                src={project.image}
+                                alt={project.alt}
+                                width={400}
+                                height={300}
+                                class="rounded-lg shadow-lg"
+                                loading={"lazy"}
+                            />
+                            <figcaption class="mt-2 text-center">
+                                <h2 class="font-semibold text-xl text-black/75">
+                                    {project.title}
+                                </h2>
+                                <p class="text-sm text-black/75">
+                                    {project.location}
+                                </p>
+                            </figcaption>
+                        </figure>
+                    ))
+                }
+            </div>
         </div>
+
         <div class="flex flex-col justify-center items-center gap-y-5">
             <div class="mt-10">
                 <SliderControl class="size-40 h-auto" />
