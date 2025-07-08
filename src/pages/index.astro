@@ -9,10 +9,20 @@ import News from "../components/News.astro";
 ---
 
 <Layout>
-	<Banner />
-	<About />
-	<Projects />
-	<OurServices />
+	<div id="inicio">
+		<Banner />
+	</div>
+	<div id="nosotros">
+		<About />
+	</div>
+	<div id="proyectos">
+		<Projects />
+	</div>
+	<div id="servicios">
+		<OurServices />
+	</div>
 	<Numbers />
-	<News />
+	<div id="noticias">
+		<News />
+	</div>
 </Layout>
