@@ -17,9 +17,10 @@ import { Image } from "astro:assets";
                     height="180"
                     src="/logo-tenax.webp"
                     alt="Logo Tenax Construction"
-                    loading="eager"
                     format="webp"
-                    fetchpriority={"high"}
+                    fetchpriority="high"
+                    decoding="async"
+                    loading="eager"
                 />
             </a>
         </div>
