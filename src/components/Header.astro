@@ -13,11 +13,13 @@ import { Image } from "astro:assets";
             >
                 <Image
                     class="w-60 h-auto"
-                    width="160"
-                    height="120"
+                    width="240"
+                    height="180"
                     src="/logo-tenax.webp"
                     alt="Logo Tenax Construction"
                     loading="eager"
+                    densities={[1, 2]}
+                    format="webp"
                 />
             </a>
         </div>
@@ -97,6 +99,13 @@ import { Image } from "astro:assets";
         animation-timeline: scroll();
         animation-range: 0 200px;
         border-bottom: 1.3px solid transparent;
+    }
+
+    /* Optimización para el logo */
+    header img {
+        will-change: transform;
+        transform: translateZ(0);
+        backface-visibility: hidden;
     }
 
     @keyframes header-blur-scroll {
