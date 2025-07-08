@@ -12,7 +12,7 @@
 
 @layer utilities {
   .animate-kenburns {
-      animation: kenburns 15s ease-out forwards;
+      animation: kenburns 8s ease-in-out infinite alternate;
   }
 }
 
