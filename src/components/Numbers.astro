@@ -1,0 +1,88 @@
+---
+import { Image } from "astro:assets";
+import HandShaking from "../assets/ui_images/handshaking.webp";
+import Crane from "../assets/ui_images/crane.webp";
+import Drawing from "../assets/ui_images/drawing.webp";
+---
+
+<section class="bg-gradient-to-br py-16 px-6 mt-20">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="grid gap-6 place-items-center">
+            <div
+                class="relative min-h-[180px] rounded-3xl shadow-xl p-6 w-full max-w-md overflow-hidden group border-l-4 border-transparent hover:border-orange-500 transition-all duration-300"
+            >
+                <Image
+                    src={Drawing}
+                    alt="Proyectos"
+                    class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                />
+                <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+                <div
+                    class="relative z-20 flex flex-col items-center justify-center text-center text-white"
+                >
+                    <h3 class="text-5xl font-bold">123</h3>
+                    <p class="text-lg mt-2 text-white/80">
+                        Proyectos Completados
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="relative min-h-[180px] rounded-3xl shadow-xl p-6 w-full max-w-md overflow-hidden group border-l-4 border-transparent hover:border-orange-500 transition-all duration-300"
+            >
+                <Image
+                    src={HandShaking}
+                    alt="Clientes Satisfechos"
+                    class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                />
+
+                <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+                <div
+                    class="relative z-20 flex flex-col items-center justify-center text-center text-white"
+                >
+                    <h3 class="text-5xl font-bold">84</h3>
+                    <p class="text-lg mt-2 text-white/80">
+                        Clientes Satisfechos
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col justify-center items-start gap-8">
+            <div>
+                <h2 class="relative text-4xl font-semibold text-black/75 mb-4">
+                    Números que hablan
+                    <span
+                        class="absolute top-12 left-0 bottom-0 w-full h-1 bg-[#F46738] scale-x-90 origin-left"
+                    ></span>
+                </h2>
+                <p class="text-slate-600 text-lg max-w-md mt-10">
+                    Nuestra trayectoria se refleja en números, que representan
+                    nuestro compromiso y éxito en el sector de la construcción.
+                </p>
+            </div>
+
+            <div
+                class="relative w-full max-w-md min-h-[180px] rounded-3xl shadow-xl p-6 overflow-hidden group border-l-4 border-transparent hover:border-orange-500 transition-all duration-300"
+            >
+                <Image
+                    src={Crane}
+                    alt="Años en el mercado"
+                    class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
+                    loading="lazy"
+                />
+                <div class="absolute inset-0 bg-black/40 z-10"></div>
+                <div
+                    class="relative z-20 flex flex-col items-center justify-center text-center text-white"
+                >
+                    <h3 class="text-5xl font-bold">30</h3>
+                    <p class="text-lg mt-2 text-white/80">Años en el mercado</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
