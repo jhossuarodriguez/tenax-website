@@ -57,6 +57,12 @@ export const PROJECTS_IMAGES: Image[] = [
         title: "Proyecto 3",
         location: "Santo Domingo, RD",
     },
+    {
+        image: "/projects/3.webp",
+        alt: "Proyecto 3",
+        title: "Proyecto 3",
+        location: "Santo Domingo, RD",
+    }
 ] as const;
 
 
