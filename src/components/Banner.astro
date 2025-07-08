@@ -1,5 +1,6 @@
 ---
 import { BANNER_IMAGES } from "./consts/Images";
+import { Image } from "astro:assets";
 ---
 
 <section id="carousel" class="relative w-full h-screen overflow-hidden z-0">
@@ -11,12 +12,14 @@ import { BANNER_IMAGES } from "./consts/Images";
                 }`}
                 data-index={index}
             >
-                <img
+                <Image
                     src={banner.image}
                     alt={banner.alt}
-                    style="width: 100%; aspect-ratio: 400:267;"
-                    class="w-full h-full object-cover animate-kenburns aspect-auto"
+                    width={1920}
+                    height={1080}
+                    class="w-full h-full object-cover animate-kenburns"
                     loading="eager"
+                    format="webp"
                 />
                 <div class="absolute inset-0 bg-black opacity-30" />
             </div>
@@ -47,19 +50,24 @@ import { BANNER_IMAGES } from "./consts/Images";
 </section>
 
 <script type="module" is:inline>
-    const images = document.querySelectorAll("#carousel > div");
+    const images = document.querySelectorAll("#carousel > div[data-index]");
     let currentIndex = 0;
     const totalImages = images.length;
 
-    setInterval(() => {
+    function changeImage() {
+        // Ocultar imagen actual
         images[currentIndex].classList.remove("opacity-100");
         images[currentIndex].classList.add("opacity-0");
 
+        // Calcular siguiente índice
         currentIndex = (currentIndex + 1) % totalImages;
 
+        // Mostrar nueva imagen
         setTimeout(() => {
             images[currentIndex].classList.remove("opacity-0");
             images[currentIndex].classList.add("opacity-100");
-        }, 50);
-    }, 4000);
+        }, 100);
+    }
+
+    setInterval(changeImage, 4000);
 </script>
