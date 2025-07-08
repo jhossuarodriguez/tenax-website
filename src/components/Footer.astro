@@ -1,9 +1,10 @@
 ---
-import NextButton from "../assets/icons/send-button.svg";
+import { lazy } from "astro:schema";
 import Facebook from "../assets/icons/social/facebook.svg";
 import Instagram from "../assets/icons/social/instagram.svg";
 import Linkedin from "../assets/icons/social/linkedin.svg";
 import TikTok from "../assets/icons/social/tiktok.svg";
+import { Image } from "astro:assets";
 ---
 
 <section class="flex flex-row items-start justify-center mx-16 gap-x-28 mt-20">
@@ -108,7 +109,7 @@ import TikTok from "../assets/icons/social/tiktok.svg";
         <div class="mt-6 flex flex-row">
             <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Email"
                 class="w-full p-3 border border-gray-300 rounded text-black bg-white"
             />
         </div>
@@ -128,10 +129,13 @@ import TikTok from "../assets/icons/social/tiktok.svg";
 <div class="flex justify-between items-center mx-16">
     <div class="flex items-center gap-x-6">
         <a href="#home">
-            <img
+            <Image
                 class="w-28 h-auto mb-5"
+                width="160"
+                height="120"
                 src="/logo-tenax.webp"
                 alt="Tenax Construction Logo"
+                loading="lazy"
             />
         </a>
         <span class="text-black text-sm">
@@ -143,6 +147,8 @@ import TikTok from "../assets/icons/social/tiktok.svg";
             href="https://www.facebook.com/Tnaxconstruction"
             target="_blank"
             rel="noopener noreferrer"
+            title="Tenax Construction en Facebook"
+            aria-label="Tenax Construction en Facebook"
         >
             <Facebook
                 class="w-6 h-6 hover:scale-110 transition-transform duration-100"
@@ -152,6 +158,8 @@ import TikTok from "../assets/icons/social/tiktok.svg";
             href="https://www.instagram.com/tenaxconstruction/"
             target="_blank"
             rel="noopener noreferrer"
+            title="Tenax Construction en Instagram"
+            aria-label="Tenax Construction en Instagram"
         >
             <Instagram
                 class="w-6 h-6 hover:scale-110 transition-transform duration-100"
@@ -161,6 +169,8 @@ import TikTok from "../assets/icons/social/tiktok.svg";
             href="https://www.linkedin.com/company/tenax-construction-srl/"
             target="_blank"
             rel="noopener noreferrer"
+            title="Tenax Construction en LinkedIn"
+            aria-label="Tenax Construction en LinkedIn"
         >
             <Linkedin
                 class="w-6 h-6 hover:scale-110 transition-transform duration-100"
@@ -170,6 +180,8 @@ import TikTok from "../assets/icons/social/tiktok.svg";
             href="https://www.tiktok.com/@tenaxconstruction"
             target="_blank"
             rel="noopener noreferrer"
+            title="Tenax Construction en TikTok"
+            aria-label="Tenax Construction en TikTok"
         >
             <TikTok
                 class="w-6 h-6 hover:scale-110 transition-transform duration-100"
