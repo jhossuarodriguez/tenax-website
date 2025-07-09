@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { PROJECTS_IMAGES } from "../../components/consts/Images";
+
+const { id } = Astro.params;
+if (!id) return Astro.redirect("/404");
+
+const project = PROJECTS_IMAGES.find((project) => project.id === id);
+if (!project) return Astro.redirect("/404");
+
+export const prerender = false;
+---
+
+<Layout>
+    <section class="flex justify-center items-center w-full min-h-screen">
+        <img
+            transition:name={`image-${id}`}
+            data-id={id}
+            src={`/projects/${id}.webp`}
+            alt={project?.alt}
+            class="object-cover flex-shrink-0"
+            loading="lazy"
+        />
+    </section>
+</Layout>
