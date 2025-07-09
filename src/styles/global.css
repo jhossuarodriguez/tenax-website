@@ -12,8 +12,12 @@
 
 @layer utilities {
   .animate-kenburns {
-      animation: kenburns 8s ease-in-out infinite alternate;
+    animation: kenburns 8s ease-in-out infinite alternate;
   }
 }
 
-
+header img {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
