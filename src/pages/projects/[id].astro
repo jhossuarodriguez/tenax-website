@@ -20,14 +20,31 @@ export const prerender = true;
 ---
 
 <Layout>
-    <section class="flex justify-center items-center w-full min-h-screen">
-        <img
-            transition:name={`image-${id}`}
-            data-id={id}
-            src={`/projects/${id}.webp`}
-            alt={project?.alt}
-            class="object-cover flex-shrink-0"
-            loading="lazy"
-        />
+    <section
+        class="w-full min-h-screen flex flex-col md:flex-row justify-center items-center bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat mx-auto"
+    >
+        <div class="flex flex-col md:flex-row justify-center items-center">
+            <img
+                transition:name={`image-${id}`}
+                data-id={id}
+                src={`/projects/${id}.webp`}
+                alt={project?.alt}
+                class="object-cover rounded-lg w-[400px] md:w-[800px]"
+                loading="lazy"
+            />
+
+            <div
+                class="w-[400px] md:w-[800px] h-full flex flex-col justify-center items-start mt-10 mx-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-10 shadow-lg"
+            >
+                <p
+                    class="text-white/75 mt-5 leading-relaxed text-sm md:text-lg"
+                >
+                    {
+                        project?.description ||
+                            "Descripción no disponible para este proyecto."
+                    }
+                </p>
+            </div>
+        </div>
     </section>
 </Layout>
