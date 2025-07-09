@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/600.css";
@@ -12,6 +13,7 @@ import Footer from "../components/Footer.astro";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		<title>Tenax Construction - Constructora Dominicana</title>
 		<meta name="og:title" content="Tenax Construction" />
 		<meta
 			name="description"
@@ -28,19 +30,20 @@ import Footer from "../components/Footer.astro";
 		<meta name="twitter:image" content="/logo-tenax.webp" />
 		<meta name="twitter:title" content="Tenax Construction" />
 		<meta name="author" content="Jhossua Roa Rodriguez" />
-		<meta name="theme-color" content="#374057" />
 		<meta name="robots" content="follow, index" />
-		<title>Tenax Construction - Constructora Dominicana</title>
 		<link
 			rel="icon"
 			type="image/webp+xml"
 			href="/favicon.webp"
 			title="Tenax Construction favicon"
 		/>
+		<ClientRouter />
 	</head>
 	<body class="mx-auto w-full h-dvh">
 		<Header />
-		<slot />
+		<main>
+			<slot />
+		</main>
 		<Footer />
 	</body>
 </html>
