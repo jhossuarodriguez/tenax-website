@@ -1,4 +1,6 @@
 ---
+import type { GetStaticPaths } from "astro";
+
 import Layout from "../../layouts/Layout.astro";
 import { PROJECTS_IMAGES } from "../../components/consts/Images";
 
@@ -7,6 +9,12 @@ if (!id) return Astro.redirect("/404");
 
 const project = PROJECTS_IMAGES.find((project) => project.id === id);
 if (!project) return Astro.redirect("/404");
+
+export const getStaticPaths = (() => {
+    return PROJECTS_IMAGES.map((project) => ({
+        params: { id: project.id },
+    }));
+}) satisfies GetStaticPaths;
 
 export const prerender = true;
 ---
