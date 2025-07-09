@@ -3,7 +3,10 @@ import { BANNER_IMAGES } from "./consts/Images";
 import { Image } from "astro:assets";
 ---
 
-<section id="carousel" class="relative w-full min-h-screen overflow-hidden z-0">
+<section
+    id="carousel"
+    class="relative w-full min-h-[800px] md:min-h-screen overflow-hidden z-0"
+>
     {
         BANNER_IMAGES.map((banner, index) => (
             <div
@@ -17,7 +20,7 @@ import { Image } from "astro:assets";
                     alt={banner.alt}
                     width={1920}
                     height={1080}
-                    class="w-full h-full object-cover animate-kenburns"
+                    class="w-full h-full md:h-full object-cover animate-kenburns"
                     loading="eager"
                     format="webp"
                 />
@@ -25,21 +28,23 @@ import { Image } from "astro:assets";
             </div>
         ))
     }
-    <div class="absolute translate-y-72 left-0 w-full px-36 z-[9999]">
+    <div
+        class="static md:absolute translate-y-72 left-0 w-full px-10 md:px-36 z-[9999px]"
+    >
         <header
-            class="text-white/90 text-5xl font-semibold uppercase mb-2 animate-fade-in animate-delay-300"
+            class="text-white/90 text-3xl md:text-5xl font-semibold uppercase mb-2 animate-fade-in animate-delay-300"
         >
             Bienvenido a <br />Tenax Construction
         </header>
         <p
-            class="text-white/90 text-xl mt-6 uppercase animate-fade-in animate-delay-500"
+            class="text-white/90 text-base md:text-xl mt-6 uppercase animate-fade-in animate-delay-500"
         >
             Reforzamos suelos, elevamos tus proyectos
         </p>
         <div class="mt-20">
             <a
                 href="#proyectos"
-                class="bg-[#F46738]/90 text-white/80 px-6 py-4 rounded hover:bg-[#e35d2c]/90 transition-transform duration-300 animate-fade-in animate-delay-700"
+                class="bg-[#F46738]/90 text-white/80 px-3 py-3 md:px-6 md:py-4 rounded hover:bg-[#e35d2c]/90 transition-transform duration-300 animate-fade-in animate-delay-700"
                 title="Ver galería de proyectos realizados"
                 aria-label="Ver galería de proyectos realizados"
             >
