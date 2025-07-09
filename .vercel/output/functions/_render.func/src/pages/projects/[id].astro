@@ -8,7 +8,7 @@ if (!id) return Astro.redirect("/404");
 const project = PROJECTS_IMAGES.find((project) => project.id === id);
 if (!project) return Astro.redirect("/404");
 
-export const prerender = false;
+export const prerender = true;
 ---
 
 <Layout>

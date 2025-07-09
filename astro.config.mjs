@@ -7,6 +7,8 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+  adapter: vercel(),
+
   output: 'server',
   vite: {
     plugins: [tailwindcss()]
@@ -16,7 +18,6 @@ export default defineConfig({
     inlineStylesheets: 'always'
   },
 
-  adapter: vercel(),
 
   image: {
     responsiveStyles: true
