@@ -34,7 +34,7 @@ import SliderControl from "../assets/icons/sliderControl.svg";
                 </ul>
             </aside>
 
-            <div class="w-auto">
+            <div class="w-full md:w-auto">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {
                         PROJECTS_IMAGES.map((project) => (
@@ -67,7 +67,9 @@ import SliderControl from "../assets/icons/sliderControl.svg";
                     }
                 </div>
 
-                <div class="mt-5 justify-between items-center hidden md:flex">
+                <div
+                    class="mt-5 justify-between items-center hidden md:flex mt-10"
+                >
                     <button
                         class="bg-[#F46738] text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
                         >Next</button
