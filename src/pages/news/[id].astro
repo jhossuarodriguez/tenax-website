@@ -1,0 +1,60 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import Layout from "../../layouts/Layout.astro";
+import FullNew from "./fullNew.astro";
+const { id } = Astro.params;
+if (!id) return Astro.redirect("/404");
+
+import { NEWS } from "../../components/consts/News";
+
+const news = NEWS.find((news) => news.id === id);
+if (!news) return Astro.redirect("/404");
+
+export const getStaticPaths = (() => {
+    return NEWS.map((news) => ({
+        params: { id: news.id },
+    }));
+}) satisfies GetStaticPaths;
+
+export const prerender = true;
+---
+
+<Layout>
+    <article
+        class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 flex flex-col md:flex-row justify-center items-center"
+    >
+        <div
+            class="flex flex-col justify-center items-center mt-0 md:mt-20 mx-0 md:mx-10"
+        >
+            <header
+                class="text-black mt-5 leading-relaxed text-sm md:text-4xl font-semibold italic"
+            >
+                {news?.title || "Noticia no disponible."}
+            </header>
+            <p
+                class="text-black/75 mt-5 leading-relaxed text-sm md:text-lg mb-10"
+            >
+                {news?.description || "Noticia no disponible."}
+            </p>
+
+            <img
+                transition:name={`image-${id}`}
+                data-id={id}
+                src={`/news/${id}.webp`}
+                alt={news?.title}
+                class="object-cover w-[800px]"
+                loading="lazy"
+            />
+            <div class="flex flex-col justify-center items-center">
+                <FullNew id={id} />
+                <a
+                    href="/#noticias"
+                    class="w-32 mt-20 bg-primary text-black/75 px-6 py-3 rounded hover:bg-[#e35d2c] transition cursor-pointer"
+                >
+                    ← Atrás
+                </a>
+            </div>
+        </div>
+    </article>
+</Layout>
