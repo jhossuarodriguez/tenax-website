@@ -34,18 +34,25 @@ export const prerender = true;
                 class="object-cover rounded-lg w-[400px] md:w-[650px]"
                 loading="lazy"
             />
-
-            <div
-                class="w-[400px] md:w-[800px] h-full flex flex-col justify-center items-start mt-10 mx-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-10 shadow-lg"
-            >
-                <p
-                    class="text-white/75 mt-5 leading-relaxed text-sm md:text-lg"
+            <div class="flex flex-col justify-center items-center">
+                <div
+                    class="w-[400px] md:w-[800px] h-full flex flex-col justify-center items-start mt-10 mx-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-10 shadow-lg"
                 >
-                    {
-                        project?.description ||
-                            "Descripción no disponible para este proyecto."
-                    }
-                </p>
+                    <p
+                        class="text-white/75 mt-5 leading-relaxed text-sm md:text-lg"
+                    >
+                        {
+                            project?.description ||
+                                "Descripción no disponible para este proyecto."
+                        }
+                    </p>
+                </div>
+                <a
+                    href="/#proyectos"
+                    class="w-32 mt-20 bg-primary text-white px-6 py-3 rounded hover:bg-[#e35d2c] transition cursor-pointer"
+                >
+                    ← Atrás</a
+                >
             </div>
         </div>
     </section>
