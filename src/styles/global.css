@@ -21,3 +21,7 @@ header img {
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+
+@theme{
+  --color-primary: #F46738;
+}

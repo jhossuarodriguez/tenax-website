@@ -8,7 +8,7 @@ import { NEWS } from "./consts/News";
         <header class="relative text-4xl font-semibold text-black/75">
             Ultimas Novedades
             <span
-                class="absolute top-12 left-0 bottom-0 w-full h-1 bg-[#F46738] scale-x-100 origin-left"
+                class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
             ></span>
         </header>
     </div>
@@ -31,10 +31,10 @@ import { NEWS } from "./consts/News";
                         <h2 class="text-base text-black/75 font-semibold mb-2 flex-shrink-0">
                             {item.title}
                         </h2>
-                        <p class="text-xs text-gray-600 mb-3 flex-1 line-clamp-3 leading-5">
+                        <p class="text-xs md:text-base leading-relaxed text-black/75 mb-3 flex-1 line-clamp-3 ">
                             {item.description}
                         </p>
-                        <div class="text-xs text-gray-500 flex items-center space-x-2 flex-shrink-0">
+                        <div class="text-xs text-black/50 flex items-center space-x-2 flex-shrink-0">
                             <span>
                                 {new Date(item.date).toLocaleDateString()}
                             </span>
