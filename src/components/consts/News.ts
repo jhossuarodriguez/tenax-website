@@ -1,5 +1,5 @@
 export interface News {
-    imageUrl: string,
+    id: string,
     title: string,
     description: string,
     author: string,
@@ -8,32 +8,31 @@ export interface News {
 
 export const NEWS: News[] = [
     {
-        imageUrl: "/images/banner1.webp",
+        id: "nueva-ley-vivienda-rd",
         title: "Nueva Ley de Vivienda en RD",
         description: "La nueva ley de vivienda en República Dominicana busca fomentar el acceso a viviendas dignas y asequibles para todos los ciudadanos.",
         author: "Shana Lora",
         date: "2023-10-01",
     },
     {
-        imageUrl: "/images/banner1.webp",
+        id: "impacto-construccion-sostenible",
         title: "Impacto de la Construcción Sostenible",
         description: "La construcción sostenible está revolucionando el sector inmobiliario, promoviendo prácticas que benefician al medio ambiente y a la sociedad.",
         author: "Yuliana de la Cruz",
         date: "2023-10-02",
     },
     {
-        imageUrl: "/images/banner1.webp",
+        id: "tendencias-mercado-inmobiliario-2023",
         title: "Tendencias del Mercado Inmobiliario 2023",
         description: "Exploramos las tendencias más relevantes del mercado inmobiliario en 2023, desde la digitalización hasta la sostenibilidad.",
         author: "Milkiara Gonzalez",
         date: "2023-10-03",
     },
     {
-        imageUrl: "/images/banner1.webp",
+        id: "financiamiento-proyectos-inmobiliarios",
         title: "Financiamiento de Proyectos Inmobiliarios",
         description: "Analizamos las diferentes opciones de financiamiento disponibles para proyectos inmobiliarios en República Dominicana.",
         author: "Yuliana de la Cruz",
         date: "2023-10-04",
     }
-
 ] as const
