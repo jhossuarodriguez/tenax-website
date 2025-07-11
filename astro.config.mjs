@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel'
 import react from '@astrojs/react';
@@ -18,12 +18,30 @@ export default defineConfig({
     inlineStylesheets: 'always'
   },
 
-
   image: {
     responsiveStyles: true
   },
 
   integrations: [react()],
+
+  env: {
+    schema: {
+      SMTP_USER: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+
+      SMTP_PASS: envField.string({
+        context: 'server',
+        access: 'secret',
+      }),
+
+      SMTP_HOST: envField.string({
+        context: 'server',
+        access: 'secret',
+      })
+    }
+  },
 
   site: 'https://tenaxconstruction.com.do'
 });
