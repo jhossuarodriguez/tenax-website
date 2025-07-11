@@ -1,11 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-export const prerender = false;
 import WhatsApp from "../../assets/icons/social/whatsapp.svg";
 import Email from "../../assets/icons/social/email.svg";
 import Calendar from "../../assets/icons/calendar.svg";
+export const prerender = false;
+const canonical = "https://tenaxconstruction.com.do/cotizacion/[id]";
 
-// Manejo del formulario en el servidor (fallback sin JavaScript)
 const errors = { message: "" };
 let success = false;
 
@@ -53,7 +53,7 @@ if (Astro.request.method === "POST") {
 }
 ---
 
-<Layout>
+<Layout canonical={canonical}>
     <section class="w-full min-h-screen py-20">
         <div class="max-w-4xl mx-auto px-4 mt-20">
             <header class="text-center mb-12">
