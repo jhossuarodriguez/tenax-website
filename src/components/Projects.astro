@@ -39,7 +39,7 @@ import SliderControl from "../assets/icons/sliderControl.svg";
                     {
                         PROJECTS_IMAGES.map((project) => (
                             <a href={`/projects/${project.id}`}>
-                                <figure class="bg-white drop-shadow-2xl overflow-hidden mx-auto flex flex-col rounded w-80 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:-translate-y-2 cursor-pointer group">
+                                <figure class="bg-white drop-shadow-2xl overflow-hidden mx-auto flex flex-col rounded w-80 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer group">
                                     <Picture
                                         transition:name={`image-${project.id}`}
                                         src={`/projects/${project.id}.webp`}
@@ -90,7 +90,7 @@ import SliderControl from "../assets/icons/sliderControl.svg";
                 Explora nuestros proyectos destacados
             </p>
             <a
-                href="#contacto"
+                href="/cotizacion/solicitar"
                 class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300"
                 title="Solicitar cotización para tu proyecto de construcción"
                 aria-label="Solicitar cotización para tu proyecto de construcción"
