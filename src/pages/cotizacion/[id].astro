@@ -4,6 +4,53 @@ export const prerender = false;
 import WhatsApp from "../../assets/icons/social/whatsapp.svg";
 import Email from "../../assets/icons/social/email.svg";
 import Calendar from "../../assets/icons/calendar.svg";
+
+// Manejo del formulario en el servidor (fallback sin JavaScript)
+const errors = { message: "" };
+let success = false;
+
+if (Astro.request.method === "POST") {
+    try {
+        const data = await Astro.request.formData();
+        const nombre = data.get("nombre")?.toString();
+        const email = data.get("email")?.toString();
+        const telefono = data.get("telefono")?.toString();
+        const presupuesto = data.get("presupuesto")?.toString();
+        const tipoProyecto = data.get("tipoProyecto")?.toString();
+        const descripcion = data.get("descripcion")?.toString();
+
+        if (
+            !nombre ||
+            !email ||
+            !telefono ||
+            !presupuesto ||
+            !tipoProyecto ||
+            !descripcion
+        ) {
+            errors.message =
+                "Todos los campos marcados con * son obligatorios.";
+        } else {
+            // Redirigir al API endpoint
+            const response = await fetch(
+                new URL("/api/cotizacion", Astro.url),
+                {
+                    method: "POST",
+                    body: data,
+                },
+            );
+
+            if (response.ok) {
+                success = true;
+            } else {
+                errors.message =
+                    "Error al enviar la cotización. Intenta nuevamente.";
+            }
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        errors.message = "Error interno del servidor.";
+    }
+}
 ---
 
 <Layout>
@@ -20,17 +67,30 @@ import Calendar from "../../assets/icons/calendar.svg";
             </header>
 
             <div class="bg-white rounded-lg shadow-lg p-8">
-                <!-- Mensajes de estado -->
+                <!-- Mensajes de estado del servidor -->
+                {
+                    success && (
+                        <div class="mb-6 p-4 rounded-md bg-green-50 border border-green-200 text-green-800">
+                            ¡Cotización enviada exitosamente! Te contactaremos
+                            en las próximas 24 horas. Revisa tu email para la
+                            confirmación.
+                        </div>
+                    )
+                }
+                {
+                    errors.message && (
+                        <div class="mb-6 p-4 rounded-md bg-red-50 border border-red-200 text-red-800">
+                            {errors.message}
+                        </div>
+                    )
+                }
+
+                <!-- Mensajes de estado del JavaScript -->
                 <div id="message" class="hidden mb-6 p-4 rounded-md">
                     <div id="messageContent"></div>
                 </div>
 
-                <form
-                    id="cotizacionForm"
-                    class="space-y-6"
-                    method="POST"
-                    action="/api/cotizacion"
-                >
+                <form id="cotizacionForm" class="space-y-6" method="POST">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label
@@ -284,6 +344,8 @@ import Calendar from "../../assets/icons/calendar.svg";
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
+        console.log("🚀 Script cargado - DOM ready");
+
         const form = document.getElementById(
             "cotizacionForm",
         ) as HTMLFormElement;
@@ -300,6 +362,25 @@ import Calendar from "../../assets/icons/calendar.svg";
         const loadingText = document.getElementById(
             "loadingText",
         ) as HTMLSpanElement;
+
+        console.log("🔍 Elementos encontrados:", {
+            form: !!form,
+            messageDiv: !!messageDiv,
+            messageContent: !!messageContent,
+            submitBtn: !!submitBtn,
+            submitText: !!submitText,
+            loadingText: !!loadingText,
+        });
+
+        // Ocultar mensajes del servidor si JavaScript está disponible
+        const serverMessages = document.querySelectorAll(
+            ".mb-6.p-4.rounded-md:not(#message)",
+        );
+        serverMessages.forEach((msg) => {
+            if (msg !== messageDiv) {
+                (msg as HTMLElement).style.display = "none";
+            }
+        });
 
         function showMessage(message: string, type: "success" | "error") {
             messageDiv.className = `mb-6 p-4 rounded-md ${
@@ -330,6 +411,7 @@ import Calendar from "../../assets/icons/calendar.svg";
         }
 
         form.addEventListener("submit", async function (e) {
+            console.log("🚀 Formulario enviado - preventDefault activado");
             e.preventDefault();
             hideMessage();
             setLoading(true);
@@ -337,20 +419,37 @@ import Calendar from "../../assets/icons/calendar.svg";
             try {
                 const formData = new FormData(form);
 
+                // Log de los datos del formulario
+                console.log("📋 Datos del formulario:");
+                for (let [key, value] of formData.entries()) {
+                    console.log(`  ${key}: ${value}`);
+                }
+
+                console.log("📤 Enviando request a /api/cotizacion...");
                 const response = await fetch("/api/cotizacion", {
                     method: "POST",
                     body: formData,
                 });
 
+                console.log("📥 Response recibida:", {
+                    status: response.status,
+                    statusText: response.statusText,
+                    ok: response.ok,
+                    url: response.url,
+                });
+
                 const result = await response.json();
+                console.log("📄 Resultado parseado:", result);
 
                 if (response.ok && result.success) {
+                    console.log("✅ Éxito - mostrando mensaje de confirmación");
                     showMessage(
                         "¡Cotización enviada exitosamente! Te contactaremos en las próximas 24 horas. Revisa tu email para la confirmación.",
                         "success",
                     );
                     form.reset();
                 } else {
+                    console.log("❌ Error en response:", result.error);
                     showMessage(
                         result.error ||
                             "Hubo un error al enviar la cotización. Intenta nuevamente.",
@@ -358,12 +457,13 @@ import Calendar from "../../assets/icons/calendar.svg";
                     );
                 }
             } catch (error) {
-                console.error("Error:", error);
+                console.error("💥 Error en catch:", error);
                 showMessage(
                     "Error de conexión. Verifica tu internet e intenta nuevamente.",
                     "error",
                 );
             } finally {
+                console.log("🏁 Finalizando - removiendo loading state");
                 setLoading(false);
             }
         });
