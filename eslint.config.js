@@ -1,13 +1,14 @@
-import eslint from 'eslint-plugin-astro'
-import { defineConfig, globalIgnores } from 'eslint/config';
+import eslintPluginAstro from 'eslint-plugin-astro';
+import { defineConfig } from 'eslint/config';
 
-export default {
-    // add more generic rule sets here, such as:
-    // js.configs.recommended,
+export default defineConfig([
     ...eslintPluginAstro.configs.recommended,
-    rules: {
-        // override/add rules settings here, such as:
-        // "astro/no-set-html-directive": "error"
-        'comma-dangle': ['error', 'always-multiline'],
+    {
+        rules: {
+            'comma-dangle': ['error', 'always-multiline'],
+        },
     },
-}
+    {
+        ignores: ['.vercel/'], // Reemplaza globalIgnores con ignores
+    },
+]);
