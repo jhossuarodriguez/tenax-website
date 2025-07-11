@@ -18,9 +18,10 @@ export const getStaticPaths = (() => {
 }) satisfies GetStaticPaths;
 
 export const prerender = true;
+const canonical = `https://tenaxconstruction.com.do/noticias/${id}`;
 ---
 
-<Layout>
+<Layout canonical={canonical}>
     <article
         class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 flex flex-col md:flex-row justify-center items-center"
     >
