@@ -5,6 +5,7 @@ export const POST: APIRoute = async ({ request }) => {
     try {
         const formData = await request.formData();
 
+        // Validar datos requeridos
         const nombre = formData.get('nombre')?.toString();
         const email = formData.get('email')?.toString();
         const telefono = formData.get('telefono')?.toString();
@@ -18,13 +19,15 @@ export const POST: APIRoute = async ({ request }) => {
             });
         }
 
+        // Configurar transportador de email
+        // NOTA: Necesitarás configurar estas variables de entorno
         const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST || 'smtp.gmail.com',
+            host: process.env.SMTP_HOST || 'smtp.gmail.com', // O tu proveedor SMTP
             port: 587,
             secure: false,
             auth: {
-                user: process.env.SMTP_USER, //  Email
-                pass: process.env.SMTP_PASS  // Contraseña 
+                user: process.env.SMTP_USER, // Tu email
+                pass: process.env.SMTP_PASS  // Tu contraseña de aplicación
             }
         });
 
@@ -72,17 +75,17 @@ export const POST: APIRoute = async ({ request }) => {
             to: email,
             subject: 'Confirmación - Solicitud de Cotización Recibida',
             html: `
-                <h2>¡Gracias por contactarnos!</h2>
-                <p>Hola ${nombre},</p>
-                <p>Hemos recibido tu solicitud de cotización para un proyecto de tipo <strong>${tipoProyecto}</strong>.</p>
-                <p>Nuestro equipo revisará tu solicitud y te contactaremos en las próximas 24 horas.</p>
-                <p>Si tienes alguna pregunta urgente, puedes contactarnos al:</p>
-                <ul>
-                  <li>📞 +1 (809) 898-6028</li>
-                  <li>📧 proyectos@tenax.com.do</li>
-                </ul>
-                <p>¡Gracias por confiar en Tenax Construction!</p>
-            `
+        <h2>¡Gracias por contactarnos!</h2>
+        <p>Hola ${nombre},</p>
+        <p>Hemos recibido tu solicitud de cotización para un proyecto de tipo <strong>${tipoProyecto}</strong>.</p>
+        <p>Nuestro equipo revisará tu solicitud y te contactaremos en las próximas 24 horas.</p>
+        <p>Si tienes alguna pregunta urgente, puedes contactarnos al:</p>
+        <ul>
+          <li>📞 +1 (809) 898-6028</li>
+          <li>📧 proyectos@tenax.com.do</li>
+        </ul>
+        <p>¡Gracias por confiar en Tenax Construction!</p>
+      `
         });
 
         return new Response(JSON.stringify({
