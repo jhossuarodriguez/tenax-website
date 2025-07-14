@@ -4,6 +4,7 @@ export interface Image {
     title: string;
     location: string;
     description?: string;
+    category?: string;
 }
 
 export const BANNER_IMAGES: Image[] = [
@@ -46,6 +47,7 @@ export const PROJECTS_IMAGES: Image[] = [
         title: "Proyecto 1",
         location: "Santo Domingo, RD",
         description: "Construcción de edificio residencial moderno con 20 apartamentos y amenidades completas incluyendo piscina y gimnasio.",
+        category: "paneles-solares",
     },
     {
         id: "desarrollo-comercial-mixto",
@@ -53,6 +55,7 @@ export const PROJECTS_IMAGES: Image[] = [
         title: "Proyecto 2",
         location: "Santo Domingo, RD",
         description: "Desarrollo comercial de usos mixtos con locales comerciales en planta baja y oficinas en niveles superiores.",
+        category: "naves-industriales",
     },
     {
         id: "villa-unifamiliar-lujo",
@@ -60,6 +63,7 @@ export const PROJECTS_IMAGES: Image[] = [
         title: "Proyecto 3",
         location: "Santo Domingo, RD",
         description: "Villa unifamiliar de lujo con diseño contemporáneo, piscina privada y amplios espacios verdes.",
+        category: "pavimentos-cimentaciones",
     }
 ] as const;
 
