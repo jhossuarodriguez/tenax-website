@@ -48,7 +48,7 @@ import SliderControl from "../assets/icons/sliderControl.svg";
                 </ul>
             </aside>
 
-            <div class="w-full md:w-auto">
+            <div class="w-full md:w-auto h-auto">
                 <div
                     id="projects-grid"
                     class="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -91,6 +91,7 @@ import SliderControl from "../assets/icons/sliderControl.svg";
                 <div class="mt-10 justify-between items-center hidden md:flex">
                     <button
                         class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
+                        id="prev-button"
                     >
                         ← Atras</button
                     >
@@ -99,6 +100,7 @@ import SliderControl from "../assets/icons/sliderControl.svg";
 
                     <button
                         class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
+                        id="next-button"
                     >
                         Siguiente →</button
                     >
@@ -126,34 +128,72 @@ import SliderControl from "../assets/icons/sliderControl.svg";
     function setupProjectFilters() {
         const filterButtons = document.querySelectorAll(".filter-btn");
         const projectItems = document.querySelectorAll(".project-item");
+        const prevButton = document.getElementById("prev-button");
+        const nextButton = document.getElementById("next-button");
+
+        let currentPage = 0;
+        const itemsPerPage = 4;
+        let filteredItems = [];
+
+        function getFilteredItems(category) {
+            if (category === "all") {
+                return Array.from(projectItems);
+            }
+            return Array.from(projectItems).filter(
+                (item) => item.getAttribute("data-category") === category,
+            );
+        }
+
+        function showPage(page) {
+            // Ocultar todos los items primero
+            projectItems.forEach((item) => {
+                item.style.display = "none";
+                item.style.opacity = "0";
+                item.style.transform = "translateY(20px)";
+            });
+
+            // Mostrar items de la página actual
+            const startIndex = page * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const itemsToShow = filteredItems.slice(startIndex, endIndex);
+
+            itemsToShow.forEach((item, index) => {
+                item.style.display = "block";
+
+                setTimeout(() => {
+                    item.style.transition = "all 0.4s ease-out";
+                    item.style.opacity = "1";
+                    item.style.transform = "translateY(0)";
+                }, index * 100); // Animación escalonada
+            });
+
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+            if (prevButton) {
+                prevButton.disabled = currentPage === 0;
+                prevButton.style.opacity = currentPage === 0 ? "0.5" : "1";
+                prevButton.style.cursor =
+                    currentPage === 0 ? "not-allowed" : "pointer";
+            }
+
+            if (nextButton) {
+                nextButton.disabled = currentPage >= totalPages - 1;
+                nextButton.style.opacity =
+                    currentPage >= totalPages - 1 ? "0.5" : "1";
+                nextButton.style.cursor =
+                    currentPage >= totalPages - 1 ? "not-allowed" : "pointer";
+            }
+        }
 
         function filterProjects(category) {
-            projectItems.forEach((item) => {
-                const itemCategory = item.getAttribute("data-category");
-
-                if (category === "all" || itemCategory === category) {
-                    // Mostrar proyecto con animación
-                    item.style.display = "block";
-                    item.style.opacity = "0";
-                    item.style.transform = "translateY(20px)";
-
-                    // Animar entrada
-                    setTimeout(() => {
-                        item.style.transition = "all 0.4s ease-out";
-                        item.style.opacity = "1";
-                        item.style.transform = "translateY(0)";
-                    }, 50);
-                } else {
-                    // Ocultar proyecto con animación
-                    item.style.transition = "all 0.3s ease-in";
-                    item.style.opacity = "0";
-                    item.style.transform = "translateY(-20px)";
-
-                    setTimeout(() => {
-                        item.style.display = "none";
-                    }, 300);
-                }
-            });
+            currentCategory = category;
+            filteredItems = getFilteredItems(category);
+            currentPage = 0; // Reset a la primera página
+            showPage(currentPage);
         }
 
         function updateActiveButton(activeButton) {
@@ -177,17 +217,40 @@ import SliderControl from "../assets/icons/sliderControl.svg";
             });
         });
 
-        // Inicializar con "todos" seleccionado
+        // Event listeners para navegación
+        if (prevButton) {
+            prevButton.addEventListener("click", () => {
+                if (currentPage > 0) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener("click", () => {
+                const totalPages = Math.ceil(
+                    filteredItems.length / itemsPerPage,
+                );
+                if (currentPage < totalPages - 1) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            });
+        }
+
+        // Inicializar
         const allButton = document.querySelector('[data-filter="all"]');
         if (allButton) {
             updateActiveButton(allButton);
+            filterProjects("all");
         }
     }
 
     // Ejecutar cuando el DOM esté listo
     document.addEventListener("DOMContentLoaded", setupProjectFilters);
 
-    // Para navegación SPA (si usas algún router)
+    // Para navegación SPA
     document.addEventListener("astro:page-load", setupProjectFilters);
 </script>
 
@@ -198,5 +261,17 @@ import SliderControl from "../assets/icons/sliderControl.svg";
 
     .project-item {
         transition: all 0.4s ease-out;
+    }
+
+    #prev-button:disabled,
+    #next-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    #prev-button:disabled:hover,
+    #next-button:disabled:hover {
+        background-color: #f97316;
     }
 </style>
