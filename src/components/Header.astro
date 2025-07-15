@@ -27,7 +27,6 @@ import { Image } from "astro:assets";
             </a>
         </div>
 
-        <!-- Botón hamburguesa para móvil -->
         <button
             id="mobile-menu-button"
             class="md:hidden flex flex-col justify-center items-center w-8 h-8 bg-transparent border-none cursor-pointer z-60"
@@ -113,7 +112,6 @@ import { Image } from "astro:assets";
             </a>
         </nav>
 
-        <!-- Botón de cerrar para móvil -->
         <button
             id="close-menu-button"
             class="md:hidden absolute top-4 right-4 w-8 h-8 bg-transparent border-none cursor-pointer text-white text-2xl z-70 hidden transition-all duration-200 ease-in-out"
@@ -140,11 +138,9 @@ import { Image } from "astro:assets";
                 mobileMenuButton?.setAttribute("aria-expanded", "false");
                 document.body.style.overflow = "";
 
-                // Mostrar botón hamburguesa, ocultar botón cerrar
                 if (mobileMenuButton) mobileMenuButton.style.display = "flex";
                 if (closeMenuButton) closeMenuButton.style.display = "none";
 
-                // Restaurar hamburguesa
                 if (hamburgerSpans) {
                     hamburgerSpans[0].style.transform =
                         "rotate(0deg) translate(0, 0)";
@@ -167,7 +163,6 @@ import { Image } from "astro:assets";
         mobileMenuButton?.addEventListener("click", toggleMenu);
         closeMenuButton?.addEventListener("click", toggleMenu);
 
-        // Cerrar menú al hacer clic en un enlace
         const navLinks = mobileMenu?.querySelectorAll("a");
         navLinks?.forEach((link) => {
             link.addEventListener("click", () => {
@@ -177,7 +172,6 @@ import { Image } from "astro:assets";
             });
         });
 
-        // Cerrar menú al redimensionar a desktop
         window.addEventListener("resize", () => {
             if (
                 window.innerWidth >= 768 &&
@@ -187,7 +181,6 @@ import { Image } from "astro:assets";
             }
         });
 
-        // Asegurar estado inicial correcto
         if (window.innerWidth < 768) {
             if (closeMenuButton) closeMenuButton.style.display = "none";
             if (mobileMenuButton) mobileMenuButton.style.display = "flex";
