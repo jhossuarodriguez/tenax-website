@@ -18,7 +18,7 @@ export class RevealEffect {
             });
         }, {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            rootMargin: '0px 0px -50px 0px',
         });
 
         document.querySelectorAll('[data-reveal]').forEach(element => {
