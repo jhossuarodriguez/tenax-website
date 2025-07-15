@@ -10,7 +10,7 @@ import { Image } from "astro:assets";
     {
         BANNER_IMAGES.map((banner, index) => (
             <div
-                class={`absolute inset-0 transition-opacity duration-1000 ${
+                class={`absolute inset-0 transition-opacity duration-1000 aspect-[400/267] ${
                     index === 0 ? "opacity-100" : "opacity-0"
                 }`}
                 data-index={index}
