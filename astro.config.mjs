@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import vercel from '@astrojs/vercel'
 import react from '@astrojs/react';
@@ -11,18 +11,18 @@ export default defineConfig({
 
   output: 'server',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
 
   build: {
-    inlineStylesheets: 'always'
+    inlineStylesheets: 'always',
   },
 
   image: {
-    responsiveStyles: true
+    responsiveStyles: true,
   },
 
   integrations: [react()],
 
-  site: 'https://tenaxconstruction.com.do'
+  site: 'https://tenaxconstruction.com.do',
 });
