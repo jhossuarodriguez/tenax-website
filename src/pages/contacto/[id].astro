@@ -1,0 +1,71 @@
+---
+import Layout from "../../layouts/Layout.astro";
+export const prerender = false;
+const canonical = "https://tenaxconstruction.com.do/contacto/[id]";
+import Message from "../../assets/icons/message.svg";
+import WhatsApp from "../../assets/icons/social/whatsapp.svg";
+import Email from "../../assets/icons/social/email.svg";
+import Calendar from "../../assets/icons/calendar.svg";
+---
+
+<Layout canonical={canonical}>
+    <section
+        class="w-full max-w-6xl min-h-screen flex flex-col justify-center items-center mt-20 mx-auto"
+    >
+        <div class="relative">
+            <Message class="size-96" />
+            <div
+                class="absolute inset-0 bottom-14 flex items-center justify-center"
+            >
+                <span class="text-[2.8rem] font-semibold text-black/75"
+                    >Contactanos.</span
+                >
+            </div>
+        </div>
+
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div
+                class="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow"
+            >
+                <h3 class="font-semibold text-lg text-black/75 mb-2">
+                    Llámanos
+                </h3>
+
+                <p class="text-black/60">+1 (809) 898-6028</p>
+                <a
+                    class="mt-2"
+                    href="https://wa.me/18098986028"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Contáctanos por WhatsApp"
+                    aria-label="Contáctanos por WhatsApp"
+                >
+                    <WhatsApp class="size-10" />
+                </a>
+            </div>
+            <div
+                class="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow"
+            >
+                <h3 class="font-semibold text-lg text-black/75 mb-2">Email</h3>
+                <p class="text-black/60">proyectos@tenax.com.do</p>
+                <a
+                    class="mt-2"
+                    href="mailto:proyectos@tenax.com.do"
+                    title="Envíanos un correo electrónico"
+                    aria-label="Envíanos un correo electrónico"
+                >
+                    <Email class="size-12" />
+                </a>
+            </div>
+            <div
+                class="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow"
+            >
+                <h3 class="font-semibold text-lg text-black/75 mb-2">
+                    Horario
+                </h3>
+                <p class="text-black/60">Lun - Vie: 8:00 AM - 5:00 PM</p>
+                <Calendar class="size-10 mt-2" />
+            </div>
+        </div>
+    </section>
+</Layout>
