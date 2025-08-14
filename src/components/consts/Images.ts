@@ -41,12 +41,12 @@ export const BANNER_IMAGES: Image[] = [
 ] as const
 
 export const PROJECTS_IMAGES: Image[] = [
+    //Principales
     {
-        id: "proyecto-edificio-residencial",
+        id: "Paneles-1",
         alt: "Paneles Solares Proyecto 1",
-        title: "Paneles Solares",
-        location: "Santo Domingo, RD",
-        description: "Construcción de edificio residencial moderno con 20 apartamentos y amenidades completas incluyendo piscina y gimnasio.",
+        title: "Paneles Solares en Parque Fotovoltaico Para Fabrica Agroindustrial",
+        location: "El Valle, Hato Mayor, RD",
         category: "paneles-solares",
     },
     {
@@ -54,7 +54,6 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Paneles Solares Proyecto 2",
         title: "Paneles Solares",
         location: "Santo Domingo, RD",
-        description: "Desarrollo comercial de usos mixtos con locales comerciales en planta baja y oficinas en niveles superiores.",
         category: "naves-industriales",
     },
     {
@@ -62,7 +61,6 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 3",
         title: "Proyecto 3",
         location: "Santo Domingo, RD",
-        description: "Villa unifamiliar de lujo con diseño contemporáneo, piscina privada y amplios espacios verdes.",
         category: "pavimentos-cimentaciones",
     },
     {
@@ -70,8 +68,31 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 4",
         title: "Proyecto 4",
         location: "Santo Domingo, RD",
-        description: "Villa unifamiliar de lujo con diseño contemporáneo, piscina privada y amplios espacios verdes.",
         category: "pavimentos-cimentaciones",
+    },
+
+    //Paneles Solares
+    {
+        id: "Paneles-2",
+        alt: "Proyecto 4",
+        title: "Hincado, Montaje y Colocación De Paneles Solares En El KM. 23",
+        location: "Autopista Duarte KM. 23, RD",
+        category: "paneles-solares",
+    }
+    ,
+    {
+        id: "Paneles-3",
+        alt: "Proyecto 4",
+        title: "Paneles Solares en Parque Fotovoltaico para Fábrica Agroindustrial",
+        location: "El Seibo, RD",
+        category: "paneles-solares",
+    },
+    {
+        id: "Paneles-4",
+        alt: "Proyecto 4",
+        title: "Hincado, Montaje y Colocación De Paneles Solares En El KM. 23",
+        location: "Autopista Duarte KM. 23, RD",
+        category: "paneles-solares",
     }
 ] as const;
 
