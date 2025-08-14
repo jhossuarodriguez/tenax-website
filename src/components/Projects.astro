@@ -44,7 +44,7 @@ import { PROJECTS_IMAGES } from "./consts/Images";
                             data-filter="pavimentos-cimentaciones"
                             class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer"
                         >
-                            Pavimentos Y <br /> Cimentaciones
+                            Pavimentos y <br /> Cimentaciones
                         </button>
                     </li>
                 </ul>
@@ -62,25 +62,22 @@ import { PROJECTS_IMAGES } from "./consts/Images";
                                 class="project-item"
                                 data-category={project.category}
                             >
-                                <figure class="bg-white drop-shadow-2xl overflow-hidden mx-auto flex flex-col rounded w-80 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer group">
+                                <figure class="bg-white drop-shadow-2xl overflow-hidden mx-auto flex flex-col rounded w-80 h-auto md:h-[380px] transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer group">
                                     <Picture
                                         transition:name={`image-${project.id}`}
                                         src={`/projects/${project.id}.webp`}
                                         alt={project.alt}
                                         width={350}
-                                        height={260}
+                                        height={350}
                                         class="object-cover flex-shrink-0 "
                                         loading="lazy"
                                     />
-                                    <figcaption class="mt-2 text-center h-auto flex flex-col justify-between px-4">
-                                        <h2 class="font-semibold text-xl text-black/75 transition-colors duration-300 group-hover:text-primary">
+                                    <figcaption class="mt-2 text-center h-auto flex flex-col items-center justify-between px-4">
+                                        <h2 class="font-semibold text-[15px] text-black/75 transition-colors duration-300 group-hover:text-primary">
                                             {project.title}
                                         </h2>
-                                        <p class="text-sm text-black/75 mt-5 transition-colors duration-300 group-hover:text-black/90">
-                                            {project.description}
-                                        </p>
 
-                                        <p class="text-sm font-semibold text-black/75 mt-5 mb-5 transition-colors duration-300 group-hover:text-primary">
+                                        <p class="text-xs text-black/75 mt-5 mb-5 transition-colors duration-300 group-hover:text-primary">
                                             {project.location}
                                         </p>
                                     </figcaption>
