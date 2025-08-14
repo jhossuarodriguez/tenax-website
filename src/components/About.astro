@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import CEO_Profile from "../assets/images/ceo_profile.webp";
+import AboutImage from "../assets/images/about-image.webp";
 ---
 
 <section
@@ -8,14 +8,14 @@ import CEO_Profile from "../assets/images/ceo_profile.webp";
 >
     <div class="relative flex flex-col md:flex-row justify-center items-center">
         <Image
-            src={CEO_Profile}
+            src={AboutImage}
             loading="lazy"
-            class="max-w-96 md:max-w-4xl mx-auto h-auto object-cover shadow-2xl md:-translate-x-40 rounded-lg md:rounded-none"
+            class="max-w-96 md:max-w-4xl mx-auto h-auto object-cover shadow-2xl md:-translate-x-40 rounded-lg"
             alt="CEO Tenax Construction SRL"
             data-reveal
         />
         <div
-            class="static md:absolute top-0 md:translate-x-96 w-[400px] md:w-[500px] h-full mt-10 bg-white/90 backdrop-blur-lg rounded-lg p-10 shadow-lg"
+            class="static md:absolute top-0 md:translate-x-96 w-[400px] md:w-[500px] h-full mt-10 bg-white/90 backdrop-blur-lg rounded-lg p-10 shadow-lg space-y-16"
             data-reveal
         >
             <header
@@ -36,7 +36,7 @@ import CEO_Profile from "../assets/images/ceo_profile.webp";
                 última tecnología para realizar proyectos con eficiencia y
                 precisión.
             </p>
-            <div class="mt-8 md:mt-10 text-center md:text-start" data-reveal>
+            <div class="mt-8 md:mt-16 text-center md:text-start" data-reveal>
                 <a
                     class="inline-block md:inline px-6 py-3 rounded bg-primary text-white hover:bg-[#e35d2c] transition-transform duration-300 animate-range-exit animate-duration-700"
                     href="/nosotros/historia"
