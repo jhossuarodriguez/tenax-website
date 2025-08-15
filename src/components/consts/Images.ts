@@ -50,36 +50,35 @@ export const PROJECTS_IMAGES: Image[] = [
         category: "paneles-solares",
     },
     {
-        id: "desarrollo-comercial-mixto",
-        alt: "Paneles Solares Proyecto 2",
-        title: "Paneles Solares",
+        id: "Remodelacion-1",
+        alt: "Remodelación Proyecto 1",
+        title: "Remodelación de Oficina",
         location: "Santo Domingo, RD",
-        category: "naves-industriales",
+        category: "",
     },
     {
         id: "villa-unifamiliar-lujo",
-        alt: "Proyecto 3",
-        title: "Proyecto 3",
-        location: "Santo Domingo, RD",
-        category: "pavimentos-cimentaciones",
+        alt: "Control de Acceso: Verja perimetral Metálica",
+        title: "Control de Acceso: Verja perimetral Metálica",
+        location: "Navieras Haina, Santo Domingo, RD",
+        category: "",
     },
     {
-        id: "desarrollo",
-        alt: "Proyecto 4",
-        title: "Proyecto 4",
-        location: "Santo Domingo, RD",
-        category: "pavimentos-cimentaciones",
+        id: "Naves-2",
+        alt: "Interior del Techado en Nave Industrial para Uso Comercial",
+        title: "Interior del Techado en Nave Industrial para Uso Comercial",
+        location: "Villa Mella, RD",
+        category: "naves-industriales",
     },
 
     //Paneles Solares
     {
         id: "Paneles-2",
         alt: "Proyecto 4",
-        title: "Hincado, Montaje y Colocación De Paneles Solares En El KM. 23",
-        location: "Autopista Duarte KM. 23, RD",
+        title: "Paneles Solares en Parque Fotovoltaico para Fábrica Agroindustrial",
+        location: "El valle, Hato Mayor, RD",
         category: "paneles-solares",
-    }
-    ,
+    },
     {
         id: "Paneles-3",
         alt: "Proyecto 4",
@@ -93,7 +92,61 @@ export const PROJECTS_IMAGES: Image[] = [
         title: "Hincado, Montaje y Colocación De Paneles Solares En El KM. 23",
         location: "Autopista Duarte KM. 23, RD",
         category: "paneles-solares",
+    },
+
+    //Naves Industriales
+    {
+        id: "Naves-1",
+        alt: "Proyecto 4",
+        title: "Envarillado y Vaciado de Losa EN CAJA DE ASENSOR",
+        location: "El valle, Hato Mayor, RD",
+        category: "naves-industriales",
+    },
+    {
+        id: "Naves-4",
+        alt: "Interior del Techado en Nave Industrial para Uso Comercial",
+        title: "Interior del Techado en Nave Industrial para Uso Comercial",
+        location: "Villa Mella, RD",
+        category: "naves-industriales",
+    },
+    {
+        id: "Naves-3",
+        alt: "Nave Industrial para Uso Comercial",
+        title: "Nave Industrial para Uso Comercial",
+        location: "Villa Mella, RD",
+        category: "naves-industriales",
+    },
+
+    //pavimentos-cimentaciones
+    {
+        id: "Pavimentos-1",
+        alt: "Envarillado y Vaciado de Losa EN CAJA DE ASENSOR",
+        title: "Envarillado y Vaciado de Losa EN CAJA DE ASENSOR",
+        location: "Santo Domingo, RD",
+        category: "pavimentos-cimentaciones",
+    },
+    {
+        id: "Pavimentos-2",
+        alt: "Bases Estructurales Para Paneles Solares",
+        title: "Bases Estructurales Para Paneles Solares",
+        location: "Villa Mella, RD",
+        category: "pavimentos-cimentaciones",
+    },
+    {
+        id: "Pavimentos-3",
+        alt: "Acceso Peatonal con Rampa Escalonada",
+        title: "Acceso Peatonal con Rampa Escalonada",
+        location: "Navieras Haina, Santo Domingo, RD",
+        category: "pavimentos-cimentaciones",
+    },
+    {
+        id: "Pavimentos-4",
+        alt: "Construcción de Muro de Contención Tipo AB",
+        title: "Construcción de Muro de Contención Tipo AB",
+        location: "KM. 13, Autopista Duarte, República Dominicana",
+        category: "pavimentos-cimentaciones",
     }
+
 ] as const;
 
 
