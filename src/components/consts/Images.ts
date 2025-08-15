@@ -47,7 +47,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Paneles Solares Proyecto 1",
         title: "Paneles Solares en Parque Fotovoltaico Para Fabrica Agroindustrial",
         location: "El Valle, Hato Mayor, RD",
-        description: "Descripción del proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
+        description: "Proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
         category: "paneles-solares",
     },
     {
@@ -55,7 +55,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Remodelación Proyecto 1",
         title: "Remodelación de Oficina",
         location: "Santo Domingo, RD",
-        description: "Descripción del proyecto de remodelación de oficina.",
+        description: "Proyecto de remodelación de oficina.",
         category: "",
     },
     {
@@ -63,7 +63,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Control de Acceso: Verja perimetral Metálica",
         title: "Control de Acceso: Verja perimetral Metálica",
         location: "Navieras Haina, Santo Domingo, RD",
-        description: "Descripción del proyecto de control de acceso con verja perimetral metálica.",
+        description: "Proyecto de control de acceso con verja perimetral metálica.",
         category: "",
     },
     {
@@ -71,7 +71,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Interior del Techado en Nave Industrial para Uso Comercial",
         title: "Interior del Techado en Nave Industrial para Uso Comercial",
         location: "Villa Mella, RD",
-        description: "Descripción del proyecto de interior del techado en nave industrial para uso comercial.",
+        description: "Proyecto de interior del techado en nave industrial para uso comercial.",
         category: "naves-industriales",
     },
 
@@ -81,7 +81,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 4",
         title: "Paneles Solares en Parque Fotovoltaico para Fábrica Agroindustrial",
         location: "El valle, Hato Mayor, RD",
-        description: "Descripción del proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
+        description: "Proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
         category: "paneles-solares",
     },
     {
@@ -89,7 +89,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 4",
         title: "Paneles Solares en Parque Fotovoltaico para Fábrica Agroindustrial",
         location: "El Seibo, RD",
-        description: "Descripción del proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
+        description: "Proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
         category: "paneles-solares",
     },
     {
@@ -97,7 +97,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 4",
         title: "Hincado, Montaje y Colocación De Paneles Solares En El KM. 23",
         location: "Autopista Duarte KM. 23, RD",
-        description: "Descripción del proyecto de hincado, montaje y colocación de paneles solares en el KM. 23.",
+        description: "Proyecto de hincado, montaje y colocación de paneles solares en el KM. 23.",
         category: "paneles-solares",
     },
 
@@ -122,7 +122,7 @@ export const PROJECTS_IMAGES: Image[] = [
         id: "Naves-3",
         alt: "Nave Industrial para Uso Comercial",
         title: "Nave Industrial para Uso Comercial",
-        description: " del proyecto de nave industrial para uso comercial. Villa Mella, RD",
+        description: "Proyecto de nave industrial para uso comercial. Villa Mella, RD",
         location: "Villa Mella, RD",
         category: "naves-industriales",
     },
