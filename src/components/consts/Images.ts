@@ -47,6 +47,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Paneles Solares Proyecto 1",
         title: "Paneles Solares en Parque Fotovoltaico Para Fabrica Agroindustrial",
         location: "El Valle, Hato Mayor, RD",
+        description: "Descripción del proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
         category: "paneles-solares",
     },
     {
@@ -54,6 +55,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Remodelación Proyecto 1",
         title: "Remodelación de Oficina",
         location: "Santo Domingo, RD",
+        description: "Descripción del proyecto de remodelación de oficina.",
         category: "",
     },
     {
@@ -61,6 +63,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Control de Acceso: Verja perimetral Metálica",
         title: "Control de Acceso: Verja perimetral Metálica",
         location: "Navieras Haina, Santo Domingo, RD",
+        description: "Descripción del proyecto de control de acceso con verja perimetral metálica.",
         category: "",
     },
     {
@@ -68,6 +71,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Interior del Techado en Nave Industrial para Uso Comercial",
         title: "Interior del Techado en Nave Industrial para Uso Comercial",
         location: "Villa Mella, RD",
+        description: "Descripción del proyecto de interior del techado en nave industrial para uso comercial.",
         category: "naves-industriales",
     },
 
@@ -77,6 +81,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 4",
         title: "Paneles Solares en Parque Fotovoltaico para Fábrica Agroindustrial",
         location: "El valle, Hato Mayor, RD",
+        description: "Descripción del proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
         category: "paneles-solares",
     },
     {
@@ -84,6 +89,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 4",
         title: "Paneles Solares en Parque Fotovoltaico para Fábrica Agroindustrial",
         location: "El Seibo, RD",
+        description: "Descripción del proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.",
         category: "paneles-solares",
     },
     {
@@ -91,6 +97,7 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 4",
         title: "Hincado, Montaje y Colocación De Paneles Solares En El KM. 23",
         location: "Autopista Duarte KM. 23, RD",
+        description: "Descripción del proyecto de hincado, montaje y colocación de paneles solares en el KM. 23.",
         category: "paneles-solares",
     },
 
@@ -100,12 +107,14 @@ export const PROJECTS_IMAGES: Image[] = [
         alt: "Proyecto 4",
         title: "Envarillado y Vaciado de Losa EN CAJA DE ASENSOR",
         location: "El valle, Hato Mayor, RD",
+        description: "Envarillado y Vaciado de Losa EN CAJA DE ASENSOR, El valle, Hato Mayor, RD",
         category: "naves-industriales",
     },
     {
         id: "Naves-4",
         alt: "Interior del Techado en Nave Industrial para Uso Comercial",
         title: "Interior del Techado en Nave Industrial para Uso Comercial",
+        description: "Proyecto de interior del techado en nave industrial para uso comercial. Villa Mella, RD",
         location: "Villa Mella, RD",
         category: "naves-industriales",
     },
@@ -113,6 +122,7 @@ export const PROJECTS_IMAGES: Image[] = [
         id: "Naves-3",
         alt: "Nave Industrial para Uso Comercial",
         title: "Nave Industrial para Uso Comercial",
+        description: " del proyecto de nave industrial para uso comercial. Villa Mella, RD",
         location: "Villa Mella, RD",
         category: "naves-industriales",
     },
@@ -122,6 +132,7 @@ export const PROJECTS_IMAGES: Image[] = [
         id: "Pavimentos-1",
         alt: "Envarillado y Vaciado de Losa EN CAJA DE ASENSOR",
         title: "Envarillado y Vaciado de Losa EN CAJA DE ASENSOR",
+        description: "Envarillado y Vaciado de Losa EN CAJA DE ASENSOR, Santo Domingo, RD",
         location: "Santo Domingo, RD",
         category: "pavimentos-cimentaciones",
     },
@@ -129,6 +140,7 @@ export const PROJECTS_IMAGES: Image[] = [
         id: "Pavimentos-2",
         alt: "Bases Estructurales Para Paneles Solares",
         title: "Bases Estructurales Para Paneles Solares",
+        description: "Bases Estructurales Para Paneles Solares, Villa Mella, RD",
         location: "Villa Mella, RD",
         category: "pavimentos-cimentaciones",
     },
@@ -136,6 +148,7 @@ export const PROJECTS_IMAGES: Image[] = [
         id: "Pavimentos-3",
         alt: "Acceso Peatonal con Rampa Escalonada",
         title: "Acceso Peatonal con Rampa Escalonada",
+        description: "Acceso peatonal con rampa escalonada. Navieras Haina, Santo Domingo, RD",
         location: "Navieras Haina, Santo Domingo, RD",
         category: "pavimentos-cimentaciones",
     },
@@ -143,6 +156,7 @@ export const PROJECTS_IMAGES: Image[] = [
         id: "Pavimentos-4",
         alt: "Construcción de Muro de Contención Tipo AB",
         title: "Construcción de Muro de Contención Tipo AB",
+        description: "Construcción de muro de contención tipo AB. KM. 13, Autopista Duarte, República Dominicana",
         location: "KM. 13, Autopista Duarte, República Dominicana",
         category: "pavimentos-cimentaciones",
     }
