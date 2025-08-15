@@ -1,8 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Grua from "../../assets/images/image.webp";
 export const prerender = false;
 const canonical = "https://tenaxconstruction.com.do/contacto/[id]";
-import Message from "../../assets/icons/message.svg";
 import WhatsApp from "../../assets/icons/social/whatsapp.svg";
 import Email from "../../assets/icons/social/email.svg";
 import Calendar from "../../assets/icons/calendar.svg";
@@ -12,16 +13,11 @@ import Calendar from "../../assets/icons/calendar.svg";
     <section
         class="w-full max-w-6xl min-h-screen flex flex-col justify-center items-center mt-20 mx-auto"
     >
-        <div class="relative">
-            <Message class="size-96" />
-            <div
-                class="absolute inset-0 bottom-14 flex items-center justify-center"
-            >
-                <span class="text-[2.8rem] font-semibold text-black/75"
-                    >Contactanos.</span
-                >
-            </div>
-        </div>
+        <Image
+            src={Grua}
+            alt="Grua"
+            class="w-[400px] md:w-[800px] h-auto mt-20 md:mt-0"
+        />
 
         <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
             <div
