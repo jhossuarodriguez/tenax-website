@@ -68,10 +68,10 @@ export const PROJECTS_IMAGES: Image[] = [
     },
     {
         id: "Naves-2",
-        alt: "Interior del Techado en Nave Industrial para Uso Comercial",
-        title: "Interior del Techado en Nave Industrial para Uso Comercial",
-        location: "Villa Mella, RD",
-        description: "Proyecto de interior del techado en nave industrial para uso comercial.",
+        alt: "Nave Industrial para fabrica de plásticos",
+        title: "Nave Industrial para fabrica de plásticos",
+        location: "Santo Domingo Oeste, República Dominicana",
+        description: "Proyecto de Nave Industrial para fabrica de plásticos.",
         category: "naves-industriales",
     },
 
