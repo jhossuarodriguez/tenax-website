@@ -5,58 +5,55 @@ const canonical = "https://tenaxconstruction.com.do/nosotros/[id]";
 ---
 
 <Layout canonical={canonical}>
-    <section class="w-full min-h-screen flex">
-        <div
-            class="w-full flex flex-col md:flex-row justify-center items-center bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat mx-auto relative"
-        >
-            <div class="absolute inset-0 bg-black/75 z-0"></div>
-            <div class="flex flex-col justify-center items-center mt-20 z-10">
-                <header
-                    class="relative text-3xl md:text-4xl font-semibold text-white/75"
-                >
-                    Nuestra Historia
-                    <span
-                        class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
-                    ></span>
-                </header>
-
-                <div
-                    class="w-[400px] md:w-[800px] h-full flex flex-col justify-center items-start mt-10 mx-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-10 shadow-lg"
-                >
-                    <p
-                        class="text-white/75 mt-5 leading-relaxed text-sm md:text-lg"
-                    >
-                        Somos una constructora dominicana dedicada a la
-                        administración, construcción, diseño, y supervisión de
-                        obras civiles, además de realizar estudios de viabilidad
-                        socio-económico y ambiental para respaldar cada
-                        proyecto.
-                        <br />
-                        <br />Fundada en el año 2012. Nuestra experiencia nos
-                        permite el manejo de proyectos altamente detallados,
-                        garantizando una óptima supervisión, para brindar
-                        excelentes resultados.
-                    </p>
-                </div>
-            </div>
+    <section
+        class="w-full min-h-screen py-32 md:py-52 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
+    >
+        <div class="absolute inset-0 bg-black/75 z-0"></div>
+        <div class="flex flex-col justify-center items-center mt-20 z-10">
+            <header
+                class="relative text-3xl md:text-4xl font-semibold text-white/75"
+            >
+                Nuestra Historia
+                <span
+                    class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
+                ></span>
+            </header>
 
             <div
-                class="flex flex-col justify-center items-center mt-10 md:mt-20 mx-0 md:mx-10 z-10"
+                class="w-[400px] md:w-[800px] h-full flex flex-col justify-center items-start mt-10 mx-10 backdrop-blur-md bg-white/10 border border-white/20 rounded-lg p-10 shadow-lg"
             >
-                <img
-                    src={`/logo-tenax.webp`}
-                    alt="Logo de Tenax Construction SRL"
-                    class="w-[250px] md:w-[800px] object-cover"
-                    loading="lazy"
-                />
-
-                <a
-                    href="/#nosotros"
-                    class="w-32 mt-20 bg-primary text-white px-6 py-3 rounded hover:bg-[#e35d2c] transition cursor-pointer"
+                <p
+                    class="text-white/75 mt-5 leading-relaxed text-sm md:text-lg"
                 >
-                    ← Atrás
-                </a>
+                    Somos una constructora dominicana dedicada a la
+                    administración, construcción, diseño, y supervisión de obras
+                    civiles, además de realizar estudios de viabilidad
+                    socio-económico y ambiental para respaldar cada proyecto.
+                    <br />
+                    <br />Fundada en el año 2012. Nuestra experiencia nos
+                    permite el manejo de proyectos altamente detallados,
+                    garantizando una óptima supervisión, para brindar excelentes
+                    resultados.
+                </p>
             </div>
+        </div>
+
+        <div
+            class="flex flex-col justify-center items-center mt-10 mx-0 md:mx-10 z-10 relative"
+        >
+            <img
+                src={`/logo-tenax.webp`}
+                alt="Logo de Tenax Construction SRL"
+                class="w-[250px] md:w-[400px] object-cover"
+                loading="lazy"
+            />
+
+            <a
+                href="/#nosotros"
+                class="w-32 mt-10 bg-primary text-white px-6 py-3 rounded hover:bg-[#e35d2c] transition cursor-pointer"
+            >
+                ← Atrás
+            </a>
         </div>
     </section>
 </Layout>
