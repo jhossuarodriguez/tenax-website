@@ -1,14 +1,14 @@
-import eslintPluginAstro from 'eslint-plugin-astro';
-import { defineConfig } from 'eslint/config';
+import eslintPluginAstro from 'eslint-plugin-astro'
+import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
-    ...eslintPluginAstro.configs.recommended,
-    {
-        rules: {
-            'comma-dangle': ['error', 'always-multiline'],
-        },
+  ...eslintPluginAstro.configs.recommended,
+  {
+    rules: {
+      'comma-dangle': ['error', 'always-multiline'],
     },
-    {
-        ignores: ['.vercel/'], // Reemplaza globalIgnores con ignores
-    },
-]);
+  },
+  {
+    ignores: ['.vercel/'], // Reemplaza globalIgnores con ignores
+  },
+])

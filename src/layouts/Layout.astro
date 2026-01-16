@@ -1,81 +1,81 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import "../styles/global.css";
-import "@fontsource/poppins/400.css";
-import "@fontsource/poppins/600.css";
-import "@fontsource/poppins/700.css";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import Analytics from "@vercel/analytics/astro";
-const { footerLinks } = Astro.props;
+import { ClientRouter } from 'astro:transitions'
+import '../styles/global.css'
+import '@fontsource/poppins/400.css'
+import '@fontsource/poppins/600.css'
+import '@fontsource/poppins/700.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import Analytics from '@vercel/analytics/astro'
+const { footerLinks } = Astro.props
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Tenax Construction - Constructora Dominicana</title>
-		<meta name="og:title" content="Tenax Construction" />
-		<meta
-			name="description"
-			content="Constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
-		/>
-		<meta name="og:image" content="/logo-tenax.webp" />
-		<meta
-			name="og:description"
-			content="Constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
-		/>
-		<meta property="og:site_name" content="Tenax Construction SRL" />
-		<meta name="og:type" content="website" />
-		<meta name="og:url" content="https://tenaxconstruction.com.do" />
-		<meta
-			property="twitter:description"
-			content="Tenax Construction es una constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
-		/>
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:image" content="/logo-tenax.webp" />
-		<meta name="twitter:title" content="Tenax Construction" />
-		<meta name="author" content="Jhossua Roa Rodriguez" />
-		<meta name="robots" content="follow, index" />
-		<meta name="theme-color" content="#403f41" />
-		<link
-			rel="icon"
-			type="image/webp+xml"
-			href="/favicon.webp"
-			title="Tenax Construction favicon"
-		/>
-		<ClientRouter />
-	</head>
-	<body class="mx-auto w-full h-dvh">
-		<Header />
-		<main>
-			<slot />
-		</main>
-		<Footer links={footerLinks} />
-		<Analytics />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Tenax Construction - Constructora Dominicana</title>
+    <meta name="og:title" content="Tenax Construction" />
+    <meta
+      name="description"
+      content="Constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
+    />
+    <meta name="og:image" content="/logo-tenax.webp" />
+    <meta
+      name="og:description"
+      content="Constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
+    />
+    <meta property="og:site_name" content="Tenax Construction SRL" />
+    <meta name="og:type" content="website" />
+    <meta name="og:url" content="https://tenaxconstruction.com.do" />
+    <meta
+      property="twitter:description"
+      content="Tenax Construction es una constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="/logo-tenax.webp" />
+    <meta name="twitter:title" content="Tenax Construction" />
+    <meta name="author" content="Jhossua Roa Rodriguez" />
+    <meta name="robots" content="follow, index" />
+    <meta name="theme-color" content="#403f41" />
+    <link
+      rel="icon"
+      type="image/webp+xml"
+      href="/favicon.webp"
+      title="Tenax Construction favicon"
+    />
+    <ClientRouter />
+  </head>
+  <body class="mx-auto w-full h-dvh">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer links={footerLinks} />
+    <Analytics />
 
-		<script>
-			import "../utils/revealEffect.js";
-		</script>
-	</body>
+    <script>
+      import '../utils/revealEffect.js'
+    </script>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		font-family: "Poppins", system-ui, sans-serif;
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		color: white;
-		background-color: #f5f5f5;
-		scroll-behavior: smooth;
-		scroll-padding-top: 60px;
-	}
-	@media (prefers-reduced-motion: reduce) {
-		html {
-			scroll-behavior: auto;
-		}
-	}
+  html,
+  body {
+    font-family: 'Poppins', system-ui, sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    background-color: #f5f5f5;
+    scroll-behavior: smooth;
+    scroll-padding-top: 60px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 </style>

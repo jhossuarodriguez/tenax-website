@@ -9,23 +9,25 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^4.3.0",
-    "@astrojs/vercel": "^8.2.1",
-    "@fontsource/poppins": "^5.2.6",
-    "@midudev/tailwind-animations": "^0.2.0",
-    "@tailwindcss/vite": "^4.1.10",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
+    "@astrojs/react": "4.3.0",
+    "@astrojs/vercel": "8.2.1",
+    "@fontsource/poppins": "5.2.6",
+    "@midudev/tailwind-animations": "0.2.0",
+    "@tailwindcss/vite": "4.1.10",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
     "astro": "5.11.0",
-    "intersection-observer": "^0.12.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "tailwindcss": "^4.1.10"
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "tailwindcss": "4.1.10"
   },
   "devDependencies": {
-    "nodemailer": "^7.0.5",
-    "@types/nodemailer": "^6.4.17",
-    "eslint": "^9.31.0",
-    "eslint-plugin-astro": "^1.3.1"
+    "@types/nodemailer": "6.4.17",
+    "eslint": "9.31.0",
+    "eslint-plugin-astro": "1.3.1",
+    "nodemailer": "7.0.5",
+    "prettier": "3.7.1",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "0.7.1"
   }
 }

@@ -1,284 +1,266 @@
 ---
-import { Picture } from "astro:assets";
-import { PROJECTS_IMAGES } from "./consts/Images";
+import { Picture } from 'astro:assets'
+import { PROJECTS_IMAGES } from './consts/Images'
 ---
 
 <section class="w-full h-auto py-20">
-    <div class="flex flex-col items-center justify-center">
-        <header
-            class="relative text-4xl font-semibold text-black/75"
-            data-reveal
-        >
-            Nuestros Proyectos
-            <span
-                class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
-            ></span>
-        </header>
+  <div class="flex flex-col items-center justify-center">
+    <header class="relative text-4xl font-semibold text-black/75" data-reveal>
+      Nuestros Proyectos
+      <span class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
+      ></span>
+    </header>
 
-        <div
-            class="md:flex flex-row justify-center items-center w-full max-w-7xl mt-20 hidden"
-            data-reveal
-        >
-            <ul class="flex flex-row mt-3.5 space-x-4 items-center">
-                <li>
-                    <button
-                        data-filter="all"
-                        class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left active cursor-pointer px-4 py-3 rounded-full bg-black/5"
-                    >
-                        Destacados
-                    </button>
-                </li>
+    <div
+      class="md:flex flex-row justify-center items-center w-full max-w-7xl mt-20 hidden"
+      data-reveal
+    >
+      <ul class="flex flex-row mt-3.5 space-x-4 items-center">
+        <li>
+          <button
+            data-filter="all"
+            class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left active cursor-pointer px-4 py-3 rounded-full bg-black/5"
+          >
+            Destacados
+          </button>
+        </li>
 
-                <li>
-                    <button
-                        data-filter="paneles-solares"
-                        class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
-                    >
-                        Paneles Solares
-                    </button>
-                </li>
-                <li>
-                    <button
-                        data-filter="naves-industriales"
-                        class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
-                    >
-                        Naves Industriales
-                    </button>
-                </li>
-                <li>
-                    <button
-                        data-filter="pavimentos-cimentaciones"
-                        class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
-                    >
-                        Pavimentos y Cimentaciones
-                    </button>
-                </li>
-            </ul>
-        </div>
-
-        <div
-            class="w-full md:w-auto h-auto mt-10 flex justify-center items-center flex-col"
-        >
-            <div
-                id="projects-grid"
-                class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-6"
-            >
-                {
-                    PROJECTS_IMAGES.map((project) => (
-                        <a
-                            href={`/projects/${project.id}`}
-                            class="project-item group overflow-hidden rounded-lg"
-                            data-category={project.category}
-                        >
-                            <figure class="bg-white overflow-hidden transition-all duration-300 cursor-pointer group rounded-xl shadow-sm hover:shadow-md relative">
-                                <div class="overflow-hidden rounded-xl">
-                                    <Picture
-                                        transition:name={`image-${project.id}`}
-                                        src={`/projects/${project.id}.webp`}
-                                        alt={project.alt}
-                                        width={500}
-                                        height={500}
-                                        class="object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-105 md:aspect-[200/133]"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <figcaption class="absolute inset-0 bg-black/50 p-4 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
-                                    <h2 class="font-semibold text-[15px] text-white transition-colors duration-300 text-center">
-                                        {project.title}
-                                    </h2>
-                                    <p class="text-xs text-white mt-2 transition-colors duration-300 text-center">
-                                        {project.location}
-                                    </p>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    ))
-                }
-            </div>
-
-            <div
-                class="mt-10 justify-between items-center hidden md:flex gap-20"
-            >
-                <button
-                    class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
-                    id="prev-button"
-                >
-                    ← Atras</button
-                >
-
-                <button
-                    class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
-                    id="next-button"
-                >
-                    Siguiente →</button
-                >
-            </div>
-        </div>
+        <li>
+          <button
+            data-filter="paneles-solares"
+            class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
+          >
+            Paneles Solares
+          </button>
+        </li>
+        <li>
+          <button
+            data-filter="naves-industriales"
+            class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
+          >
+            Naves Industriales
+          </button>
+        </li>
+        <li>
+          <button
+            data-filter="pavimentos-cimentaciones"
+            class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
+          >
+            Pavimentos y Cimentaciones
+          </button>
+        </li>
+      </ul>
     </div>
 
-    <div class="flex flex-col justify-center items-center gap-y-5">
-        <p class="mt-10 text-lg text-black/75">
-            Explora nuestros proyectos destacados
-        </p>
-        <a
-            href="/cotizacion/solicitar"
-            class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300"
-            title="Solicitar cotización para tu proyecto de construcción"
-            aria-label="Solicitar cotización para tu proyecto de construcción"
+    <div class="w-full md:w-auto h-auto mt-10 flex justify-center items-center flex-col">
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-6">
+        {
+          PROJECTS_IMAGES.map((project) => (
+            <a
+              href={`/projects/${project.id}`}
+              class="project-item group overflow-hidden rounded-lg"
+              data-category={project.category}
+            >
+              <figure class="bg-white overflow-hidden transition-all duration-300 cursor-pointer group rounded-xl shadow-sm hover:shadow-md relative">
+                <div class="overflow-hidden rounded-xl">
+                  <Picture
+                    transition:name={`image-${project.id}`}
+                    src={`/projects/${project.id}.webp`}
+                    alt={project.alt}
+                    width={500}
+                    height={500}
+                    class="object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-105 md:aspect-[200/133]"
+                    loading="lazy"
+                  />
+                </div>
+                <figcaption class="absolute inset-0 bg-black/50 p-4 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                  <h2 class="font-semibold text-[15px] text-white transition-colors duration-300 text-center">
+                    {project.title}
+                  </h2>
+                  <p class="text-xs text-white mt-2 transition-colors duration-300 text-center">
+                    {project.location}
+                  </p>
+                </figcaption>
+              </figure>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-10 justify-between items-center hidden md:flex gap-20">
+        <button
+          class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
+          id="prev-button"
         >
-            Solicitar cotización
-        </a>
+          ← Atras</button
+        >
+
+        <button
+          class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
+          id="next-button"
+        >
+          Siguiente →</button
+        >
+      </div>
     </div>
+  </div>
+
+  <div class="flex flex-col justify-center items-center gap-y-5">
+    <p class="mt-10 text-lg text-black/75">Explora nuestros proyectos destacados</p>
+    <a
+      href="/cotizacion/solicitar"
+      class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300"
+      title="Solicitar cotización para tu proyecto de construcción"
+      aria-label="Solicitar cotización para tu proyecto de construcción"
+    >
+      Solicitar cotización
+    </a>
+  </div>
 </section>
 
 <script is:inline>
-    function setupProjectFilters() {
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        const projectItems = document.querySelectorAll(".project-item");
-        const prevButton = document.getElementById("prev-button");
-        const nextButton = document.getElementById("next-button");
+  function setupProjectFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn')
+    const projectItems = document.querySelectorAll('.project-item')
+    const prevButton = document.getElementById('prev-button')
+    const nextButton = document.getElementById('next-button')
 
-        let currentPage = 0;
-        const itemsPerPage = 4;
-        let filteredItems = [];
+    let currentPage = 0
+    const itemsPerPage = 4
+    let filteredItems = []
 
-        function getFilteredItems(category) {
-            if (category === "all") {
-                return Array.from(projectItems);
-            }
-            return Array.from(projectItems).filter(
-                (item) => item.getAttribute("data-category") === category,
-            );
-        }
-
-        function showPage(page) {
-            // Ocultar todos los items primero
-            projectItems.forEach((item) => {
-                item.style.display = "none";
-                item.style.opacity = "0";
-                item.style.transform = "translateY(20px)";
-            });
-
-            // Mostrar items de la página actual
-            const startIndex = page * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const itemsToShow = filteredItems.slice(startIndex, endIndex);
-
-            itemsToShow.forEach((item, index) => {
-                item.style.display = "block";
-
-                setTimeout(() => {
-                    item.style.transition = "all 0.4s ease-out";
-                    item.style.opacity = "1";
-                    item.style.transform = "translateY(0)";
-                }, index * 100); // Animación escalonada
-            });
-
-            updateNavigationButtons();
-        }
-
-        function updateNavigationButtons() {
-            const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
-
-            if (prevButton) {
-                prevButton.disabled = currentPage === 0;
-                prevButton.style.opacity = currentPage === 0 ? "0.5" : "1";
-                prevButton.style.cursor =
-                    currentPage === 0 ? "not-allowed" : "pointer";
-            }
-
-            if (nextButton) {
-                nextButton.disabled = currentPage >= totalPages - 1;
-                nextButton.style.opacity =
-                    currentPage >= totalPages - 1 ? "0.5" : "1";
-                nextButton.style.cursor =
-                    currentPage >= totalPages - 1 ? "not-allowed" : "pointer";
-            }
-        }
-
-        function filterProjects(category) {
-            currentCategory = category;
-            filteredItems = getFilteredItems(category);
-            currentPage = 0; // Reset a la primera página
-            showPage(currentPage);
-        }
-
-        function updateActiveButton(activeButton) {
-            filterButtons.forEach((btn) => {
-                btn.classList.remove("active");
-                btn.classList.remove("text-primary");
-                btn.classList.add("text-black/25");
-            });
-
-            activeButton.classList.add("active");
-            activeButton.classList.add("text-primary");
-            activeButton.classList.remove("text-black/25");
-        }
-
-        // Event listeners para botones de filtro
-        filterButtons.forEach((button) => {
-            button.addEventListener("click", () => {
-                const category = button.getAttribute("data-filter");
-                updateActiveButton(button);
-                filterProjects(category);
-            });
-        });
-
-        // Event listeners para navegación
-        if (prevButton) {
-            prevButton.addEventListener("click", () => {
-                if (currentPage > 0) {
-                    currentPage--;
-                    showPage(currentPage);
-                }
-            });
-        }
-
-        if (nextButton) {
-            nextButton.addEventListener("click", () => {
-                const totalPages = Math.ceil(
-                    filteredItems.length / itemsPerPage,
-                );
-                if (currentPage < totalPages - 1) {
-                    currentPage++;
-                    showPage(currentPage);
-                }
-            });
-        }
-
-        // Inicializar
-        const allButton = document.querySelector('[data-filter="all"]');
-        if (allButton) {
-            updateActiveButton(allButton);
-            filterProjects("all");
-        }
+    function getFilteredItems(category) {
+      if (category === 'all') {
+        return Array.from(projectItems)
+      }
+      return Array.from(projectItems).filter(
+        (item) => item.getAttribute('data-category') === category
+      )
     }
 
-    // Ejecutar cuando el DOM esté listo
-    document.addEventListener("DOMContentLoaded", setupProjectFilters);
+    function showPage(page) {
+      // Ocultar todos los items primero
+      projectItems.forEach((item) => {
+        item.style.display = 'none'
+        item.style.opacity = '0'
+        item.style.transform = 'translateY(20px)'
+      })
 
-    // Para navegación SPA
-    document.addEventListener("astro:page-load", setupProjectFilters);
+      // Mostrar items de la página actual
+      const startIndex = page * itemsPerPage
+      const endIndex = startIndex + itemsPerPage
+      const itemsToShow = filteredItems.slice(startIndex, endIndex)
+
+      itemsToShow.forEach((item, index) => {
+        item.style.display = 'block'
+
+        setTimeout(() => {
+          item.style.transition = 'all 0.4s ease-out'
+          item.style.opacity = '1'
+          item.style.transform = 'translateY(0)'
+        }, index * 100) // Animación escalonada
+      })
+
+      updateNavigationButtons()
+    }
+
+    function updateNavigationButtons() {
+      const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+
+      if (prevButton) {
+        prevButton.disabled = currentPage === 0
+        prevButton.style.opacity = currentPage === 0 ? '0.5' : '1'
+        prevButton.style.cursor = currentPage === 0 ? 'not-allowed' : 'pointer'
+      }
+
+      if (nextButton) {
+        nextButton.disabled = currentPage >= totalPages - 1
+        nextButton.style.opacity = currentPage >= totalPages - 1 ? '0.5' : '1'
+        nextButton.style.cursor = currentPage >= totalPages - 1 ? 'not-allowed' : 'pointer'
+      }
+    }
+
+    function filterProjects(category) {
+      currentCategory = category
+      filteredItems = getFilteredItems(category)
+      currentPage = 0 // Reset a la primera página
+      showPage(currentPage)
+    }
+
+    function updateActiveButton(activeButton) {
+      filterButtons.forEach((btn) => {
+        btn.classList.remove('active')
+        btn.classList.remove('text-primary')
+        btn.classList.add('text-black/25')
+      })
+
+      activeButton.classList.add('active')
+      activeButton.classList.add('text-primary')
+      activeButton.classList.remove('text-black/25')
+    }
+
+    // Event listeners para botones de filtro
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const category = button.getAttribute('data-filter')
+        updateActiveButton(button)
+        filterProjects(category)
+      })
+    })
+
+    // Event listeners para navegación
+    if (prevButton) {
+      prevButton.addEventListener('click', () => {
+        if (currentPage > 0) {
+          currentPage--
+          showPage(currentPage)
+        }
+      })
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+        const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+        if (currentPage < totalPages - 1) {
+          currentPage++
+          showPage(currentPage)
+        }
+      })
+    }
+
+    // Inicializar
+    const allButton = document.querySelector('[data-filter="all"]')
+    if (allButton) {
+      updateActiveButton(allButton)
+      filterProjects('all')
+    }
+  }
+
+  // Ejecutar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', setupProjectFilters)
+
+  // Para navegación SPA
+  document.addEventListener('astro:page-load', setupProjectFilters)
 </script>
 
 <style>
-    .filter-btn.active {
-        font-weight: 600;
-    }
+  .filter-btn.active {
+    font-weight: 600;
+  }
 
-    .project-item {
-        transition: all 0.4s ease-out;
-    }
+  .project-item {
+    transition: all 0.4s ease-out;
+  }
 
-    #prev-button:disabled,
-    #next-button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
+  #prev-button:disabled,
+  #next-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 
-    #prev-button:disabled:hover,
-    #next-button:disabled:hover {
-        background-color: #f97316;
-    }
+  #prev-button:disabled:hover,
+  #next-button:disabled:hover {
+    background-color: #f97316;
+  }
 </style>

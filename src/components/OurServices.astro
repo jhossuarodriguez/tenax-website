@@ -1,115 +1,96 @@
 ---
-import Grua from "../assets/icons/grua.svg";
-import Hammer from "../assets/icons/hammer.svg";
-import DumpDumper from "../assets/icons/dumpDumper.svg";
-import Measure from "../assets/icons/measure.svg";
+import Grua from '../assets/icons/grua.svg'
+import Hammer from '../assets/icons/hammer.svg'
+import DumpDumper from '../assets/icons/dumpDumper.svg'
+import Measure from '../assets/icons/measure.svg'
 ---
 
 <section class="w-full h-screen relative overflow-hidden">
-    <div class="absolute inset-0 bg-black opacity-90 z-[9999px]"></div>
-    <video
-        class="w-full h-full min-h-screen object-cover opacity-30 -z-50"
-        src="/video.webm"
-        autoplay
-        loop
-        muted
-        playsinline
-        aria-label="Video de fondo mostrando maquinaria pesada en acción"
+  <div class="absolute inset-0 bg-black opacity-90 z-[9999px]"></div>
+  <video
+    class="w-full h-full min-h-screen object-cover opacity-30 -z-50"
+    src="/video.webm"
+    autoplay
+    loop
+    muted
+    playsinline
+    aria-label="Video de fondo mostrando maquinaria pesada en acción"
+  >
+  </video>
+  <div class="absolute inset-0 flex items-start justify-center z-10 m-auto py-0 md:py-20">
+    <header
+      class="relative text-4xl font-semibold text-center text-white my-10 md:my-0"
+      data-reveal
     >
-    </video>
-    <div
-        class="absolute inset-0 flex items-start justify-center z-10 m-auto py-0 md:py-20"
-    >
-        <header
-            class="relative text-4xl font-semibold text-center text-white my-10 md:my-0"
-            data-reveal
-        >
-            Nuestros Servicios
-            <span
-                class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
-            ></span>
-        </header>
-    </div>
-    <div
-        class="flex justify-center items-center flex-col z-10 absolute inset-0 m-auto mt-20 mb-10 md:mb-0"
-    >
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 max-w-5xl w-full"
-            data-reveal
-        >
-            <div
-                class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
-                data-reveal
-            >
-                <div class="bg-white/20 p-3 rounded-full">
-                    <Grua
-                        class="w-10 h-10 hover:fill-primary transition-colors duration-300"
-                    />
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold">Excavación</h2>
-                    <p class="text-sm text-white/80 mt-2">
-                        Excavaciones especializadas para proyectos de
-                        construcción
-                    </p>
-                </div>
-            </div>
-
-            <div
-                class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
-                data-reveal
-            >
-                <div class="bg-white/20 p-3 rounded-full">
-                    <Hammer
-                        class="w-10 h-10 hover:fill-primary transition-colors duration-300"
-                    />
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold">Estructura metálica</h2>
-                    <p class="text-sm text-white/80 mt-2">
-                        Montaje y fabricación de estructuras metálicas para
-                        edificaciones y obras civiles
-                    </p>
-                </div>
-            </div>
-
-            <div
-                class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
-                data-reveal
-            >
-                <div class="bg-white/20 p-3 rounded-full">
-                    <DumpDumper
-                        class="w-10 h-10 hover:fill-primary transition-colors duration-300"
-                    />
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold">Movimiento de Tierra</h2>
-                    <p class="text-sm text-white/80 mt-2">
-                        Nivelación de terrenos, compactación y preparación de
-                        superficies para cimentaciones y obras civiles
-                    </p>
-                </div>
-            </div>
-
-            <div
-                class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
-                data-reveal
-            >
-                <div class="bg-white/20 p-3 rounded-full">
-                    <Measure
-                        class="w-10 h-10 hover:fill-primary transition-colors duration-300"
-                    />
-                </div>
-                <div>
-                    <h2 class="text-xl font-semibold">
-                        Estructura de hormigón armado
-                    </h2>
-                    <p class="text-sm text-white/80 mt-2">
-                        Construcción de estructuras de hormigón armado para
-                        edificaciones y obras civiles
-                    </p>
-                </div>
-            </div>
+      Nuestros Servicios
+      <span class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
+      ></span>
+    </header>
+  </div>
+  <div
+    class="flex justify-center items-center flex-col z-10 absolute inset-0 m-auto mt-20 mb-10 md:mb-0"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 max-w-5xl w-full" data-reveal>
+      <div
+        class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
+        data-reveal
+      >
+        <div class="bg-white/20 p-3 rounded-full">
+          <Grua class="w-10 h-10 hover:fill-primary transition-colors duration-300" />
         </div>
+        <div>
+          <h2 class="text-xl font-semibold">Excavación</h2>
+          <p class="text-sm text-white/80 mt-2">
+            Excavaciones especializadas para proyectos de construcción
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
+        data-reveal
+      >
+        <div class="bg-white/20 p-3 rounded-full">
+          <Hammer class="w-10 h-10 hover:fill-primary transition-colors duration-300" />
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold">Estructura metálica</h2>
+          <p class="text-sm text-white/80 mt-2">
+            Montaje y fabricación de estructuras metálicas para edificaciones y obras civiles
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
+        data-reveal
+      >
+        <div class="bg-white/20 p-3 rounded-full">
+          <DumpDumper class="w-10 h-10 hover:fill-primary transition-colors duration-300" />
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold">Movimiento de Tierra</h2>
+          <p class="text-sm text-white/80 mt-2">
+            Nivelación de terrenos, compactación y preparación de superficies para cimentaciones y
+            obras civiles
+          </p>
+        </div>
+      </div>
+
+      <div
+        class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
+        data-reveal
+      >
+        <div class="bg-white/20 p-3 rounded-full">
+          <Measure class="w-10 h-10 hover:fill-primary transition-colors duration-300" />
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold">Estructura de hormigón armado</h2>
+          <p class="text-sm text-white/80 mt-2">
+            Construcción de estructuras de hormigón armado para edificaciones y obras civiles
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

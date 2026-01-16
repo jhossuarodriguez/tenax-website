@@ -1,83 +1,69 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-export const prerender = false;
-const canonical = "https://tenaxconstruction.com.do/nosotros/[id]";
+import Layout from '../../layouts/Layout.astro'
+export const prerender = false
+const canonical = 'https://tenaxconstruction.com.do/nosotros/[id]'
 ---
 
 <Layout canonical={canonical}>
-    <section
-        class="w-full min-h-screen py-32 md:py-52 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
-    >
-        <div class="inset-0 absolute z-0 bg-black/75"></div>
-        <div class="max-w-4xl mx-auto p-6 z-10 relative">
-            <h1 class="text-3xl font-bold text-center mb-8 text-white/75">
-                Preguntas Frecuentes
-            </h1>
+  <section
+    class="w-full min-h-screen py-32 md:py-52 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
+  >
+    <div class="inset-0 absolute z-0 bg-black/75"></div>
+    <div class="max-w-4xl mx-auto p-6 z-10 relative">
+      <h1 class="text-3xl font-bold text-center mb-8 text-white/75">Preguntas Frecuentes</h1>
 
-            <div class="space-y-4">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold mb-3 text-black/75">
-                        ¿Qué servicios de construcción ofrecen?
-                    </h3>
-                    <p class="text-gray-700">
-                        Ofrecemos servicios completos de construcción incluyendo
-                        edificaciones residenciales, comerciales,
-                        remodelaciones, y proyectos de infraestructura.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold mb-3 text-black/75">
-                        ¿Cuánto tiempo toma completar un proyecto?
-                    </h3>
-                    <p class="text-gray-700">
-                        El tiempo varía según la complejidad del proyecto.
-                        Proyectos residenciales típicamente toman 3-6 meses,
-                        mientras que proyectos comerciales pueden tomar 6-12
-                        meses.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold mb-3 text-black/75">
-                        ¿Proporcionan presupuestos gratuitos?
-                    </h3>
-                    <p class="text-gray-700">
-                        Sí, ofrecemos evaluaciones y presupuestos gratuitos para
-                        todos nuestros servicios. Contactanos para programar una
-                        visita.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold mb-3 text-black/75">
-                        ¿Están licenciados y asegurados?
-                    </h3>
-                    <p class="text-gray-700">
-                        Absolutamente. Contamos con todas las licencias
-                        necesarias y seguro completo para proteger tanto
-                        nuestros trabajadores como su propiedad.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h3 class="text-xl font-semibold mb-3 text-black/75">
-                        ¿Tienen garantía en sus servicios?
-                    </h3>
-                    <p class="text-gray-700">
-                        Sí, ofrecemos garantía en todos nuestros servicios de
-                        construcción. Nos aseguramos de que nuestros clientes
-                        estén completamente satisfechos con el trabajo
-                        realizado.
-                    </p>
-                </div>
-            </div>
-            <div class="flex flex-col justify-center items-center">
-                <a
-                    class="px-4 py-3 bg-primary rounded mt-20 text-white"
-                    href="/">← Volver al inicio</a
-                >
-            </div>
+      <div class="space-y-4">
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold mb-3 text-black/75">
+            ¿Qué servicios de construcción ofrecen?
+          </h3>
+          <p class="text-gray-700">
+            Ofrecemos servicios completos de construcción incluyendo edificaciones residenciales,
+            comerciales, remodelaciones, y proyectos de infraestructura.
+          </p>
         </div>
-    </section>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold mb-3 text-black/75">
+            ¿Cuánto tiempo toma completar un proyecto?
+          </h3>
+          <p class="text-gray-700">
+            El tiempo varía según la complejidad del proyecto. Proyectos residenciales típicamente
+            toman 3-6 meses, mientras que proyectos comerciales pueden tomar 6-12 meses.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold mb-3 text-black/75">
+            ¿Proporcionan presupuestos gratuitos?
+          </h3>
+          <p class="text-gray-700">
+            Sí, ofrecemos evaluaciones y presupuestos gratuitos para todos nuestros servicios.
+            Contactanos para programar una visita.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold mb-3 text-black/75">¿Están licenciados y asegurados?</h3>
+          <p class="text-gray-700">
+            Absolutamente. Contamos con todas las licencias necesarias y seguro completo para
+            proteger tanto nuestros trabajadores como su propiedad.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+          <h3 class="text-xl font-semibold mb-3 text-black/75">
+            ¿Tienen garantía en sus servicios?
+          </h3>
+          <p class="text-gray-700">
+            Sí, ofrecemos garantía en todos nuestros servicios de construcción. Nos aseguramos de
+            que nuestros clientes estén completamente satisfechos con el trabajo realizado.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col justify-center items-center">
+        <a class="px-4 py-3 bg-primary rounded mt-20 text-white" href="/">← Volver al inicio</a>
+      </div>
+    </div>
+  </section>
 </Layout>

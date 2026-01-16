@@ -1,78 +1,71 @@
 ---
-import { BANNER_IMAGES } from "./consts/Images";
-import { Image } from "astro:assets";
+import { BANNER_IMAGES } from './consts/Images'
+import { Image } from 'astro:assets'
 ---
 
-<section
-    id="carousel"
-    class="relative w-full min-h-[800px] md:min-h-screen overflow-hidden z-0"
->
-    {
-        BANNER_IMAGES.map((banner, index) => (
-            <div
-                class={`absolute inset-0 transition-opacity duration-1000 aspect-[400/267] ${
-                    index === 0 ? "opacity-100" : "opacity-0"
-                }`}
-                data-index={index}
-            >
-                <Image
-                    src={`/images/${banner.id}.webp`}
-                    alt={banner.alt}
-                    width={1920}
-                    height={1080}
-                    class="w-full h-[800px] aspect-[400/267] md:h-full object-cover animate-kenburns"
-                    loading="eager"
-                    format="webp"
-                />
-                <div class="absolute inset-0 bg-black opacity-30" />
-            </div>
-        ))
-    }
-    <div
-        class="static md:absolute translate-y-72 left-0 w-full px-10 md:px-36 z-[9999px]"
+<section id="carousel" class="relative w-full min-h-[800px] md:min-h-screen overflow-hidden z-0">
+  {
+    BANNER_IMAGES.map((banner, index) => (
+      <div
+        class={`absolute inset-0 transition-opacity duration-1000 aspect-[400/267] ${
+          index === 0 ? 'opacity-100' : 'opacity-0'
+        }`}
+        data-index={index}
+      >
+        <Image
+          src={`/images/${banner.id}.webp`}
+          alt={banner.alt}
+          width={1920}
+          height={1080}
+          class="w-full h-[800px] aspect-[400/267] md:h-full object-cover animate-kenburns"
+          loading="eager"
+          format="webp"
+        />
+        <div class="absolute inset-0 bg-black opacity-30" />
+      </div>
+    ))
+  }
+  <div class="static md:absolute translate-y-72 left-0 w-full px-10 md:px-36 z-[9999px]">
+    <header
+      class="text-white/90 text-3xl md:text-5xl font-semibold uppercase mb-2 animate-fade-in animate-delay-300"
     >
-        <header
-            class="text-white/90 text-3xl md:text-5xl font-semibold uppercase mb-2 animate-fade-in animate-delay-300"
-        >
-            Bienvenido a <br />Tenax Construction
-        </header>
-        <p
-            class="text-white/90 text-base md:text-xl mt-6 uppercase animate-fade-in animate-delay-500"
-        >
-            Reforzamos suelos, elevamos tus proyectos
-        </p>
-        <div class="mt-20">
-            <a
-                href="#proyectos"
-                class="bg-primary/90 text-white/80 px-3 py-3 md:px-6 md:py-4 rounded hover:bg-[#e35d2c]/90 transition-transform duration-300 animate-fade-in animate-delay-700"
-                title="Ver galería de proyectos realizados"
-                aria-label="Ver galería de proyectos realizados"
-            >
-                VER PROYECTOS
-            </a>
-        </div>
+      Bienvenido a <br />Tenax Construction
+    </header>
+    <p class="text-white/90 text-base md:text-xl mt-6 uppercase animate-fade-in animate-delay-500">
+      Reforzamos suelos, elevamos tus proyectos
+    </p>
+    <div class="mt-20">
+      <a
+        href="#proyectos"
+        class="bg-primary/90 text-white/80 px-3 py-3 md:px-6 md:py-4 rounded hover:bg-[#e35d2c]/90 transition-transform duration-300 animate-fade-in animate-delay-700"
+        title="Ver galería de proyectos realizados"
+        aria-label="Ver galería de proyectos realizados"
+      >
+        VER PROYECTOS
+      </a>
     </div>
+  </div>
 </section>
 
 <script type="module">
-    const images = document.querySelectorAll("#carousel > div[data-index]");
-    let currentIndex = 0;
-    const totalImages = images.length;
+  const images = document.querySelectorAll('#carousel > div[data-index]')
+  let currentIndex = 0
+  const totalImages = images.length
 
-    function changeImage() {
-        // Ocultar imagen actual
-        images[currentIndex].classList.remove("opacity-100");
-        images[currentIndex].classList.add("opacity-0");
+  function changeImage() {
+    // Ocultar imagen actual
+    images[currentIndex].classList.remove('opacity-100')
+    images[currentIndex].classList.add('opacity-0')
 
-        // Calcular siguiente índice
-        currentIndex = (currentIndex + 1) % totalImages;
+    // Calcular siguiente índice
+    currentIndex = (currentIndex + 1) % totalImages
 
-        // Mostrar nueva imagen
-        setTimeout(() => {
-            images[currentIndex].classList.remove("opacity-0");
-            images[currentIndex].classList.add("opacity-100");
-        }, 100);
-    }
+    // Mostrar nueva imagen
+    setTimeout(() => {
+      images[currentIndex].classList.remove('opacity-0')
+      images[currentIndex].classList.add('opacity-100')
+    }, 100)
+  }
 
-    setInterval(changeImage, 4000);
+  setInterval(changeImage, 4000)
 </script>

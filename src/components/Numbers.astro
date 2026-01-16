@@ -1,163 +1,142 @@
 ---
-import { Image } from "astro:assets";
-import HandShaking from "../assets/ui_images/handshaking.webp";
-import Crane from "../assets/ui_images/crane.webp";
-import Drawing from "../assets/ui_images/drawing.webp";
+import { Image } from 'astro:assets'
+import HandShaking from '../assets/ui_images/handshaking.webp'
+import Crane from '../assets/ui_images/crane.webp'
+import Drawing from '../assets/ui_images/drawing.webp'
 ---
 
 <section id="numbers-section" class="bg-gradient-to-br py-16 px-6 mt-20">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div class="grid gap-6 place-items-center" data-reveal>
-            <div
-                class="relative min-h-[180px] rounded-3xl shadow-xl p-6 w-full max-w-md overflow-hidden group border-l-4 border-transparent hover:border-primary transition-all duration-300 flex items-center justify-center"
-                data-reveal
-            >
-                <Image
-                    src={Drawing}
-                    alt="Proyectos"
-                    class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                />
-                <div class="absolute inset-0 bg-black/40 z-10"></div>
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div class="grid gap-6 place-items-center" data-reveal>
+      <div
+        class="relative min-h-[180px] rounded-3xl shadow-xl p-6 w-full max-w-md overflow-hidden group border-l-4 border-transparent hover:border-primary transition-all duration-300 flex items-center justify-center"
+        data-reveal
+      >
+        <Image
+          src={Drawing}
+          alt="Proyectos"
+          class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
 
-                <div
-                    class="relative z-20 flex flex-col items-center justify-center text-center text-white"
-                >
-                    <span class="text-5xl font-bold counter" data-target="80"
-                        >0</span
-                    >
-                    <p class="text-lg mt-2 text-white/80">
-                        Proyectos Completados
-                    </p>
-                </div>
-            </div>
-
-            <div
-                class="relative min-h-[180px] rounded-3xl shadow-xl p-6 w-full max-w-md overflow-hidden group border-l-4 border-transparent hover:border-primary transition-all duration-300 flex items-center justify-center"
-                data-reveal
-            >
-                <Image
-                    src={HandShaking}
-                    alt="Clientes Satisfechos"
-                    class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                />
-
-                <div class="absolute inset-0 bg-black/40 z-10"></div>
-
-                <div
-                    class="relative z-20 flex flex-col items-center justify-center text-center text-white"
-                >
-                    <span class="text-5xl font-bold counter" data-target="80"
-                        >0</span
-                    >
-                    <p class="text-lg mt-2 text-white/80">
-                        Clientes Satisfechos
-                    </p>
-                </div>
-            </div>
+        <div class="relative z-20 flex flex-col items-center justify-center text-center text-white">
+          <span class="text-5xl font-bold counter" data-target="80">0</span>
+          <p class="text-lg mt-2 text-white/80">Proyectos Completados</p>
         </div>
+      </div>
 
-        <div class="flex flex-col justify-center items-start gap-8" data-reveal>
-            <div>
-                <h2
-                    class="relative text-4xl font-semibold text-black/75 mb-4"
-                    data-reveal
-                >
-                    Números que hablan
-                    <span
-                        class="absolute top-20 md:top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-90 origin-left"
-                    ></span>
-                </h2>
-                <p class="text-black/75 text-lg max-w-md mt-10">
-                    Nuestra trayectoria se refleja en números, que representan
-                    nuestro compromiso y éxito en el sector de la construcción.
-                </p>
-            </div>
+      <div
+        class="relative min-h-[180px] rounded-3xl shadow-xl p-6 w-full max-w-md overflow-hidden group border-l-4 border-transparent hover:border-primary transition-all duration-300 flex items-center justify-center"
+        data-reveal
+      >
+        <Image
+          src={HandShaking}
+          alt="Clientes Satisfechos"
+          class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
 
-            <div
-                class="relative w-full max-w-md min-h-[180px] rounded-3xl shadow-xl p-6 overflow-hidden group border-l-4 border-transparent hover:border-primary transition-all duration-300 flex items-center justify-center"
-                data-reveal
-            >
-                <Image
-                    src={Crane}
-                    alt="Años en el mercado"
-                    class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
-                    loading="lazy"
-                />
-                <div class="absolute inset-0 bg-black/40 z-10"></div>
-                <div
-                    class="relative z-20 flex flex-col items-center justify-center text-center text-white"
-                >
-                    <span class="text-5xl font-bold counter" data-target="13"
-                        >0</span
-                    >
-                    <p class="text-lg mt-2 text-white/80">Años en el mercado</p>
-                </div>
-            </div>
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+
+        <div class="relative z-20 flex flex-col items-center justify-center text-center text-white">
+          <span class="text-5xl font-bold counter" data-target="80">0</span>
+          <p class="text-lg mt-2 text-white/80">Clientes Satisfechos</p>
         </div>
+      </div>
     </div>
+
+    <div class="flex flex-col justify-center items-start gap-8" data-reveal>
+      <div>
+        <h2 class="relative text-4xl font-semibold text-black/75 mb-4" data-reveal>
+          Números que hablan
+          <span
+            class="absolute top-20 md:top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-90 origin-left"
+          ></span>
+        </h2>
+        <p class="text-black/75 text-lg max-w-md mt-10">
+          Nuestra trayectoria se refleja en números, que representan nuestro compromiso y éxito en
+          el sector de la construcción.
+        </p>
+      </div>
+
+      <div
+        class="relative w-full max-w-md min-h-[180px] rounded-3xl shadow-xl p-6 overflow-hidden group border-l-4 border-transparent hover:border-primary transition-all duration-300 flex items-center justify-center"
+        data-reveal
+      >
+        <Image
+          src={Crane}
+          alt="Años en el mercado"
+          class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-black/40 z-10"></div>
+        <div class="relative z-20 flex flex-col items-center justify-center text-center text-white">
+          <span class="text-5xl font-bold counter" data-target="13">0</span>
+          <p class="text-lg mt-2 text-white/80">Años en el mercado</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <script is:inline>
-    // Función para animar el contador
-    function animarContador(element, target, duracion = 2000) {
-        const TIEMPO_INICIAL = performance.now();
+  // Función para animar el contador
+  function animarContador(element, target, duracion = 2000) {
+    const TIEMPO_INICIAL = performance.now()
 
-        function actualizarContador(tiempoActual) {
-            const TIEMPO_TRANSCURRIDO = tiempoActual - TIEMPO_INICIAL;
-            const PROGRESO = Math.min(TIEMPO_TRANSCURRIDO / duracion, 1);
+    function actualizarContador(tiempoActual) {
+      const TIEMPO_TRANSCURRIDO = tiempoActual - TIEMPO_INICIAL
+      const PROGRESO = Math.min(TIEMPO_TRANSCURRIDO / duracion, 1)
 
-            // Usar easing para una animación más suave
-            const easeOut = 1 - Math.pow(1 - PROGRESO, 3);
-            const ACTUAL = Math.floor(easeOut * target);
+      // Usar easing para una animación más suave
+      const easeOut = 1 - Math.pow(1 - PROGRESO, 3)
+      const ACTUAL = Math.floor(easeOut * target)
 
-            element.textContent = ACTUAL.toString();
+      element.textContent = ACTUAL.toString()
 
-            if (PROGRESO < 1) {
-                requestAnimationFrame(actualizarContador);
-            } else {
-                element.textContent = target.toString();
-            }
-        }
-
-        requestAnimationFrame(actualizarContador);
+      if (PROGRESO < 1) {
+        requestAnimationFrame(actualizarContador)
+      } else {
+        element.textContent = target.toString()
+      }
     }
 
-    // Configurar el Intersection Observer
-    function setupCounterAnimation() {
-        const contador = document.querySelectorAll(".counter");
-        let animado = false;
+    requestAnimationFrame(actualizarContador)
+  }
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting && !animado) {
-                        animado = true;
+  // Configurar el Intersection Observer
+  function setupCounterAnimation() {
+    const contador = document.querySelectorAll('.counter')
+    let animado = false
 
-                        contador.forEach((contador) => {
-                            const target = parseInt(
-                                contador.getAttribute("data-target") || "0",
-                            );
-                            animarContador(contador, target);
-                        });
-                    }
-                });
-            },
-            {
-                threshold: 0.5,
-            },
-        );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !animado) {
+            animado = true
 
-        const secciones = document.getElementById("numbers-section");
-        if (secciones) {
-            observer.observe(secciones);
-        }
+            contador.forEach((contador) => {
+              const target = parseInt(contador.getAttribute('data-target') || '0')
+              animarContador(contador, target)
+            })
+          }
+        })
+      },
+      {
+        threshold: 0.5,
+      }
+    )
+
+    const secciones = document.getElementById('numbers-section')
+    if (secciones) {
+      observer.observe(secciones)
     }
+  }
 
-    // Ejecutar cuando el DOM esté listo
-    document.addEventListener("DOMContentLoaded", setupCounterAnimation);
+  // Ejecutar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', setupCounterAnimation)
 
-    // Para navegación SPA (si usas algún router)
-    document.addEventListener("astro:page-load", setupCounterAnimation);
+  // Para navegación SPA (si usas algún router)
+  document.addEventListener('astro:page-load', setupCounterAnimation)
 </script>

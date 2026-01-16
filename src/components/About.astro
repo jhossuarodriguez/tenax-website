@@ -1,50 +1,46 @@
 ---
-import { Image } from "astro:assets";
-import AboutImage from "../assets/images/about-image.webp";
+import { Image } from 'astro:assets'
+import AboutImage from '../assets/images/about-image.webp'
 ---
 
-<section
-    class="w-full min-h-screen flex justify-center items-center mt-10 md:mt-20"
->
-    <div class="relative flex flex-col md:flex-row justify-center items-center">
-        <Image
-            src={AboutImage}
-            loading="lazy"
-            class="max-w-96 md:max-w-4xl mx-auto h-auto object-cover shadow-2xl md:-translate-x-40 rounded-lg"
-            alt="CEO Tenax Construction SRL"
-            data-reveal
-        />
-        <div
-            class="static md:absolute top-0 md:translate-x-96 w-[400px] md:w-[500px] h-full mt-10 bg-white/90 backdrop-blur-lg rounded-lg p-10 shadow-lg space-y-16"
-            data-reveal
+<section class="w-full min-h-screen flex justify-center items-center mt-10 md:mt-20">
+  <div class="relative flex flex-col md:flex-row justify-center items-center">
+    <Image
+      src={AboutImage}
+      loading="lazy"
+      class="max-w-96 md:max-w-4xl mx-auto h-auto object-cover shadow-2xl md:-translate-x-40 rounded-lg"
+      alt="CEO Tenax Construction SRL"
+      data-reveal
+    />
+    <div
+      class="static md:absolute top-0 md:translate-x-96 w-[400px] md:w-[500px] h-full mt-10 bg-white/90 backdrop-blur-lg rounded-lg p-10 shadow-lg space-y-16"
+      data-reveal
+    >
+      <header
+        class="text-2xl md:text-4xl text-center md:text-start font-semibold text-black/75"
+        data-reveal
+      >
+        En Tenax Construction
+      </header>
+      <p
+        class="text-black/75 mt-5 leading-relaxed text-sm md:text-base text-center md:text-start"
+        data-reveal
+      >
+        Brindamos soluciones innovadoras y de alta calidad en el sector de la construcción,
+        adaptándonos a las necesidades de nuestros clientes y contribuyendo al desarrollo sostenible
+        de la República Dominicana. <br />
+        <br />Contamos con equipos especializados y maquinaria pesada de última generacion para
+        realizar proyectos con eficiencia y precisión.
+      </p>
+      <div class="mt-8 md:mt-16 text-center md:text-start" data-reveal>
+        <a
+          class="inline-block md:inline px-6 py-3 rounded bg-primary text-white hover:bg-[#e35d2c] transition-transform duration-300 animate-range-exit animate-duration-700"
+          href="/nosotros/historia"
+          title="Conocer más detalles sobre nuestra empresa y servicios"
+          aria-label="Conocer más detalles sobre nuestra empresa y servicios"
+          >Conoce nuestra historia</a
         >
-            <header
-                class="text-2xl md:text-4xl text-center md:text-start font-semibold text-black/75"
-                data-reveal
-            >
-                En Tenax Construction
-            </header>
-            <p
-                class="text-black/75 mt-5 leading-relaxed text-sm md:text-base text-center md:text-start"
-                data-reveal
-            >
-                Brindamos soluciones innovadoras y de alta calidad en el sector
-                de la construcción, adaptándonos a las necesidades de nuestros
-                clientes y contribuyendo al desarrollo sostenible de la
-                República Dominicana. <br />
-                <br />Contamos con equipos especializados y maquinaria pesada de
-                última generacion para realizar proyectos con eficiencia y
-                precisión.
-            </p>
-            <div class="mt-8 md:mt-16 text-center md:text-start" data-reveal>
-                <a
-                    class="inline-block md:inline px-6 py-3 rounded bg-primary text-white hover:bg-[#e35d2c] transition-transform duration-300 animate-range-exit animate-duration-700"
-                    href="/nosotros/historia"
-                    title="Conocer más detalles sobre nuestra empresa y servicios"
-                    aria-label="Conocer más detalles sobre nuestra empresa y servicios"
-                    >Conoce nuestra historia</a
-                >
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 </section>

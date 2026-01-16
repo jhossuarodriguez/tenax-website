@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin '@midudev/tailwind-animations';
 
 @keyframes kenburns {
@@ -34,6 +34,6 @@ header img {
   transform: translateY(0);
 }
 
-@theme{
-  --color-primary: #F46738;
+@theme {
+  --color-primary: #f46738;
 }
