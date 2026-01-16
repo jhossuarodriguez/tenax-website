@@ -68,36 +68,58 @@ export const POST: APIRoute = async ({ request }) => {
         </ul>
         <p>¡Gracias por confiar en Tenax Construction!</p>
         `
-
-  ;(async () => {
-    const COTIZACION_RECEIVED = await transporter.sendMail({
+  try {
+    // Definimos las promesas de envío de correo (se ejecutarán en paralelo)
+    const mailOptionsAdmin = {
       from: `${nombre} <${email}>`,
       to: USER,
       subject: 'Nueva solicitud de cotización',
       html: MESSAGE_RECEIVED,
-    })
+    };
 
-    console.log('Correo enviado a Tenax Construction:', COTIZACION_RECEIVED)
-  })()
-
-  ;(async () => {
-    const COTIZACION_CONFIRMATION = await transporter.sendMail({
+    const mailOptionsClient = {
       from: USER,
       to: email,
       subject: 'Confirmación - Solicitud de cotización Recibida',
       html: MESSAGE_CONFIRMATION,
-    })
-    console.log('Correo de confirmación enviado al cliente:', COTIZACION_CONFIRMATION)
-  })()
+    };
 
-  return new Response(
-    JSON.stringify({
-      success: true,
-      message: 'Cotización enviada exitosamente',
-    }),
-    {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    }
-  )
+    // Usamos Promise.all para enviar ambos al mismo tiempo y esperar a que terminen
+    const [adminInfo, clientInfo] = await Promise.all([
+      transporter.sendMail(mailOptionsAdmin),
+      transporter.sendMail(mailOptionsClient)
+    ]);
+
+    // Logs de depuración exitosa
+    console.log('Correo enviado a Tenax Construction:', adminInfo.messageId); // messageId es útil para rastrear
+    console.log('Correo de confirmación enviado al cliente:', clientInfo.messageId);
+
+    // Si todo sale bien, retornamos éxito
+    return new Response(
+      JSON.stringify({
+        success: true,
+        message: 'Cotización enviada exitosamente',
+      }),
+      {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+
+  } catch (error: unknown | any) {
+    // CAPTURA DE ERROR
+    console.error('Error enviando los correos:', error);
+
+    return new Response(
+      JSON.stringify({
+        success: false,
+        message: 'Error al enviar la cotización',
+        error: error.message, // Opcional: enviar el detalle del error al cliente
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
+  }
 }
