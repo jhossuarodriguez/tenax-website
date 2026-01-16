@@ -69,7 +69,6 @@ export const POST: APIRoute = async ({ request }) => {
         <p>¡Gracias por confiar en Tenax Construction!</p>
         `
   try {
-    // Definimos las promesas de envío de correo (se ejecutarán en paralelo)
     const mailOptionsAdmin = {
       from: `${nombre} <${email}>`,
       to: USER,
@@ -84,17 +83,11 @@ export const POST: APIRoute = async ({ request }) => {
       html: MESSAGE_CONFIRMATION,
     };
 
-    // Usamos Promise.all para enviar ambos al mismo tiempo y esperar a que terminen
     const [adminInfo, clientInfo] = await Promise.all([
       transporter.sendMail(mailOptionsAdmin),
       transporter.sendMail(mailOptionsClient)
     ]);
 
-    // Logs de depuración exitosa
-    console.log('Correo enviado a Tenax Construction:', adminInfo.messageId); // messageId es útil para rastrear
-    console.log('Correo de confirmación enviado al cliente:', clientInfo.messageId);
-
-    // Si todo sale bien, retornamos éxito
     return new Response(
       JSON.stringify({
         success: true,
@@ -107,8 +100,6 @@ export const POST: APIRoute = async ({ request }) => {
     );
 
   } catch (error: unknown | any) {
-    // CAPTURA DE ERROR
-    console.error('Error enviando los correos:', error);
 
     return new Response(
       JSON.stringify({
