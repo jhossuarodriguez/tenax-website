@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets'
-import HandShaking from '../assets/ui_images/handshaking.webp'
-import Crane from '../assets/ui_images/crane.webp'
-import Drawing from '../assets/ui_images/drawing.webp'
+import HandShaking from '@/assets/ui_images/handshaking.webp'
+import Crane from '@/assets/ui_images/crane.webp'
+import Drawing from '@/assets/ui_images/drawing.webp'
 ---
 
 <section id="numbers-section" class="bg-gradient-to-br py-16 px-6 mt-20">
@@ -125,7 +125,7 @@ import Drawing from '../assets/ui_images/drawing.webp'
       },
       {
         threshold: 0.5,
-      }
+      },
     )
 
     const secciones = document.getElementById('numbers-section')
