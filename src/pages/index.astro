@@ -1,11 +1,11 @@
 ---
-import Banner from '../components/Banner.astro'
-import About from '../components/About.astro'
-import Layout from '../layouts/Layout.astro'
-import OurServices from '../components/OurServices.astro'
-import Numbers from '../components/Numbers.astro'
-import Projects from '../components/Projects.astro'
-import News from '../components/News.astro'
+import Banner from '@/components/Banner.astro'
+import About from '@/components/About.astro'
+import Layout from '@/layouts/Layout.astro'
+import OurServices from '@/components/OurServices.astro'
+import Numbers from '@/components/Numbers.astro'
+import Projects from '@/components/Projects.astro'
+import News from '@/components/News.astro'
 
 const canonical = 'https://tenaxconstruction.com.do'
 export const prerender = true
@@ -25,7 +25,7 @@ export const prerender = true
     <OurServices />
   </div>
   <Numbers />
-  <div id="noticias">
+  <!-- <div id="noticias">
     <News />
-  </div>
+  </div> -->
 </Layout>
