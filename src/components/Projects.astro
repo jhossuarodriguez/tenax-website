@@ -1,6 +1,6 @@
 ---
 import { Picture } from 'astro:assets'
-import { PROJECTS_IMAGES } from './consts/Images'
+import { PROJECTS_IMAGES } from '@/components/consts/Images'
 ---
 
 <section class="w-full h-auto py-20">
@@ -134,7 +134,7 @@ import { PROJECTS_IMAGES } from './consts/Images'
         return Array.from(projectItems)
       }
       return Array.from(projectItems).filter(
-        (item) => item.getAttribute('data-category') === category
+        (item) => item.getAttribute('data-category') === category,
       )
     }
 
