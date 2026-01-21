@@ -12,30 +12,36 @@ const { footerLinks, canonical, noindex } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Tenax Construction - Constructora Dominicana</title>
-    <meta name="og:title" content="Tenax Construction" />
+    <title>Tenax Construction | Constructora en Santo Domingo, RD</title>
+
     <meta
       name="description"
-      content="Constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
+      content="Constructora dominicana experta en administración, construcción y supervisión de obras civiles y naves industriales."
     />
-    <meta name="og:image" content="/logo-tenax.webp" />
-    <meta
-      name="og:description"
-      content="Constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
-    />
-    <meta property="og:site_name" content="Tenax Construction SRL" />
-    <meta name="og:type" content="website" />
-    <meta name="og:url" content={canonical ?? 'https://tenaxconstruction.com.do'} />
-    <meta
-      property="twitter:description"
-      content="Tenax Construction es una constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles."
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="/logo-tenax.webp" />
-    <meta name="twitter:title" content="Tenax Construction" />
     <meta name="author" content="Jhossua Roa Rodriguez" />
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
     <meta name="theme-color" content="#403f41" />
+
+    <meta property="og:title" content="Tenax Construction | Obras Civiles en RD" />
+    <meta
+      property="og:description"
+      content="Expertos en construcción, diseño y supervisión de obras civiles en República Dominicana."
+    />
+    <meta property="og:image" content="https://tenaxconstruction.com.do/og-image-social.webp" />
+    <meta property="og:image:alt" content="Obra en construcción por Tenax Construction" />
+    <meta property="og:site_name" content="Tenax Construction SRL" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical ?? 'https://tenaxconstruction.com.do'} />
+    <meta property="og:locale" content="es_DO" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Tenax Construction | Constructora en RD" />
+    <meta
+      name="twitter:description"
+      content="Líderes en construcción y supervisión de obras civiles en Santo Domingo."
+    />
+    <meta name="twitter:image" content="https://tenaxconstruction.com.do/og-image-social.webp" />
+
     {canonical && <link rel="canonical" href={canonical} />}
     <link
       rel="icon"
@@ -43,23 +49,58 @@ const { footerLinks, canonical, noindex } = Astro.props
       href="/favicon.webp"
       title="Tenax Construction favicon"
     />
+
     <ClientRouter />
-  </head>
-  <body class="mx-auto w-full h-dvh">
-    <Header />
-    <main>
-      <slot />
-    </main>
-    <Footer links={footerLinks} />
-    <Analytics />
 
-    <script>
-      import '@/utils/revealEffect.js'
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "Tenax Construction",
+        "image": "https://tenaxconstruction.com.do/logo-tenax.webp",
+        "url": "https://tenaxconstruction.com.do",
+        "telephone": "+18098986028",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. 27 de Febrero, Esq. Calle el Seminario #261, Plaza Comercial APH, 4to Piso",
+          "addressLocality": "Santo Domingo",
+          "postalCode": "10100",
+          "addressCountry": "DO"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 18.468494,
+          "longitude": -69.939223
+        },
+        "hasMap": "https://maps.app.goo.gl/sa4gHQfY2zJr4QbFA",
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "17:00"
+        },
+        "sameAs": [
+          "https://www.instagram.com/tenaxconstruction",
+          "https://www.linkedin.com/company/tenax-construction-srl"
+        ],
+        "description": "Constructora dominicana experta en administración, diseño y supervisión de obras civiles, naves industriales y estructuras metálicas."
+      }
     </script>
-  </body>
+  </head>
 </html>
+<body class="mx-auto w-full h-dvh">
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer links={footerLinks} />
+  <Analytics />
 
-<style>
+  <script>
+    import '@/utils/revealEffect.js'
+  </script>
+</body><style>
   html,
   body {
     font-family: 'Poppins', system-ui;
