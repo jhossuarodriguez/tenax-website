@@ -1,13 +1,19 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 export const prerender = false
-const canonical = 'https://tenaxconstruction.com.do/contacto'
 import WhatsApp from '@/assets/icons/social/whatsapp.svg'
 import Email from '@/assets/icons/social/email.svg'
 import Calendar from '@/assets/icons/calendar.svg'
+
+const seo = {
+  canonical: 'https://tenaxconstruction.com.do/contacto',
+  title: 'Contacto - Tenax Construction',
+  description:
+    'Contacta con Tenax Construction para obtener más información sobre nuestros servicios.',
+}
 ---
 
-<Layout canonical={canonical}>
+<Layout {...seo}>
   <section
     class="w-full min-h-screen flex flex-col justify-center items-center bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat mx-auto relative"
   >
