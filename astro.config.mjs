@@ -28,5 +28,13 @@ export default defineConfig({
     responsiveStyles: true,
   },
 
-  integrations: [react(), sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/404'),
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+    react(),
+  ],
 })
