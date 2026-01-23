@@ -1,0 +1,136 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import Grua from '@/assets/icons/grua.svg'
+import Hammer from '@/assets/icons/hammer.svg'
+import DumpDumper from '@/assets/icons/dumpDumper.svg'
+import Measure from '@/assets/icons/measure.svg'
+import { SERVICES } from '@/components/consts/Services'
+
+export const prerender = false
+
+const seo = {
+  canonical: 'https://tenaxconstruction.com.do/servicios',
+  title: 'Servicios - Tenax Construction',
+  description:
+    'Descubre nuestros servicios de construcción: excavación, estructuras metálicas, movimiento de tierra y hormigón armado.',
+}
+
+const iconMap = {
+  grua: Grua,
+  hammer: Hammer,
+  dumpDumper: DumpDumper,
+  measure: Measure,
+}
+---
+
+<Layout {...seo}>
+  <section
+    class="w-full min-h-screen py-32 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
+  >
+    <div class="absolute inset-0 bg-black/80 z-0"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-16 mt-14">
+        <header class="relative inline-block text-3xl md:text-4xl font-semibold text-white/90">
+          Nuestros Servicios
+          <span
+            class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
+          ></span>
+        </header>
+        <p class="text-white/70 mt-8 max-w-2xl mx-auto text-base md:text-lg">
+          Ofrecemos soluciones integrales en construcción con los más altos estándares de calidad y
+          compromiso.
+        </p>
+      </div>
+
+      <!-- Servicios Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          SERVICES.map((servicio) => {
+            const IconComponent = iconMap[servicio.icon as keyof typeof iconMap]
+            return (
+              <a
+                href={`/servicios/${servicio.id}`}
+                class="group backdrop-blur-md bg-white/10 border border-white/20 text-white p-8 rounded-2xl shadow-lg hover:bg-white/15 hover:border-primary/50 transition-all duration-300 block"
+                data-reveal
+              >
+                <div class="flex items-center gap-4 mb-6">
+                  <div class="bg-primary/20 p-4 rounded-full group-hover:bg-primary/30 transition-colors">
+                    <IconComponent class="w-12 h-12 text-primary" />
+                  </div>
+                  <h2 class="text-2xl font-semibold group-hover:text-primary transition-colors">
+                    {servicio.titulo}
+                  </h2>
+                </div>
+
+                <p class="text-white/80 mb-6 leading-relaxed">{servicio.descripcionCorta}</p>
+
+                <ul class="space-y-2 mb-6">
+                  {servicio.caracteristicas.slice(0, 4).map((caracteristica) => (
+                    <li class="flex items-center gap-2 text-white/70">
+                      <span class="w-2 h-2 bg-primary rounded-full" />
+                      {caracteristica}
+                    </li>
+                  ))}
+                </ul>
+
+                <span class="inline-flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                  Ver más detalles
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </span>
+              </a>
+            )
+          })
+        }
+      </div>
+
+      <!-- CTA Section -->
+      <div class="mt-16 text-center">
+        <div
+          class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8 md:p-12 max-w-3xl mx-auto"
+          data-reveal
+        >
+          <h3 class="text-2xl md:text-3xl font-semibold text-white mb-4">
+            ¿Tienes un proyecto en mente?
+          </h3>
+          <p class="text-white/70 mb-8">
+            Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a
+            hacer realidad tu proyecto.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/cotizacion"
+              class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-[#e35d2c] transition-colors duration-300 font-medium"
+            >
+              Solicitar Cotización
+            </a>
+            <a
+              href="/contacto"
+              class="bg-white/20 text-white px-8 py-3 rounded-lg hover:bg-white/30 transition-colors duration-300 font-medium border border-white/30"
+            >
+              Contactar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back Button -->
+      <div class="mt-12 text-center">
+        <a
+          href="/"
+          class="inline-block bg-primary/80 text-white px-6 py-3 rounded hover:bg-primary transition-colors duration-300"
+        >
+          ← Volver al Inicio
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
