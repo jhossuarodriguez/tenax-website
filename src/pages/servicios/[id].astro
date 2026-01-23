@@ -1,0 +1,248 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Layout from '@/layouts/Layout.astro'
+import { SERVICES } from '@/components/consts/Services'
+
+import Grua from '@/assets/icons/grua.svg'
+import Hammer from '@/assets/icons/hammer.svg'
+import DumpDumper from '@/assets/icons/dumpDumper.svg'
+import Measure from '@/assets/icons/measure.svg'
+
+const iconMap = {
+  grua: Grua,
+  hammer: Hammer,
+  dumpDumper: DumpDumper,
+  measure: Measure,
+}
+
+const { id } = Astro.params
+if (!id) return Astro.redirect('/404')
+
+const servicio = SERVICES.find((s) => s.id === id)
+if (!servicio) return Astro.redirect('/404')
+
+export const getStaticPaths = (() => {
+  return SERVICES.map((servicio) => ({
+    params: { id: servicio.id },
+  }))
+}) satisfies GetStaticPaths
+
+export const prerender = true
+
+const seo = {
+  canonical: `https://tenaxconstruction.com.do/servicios/${id}`,
+  title: `${servicio.titulo} - Servicios | Tenax Construction`,
+  description: servicio.descripcionCorta,
+}
+
+const IconComponent = iconMap[servicio.icon as keyof typeof iconMap]
+---
+
+<Layout {...seo}>
+  <section
+    class="w-full min-h-screen bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
+  >
+    <div class="absolute inset-0 bg-black/85 z-0"></div>
+
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <!-- Breadcrumb -->
+      <nav class="mb-8 mt-14">
+        <ol class="flex items-center gap-2 text-white/60 text-sm">
+          <li><a href="/" class="hover:text-primary transition-colors">Inicio</a></li>
+          <li>/</li>
+          <li><a href="/servicios" class="hover:text-primary transition-colors">Servicios</a></li>
+          <li>/</li>
+          <li class="text-primary">{servicio.titulo}</li>
+        </ol>
+      </nav>
+
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row gap-8 mb-12">
+        <div class="flex-1">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="bg-primary/20 p-4 rounded-full">
+              <IconComponent class="w-12 h-12 text-primary" />
+            </div>
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
+              {servicio.titulo}
+            </h1>
+          </div>
+          <p class="text-white/80 text-lg leading-relaxed">
+            {servicio.descripcionLarga}
+          </p>
+        </div>
+        <div class="md:w-96">
+          <img
+            src={servicio.imagen}
+            alt={servicio.titulo}
+            class="w-full h-64 md:h-80 object-cover rounded-2xl shadow-2xl"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      <!-- Características -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <div
+          class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8"
+          data-reveal
+        >
+          <h2 class="text-2xl font-semibold text-white mb-6 flex items-center gap-3">
+            <span class="w-2 h-8 bg-primary rounded-full"></span>
+            Características del Servicio
+          </h2>
+          <ul class="space-y-3">
+            {
+              servicio.caracteristicas.map((caracteristica) => (
+                <li class="flex items-start gap-3 text-white/80">
+                  <span class="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                  {caracteristica}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div
+          class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8"
+          data-reveal
+        >
+          <h2 class="text-2xl font-semibold text-white mb-6 flex items-center gap-3">
+            <span class="w-2 h-8 bg-primary rounded-full"></span>
+            Beneficios
+          </h2>
+          <ul class="space-y-3">
+            {
+              servicio.beneficios.map((beneficio) => (
+                <li class="flex items-start gap-3 text-white/80">
+                  <svg
+                    class="w-5 h-5 text-primary mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  {beneficio}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <!-- Proceso de Trabajo -->
+      <div
+        class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8 mb-12"
+        data-reveal
+      >
+        <h2 class="text-2xl font-semibold text-white mb-8 flex items-center gap-3">
+          <span class="w-2 h-8 bg-primary rounded-full"></span>
+          Proceso de Trabajo
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {
+            servicio.proceso.map((paso, index) => (
+              <div class="relative">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold text-lg">
+                    {index + 1}
+                  </span>
+                  <h3 class="text-lg font-semibold text-white">{paso.paso}</h3>
+                </div>
+                <p class="text-white/70 text-sm leading-relaxed pl-13">{paso.descripcion}</p>
+                {index < servicio.proceso.length - 1 && (
+                  <div class="hidden lg:block absolute top-5 left-[calc(100%+0.5rem)] w-8 h-0.5 bg-primary/50" />
+                )}
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Equipos -->
+      {
+        servicio.equipos && (
+          <div
+            class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8 mb-12"
+            data-reveal
+          >
+            <h2 class="text-2xl font-semibold text-white mb-6 flex items-center gap-3">
+              <span class="w-2 h-8 bg-primary rounded-full" />
+              Equipos y Maquinaria
+            </h2>
+            <div class="flex flex-wrap gap-3">
+              {servicio.equipos.map((equipo) => (
+                <span class="bg-primary/20 text-white px-4 py-2 rounded-full text-sm border border-primary/30">
+                  {equipo}
+                </span>
+              ))}
+            </div>
+          </div>
+        )
+      }
+
+      <!-- CTA -->
+      <div
+        class="backdrop-blur-md bg-primary/20 border border-primary/30 rounded-2xl p-8 text-center"
+        data-reveal
+      >
+        <h3 class="text-2xl font-semibold text-white mb-4">
+          ¿Necesitas este servicio para tu proyecto?
+        </h3>
+        <p class="text-white/80 mb-6 max-w-2xl mx-auto">
+          Contáctanos para una evaluación gratuita. Nuestro equipo de expertos está listo para
+          ayudarte.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/cotizacion"
+            class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-[#e35d2c] transition-colors duration-300 font-medium"
+          >
+            Solicitar Cotización
+          </a>
+          <a
+            href="/contacto"
+            class="bg-white/20 text-white px-8 py-3 rounded-lg hover:bg-white/30 transition-colors duration-300 font-medium border border-white/30"
+          >
+            Contactar
+          </a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="mt-12 flex justify-between items-center">
+        <a
+          href="/servicios"
+          class="inline-flex items-center gap-2 bg-white/10 text-white px-6 py-3 rounded-lg hover:bg-white/20 transition-colors duration-300 border border-white/20"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+          Todos los Servicios
+        </a>
+        <a
+          href="/#servicios"
+          class="inline-flex items-center gap-2 text-white/70 hover:text-primary transition-colors duration-300"
+        >
+          Volver al Inicio
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
