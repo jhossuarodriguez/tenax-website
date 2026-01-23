@@ -1,6 +1,16 @@
+# Tenax Construction - robots.txt
+# https://tenaxconstruction.com.do
+
 User-agent: *
 Allow: /
-Disallow: /admin
 
-# Sitemap
+# Block admin and internal paths
+Disallow: /admin
+Disallow: /api/
+Disallow: /_astro/
+
+# Sitemap location
 Sitemap: https://tenaxconstruction.com.do/sitemap-index.xml
+
+# Crawl-delay for bots (optional, helps with server load)
+Crawl-delay: 1
