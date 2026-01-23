@@ -1,10 +1,15 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 export const prerender = false
-const canonical = 'https://tenaxconstruction.com.do/nosotros'
+
+const seo = {
+  canonical: 'https://tenaxconstruction.com.do/nosotros',
+  title: 'Nosotros - Tenax Construction',
+  description: 'Conoce más sobre Tenax Construction, nuestra historia y nuestros valores.',
+}
 ---
 
-<Layout canonical={canonical}>
+<Layout {...seo}>
   <section
     class="w-full min-h-screen py-32 md:py-52 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
   >
