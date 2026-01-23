@@ -4,7 +4,11 @@ import WhatsApp from '@/assets/icons/social/whatsapp.svg'
 import Email from '@/assets/icons/social/email.svg'
 import Calendar from '@/assets/icons/calendar.svg'
 export const prerender = false
-const canonical = 'https://tenaxconstruction.com.do/cotizacion'
+const seo = {
+  canonical: 'https://tenaxconstruction.com.do/cotizacion',
+  title: 'Cotización - Tenax Construction',
+  description: 'Solicita una cotización para tu proyecto de construcción.',
+}
 
 const errors = { message: '' }
 let success = false
@@ -41,7 +45,7 @@ if (Astro.request.method === 'POST') {
 }
 ---
 
-<Layout canonical={canonical}>
+<Layout {...seo}>
   <section
     class="w-full min-h-screen py-20 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
   >
