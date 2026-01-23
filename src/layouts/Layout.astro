@@ -4,7 +4,30 @@ import '@/styles/global.css'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
 import Analytics from '@vercel/analytics/astro'
-const { footerLinks, canonical, noindex } = Astro.props
+
+interface Props {
+  canonical: string
+  title?: string
+  description?: string
+  noindex?: boolean
+  footerLinks?: string[]
+}
+
+const SITE_URL = 'https://tenaxconstruction.com.do'
+const DEFAULT_TITLE = 'Tenax Construction | Constructora en Santo Domingo, RD'
+const DEFAULT_DESCRIPTION =
+  'Constructora dominicana experta en administración, construcción y supervisión de obras civiles y naves industriales.'
+
+const {
+  canonical,
+  title = DEFAULT_TITLE,
+  description = DEFAULT_DESCRIPTION,
+  noindex = false,
+  footerLinks,
+} = Astro.props
+
+const canonicalURL = canonical.startsWith('http') ? canonical : `${SITE_URL}${canonical}`
+const ogImageURL = `${SITE_URL}/og.webp`
 ---
 
 <!doctype html>
@@ -12,40 +35,37 @@ const { footerLinks, canonical, noindex } = Astro.props
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Tenax Construction | Constructora en Santo Domingo, RD</title>
-
-    <meta
-      name="description"
-      content="Constructora dominicana experta en administración, construcción y supervisión de obras civiles y naves industriales."
-    />
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
     <meta name="author" content="Jhossua Roa Rodriguez" />
+
+    <!-- Robots -->
     <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
-    <meta name="theme-color" content="#403f41" />
 
-    <meta property="og:title" content="Tenax Construction | Obras Civiles en RD" />
-    <meta
-      property="og:description"
-      content="Expertos en construcción, diseño y supervisión de obras civiles en República Dominicana."
-    />
-    <meta property="og:image" content="https://tenaxconstruction.com.do/og-image-social.webp" />
-    <meta property="og:image:alt" content="Obra en construcción por Tenax Construction" />
-    <meta property="og:site_name" content="Tenax Construction SRL" />
+    <!-- Canonical URL - Always present -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical ?? 'https://tenaxconstruction.com.do'} />
-    <meta property="og:locale" content="es_DO" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content="Tenax Construction" />
+    <meta property="og:locale" content="en_US" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Tenax Construction | Constructora en RD" />
-    <meta
-      name="twitter:description"
-      content="Líderes en construcción y supervisión de obras civiles en Santo Domingo."
-    />
-    <meta name="twitter:image" content="https://tenaxconstruction.com.do/og-image-social.webp" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
 
-    {canonical && <link rel="canonical" href={canonical} />}
     <link
       rel="icon"
-      type="image/webp+xml"
+    type="image/webp+xml"
       href="/favicon.webp"
       title="Tenax Construction favicon"
     />
@@ -88,19 +108,20 @@ const { footerLinks, canonical, noindex } = Astro.props
       }
     </script>
   </head>
-</html>
-<body class="mx-auto w-full h-dvh">
-  <Header />
-  <main>
-    <slot />
-  </main>
-  <Footer links={footerLinks} />
-  <Analytics />
+  <body class="mx-auto w-full h-dvh">
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer links={footerLinks} />
+    <Analytics />
 
-  <script>
-    import '@/utils/revealEffect.js'
-  </script>
-</body><style>
+    <script>
+      import '@/utils/revealEffect.js'
+    </script>
+  </body>
+</html>
+<style>
   html,
   body {
     font-family: 'Poppins', system-ui;
