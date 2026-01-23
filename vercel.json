@@ -1,4 +1,18 @@
 {
+    "cleanUrls": true,
+    "trailingSlash": false,
+    "redirects": [
+        {
+            "source": "/index",
+            "destination": "/",
+            "permanent": true
+        },
+        {
+            "source": "/home",
+            "destination": "/",
+            "permanent": true
+        }
+    ],
     "headers": [
         {
             "source": "/(.*)",
