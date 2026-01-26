@@ -9,7 +9,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   adapter: vercel(),
-  site: 'https://tenaxconstruction.com.do',
+  site: 'https://www.tenaxconstruction.com.do',
   output: 'server',
   trailingSlash: "never",
   vite: {
