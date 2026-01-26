@@ -11,6 +11,7 @@ export default defineConfig({
   adapter: vercel(),
   site: 'https://tenaxconstruction.com.do',
   output: 'server',
+  trailingSlash: "never",
   vite: {
     plugins: [tailwindcss()],
     resolve: {
