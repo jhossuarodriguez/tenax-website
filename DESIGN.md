@@ -110,7 +110,7 @@ Two-speed system: **0.3s ease-in-out** for micro-interactions (hover), **1s cubi
 ## Relevance to Tenax's design system
 
 Points of alignment already present in `src/styles/global.css`:
-- Restrained chromatic-accent-as-signal-only philosophy (Turner: blue `#0b5dd0` + orange-red `#ff4026` as sparing accents on a neutral base — same discipline as Tenax reserving `iris-gleam`/`orchid-bloom`/etc. for tiles/signals).
+- Restrained chromatic-accent-as-signal-only philosophy (Turner: blue `#0b5dd0` + orange-red `#ff4026` as sparing accents on a neutral base — same discipline as Tenax reserving `primary`/`orchid-bloom`/etc. for tiles/signals).
 - Uppercase, letter-spaced labels for nav/button text (Turner's `.btn-link` uppercase treatment ≈ Tenax's `font-mono` uppercase tracked labels).
 - Component-scoped typography rather than global heading-tag styling — both systems style via classes/tokens, not bare `h1–h6`.
 - Two-tier transition speed (fast hover vs. slower scroll-reveal) — matches the split already encoded in Tenax's `revealOnScroll` vs. hover-state CSS transitions.
