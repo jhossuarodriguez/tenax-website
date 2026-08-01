@@ -1,5 +1,6 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Lenis from 'lenis'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -9,6 +10,50 @@ const EASE = 'power2.out'
 // Long atmospheric reveals use a slow-fast-slow S-curve (design ref: cubic-bezier(0.455, 0.03, 0.515, 0.955)).
 // GSAP eases must be named/registered eases, not a raw CSS timing-function string, so this is the closest built-in match.
 const ATMOSPHERIC_EASE = 'power1.inOut'
+
+/** Turner-style Lenis smoothing, driven by GSAP's ticker for ScrollTrigger compatibility. */
+export function setupInertialScroll() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (time) => Math.min(1, 1.001 - 2 ** (-10 * time)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    syncTouch: false,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+    infinite: false,
+    prevent: (node) => node.closest(".project-scroll-column") !== null,
+  })
+
+  lenis.on('scroll', ScrollTrigger.update)
+  gsap.ticker.add((time) => lenis.raf(time * 1000))
+
+  document.querySelectorAll<HTMLElement>('.project-scroll-column').forEach((wrapper) => {
+    const content = wrapper.querySelector<HTMLElement>('.project-scroll-content')
+    if (!content) return
+
+    const projectLenis = new Lenis({
+      wrapper,
+      content,
+      eventsTarget: wrapper,
+      duration: 1.2,
+      easing: (time) => Math.min(1, 1.001 - 2 ** (-10 * time)),
+      smoothWheel: true,
+      syncTouch: false,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      infinite: false,
+    })
+
+    projectLenis.on('scroll', ScrollTrigger.update)
+    gsap.ticker.add((time) => projectLenis.raf(time * 1000))
+  })
+
+  gsap.ticker.lagSmoothing(0)
+}
 
 export interface RevealOptions {
   y?: number

@@ -9,7 +9,6 @@ interface Props {
   title?: string
   description?: string
   noindex?: boolean
-  footerLinks?: string[]
 }
 
 const SITE_URL = 'https://tenaxconstruction.com.do'
@@ -22,7 +21,6 @@ const {
   title = DEFAULT_TITLE,
   description = DEFAULT_DESCRIPTION,
   noindex = false,
-  footerLinks,
 } = Astro.props
 
 const canonicalURL = canonical.startsWith('http') ? canonical : `${SITE_URL}${canonical}`
@@ -117,8 +115,13 @@ const ogImageURL = `${SITE_URL}/og.webp`
     <main>
       <slot />
     </main>
-    <Footer links={footerLinks} />
+    <Footer />
     <Analytics />
+    <script>
+      import { setupInertialScroll } from '@/lib/motion'
+
+      setupInertialScroll()
+    </script>
   </body>
 </html>
 <style>
