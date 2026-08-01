@@ -1,32 +1,29 @@
 ---
-import { Picture } from 'astro:assets'
-import { PROJECTS_IMAGES } from '@/components/consts/Images'
+import { Picture } from "astro:assets";
+import { PROJECTS_IMAGES } from "@/components/consts/Images";
 
-const FILTERS = [
-  { id: 'all', label: 'Destacados' },
-  { id: 'paneles-solares', label: 'Paneles Solares' },
-  { id: 'naves-industriales', label: 'Naves Industriales' },
-  { id: 'pavimentos-cimentaciones', label: 'Pavimentos y Cimentaciones' },
-]
-
-const FEATURED_PROJECT = PROJECTS_IMAGES.find((project) => project.id === 'Paneles-4')!
+const FEATURED_PROJECT = PROJECTS_IMAGES.find(
+  (project) => project.id === "Paneles-4",
+)!;
+const PORTFOLIO_FEATURED_PROJECT = PROJECTS_IMAGES[0];
+const PORTFOLIO_PROJECTS = PROJECTS_IMAGES.slice(1);
 ---
 
 <section class="w-full bg-paper">
-  <div class="mx-auto max-w-7xl border-t border-black/10 px-6 py-20 md:py-28">
+  <div class="content-shell border-t border-black/10 py-20 md:py-28">
     <div class="projects-intro-reveal grid grid-cols-1 items-center gap-10 md:grid-cols-[880px_1fr] md:gap-16">
       <div class="overflow-hidden rounded-lg md:w-[880px]">
         <Picture
           src="/about-bg.webp"
           alt="Proyecto de construcción Tenax Construction"
           width={880}
-          height={688}
-          class="aspect-[880/688] w-full object-cover"
+          height={500}
+          class="aspect-880/500 w-full object-cover"
           loading="lazy"
         />
       </div>
       <div>
-        <span class="font-mono text-xs uppercase tracking-[0.18em] text-iris-gleam">
+        <span class="font-mono text-xs uppercase tracking-[0.18em] text-primary">
           {FEATURED_PROJECT.location}
         </span>
         <h2 class="mt-4 font-display text-4xl leading-[1] text-ink md:text-5xl lg:text-6xl">
@@ -41,17 +38,13 @@ const FEATURED_PROJECT = PROJECTS_IMAGES.find((project) => project.id === 'Panel
   </div>
 
   <div class="border-t border-black/10">
-    <div class="mx-auto grid max-w-6xl grid-cols-1 md:grid-cols-2">
+    <div class="content-shell grid grid-cols-1 md:grid-cols-2">
       <a
         href="#projects-grid"
         class="group flex items-center justify-center gap-3 border-b border-black/10 px-6 py-6 font-mono text-xs uppercase tracking-[0.14em] text-slate transition-colors duration-200 hover:text-ink md:border-b-0 md:border-r"
-        title="Ver todos nuestros proyectos"
-        aria-label="Ver todos nuestros proyectos"
       >
         Ver todos nuestros proyectos
-        <span aria-hidden="true" class="text-orchid-bloom transition-transform duration-300 group-hover:translate-x-1">
-          →
-        </span>
+        <span aria-hidden="true" class="text-orchid-bloom transition-transform duration-300 group-hover:translate-x-1">→</span>
       </a>
       <span class="flex items-center justify-center border-b border-black/10 px-6 py-6 text-sm text-slate">
         Explora cada proyecto realizado
@@ -59,273 +52,94 @@ const FEATURED_PROJECT = PROJECTS_IMAGES.find((project) => project.id === 'Panel
     </div>
   </div>
 
-  <div class="flex flex-col items-center justify-center px-6 py-24 md:py-32">
-    <span class="font-mono text-xs uppercase tracking-[0.18em] text-slate">Portafolio</span>
-    <header class="mt-4 text-center font-display text-3xl leading-[0.95] text-ink md:text-[38px]">
-      Nuestros Proyectos
+  <div class="content-shell py-20 md:py-28">
+    <header class="projects-portfolio-reveal">
+      <span class="font-mono text-xs uppercase tracking-[0.18em] text-slate">Portafolio</span>
+      <h2 class="mt-4 max-w-4xl font-display text-4xl leading-[0.95] text-ink md:text-6xl lg:text-[72px]">
+        Nuestros Proyectos
+      </h2>
     </header>
 
-    <ul class="mt-10 flex w-full max-w-4xl flex-row flex-wrap items-center justify-center gap-3">
-      {
-        FILTERS.map((filter, i) => (
-          <li>
-            <button
-              data-filter={filter.id}
-              class:list={[
-                'filter-btn cursor-pointer rounded-full border px-4 py-2.5 font-mono text-xs uppercase tracking-[0.12em] transition-colors',
-                i === 0
-                  ? 'active border-black/20 bg-black/10 text-ink'
-                  : 'border-black/10 bg-black/5 text-slate hover:text-ink',
-              ]}
-            >
-              {filter.label}
-            </button>
-          </li>
-        ))
-      }
-    </ul>
+    <div id="projects-grid" class="mt-8 grid w-full gap-10 lg:h-[760px] lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-0">
+      <article class="project-card group flex flex-col lg:pr-12">
+        <a href={`/projects/${PORTFOLIO_FEATURED_PROJECT.id}`} class="overflow-hidden rounded-lg bg-mist">
+          <Picture
+            src={`/projects/${PORTFOLIO_FEATURED_PROJECT.id}.webp`}
+            alt={PORTFOLIO_FEATURED_PROJECT.alt}
+            width={960}
+            height={620}
+            class="project-image aspect-[1.55] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] lg:h-[500px] lg:aspect-auto"
+            loading="lazy"
+          />
+        </a>
+        <div class="pt-7">
+          <span class="font-mono text-[10px] uppercase tracking-[0.14em] text-slate">Proyecto destacado</span>
+          <a href={`/projects/${PORTFOLIO_FEATURED_PROJECT.id}`} class="block">
+            <h3 class="mt-3 max-w-3xl font-display text-2xl leading-[0.98] text-ink md:text-4xl">
+              {PORTFOLIO_FEATURED_PROJECT.title}
+            </h3>
+          </a>
+          <a href={`/projects/${PORTFOLIO_FEATURED_PROJECT.id}`} class="inline-flex">
+            <span class="mt-6 inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-slate transition-colors group-hover:text-ink">
+              Ver proyecto <span aria-hidden="true" class="text-orchid-bloom">→</span>
+            </span>
+          </a>
+        </div>
+      </article>
 
-    <div class="mt-14 flex h-auto w-full flex-col items-center justify-center">
-      <div id="projects-grid" class="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          PROJECTS_IMAGES.map((project, i) => (
-            <a href={`/projects/${project.id}`} class="project-item block" data-category={project.category}>
-              <figure class="project-figure group relative h-[460px] w-full cursor-pointer overflow-hidden rounded-lg border border-white/10">
-                <div class="absolute inset-0 h-full w-full overflow-hidden">
+      <div
+        class="project-scroll-column hidden lg:block lg:overflow-y-auto lg:border-l lg:border-black/10"
+        tabindex="0"
+        aria-label="Lista de proyectos"
+      >
+        <div class="project-scroll-content grid grid-cols-1 gap-x-12 gap-y-10 lg:px-12 xl:grid-cols-2">
+          {
+            PORTFOLIO_PROJECTS.map((project) => (
+              <article class="project-card group block">
+                <a href={`/projects/${project.id}`} class="overflow-hidden rounded-lg bg-mist">
                   <Picture
                     src={`/projects/${project.id}.webp`}
                     alt={project.alt}
                     width={600}
-                    height={800}
-                    class="project-image h-full w-full object-cover"
+                    height={360}
+                    class="project-image aspect-[1.67] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     loading="lazy"
                   />
+                </a>
+                <div class="pt-5">
+                  <a href={`/projects/${project.id}`} class="block">
+                    <h3 class="font-display text-xl leading-[0.98] text-ink md:text-2xl">{project.title}</h3>
+                  </a>
+                  <p class="mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-slate">{project.location}</p>
+                  <a href={`/projects/${project.id}`} class="inline-flex">
+                    <span class="mt-5 inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em] text-slate transition-colors group-hover:text-ink">
+                      Ver proyecto <span aria-hidden="true" class="text-orchid-bloom">→</span>
+                    </span>
+                  </a>
                 </div>
-                <div class="project-shadow pointer-events-none absolute inset-0 bg-gradient-to-b from-obsidian/60 via-obsidian/10 to-obsidian/85" />
-
-                <figcaption class="relative z-10 flex h-full flex-col items-center justify-between p-8 text-center">
-                  <span class="rounded-full border border-white/25 bg-white/10 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-pure backdrop-blur-sm">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div class="flex flex-col items-center">
-                    <h2 class="font-display text-lg leading-tight text-pure drop-shadow-md md:text-xl">
-                      {project.title}
-                    </h2>
-                    <div class="project-details overflow-hidden">
-                      {project.description && (
-                        <p class="mt-3 max-w-xs text-sm leading-relaxed text-pure/80">
-                          {project.description}
-                        </p>
-                      )}
-                      <p class="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-pure/70">
-                        {project.location}
-                      </p>
-                      <span class="project-link mt-3 inline-flex items-center gap-2 font-sans text-sm font-medium text-pure">
-                        Ver proyecto
-                        <span aria-hidden="true" class="project-arrow">→</span>
-                      </span>
-                    </div>
-                  </div>
-                </figcaption>
-              </figure>
-            </a>
-          ))
-        }
-      </div>
-
-      <div class="mt-10 flex items-center justify-between gap-20">
-        <button
-          class="cursor-pointer rounded-lg border border-black/20 px-6 py-3 font-sans text-sm text-ink hover:bg-black/5"
-          id="prev-button"
-          aria-label="Proyectos anteriores"
-        >
-          &lt;</button
-        >
-
-        <button
-          class="cursor-pointer rounded-lg border border-black/20 px-6 py-3 font-sans text-sm text-ink hover:bg-black/5"
-          id="next-button"
-          aria-label="Siguientes proyectos"
-        >
-          &gt;</button
-        >
+              </article>
+            ))
+          }
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="mt-14 flex flex-col items-center justify-center gap-y-5">
-    <p class="text-base text-slate">Explora nuestros proyectos destacados</p>
-    <a
-      href="/cotizacion"
-      class="inline-flex items-center gap-2 rounded-lg bg-void px-6 py-3 font-sans text-base text-pure"
-      title="Solicitar cotización para tu proyecto de construcción"
-      aria-label="Solicitar cotización para tu proyecto de construcción"
-    >
-      Solicitar cotización
-    </a>
+    <div class="mt-14 flex flex-col items-center justify-center gap-y-5">
+      <p class="text-base text-slate">Explora nuestros proyectos destacados</p>
+      <a
+        href="/cotizacion"
+        class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-sans text-base text-pure"
+      >
+        Solicitar cotización
+      </a>
+    </div>
   </div>
 </section>
 
 <script>
-  import { gsap, revealOnScroll, staggerOnScroll } from '@/lib/motion'
+  import { revealOnScroll, staggerOnScroll } from "@/lib/motion";
 
-  revealOnScroll('.projects-intro-reveal')
-
-  function setupProjectFilters() {
-    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn')
-    const projectItems = document.querySelectorAll<HTMLElement>('.project-item')
-    const prevButton = document.getElementById('prev-button')
-    const nextButton = document.getElementById('next-button')
-
-    let currentPage = 0
-    const itemsPerPage = 3
-    let filteredItems: HTMLElement[] = []
-
-    function getFilteredItems(category: string) {
-      if (category === 'all') {
-        return Array.from(projectItems)
-      }
-      return Array.from(projectItems).filter((item) => item.dataset.category === category)
-    }
-
-    function renderPage(page: number, animate: boolean) {
-      const startIndex = page * itemsPerPage
-      const endIndex = startIndex + itemsPerPage
-      const itemsToShow = filteredItems.slice(startIndex, endIndex)
-      const currentlyVisible = Array.from(projectItems).filter((el) => el.style.display !== 'none')
-
-      const applyChange = () => {
-        projectItems.forEach((item) => {
-          item.style.display = 'none'
-        })
-        itemsToShow.forEach((item) => {
-          item.style.display = 'block'
-        })
-        updateNavigationButtons()
-
-        if (animate) {
-          gsap.fromTo(
-            itemsToShow,
-            { autoAlpha: 0, y: 16 },
-            { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.06, ease: 'power2.out' }
-          )
-        }
-      }
-
-      if (animate && currentlyVisible.length) {
-        gsap.to(currentlyVisible, {
-          autoAlpha: 0,
-          y: 10,
-          duration: 0.2,
-          stagger: 0.02,
-          ease: 'power1.in',
-          onComplete: applyChange,
-        })
-      } else {
-        applyChange()
-      }
-    }
-
-    function updateNavigationButtons() {
-      const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
-
-      if (prevButton instanceof HTMLButtonElement) {
-        prevButton.disabled = currentPage === 0
-        prevButton.style.opacity = currentPage === 0 ? '0.5' : '1'
-        prevButton.style.cursor = currentPage === 0 ? 'not-allowed' : 'pointer'
-      }
-
-      if (nextButton instanceof HTMLButtonElement) {
-        nextButton.disabled = currentPage >= totalPages - 1
-        nextButton.style.opacity = currentPage >= totalPages - 1 ? '0.5' : '1'
-        nextButton.style.cursor = currentPage >= totalPages - 1 ? 'not-allowed' : 'pointer'
-      }
-    }
-
-    function filterProjects(category: string, animate: boolean) {
-      filteredItems = getFilteredItems(category)
-      currentPage = 0
-      renderPage(currentPage, animate)
-    }
-
-    function updateActiveButton(activeButton: HTMLButtonElement) {
-      filterButtons.forEach((btn) => {
-        btn.classList.remove('active', 'text-ink', 'bg-black/10', 'border-black/20')
-        btn.classList.add('text-slate', 'border-black/10', 'bg-black/5')
-      })
-
-      activeButton.classList.add('active', 'text-ink', 'bg-black/10', 'border-black/20')
-      activeButton.classList.remove('text-slate', 'border-black/10', 'bg-black/5')
-    }
-
-    filterButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const category = button.dataset.filter ?? 'all'
-        updateActiveButton(button)
-        filterProjects(category, true)
-      })
-    })
-
-    prevButton?.addEventListener('click', () => {
-      if (currentPage > 0) {
-        currentPage--
-        renderPage(currentPage, true)
-      }
-    })
-
-    nextButton?.addEventListener('click', () => {
-      const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
-      if (currentPage < totalPages - 1) {
-        currentPage++
-        renderPage(currentPage, true)
-      }
-    })
-
-    const allButton = document.querySelector<HTMLButtonElement>('[data-filter="all"]')
-    if (allButton) {
-      updateActiveButton(allButton)
-      filterProjects('all', false)
-    }
-  }
-
-  function setupHoverAnimations() {
-    gsap.utils.toArray<HTMLElement>('.project-figure').forEach((fig) => {
-      const image = fig.querySelector('.project-image')
-      const shadow = fig.querySelector('.project-shadow')
-      const details = fig.querySelector('.project-details')
-      const arrow = fig.querySelector('.project-arrow')
-      if (!image || !shadow || !details) return
-
-      gsap.set(details, { autoAlpha: 0, height: 0 })
-
-      const tl = gsap.timeline({ paused: true })
-      tl.to(image, { scale: 1.08, duration: 0.5, ease: 'power2.out' }, 0)
-      tl.to(shadow, { opacity: 0.15, duration: 0.4, ease: 'power2.out' }, 0)
-      tl.to(details, { autoAlpha: 1, height: 'auto', duration: 0.35, ease: 'power2.out' }, 0.05)
-      if (arrow) tl.to(arrow, { x: 4, duration: 0.3, ease: 'power2.out' }, 0.1)
-
-      fig.addEventListener('mouseenter', () => tl.play())
-      fig.addEventListener('mouseleave', () => tl.reverse())
-    })
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    setupProjectFilters()
-    setupHoverAnimations()
-  })
-  document.addEventListener('astro:page-load', () => {
-    setupProjectFilters()
-    setupHoverAnimations()
-  })
-
-  staggerOnScroll('#projects-grid', '.project-item', { stagger: 0.08 })
+  revealOnScroll(".projects-intro-reveal");
+  revealOnScroll(".projects-portfolio-reveal");
+  staggerOnScroll("#projects-grid", ".project-card", { stagger: 0.08 });
 </script>
-
-<style>
-  #prev-button:disabled,
-  #next-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-</style>
