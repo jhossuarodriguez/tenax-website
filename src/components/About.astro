@@ -3,44 +3,83 @@ import { Image } from 'astro:assets'
 import AboutImage from '@/assets/images/about-image.webp'
 ---
 
-<section class="w-full min-h-screen flex justify-center items-center mt-10 md:mt-20">
-  <div class="relative flex flex-col md:flex-row justify-center items-center">
-    <Image
-      src={AboutImage}
-      loading="lazy"
-      class="max-w-96 md:max-w-4xl mx-auto h-auto object-cover shadow-2xl md:-translate-x-40 rounded-lg"
-      alt="CEO Tenax Construction SRL"
-      data-reveal
-    />
-    <div
-      class="static md:absolute top-0 md:translate-x-96 w-[400px] md:w-[500px] h-full mt-10 bg-white/90 backdrop-blur-lg rounded-lg p-10 shadow-lg space-y-16"
-      data-reveal
-    >
-      <header
-        class="text-2xl md:text-4xl text-center md:text-start font-semibold text-black/75"
-        data-reveal
-      >
-        En tenax construction
-      </header>
-      <p
-        class="text-black/75 mt-5 leading-relaxed text-sm md:text-base text-center md:text-start"
-        data-reveal
-      >
-        Brindamos soluciones innovadoras y de alta calidad en el sector de la construcción,
-        adaptándonos a las necesidades de nuestros clientes y contribuyendo al desarrollo sostenible
-        de la República Dominicana. <br />
-        <br />Contamos con equipos especializados y maquinaria pesada de última generacion para
-        realizar proyectos con eficiencia y precisión.
-      </p>
-      <div class="mt-8 md:mt-16 text-center md:text-start" data-reveal>
-        <a
-          class="inline-block md:inline px-6 py-3 rounded bg-primary text-white hover:bg-[#e35d2c] transition-transform duration-300 animate-range-exit animate-duration-700"
-          href="/nosotros"
-          title="Conocer más detalles sobre nuestra empresa y servicios"
-          aria-label="Conocer más detalles sobre nuestra empresa y servicios"
-          >Conoce nuestra historia</a
-        >
+<section class="w-full bg-paper py-24 md:py-32">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="about-reveal">
+      <span class="font-mono text-xs uppercase tracking-[0.18em] text-slate">Desde 2012</span>
+      <h2 class="mt-4 max-w-4xl font-display text-4xl leading-[0.95] text-ink md:text-6xl lg:text-[72px]">
+        Construimos con precisión, supervisamos con criterio
+      </h2>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-6">
+      <div class="about-reveal about-parallax overflow-hidden rounded-lg md:col-span-7">
+        <Image
+          src={AboutImage}
+          loading="lazy"
+          class="h-[380px] w-full scale-110 object-cover md:h-[480px]"
+          alt="CEO Tenax Construction SRL"
+        />
+      </div>
+
+      <div class="about-reveal flex flex-col justify-center md:col-span-5 md:pl-4">
+        <p class="max-w-md text-sm leading-relaxed text-slate md:text-base">
+          Brindamos soluciones innovadoras y de alta calidad en el sector de la construcción,
+          adaptándonos a las necesidades de nuestros clientes y contribuyendo al desarrollo
+          sostenible de la República Dominicana.
+        </p>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-slate md:text-base">
+          Contamos con equipos especializados y maquinaria pesada de última generación para
+          realizar proyectos con eficiencia y precisión.
+        </p>
+
+        <div class="mt-10 flex items-center gap-8 border-t border-black/10 pt-8">
+          <div>
+            <span class="font-display text-3xl text-ink" data-count-to="80" data-count-suffix="+">80+</span>
+            <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-slate">Proyectos</p>
+          </div>
+          <div class="h-8 w-px bg-black/10"></div>
+          <div>
+            <span class="font-display text-3xl text-ink">13</span>
+            <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-slate">Años</p>
+          </div>
+          <div class="h-8 w-px bg-black/10"></div>
+          <div>
+            <span class="font-display text-3xl text-ink">100%</span>
+            <p class="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-slate">Dominicano</p>
+          </div>
+        </div>
+
+        <div class="mt-10">
+          <a
+            class="inline-flex items-center gap-2 rounded-lg border border-black/30 px-6 py-3 font-sans text-sm text-ink hover:bg-black/5"
+            href="/nosotros"
+            title="Conocer más detalles sobre nuestra empresa y servicios"
+            aria-label="Conocer más detalles sobre nuestra empresa y servicios"
+            >Conoce nuestra historia</a
+          >
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { revealOnScroll, countUpOnScroll, gsap } from '@/lib/motion'
+
+  revealOnScroll('.about-reveal', { y: 32 })
+  countUpOnScroll('[data-count-to]')
+
+  gsap.utils.toArray<HTMLElement>('.about-parallax img').forEach((img) => {
+    gsap.to(img, {
+      yPercent: -12,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: img.closest('.about-parallax'),
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    })
+  })
+</script>

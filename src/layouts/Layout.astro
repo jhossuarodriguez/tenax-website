@@ -1,5 +1,4 @@
 ---
-import { ClientRouter } from 'astro:transitions'
 import '@/styles/global.css'
 import Header from '@/components/Header.astro'
 import Footer from '@/components/Footer.astro'
@@ -70,7 +69,12 @@ const ogImageURL = `${SITE_URL}/og.webp`
       title="Tenax Construction favicon"
     />
 
-    <ClientRouter />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
 
     <script type="application/ld+json">
       {
@@ -108,34 +112,21 @@ const ogImageURL = `${SITE_URL}/og.webp`
       }
     </script>
   </head>
-  <body class="mx-auto w-full h-dvh">
+  <body class="mx-auto w-full font-sans">
     <Header />
     <main>
       <slot />
     </main>
     <Footer links={footerLinks} />
     <Analytics />
-
-    <script>
-      import '@/utils/revealEffect.js'
-    </script>
   </body>
 </html>
 <style>
   html,
   body {
-    font-family: 'Poppins', system-ui;
     margin: 0;
     width: 100%;
-    height: 100%;
-    color: white;
-    background-color: #f5f5f5;
-    scroll-behavior: smooth;
-    scroll-padding-top: 60px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+    background-color: var(--color-paper);
+    scroll-padding-top: 88px;
   }
 </style>

@@ -1,85 +1,131 @@
 ---
 import { Picture } from 'astro:assets'
 import { PROJECTS_IMAGES } from '@/components/consts/Images'
+
+const FILTERS = [
+  { id: 'all', label: 'Destacados' },
+  { id: 'paneles-solares', label: 'Paneles Solares' },
+  { id: 'naves-industriales', label: 'Naves Industriales' },
+  { id: 'pavimentos-cimentaciones', label: 'Pavimentos y Cimentaciones' },
+]
+
+const FEATURED_PROJECT = PROJECTS_IMAGES.find((project) => project.id === 'Paneles-4')!
 ---
 
-<section class="w-full h-auto py-20">
-  <div class="flex flex-col items-center justify-center">
-    <header class="relative text-4xl font-semibold text-black/75" data-reveal>
+<section class="w-full bg-paper">
+  <div class="mx-auto max-w-7xl border-t border-black/10 px-6 py-20 md:py-28">
+    <div class="projects-intro-reveal grid grid-cols-1 items-center gap-10 md:grid-cols-[880px_1fr] md:gap-16">
+      <div class="overflow-hidden rounded-lg md:w-[880px]">
+        <Picture
+          src="/about-bg.webp"
+          alt="Proyecto de construcción Tenax Construction"
+          width={880}
+          height={688}
+          class="aspect-[880/688] w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <span class="font-mono text-xs uppercase tracking-[0.18em] text-iris-gleam">
+          {FEATURED_PROJECT.location}
+        </span>
+        <h2 class="mt-4 font-display text-4xl leading-[1] text-ink md:text-5xl lg:text-6xl">
+          Nuestro trabajo en tu comunidad
+        </h2>
+        <p class="mt-6 max-w-md text-base leading-relaxed text-slate md:text-lg">
+          Juntos podemos hacer crecer comunidades, fortalecer la economía y mejorar vidas en toda
+          República Dominicana.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-black/10">
+    <div class="mx-auto grid max-w-6xl grid-cols-1 md:grid-cols-2">
+      <a
+        href="#projects-grid"
+        class="group flex items-center justify-center gap-3 border-b border-black/10 px-6 py-6 font-mono text-xs uppercase tracking-[0.14em] text-slate transition-colors duration-200 hover:text-ink md:border-b-0 md:border-r"
+        title="Ver todos nuestros proyectos"
+        aria-label="Ver todos nuestros proyectos"
+      >
+        Ver todos nuestros proyectos
+        <span aria-hidden="true" class="text-orchid-bloom transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </a>
+      <span class="flex items-center justify-center border-b border-black/10 px-6 py-6 text-sm text-slate">
+        Explora cada proyecto realizado
+      </span>
+    </div>
+  </div>
+
+  <div class="flex flex-col items-center justify-center px-6 py-24 md:py-32">
+    <span class="font-mono text-xs uppercase tracking-[0.18em] text-slate">Portafolio</span>
+    <header class="mt-4 text-center font-display text-3xl leading-[0.95] text-ink md:text-[38px]">
       Nuestros Proyectos
-      <span class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
-      ></span>
     </header>
 
-    <div
-      class="md:flex flex-row justify-center items-center w-full max-w-7xl mt-20 hidden"
-      data-reveal
-    >
-      <ul class="flex flex-row mt-3.5 space-x-4 items-center">
-        <li>
-          <button
-            data-filter="all"
-            class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left active cursor-pointer px-4 py-3 rounded-full bg-black/5"
-          >
-            Destacados
-          </button>
-        </li>
-
-        <li>
-          <button
-            data-filter="paneles-solares"
-            class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
-          >
-            Paneles Solares
-          </button>
-        </li>
-        <li>
-          <button
-            data-filter="naves-industriales"
-            class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
-          >
-            Naves Industriales
-          </button>
-        </li>
-        <li>
-          <button
-            data-filter="pavimentos-cimentaciones"
-            class="filter-btn text-black/25 hover:text-black transition-colors duration-200 text-left cursor-pointer px-4 py-3 rounded-full bg-black/5"
-          >
-            Pavimentos y Cimentaciones
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="w-full md:w-auto h-auto mt-10 flex justify-center items-center flex-col">
-      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-6">
-        {
-          PROJECTS_IMAGES.map((project) => (
-            <a
-              href={`/projects/${project.id}`}
-              class="project-item group overflow-hidden rounded-lg"
-              data-category={project.category}
+    <ul class="mt-10 flex w-full max-w-4xl flex-row flex-wrap items-center justify-center gap-3">
+      {
+        FILTERS.map((filter, i) => (
+          <li>
+            <button
+              data-filter={filter.id}
+              class:list={[
+                'filter-btn cursor-pointer rounded-full border px-4 py-2.5 font-mono text-xs uppercase tracking-[0.12em] transition-colors',
+                i === 0
+                  ? 'active border-black/20 bg-black/10 text-ink'
+                  : 'border-black/10 bg-black/5 text-slate hover:text-ink',
+              ]}
             >
-              <figure class="bg-white overflow-hidden transition-all duration-300 cursor-pointer group rounded-xl shadow-sm hover:shadow-md relative">
-                <div class="overflow-hidden rounded-xl">
+              {filter.label}
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-14 flex h-auto w-full flex-col items-center justify-center">
+      <div id="projects-grid" class="grid w-full max-w-6xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          PROJECTS_IMAGES.map((project, i) => (
+            <a href={`/projects/${project.id}`} class="project-item block" data-category={project.category}>
+              <figure class="project-figure group relative h-[460px] w-full cursor-pointer overflow-hidden rounded-lg border border-white/10">
+                <div class="absolute inset-0 h-full w-full overflow-hidden">
                   <Picture
-                    transition:name={`image-${project.id}`}
                     src={`/projects/${project.id}.webp`}
                     alt={project.alt}
-                    width={500}
-                    height={500}
-                    class="object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-105 md:aspect-[200/133]"
+                    width={600}
+                    height={800}
+                    class="project-image h-full w-full object-cover"
                     loading="lazy"
                   />
                 </div>
-                <figcaption class="absolute inset-0 bg-black/50 p-4 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
-                  <h2 class="font-semibold text-[15px] text-white transition-colors duration-300 text-center">
-                    {project.title}
-                  </h2>
-                  <p class="text-xs text-white mt-2 transition-colors duration-300 text-center">
-                    {project.location}
-                  </p>
+                <div class="project-shadow pointer-events-none absolute inset-0 bg-gradient-to-b from-obsidian/60 via-obsidian/10 to-obsidian/85" />
+
+                <figcaption class="relative z-10 flex h-full flex-col items-center justify-between p-8 text-center">
+                  <span class="rounded-full border border-white/25 bg-white/10 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-pure backdrop-blur-sm">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div class="flex flex-col items-center">
+                    <h2 class="font-display text-lg leading-tight text-pure drop-shadow-md md:text-xl">
+                      {project.title}
+                    </h2>
+                    <div class="project-details overflow-hidden">
+                      {project.description && (
+                        <p class="mt-3 max-w-xs text-sm leading-relaxed text-pure/80">
+                          {project.description}
+                        </p>
+                      )}
+                      <p class="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-pure/70">
+                        {project.location}
+                      </p>
+                      <span class="project-link mt-3 inline-flex items-center gap-2 font-sans text-sm font-medium text-pure">
+                        Ver proyecto
+                        <span aria-hidden="true" class="project-arrow">→</span>
+                      </span>
+                    </div>
+                  </div>
                 </figcaption>
               </figure>
             </a>
@@ -87,29 +133,31 @@ import { PROJECTS_IMAGES } from '@/components/consts/Images'
         }
       </div>
 
-      <div class="mt-10 justify-between items-center hidden md:flex gap-20">
+      <div class="mt-10 flex items-center justify-between gap-20">
         <button
-          class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
+          class="cursor-pointer rounded-lg border border-black/20 px-6 py-3 font-sans text-sm text-ink hover:bg-black/5"
           id="prev-button"
+          aria-label="Proyectos anteriores"
         >
-          ← Atras</button
+          &lt;</button
         >
 
         <button
-          class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300 cursor-pointer"
+          class="cursor-pointer rounded-lg border border-black/20 px-6 py-3 font-sans text-sm text-ink hover:bg-black/5"
           id="next-button"
+          aria-label="Siguientes proyectos"
         >
-          Siguiente →</button
+          &gt;</button
         >
       </div>
     </div>
   </div>
 
-  <div class="flex flex-col justify-center items-center gap-y-5">
-    <p class="mt-10 text-lg text-black/75">Explora nuestros proyectos destacados</p>
+  <div class="mt-14 flex flex-col items-center justify-center gap-y-5">
+    <p class="text-base text-slate">Explora nuestros proyectos destacados</p>
     <a
       href="/cotizacion"
-      class="bg-primary text-white px-6 py-3 rounded hover:hover:bg-[#e35d2c] transition duration-300"
+      class="inline-flex items-center gap-2 rounded-lg bg-void px-6 py-3 font-sans text-base text-pure"
       title="Solicitar cotización para tu proyecto de construcción"
       aria-label="Solicitar cotización para tu proyecto de construcción"
     >
@@ -118,149 +166,166 @@ import { PROJECTS_IMAGES } from '@/components/consts/Images'
   </div>
 </section>
 
-<script is:inline>
+<script>
+  import { gsap, revealOnScroll, staggerOnScroll } from '@/lib/motion'
+
+  revealOnScroll('.projects-intro-reveal')
+
   function setupProjectFilters() {
-    const filterButtons = document.querySelectorAll('.filter-btn')
-    const projectItems = document.querySelectorAll('.project-item')
+    const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-btn')
+    const projectItems = document.querySelectorAll<HTMLElement>('.project-item')
     const prevButton = document.getElementById('prev-button')
     const nextButton = document.getElementById('next-button')
 
     let currentPage = 0
-    const itemsPerPage = 4
-    let filteredItems = []
+    const itemsPerPage = 3
+    let filteredItems: HTMLElement[] = []
 
-    function getFilteredItems(category) {
+    function getFilteredItems(category: string) {
       if (category === 'all') {
         return Array.from(projectItems)
       }
-      return Array.from(projectItems).filter(
-        (item) => item.getAttribute('data-category') === category
-      )
+      return Array.from(projectItems).filter((item) => item.dataset.category === category)
     }
 
-    function showPage(page) {
-      // Ocultar todos los items primero
-      projectItems.forEach((item) => {
-        item.style.display = 'none'
-        item.style.opacity = '0'
-        item.style.transform = 'translateY(20px)'
-      })
-
-      // Mostrar items de la página actual
+    function renderPage(page: number, animate: boolean) {
       const startIndex = page * itemsPerPage
       const endIndex = startIndex + itemsPerPage
       const itemsToShow = filteredItems.slice(startIndex, endIndex)
+      const currentlyVisible = Array.from(projectItems).filter((el) => el.style.display !== 'none')
 
-      itemsToShow.forEach((item, index) => {
-        item.style.display = 'block'
+      const applyChange = () => {
+        projectItems.forEach((item) => {
+          item.style.display = 'none'
+        })
+        itemsToShow.forEach((item) => {
+          item.style.display = 'block'
+        })
+        updateNavigationButtons()
 
-        setTimeout(() => {
-          item.style.transition = 'all 0.4s ease-out'
-          item.style.opacity = '1'
-          item.style.transform = 'translateY(0)'
-        }, index * 100) // Animación escalonada
-      })
+        if (animate) {
+          gsap.fromTo(
+            itemsToShow,
+            { autoAlpha: 0, y: 16 },
+            { autoAlpha: 1, y: 0, duration: 0.4, stagger: 0.06, ease: 'power2.out' }
+          )
+        }
+      }
 
-      updateNavigationButtons()
+      if (animate && currentlyVisible.length) {
+        gsap.to(currentlyVisible, {
+          autoAlpha: 0,
+          y: 10,
+          duration: 0.2,
+          stagger: 0.02,
+          ease: 'power1.in',
+          onComplete: applyChange,
+        })
+      } else {
+        applyChange()
+      }
     }
 
     function updateNavigationButtons() {
       const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
 
-      if (prevButton) {
+      if (prevButton instanceof HTMLButtonElement) {
         prevButton.disabled = currentPage === 0
         prevButton.style.opacity = currentPage === 0 ? '0.5' : '1'
         prevButton.style.cursor = currentPage === 0 ? 'not-allowed' : 'pointer'
       }
 
-      if (nextButton) {
+      if (nextButton instanceof HTMLButtonElement) {
         nextButton.disabled = currentPage >= totalPages - 1
         nextButton.style.opacity = currentPage >= totalPages - 1 ? '0.5' : '1'
         nextButton.style.cursor = currentPage >= totalPages - 1 ? 'not-allowed' : 'pointer'
       }
     }
 
-    function filterProjects(category) {
-      currentCategory = category
+    function filterProjects(category: string, animate: boolean) {
       filteredItems = getFilteredItems(category)
-      currentPage = 0 // Reset a la primera página
-      showPage(currentPage)
+      currentPage = 0
+      renderPage(currentPage, animate)
     }
 
-    function updateActiveButton(activeButton) {
+    function updateActiveButton(activeButton: HTMLButtonElement) {
       filterButtons.forEach((btn) => {
-        btn.classList.remove('active')
-        btn.classList.remove('text-primary')
-        btn.classList.add('text-black/25')
+        btn.classList.remove('active', 'text-ink', 'bg-black/10', 'border-black/20')
+        btn.classList.add('text-slate', 'border-black/10', 'bg-black/5')
       })
 
-      activeButton.classList.add('active')
-      activeButton.classList.add('text-primary')
-      activeButton.classList.remove('text-black/25')
+      activeButton.classList.add('active', 'text-ink', 'bg-black/10', 'border-black/20')
+      activeButton.classList.remove('text-slate', 'border-black/10', 'bg-black/5')
     }
 
-    // Event listeners para botones de filtro
     filterButtons.forEach((button) => {
       button.addEventListener('click', () => {
-        const category = button.getAttribute('data-filter')
+        const category = button.dataset.filter ?? 'all'
         updateActiveButton(button)
-        filterProjects(category)
+        filterProjects(category, true)
       })
     })
 
-    // Event listeners para navegación
-    if (prevButton) {
-      prevButton.addEventListener('click', () => {
-        if (currentPage > 0) {
-          currentPage--
-          showPage(currentPage)
-        }
-      })
-    }
+    prevButton?.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--
+        renderPage(currentPage, true)
+      }
+    })
 
-    if (nextButton) {
-      nextButton.addEventListener('click', () => {
-        const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
-        if (currentPage < totalPages - 1) {
-          currentPage++
-          showPage(currentPage)
-        }
-      })
-    }
+    nextButton?.addEventListener('click', () => {
+      const totalPages = Math.ceil(filteredItems.length / itemsPerPage)
+      if (currentPage < totalPages - 1) {
+        currentPage++
+        renderPage(currentPage, true)
+      }
+    })
 
-    // Inicializar
-    const allButton = document.querySelector('[data-filter="all"]')
+    const allButton = document.querySelector<HTMLButtonElement>('[data-filter="all"]')
     if (allButton) {
       updateActiveButton(allButton)
-      filterProjects('all')
+      filterProjects('all', false)
     }
   }
 
-  // Ejecutar cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', setupProjectFilters)
+  function setupHoverAnimations() {
+    gsap.utils.toArray<HTMLElement>('.project-figure').forEach((fig) => {
+      const image = fig.querySelector('.project-image')
+      const shadow = fig.querySelector('.project-shadow')
+      const details = fig.querySelector('.project-details')
+      const arrow = fig.querySelector('.project-arrow')
+      if (!image || !shadow || !details) return
 
-  // Para navegación SPA
-  document.addEventListener('astro:page-load', setupProjectFilters)
+      gsap.set(details, { autoAlpha: 0, height: 0 })
+
+      const tl = gsap.timeline({ paused: true })
+      tl.to(image, { scale: 1.08, duration: 0.5, ease: 'power2.out' }, 0)
+      tl.to(shadow, { opacity: 0.15, duration: 0.4, ease: 'power2.out' }, 0)
+      tl.to(details, { autoAlpha: 1, height: 'auto', duration: 0.35, ease: 'power2.out' }, 0.05)
+      if (arrow) tl.to(arrow, { x: 4, duration: 0.3, ease: 'power2.out' }, 0.1)
+
+      fig.addEventListener('mouseenter', () => tl.play())
+      fig.addEventListener('mouseleave', () => tl.reverse())
+    })
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setupProjectFilters()
+    setupHoverAnimations()
+  })
+  document.addEventListener('astro:page-load', () => {
+    setupProjectFilters()
+    setupHoverAnimations()
+  })
+
+  staggerOnScroll('#projects-grid', '.project-item', { stagger: 0.08 })
 </script>
 
 <style>
-  .filter-btn.active {
-    font-weight: 600;
-  }
-
-  .project-item {
-    transition: all 0.4s ease-out;
-  }
-
   #prev-button:disabled,
   #next-button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
-  }
-
-  #prev-button:disabled:hover,
-  #next-button:disabled:hover {
-    background-color: #f97316;
   }
 </style>

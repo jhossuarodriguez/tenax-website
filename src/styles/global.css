@@ -1,64 +1,103 @@
 @import 'tailwindcss';
-@plugin '@midudev/tailwind-animations';
-
-@keyframes kenburns {
-  from {
-    transform: scale(1.15);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-@layer utilities {
-  .animate-kenburns {
-    animation: kenburns 8s ease-in-out infinite alternate;
-  }
-}
-
-header img {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Simple Reveal Effect */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
-}
-
-[data-reveal].revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 @theme {
-  --color-primary: #f46738;
+  /* Colors — chromatic accents (Turner-style: brand blue is the only recurring accent,
+     orange-red reserved as a single alert/highlight signal) */
+  --color-iris-gleam: #0b5dd0;
+  --color-cyan-signal: #106dc3;
+  --color-pale-iris: #bfd2e4;
+  --color-deep-iris: #012471;
+  --color-orchid-bloom: #ff4026;
+  --color-periwinkle: #4285f4;
+
+  /* Colors — surfaces */
+  --color-obsidian: #17171b;
+  --color-abyss: #0d0a0a;
+  --color-graphite: #2e2e2e;
+  --color-steel: #3f4041;
+  --color-silver: #dcdcdc;
+
+  /* Colors — light-canvas surfaces (main content sections) */
+  --color-paper: #ffffff;
+  --color-mist: #f6f6f6;
+
+  /* Colors — text */
+  --color-fog: #73737b;
+  --color-ash: #dcdcdc;
+  --color-cloud: #f6f6f6;
+  --color-pure: #ffffff;
+  --color-void: #000000;
+
+  /* Colors — text on light-canvas surfaces */
+  --color-ink: #17171b;
+  --color-slate: #73737b;
+
+  /* Typography — single sans family across display, body and UI, mirroring Turner's
+     one-typeface (Apercu Pro) system; Work Sans is the closest self-hosted substitute */
+  --font-display: 'Work Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Work Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --text-mono-label: 12px;
+  --text-body-sm: 14px;
+  --text-body: 16px;
+  --text-subheading: 18px;
+  --text-heading-lg: 38px;
+  --text-display-sm: 56px;
+  --text-display: 80px;
+
+  /* Spacing */
+  --spacing-18: 68px;
+  --spacing-25: 100px;
+  --spacing-30: 120px;
+  --spacing-35: 140px;
+
+  /* Radius — Turner's 8px baseline covers cards, buttons and panels (rounded-lg) */
+  --radius-card: 8px;
+  --radius-feature: 8px;
+
+  /* Shadow */
+  --shadow-lg: 0px 18px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-slate);
+}
+
+::selection {
+  background-color: var(--color-iris-gleam);
+  color: var(--color-void);
+}
+
+.font-display {
+  font-weight: 200;
+}
 
 @font-face{
   font-display: swap;
-  font-family: 'Poppins';
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 200;
+  src: url("/fonts/work-sans-v24-latin-200.woff2") format("woff2");
+}
+
+@font-face{
+  font-display: swap;
+  font-family: 'Work Sans';
   font-style: normal;
   font-weight: 400;
-  src: url("/fonts/poppins-v24-latin-regular.woff2") format("woff2");
+  src: url("/fonts/work-sans-v24-latin-regular.woff2") format("woff2");
 }
 
 @font-face{
   font-display: swap;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 600;
-  src: url("/fonts/poppins-v24-latin-600.woff2") format("woff2");
-}
-
-@font-face{
-  font-display: swap;
-  font-family: 'Poppins';
+  font-family: 'Work Sans';
   font-style: normal;
   font-weight: 700;
-  src: url("/fonts/poppins-v24-latin-700.woff2") format("woff2");
+  src: url("/fonts/work-sans-v24-latin-700.woff2") format("woff2");
 }

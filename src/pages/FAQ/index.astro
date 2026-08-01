@@ -7,68 +7,73 @@ const seo = {
   title: 'Preguntas Frecuentes - Tenax Construction',
   description: 'Preguntas frecuentes sobre los servicios de construcción de Tenax Construction.',
 }
+
+const FAQS = [
+  {
+    question: '¿Qué servicios de construcción ofrecen?',
+    answer:
+      'Ofrecemos servicios completos de construcción incluyendo edificaciones residenciales, comerciales, remodelaciones, y proyectos de infraestructura.',
+  },
+  {
+    question: '¿Cuánto tiempo toma completar un proyecto?',
+    answer:
+      'El tiempo varía según la complejidad del proyecto. Proyectos residenciales típicamente toman 3-6 meses, mientras que proyectos comerciales pueden tomar 6-12 meses.',
+  },
+  {
+    question: '¿Proporcionan presupuestos gratuitos?',
+    answer:
+      'Sí, ofrecemos evaluaciones y presupuestos gratuitos para todos nuestros servicios. Contáctanos para programar una visita.',
+  },
+  {
+    question: '¿Están licenciados y asegurados?',
+    answer:
+      'Absolutamente. Contamos con todas las licencias necesarias y seguro completo para proteger tanto nuestros trabajadores como su propiedad.',
+  },
+  {
+    question: '¿Tienen garantía en sus servicios?',
+    answer:
+      'Sí, ofrecemos garantía en todos nuestros servicios de construcción. Nos aseguramos de que nuestros clientes estén completamente satisfechos con el trabajo realizado.',
+  },
+]
 ---
 
 <Layout {...seo}>
   <section
-    class="w-full min-h-screen py-32 md:py-52 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
+    class="relative w-full min-h-screen py-32 md:py-52 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat"
   >
-    <div class="inset-0 absolute z-0 bg-black/75"></div>
-    <div class="max-w-4xl mx-auto p-6 z-10 relative">
-      <h1 class="text-3xl font-bold text-center mb-8 text-white/75">Preguntas Frecuentes</h1>
-
-      <div class="space-y-4">
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-semibold mb-3 text-black/75">
-            ¿Qué servicios de construcción ofrecen?
-          </h3>
-          <p class="text-gray-700">
-            Ofrecemos servicios completos de construcción incluyendo edificaciones residenciales,
-            comerciales, remodelaciones, y proyectos de infraestructura.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-semibold mb-3 text-black/75">
-            ¿Cuánto tiempo toma completar un proyecto?
-          </h3>
-          <p class="text-gray-700">
-            El tiempo varía según la complejidad del proyecto. Proyectos residenciales típicamente
-            toman 3-6 meses, mientras que proyectos comerciales pueden tomar 6-12 meses.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-semibold mb-3 text-black/75">
-            ¿Proporcionan presupuestos gratuitos?
-          </h3>
-          <p class="text-gray-700">
-            Sí, ofrecemos evaluaciones y presupuestos gratuitos para todos nuestros servicios.
-            Contactanos para programar una visita.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-semibold mb-3 text-black/75">¿Están licenciados y asegurados?</h3>
-          <p class="text-gray-700">
-            Absolutamente. Contamos con todas las licencias necesarias y seguro completo para
-            proteger tanto nuestros trabajadores como su propiedad.
-          </p>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md p-6">
-          <h3 class="text-xl font-semibold mb-3 text-black/75">
-            ¿Tienen garantía en sus servicios?
-          </h3>
-          <p class="text-gray-700">
-            Sí, ofrecemos garantía en todos nuestros servicios de construcción. Nos aseguramos de
-            que nuestros clientes estén completamente satisfechos con el trabajo realizado.
-          </p>
-        </div>
+    <div class="absolute inset-0 z-0 bg-obsidian/85"></div>
+    <div class="relative z-10 mx-auto max-w-4xl p-6">
+      <div class="page-reveal mb-12 text-center">
+        <span class="font-mono text-xs uppercase tracking-[0.18em] text-ash">Ayuda</span>
+        <h1 class="mt-4 font-display text-3xl leading-[0.95] text-cloud md:text-[38px]">
+          Preguntas Frecuentes
+        </h1>
       </div>
-      <div class="flex flex-col justify-center items-center">
-        <a class="px-4 py-3 bg-primary rounded mt-20 text-white" href="/">← Volver al inicio</a>
+
+      <div class="faq-list space-y-4">
+        {
+          FAQS.map((faq) => (
+            <div class="faq-item rounded-lg border border-white/10 bg-graphite/50 p-6">
+              <h3 class="mb-3 text-xl font-semibold text-cloud">{faq.question}</h3>
+              <p class="text-ash">{faq.answer}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="page-reveal flex flex-col items-center justify-center">
+        <a
+          class="mt-20 inline-flex items-center gap-2 rounded-lg border border-white/30 px-6 py-3 font-sans text-sm text-pure hover:bg-white/10"
+          href="/"
+          >← Volver al inicio</a
+        >
       </div>
     </div>
   </section>
 </Layout>
+
+<script>
+  import { revealOnScroll, staggerOnScroll } from '@/lib/motion'
+  revealOnScroll('.page-reveal', { start: 'top 95%' })
+  staggerOnScroll('.faq-list', '.faq-item')
+</script>

@@ -15,14 +15,19 @@ const seo = {
 
 <Layout {...seo}>
   <section
-    class="w-full min-h-screen flex flex-col justify-center items-center bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat mx-auto relative"
+    class="relative mx-auto flex w-full min-h-screen flex-col items-center justify-center bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat"
   >
-    <div class="absolute inset-0 bg-black/75 z-0"></div>
-    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-center relative z-10 items-center">
-      <div class="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow">
-        <h3 class="font-semibold text-lg text-black/75 mb-2">Llámanos</h3>
+    <div class="absolute inset-0 z-0 bg-obsidian/85"></div>
 
-        <p class="text-black/60">+1 (809) 898-6028</p>
+    <div class="page-reveal relative z-10 mb-12 text-center">
+      <span class="font-mono text-xs uppercase tracking-[0.18em] text-ash">Hablemos</span>
+      <h1 class="mt-4 font-display text-3xl leading-[0.95] text-cloud md:text-[38px]">Contáctanos</h1>
+    </div>
+
+    <div class="contact-grid relative z-10 mt-4 grid grid-cols-1 items-center gap-6 text-center md:grid-cols-3">
+      <div class="contact-item flex flex-col items-center justify-center rounded-lg border border-white/10 bg-graphite/50 p-6">
+        <h3 class="mb-2 text-lg font-semibold text-cloud">Llámanos</h3>
+        <p class="text-ash">+1 (809) 898-6028</p>
         <a
           class="mt-2"
           href="https://wa.me/18098986028"
@@ -31,29 +36,39 @@ const seo = {
           title="Contáctanos por WhatsApp"
           aria-label="Contáctanos por WhatsApp"
         >
-          <WhatsApp class="size-10" />
+          <WhatsApp class="size-10 text-ash" />
         </a>
       </div>
-      <div class="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow">
-        <h3 class="font-semibold text-lg text-black/75 mb-2">Email</h3>
-        <p class="text-black/60">proyectos@tenax.com.do</p>
+      <div class="contact-item flex flex-col items-center justify-center rounded-lg border border-white/10 bg-graphite/50 p-6">
+        <h3 class="mb-2 text-lg font-semibold text-cloud">Email</h3>
+        <p class="text-ash">proyectos@tenax.com.do</p>
         <a
           class="mt-2"
           href="mailto:proyectos@tenax.com.do"
           title="Envíanos un correo electrónico"
           aria-label="Envíanos un correo electrónico"
         >
-          <Email class="size-12" />
+          <Email class="size-12 text-ash" />
         </a>
       </div>
-      <div class="flex flex-col justify-center items-center bg-white p-6 rounded-lg shadow">
-        <h3 class="font-semibold text-lg text-black/75 mb-2">Horario</h3>
-        <p class="text-black/60">Lun - Vie: 8:00 AM - 5:00 PM</p>
-        <Calendar class="size-10 mt-2" />
+      <div class="contact-item flex flex-col items-center justify-center rounded-lg border border-white/10 bg-graphite/50 p-6">
+        <h3 class="mb-2 text-lg font-semibold text-cloud">Horario</h3>
+        <p class="text-ash">Lun - Vie: 8:00 AM - 5:00 PM</p>
+        <Calendar class="mt-2 size-10 text-ash" />
       </div>
     </div>
-    <div class="flex flex-col justify-center items-center mt-20 relative z-10">
-      <a class="px-4 py-3 bg-primary rounded text-white" href="/">← Volver al inicio</a>
+    <div class="page-reveal relative z-10 mt-16 flex flex-col items-center justify-center">
+      <a
+        class="inline-flex items-center gap-2 rounded-lg border border-white/30 px-6 py-3 font-sans text-sm text-pure hover:bg-white/10"
+        href="/"
+        >← Volver al inicio</a
+      >
     </div>
   </section>
 </Layout>
+
+<script>
+  import { revealOnScroll, staggerOnScroll } from '@/lib/motion'
+  revealOnScroll('.page-reveal', { start: 'top 95%' })
+  staggerOnScroll('.contact-grid', '.contact-item')
+</script>

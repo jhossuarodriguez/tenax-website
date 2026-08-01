@@ -3,47 +3,39 @@ import { Image } from 'astro:assets'
 import { NEWS } from '@/components/consts/News'
 ---
 
-<section class="w-full min-h-screen mt-20">
-  <div class="flex flex-col items-center justify-center">
-    <header class="relative text-4xl font-semibold text-black/75" data-reveal>
+<section class="w-full bg-paper py-24 md:py-32">
+  <div class="flex flex-col items-center justify-center px-6">
+    <span class="font-mono text-xs uppercase tracking-[0.18em] text-slate">Blog</span>
+    <header class="mt-4 text-center font-display text-3xl leading-[0.95] text-ink md:text-[38px]">
       Últimas Novedades
-      <span class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
-      ></span>
     </header>
   </div>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-6 bg-gray-100 mt-20 max-w-5xl mx-auto">
+  <div class="news-grid mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 px-6 sm:grid-cols-2">
     {
       NEWS.map((news) => (
-        <a href={`/news/${news.id}`} class="group">
-          <figure
-            class="bg-white drop-shadow-2xl overflow-hidden w-full max-w-[400px] h-[450px] mx-auto flex flex-col transition-all duration-300 hover:shadow-2xl"
-            data-reveal
-          >
+        <a href={`/news/${news.id}`} class="news-item group">
+          <figure class="mx-auto flex h-full w-full max-w-[400px] flex-col overflow-hidden rounded-lg border border-black/10 bg-mist">
             <Image
-              transition:name={`image-${news.id}`}
               data-id={news.id}
               src={`/news/${news.id}.webp`}
               alt={news.title}
               width={400}
               height={225}
-              class="w-full h-auto object-cover flex-shrink-0"
+              class="h-auto w-full flex-shrink-0 object-cover"
               loading="lazy"
             />
-            <figcaption>
-              <div class="p-3 flex-1 flex flex-col">
-                <header class="text-base text-black/75 font-semibold mb-2 flex-shrink-0">
-                  {news.title}
-                </header>
-                <p class="text-xs md:text-base leading-relaxed text-black/75 mb-3 flex-1 line-clamp-3 ">
-                  {news.description}
-                </p>
-                <div class="text-xs text-black/50 flex items-center space-x-2 flex-shrink-0">
-                  <span>{new Date(news.date).toLocaleDateString()}</span>
-                  <span>•</span>
-                  <span class="font-bold">Por {news.author}</span>
-                  <span>•</span>
-                </div>
+            <figcaption class="flex flex-1 flex-col p-5">
+              <header class="mb-2 flex-shrink-0 font-sans text-base font-medium text-ink">
+                {news.title}
+              </header>
+              <p class="mb-3 line-clamp-3 flex-1 text-sm leading-relaxed text-slate">
+                {news.description}
+              </p>
+              <div class="flex flex-shrink-0 items-center space-x-2 font-mono text-xs uppercase tracking-[0.1em] text-slate/70">
+                <span>{new Date(news.date).toLocaleDateString()}</span>
+                <span>•</span>
+                <span>Por {news.author}</span>
               </div>
             </figcaption>
           </figure>
@@ -52,3 +44,8 @@ import { NEWS } from '@/components/consts/News'
     }
   </div>
 </section>
+
+<script>
+  import { staggerOnScroll } from '@/lib/motion'
+  staggerOnScroll('.news-grid', '.news-item')
+</script>

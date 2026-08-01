@@ -3,116 +3,110 @@ import Grua from '@/assets/icons/grua.svg'
 import Hammer from '@/assets/icons/hammer.svg'
 import DumpDumper from '@/assets/icons/dumpDumper.svg'
 import Measure from '@/assets/icons/measure.svg'
+
+const SERVICE_TILES = [
+  {
+    id: 'excavacion',
+    icon: Grua,
+    title: 'Excavación',
+    description:
+      'Excavaciones especializadas para cimentaciones, zanjas y remoción de materiales con maquinaria de última generación.',
+    span: 'md:col-span-2',
+    featured: true,
+  },
+  {
+    id: 'estructura-metalica',
+    icon: Hammer,
+    title: 'Estructura metálica',
+    description: 'Montaje y fabricación de estructuras metálicas para edificaciones y obras civiles.',
+    span: 'md:col-span-1',
+  },
+  {
+    id: 'movimiento-tierra',
+    icon: DumpDumper,
+    title: 'Movimiento de Tierra',
+    description: 'Nivelación de terrenos, compactación y preparación de superficies para cimentaciones.',
+    span: 'md:col-span-1',
+  },
+  {
+    id: 'hormigon-armado',
+    icon: Measure,
+    title: 'Hormigón armado',
+    description: 'Construcción de estructuras de hormigón armado para edificaciones y obras civiles.',
+    span: 'md:col-span-1',
+  },
+]
 ---
 
-<section class="w-full h-screen relative overflow-hidden">
-  <div class="absolute inset-0 bg-black opacity-90 z-[9999px]"></div>
-  <video
-    class="w-full h-full min-h-screen object-cover opacity-30 -z-50"
-    src="/video.webm"
-    autoplay
-    loop
-    muted
-    playsinline
-    aria-label="Video de fondo mostrando maquinaria pesada en acción"
-  >
-  </video>
-  <div class="absolute inset-0 flex items-start justify-center z-10 m-auto py-0 md:py-20">
-    <header
-      class="relative text-4xl font-semibold text-center text-white my-10 md:my-0"
-      data-reveal
-    >
-      Nuestros Servicios
-      <span class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
-      ></span>
-    </header>
-  </div>
-  <div
-    class="flex justify-center items-center flex-col z-10 absolute inset-0 m-auto mt-20 mb-10 md:mb-0"
-  >
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 max-w-5xl w-full" data-reveal>
-      <div
-        class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
-        data-reveal
-      >
-        <div class="bg-white/20 p-3 rounded-full">
-          <Grua class="w-10 h-10 hover:fill-primary transition-colors duration-300" />
-        </div>
-        <div>
-          <h2 class="text-xl font-semibold">Excavación</h2>
-          <p class="text-sm text-white/80 mt-2">
-            Excavaciones especializadas para proyectos de construcción
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
-        data-reveal
-      >
-        <div class="bg-white/20 p-3 rounded-full">
-          <Hammer class="w-10 h-10 hover:fill-primary transition-colors duration-300" />
-        </div>
-        <div>
-          <h2 class="text-xl font-semibold">Estructura metálica</h2>
-          <p class="text-sm text-white/80 mt-2">
-            Montaje y fabricación de estructuras metálicas para edificaciones y obras civiles
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
-        data-reveal
-      >
-        <div class="bg-white/20 p-3 rounded-full">
-          <DumpDumper class="w-10 h-10 hover:fill-primary transition-colors duration-300" />
-        </div>
-        <div>
-          <h2 class="text-xl font-semibold">Movimiento de Tierra</h2>
-          <p class="text-sm text-white/80 mt-2">
-            Nivelación de terrenos, compactación y preparación de superficies para cimentaciones y
-            obras civiles
-          </p>
-        </div>
-      </div>
-
-      <div
-        class="backdrop-blur-md bg-white/10 border border-white/20 text-white p-6 rounded-2xl shadow-lg flex items-center gap-4"
-        data-reveal
-      >
-        <div class="bg-white/20 p-3 rounded-full">
-          <Measure class="w-10 h-10 hover:fill-primary transition-colors duration-300" />
-        </div>
-        <div>
-          <h2 class="text-xl font-semibold">Estructura de hormigón armado</h2>
-          <p class="text-sm text-white/80 mt-2">
-            Construcción de estructuras de hormigón armado para edificaciones y obras civiles
-          </p>
-        </div>
-      </div>
+<section id="servicios-home" class="w-full bg-paper py-24 md:py-32">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="services-reveal mx-auto max-w-2xl text-center">
+      <span class="font-mono text-xs uppercase tracking-[0.18em] text-slate">Lo que hacemos</span>
+      <h2 class="mt-4 font-display text-3xl leading-[0.95] text-ink md:text-[38px]">
+        Nuestros servicios
+      </h2>
     </div>
 
-    <!-- Botón Ver Más -->
-    <div class="mt-8" data-reveal>
+    <div class="services-grid mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+      {
+        SERVICE_TILES.map((service, i) => (
+          <a
+            href={`/servicios/${service.id}`}
+            class={`service-tile relative flex flex-col justify-between overflow-hidden rounded-lg border border-black/10 bg-paper ${service.span} ${service.featured ? 'p-9 md:p-10' : 'p-8'}`}
+          >
+            <span class="font-mono text-xs text-slate/60">{`0${i + 1}`}</span>
+
+            <div class="mt-8">
+              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-iris-gleam/10">
+                <service.icon class="h-8 w-8 text-iris-gleam" />
+              </div>
+              <h3 class={`mt-5 font-display leading-none text-ink ${service.featured ? 'text-3xl md:text-4xl' : 'text-2xl'}`}>
+                {service.title}
+              </h3>
+              <p class={`mt-3 leading-relaxed text-slate ${service.featured ? 'max-w-sm text-base' : 'text-sm'}`}>
+                {service.description}
+              </p>
+              <span class="service-link mt-5 inline-flex items-center gap-2 font-sans text-sm font-medium text-ink">
+                Ver servicio
+                <span aria-hidden="true" class="service-arrow">→</span>
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="services-reveal mt-12 flex justify-center">
       <a
         href="/servicios"
-        class="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-lg hover:bg-[#e35d2c] transition-all duration-300 font-medium group"
+        class="inline-flex items-center gap-2 rounded-lg bg-void px-6 py-3 font-sans text-base text-pure"
       >
         Ver más servicios
-        <svg
-          class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
+        <span aria-hidden="true">→</span>
       </a>
     </div>
   </div>
 </section>
+
+<script>
+  import { revealOnScroll, staggerOnScroll, gsap } from '@/lib/motion'
+
+  revealOnScroll('.services-reveal')
+  staggerOnScroll('.services-grid', '.service-tile')
+
+  gsap.utils.toArray<HTMLElement>('.service-tile').forEach((tile) => {
+    const icon = tile.querySelector('svg')
+    const arrow = tile.querySelector('.service-arrow')
+
+    tile.addEventListener('mouseenter', () => {
+      gsap.to(tile, { y: -6, duration: 0.35, ease: 'power2.out' })
+      gsap.to(icon, { rotate: -8, scale: 1.08, duration: 0.35, ease: 'power2.out' })
+      gsap.to(arrow, { x: 4, duration: 0.3, ease: 'power2.out' })
+    })
+    tile.addEventListener('mouseleave', () => {
+      gsap.to(tile, { y: 0, duration: 0.4, ease: 'power2.out' })
+      gsap.to(icon, { rotate: 0, scale: 1, duration: 0.4, ease: 'power2.out' })
+      gsap.to(arrow, { x: 0, duration: 0.3, ease: 'power2.out' })
+    })
+  })
+</script>

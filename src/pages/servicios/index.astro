@@ -21,70 +21,57 @@ const iconMap = {
   dumpDumper: DumpDumper,
   measure: Measure,
 }
+
 ---
 
 <Layout {...seo}>
   <section
-    class="w-full min-h-screen py-32 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat relative"
+    class="relative w-full min-h-screen py-32 bg-[url('/about-bg.webp')] bg-cover bg-center bg-no-repeat"
   >
-    <div class="absolute inset-0 bg-black/80 z-0"></div>
+    <div class="absolute inset-0 z-0 bg-obsidian/85"></div>
 
-    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Header -->
-      <div class="text-center mb-16 mt-14">
-        <header class="relative inline-block text-3xl md:text-4xl font-semibold text-white/90">
+    <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="page-reveal mb-16 mt-14 text-center">
+        <span class="font-mono text-xs uppercase tracking-[0.18em] text-ash">Lo que hacemos</span>
+        <h1 class="mt-4 font-display text-3xl leading-[0.95] text-cloud md:text-[38px]">
           Nuestros Servicios
-          <span
-            class="absolute top-12 left-0 bottom-0 w-full h-1 bg-primary scale-x-100 origin-left"
-          ></span>
-        </header>
-        <p class="text-white/70 mt-8 max-w-2xl mx-auto text-base md:text-lg">
+        </h1>
+        <p class="mx-auto mt-6 max-w-2xl text-base text-ash md:text-lg">
           Ofrecemos soluciones integrales en construcción con los más altos estándares de calidad y
           compromiso.
         </p>
       </div>
 
-      <!-- Servicios Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="services-grid grid grid-cols-1 gap-6 md:grid-cols-2">
         {
-          SERVICES.map((servicio) => {
+          SERVICES.map((servicio, i) => {
             const IconComponent = iconMap[servicio.icon as keyof typeof iconMap]
             return (
               <a
                 href={`/servicios/${servicio.id}`}
-                class="group backdrop-blur-md bg-white/10 border border-white/20 text-white p-8 rounded-2xl shadow-lg hover:bg-white/15 hover:border-primary/50 transition-all duration-300 block"
-                data-reveal
+                class="service-card group block rounded-lg border border-black/10 bg-paper p-8"
               >
-                <div class="flex items-center gap-4 mb-6">
-                  <div class="bg-primary/20 p-4 rounded-full group-hover:bg-primary/30 transition-colors">
-                    <IconComponent class="w-12 h-12 text-primary" />
+                <div class="mb-6 flex items-center gap-4">
+                  <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-iris-gleam/10">
+                    <IconComponent class="h-8 w-8 text-iris-gleam" />
                   </div>
-                  <h2 class="text-2xl font-semibold group-hover:text-primary transition-colors">
-                    {servicio.titulo}
-                  </h2>
+                  <h2 class="font-display text-2xl leading-none text-ink">{servicio.titulo}</h2>
                 </div>
 
-                <p class="text-white/80 mb-6 leading-relaxed">{servicio.descripcionCorta}</p>
+                <p class="mb-6 leading-relaxed text-slate">{servicio.descripcionCorta}</p>
 
-                <ul class="space-y-2 mb-6">
+                <ul class="mb-6 space-y-2">
                   {servicio.caracteristicas.slice(0, 4).map((caracteristica) => (
-                    <li class="flex items-center gap-2 text-white/70">
-                      <span class="w-2 h-2 bg-primary rounded-full" />
+                    <li class="flex items-center gap-2 text-slate">
+                      <span class="h-1.5 w-1.5 rounded-full bg-iris-gleam" />
                       {caracteristica}
                     </li>
                   ))}
                 </ul>
 
-                <span class="inline-flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
+                <span class="inline-flex items-center gap-2 font-medium text-ink">
                   Ver más detalles
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <span aria-hidden="true">→</span>
                 </span>
               </a>
             )
@@ -92,29 +79,25 @@ const iconMap = {
         }
       </div>
 
-      <!-- CTA Section -->
-      <div class="mt-16 text-center">
-        <div
-          class="backdrop-blur-md bg-white/10 border border-white/20 rounded-2xl p-8 md:p-12 max-w-3xl mx-auto"
-          data-reveal
-        >
-          <h3 class="text-2xl md:text-3xl font-semibold text-white mb-4">
+      <div class="page-reveal mt-16 text-center">
+        <div class="mx-auto max-w-3xl rounded-lg border border-white/10 bg-graphite/50 p-8 backdrop-blur-md md:p-12">
+          <h3 class="font-display text-2xl text-cloud md:text-3xl mb-4">
             ¿Tienes un proyecto en mente?
           </h3>
-          <p class="text-white/70 mb-8">
+          <p class="mb-8 text-ash">
             Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a
             hacer realidad tu proyecto.
           </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <div class="flex flex-col justify-center gap-4 sm:flex-row">
             <a
               href="/cotizacion"
-              class="bg-primary text-white px-8 py-3 rounded-lg hover:bg-[#e35d2c] transition-colors duration-300 font-medium"
+              class="inline-flex items-center justify-center gap-2 rounded-lg bg-pure px-8 py-3 font-sans text-void"
             >
               Solicitar Cotización
             </a>
             <a
               href="/contacto"
-              class="bg-white/20 text-white px-8 py-3 rounded-lg hover:bg-white/30 transition-colors duration-300 font-medium border border-white/30"
+              class="inline-flex items-center justify-center gap-2 rounded-lg border border-white/30 px-8 py-3 font-sans text-pure hover:bg-white/10"
             >
               Contactar
             </a>
@@ -122,11 +105,10 @@ const iconMap = {
         </div>
       </div>
 
-      <!-- Back Button -->
-      <div class="mt-12 text-center">
+      <div class="page-reveal mt-12 text-center">
         <a
           href="/"
-          class="inline-block bg-primary/80 text-white px-6 py-3 rounded hover:bg-primary transition-colors duration-300"
+          class="inline-block rounded-lg border border-white/30 px-6 py-3 font-sans text-sm text-pure hover:bg-white/10"
         >
           ← Volver al Inicio
         </a>
@@ -134,3 +116,9 @@ const iconMap = {
     </div>
   </section>
 </Layout>
+
+<script>
+  import { revealOnScroll, staggerOnScroll } from '@/lib/motion'
+  revealOnScroll('.page-reveal', { start: 'top 95%' })
+  staggerOnScroll('.services-grid', '.service-card')
+</script>

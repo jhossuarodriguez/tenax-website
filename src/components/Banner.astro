@@ -3,69 +3,91 @@ import { BANNER_IMAGES } from '@/components/consts/Images'
 import { Image } from 'astro:assets'
 ---
 
-<section id="carousel" class="relative w-full min-h-[800px] md:min-h-screen overflow-hidden z-0">
-  {
-    BANNER_IMAGES.map((banner, index) => (
-      <div
-        class={`absolute inset-0 transition-opacity duration-1000 aspect-[400/267] ${
-          index === 0 ? 'opacity-100' : 'opacity-0'
-        }`}
-        data-index={index}
-      >
-        <Image
-          src={`/images/${banner.id}.webp`}
-          alt={banner.alt}
-          width={1920}
-          height={1080}
-          class="w-full h-[800px] aspect-[400/267] md:h-full object-cover animate-kenburns"
-          loading="eager"
-          format="webp"
-        />
-        <div class="absolute inset-0 bg-black opacity-30" />
-      </div>
-    ))
-  }
-  <div class="static md:absolute translate-y-72 left-0 w-full px-10 md:px-36 z-[9999px]">
-    <header
-      class="text-white/90 text-3xl md:text-5xl font-semibold uppercase mb-2 animate-fade-in animate-delay-300"
+<section id="carousel" class="relative w-full min-h-[720px] md:min-h-screen overflow-hidden bg-obsidian">
+  <div class="absolute inset-0">
+    <Image
+      src={`/images/${BANNER_IMAGES[0].id}.webp`}
+      alt={BANNER_IMAGES[0].alt}
+      width={1920}
+      height={1080}
+      class="w-full h-full object-cover"
+      loading="eager"
+      format="webp"
+    />
+    <div class="absolute inset-0 bg-obsidian/60"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/10 to-transparent"></div>
+  </div>
+
+  <div class="pointer-events-none absolute inset-0 z-[5] hidden md:flex">
+    <div class="w-1/4 border-r border-white/10"></div>
+    <div class="w-1/4 border-r border-white/10"></div>
+    <div class="w-1/4 border-r border-white/10"></div>
+    <div class="w-1/4"></div>
+  </div>
+
+  <div class="pointer-events-none absolute right-0 top-0 z-[5] h-full w-1.5 bg-iris-gleam"></div>
+
+  <div class="relative z-10 flex h-full min-h-[720px] md:min-h-screen flex-col justify-center px-6 py-40 md:px-16 md:py-0 lg:px-24">
+    <h1
+      id="hero-title"
+      class="hero-item max-w-2xl font-display text-[52px] leading-[0.9] text-pure sm:text-7xl md:text-[88px]"
     >
-      Bienvenido a <br />Tenax Construction
-    </header>
-    <p class="text-white/90 text-base md:text-xl mt-6 uppercase animate-fade-in animate-delay-500">
-      CONSTRUIMOS ESTRUCTURAS, <br /> ELEVAMOS TU PROYECTO
-    </p>
-    <div class="mt-20">
-      <a
-        href="#proyectos"
-        class="bg-primary/90 text-white/80 px-3 py-3 md:px-6 md:py-4 rounded hover:bg-[#e35d2c]/90 transition-transform duration-300 animate-fade-in animate-delay-700"
-        title="Ver galería de proyectos realizados"
-        aria-label="Ver galería de proyectos realizados"
-      >
-        VER PROYECTOS
-      </a>
-    </div>
+      Construyendo
+      <span class="relative mt-2 block font-display text-[52px] leading-[0.9] text-pure sm:text-7xl md:text-[88px]">
+        el futuro
+        <svg
+          class="absolute -bottom-2 left-0 h-4 w-[85%] text-iris-gleam sm:h-5 md:h-6"
+          viewBox="0 0 300 20"
+          fill="none"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M2 14C60 4 140 4 150 10C160 16 240 4 298 10"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+          ></path>
+        </svg>
+      </span>
+    </h1>
+
+    <a
+      id="hero-cta"
+      href="/cotizacion"
+      class="hero-item mt-10 inline-flex w-fit items-center gap-3 font-mono text-xs uppercase tracking-[0.18em] text-pure"
+      title="Solicitar cotización para tu proyecto"
+      aria-label="¿Qué quieres construir?"
+    >
+      ¿Qué quieres construir?
+      <span aria-hidden="true" class="hero-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="hero-item absolute bottom-8 left-6 z-10 flex flex-col items-center gap-3 text-pure md:left-16 lg:left-24">
+    <span class="[writing-mode:vertical-rl] font-mono text-xs uppercase tracking-[0.18em]">Scroll</span>
+    <span class="flex h-8 w-5 items-start justify-center rounded-full border border-white/50 pt-1.5">
+      <span class="mouse-dot h-1.5 w-1.5 rounded-full bg-pure"></span>
+    </span>
   </div>
 </section>
 
-<script type="module">
-  const images = document.querySelectorAll('#carousel > div[data-index]')
-  let currentIndex = 0
-  const totalImages = images.length
+<script>
+  import { heroReveal, gsap } from '@/lib/motion'
 
-  function changeImage() {
-    // Ocultar imagen actual
-    images[currentIndex].classList.remove('opacity-100')
-    images[currentIndex].classList.add('opacity-0')
+  gsap.set('.hero-item', { autoAlpha: 0 })
+  heroReveal('.hero-item', { y: 28 })
 
-    // Calcular siguiente índice
-    currentIndex = (currentIndex + 1) % totalImages
+  gsap.to('.mouse-dot', {
+    y: 10,
+    opacity: 0,
+    repeat: -1,
+    duration: 1.1,
+    ease: 'power1.in',
+    delay: 1,
+  })
 
-    // Mostrar nueva imagen
-    setTimeout(() => {
-      images[currentIndex].classList.remove('opacity-0')
-      images[currentIndex].classList.add('opacity-100')
-    }, 100)
-  }
-
-  setInterval(changeImage, 4000)
+  const arrow = document.querySelector('.hero-arrow')
+  const cta = document.getElementById('hero-cta')
+  cta?.addEventListener('mouseenter', () => gsap.to(arrow, { x: 6, duration: 0.3, ease: 'power2.out' }))
+  cta?.addEventListener('mouseleave', () => gsap.to(arrow, { x: 0, duration: 0.3, ease: 'power2.out' }))
 </script>
