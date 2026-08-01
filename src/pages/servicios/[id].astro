@@ -82,14 +82,14 @@ const IconComponent = iconMap[servicio.icon as keyof typeof iconMap]
       <div class="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div class="page-reveal rounded-lg border border-white/10 bg-graphite/50 p-8">
           <h2 class="mb-6 flex items-center gap-3 font-display text-2xl text-cloud">
-            <span class="h-8 w-2 rounded-full bg-iris-gleam"></span>
+            <span class="h-8 w-2 rounded-full bg-primary"></span>
             Características del Servicio
           </h2>
           <ul class="space-y-3">
             {
               servicio.caracteristicas.map((caracteristica) => (
                 <li class="flex items-start gap-3 text-ash">
-                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-iris-gleam" />
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                   {caracteristica}
                 </li>
               ))

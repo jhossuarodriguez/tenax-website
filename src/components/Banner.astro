@@ -15,19 +15,19 @@ import { Image } from 'astro:assets'
       format="webp"
     />
     <div class="absolute inset-0 bg-obsidian/60"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/10 to-transparent"></div>
+    <div class="absolute inset-0 bg-linear-to-t from-obsidian via-obsidian/10 to-transparent"></div>
   </div>
 
-  <div class="pointer-events-none absolute inset-0 z-[5] hidden md:flex">
+  <div class="pointer-events-none absolute inset-0 z-5 hidden md:flex">
     <div class="w-1/4 border-r border-white/10"></div>
     <div class="w-1/4 border-r border-white/10"></div>
     <div class="w-1/4 border-r border-white/10"></div>
     <div class="w-1/4"></div>
   </div>
 
-  <div class="pointer-events-none absolute right-0 top-0 z-[5] h-full w-1.5 bg-iris-gleam"></div>
+  <div class="pointer-events-none absolute right-0 top-0 z-5 h-full w-1.5 bg-primary"></div>
 
-  <div class="relative z-10 flex h-full min-h-[720px] md:min-h-screen flex-col justify-center px-6 py-40 md:px-16 md:py-0 lg:px-24">
+  <div class="content-shell relative z-10 flex h-full min-h-[720px] flex-col justify-center py-40 md:min-h-screen md:py-0">
     <h1
       id="hero-title"
       class="hero-item max-w-2xl font-display text-[52px] leading-[0.9] text-pure sm:text-7xl md:text-[88px]"
@@ -36,7 +36,7 @@ import { Image } from 'astro:assets'
       <span class="relative mt-2 block font-display text-[52px] leading-[0.9] text-pure sm:text-7xl md:text-[88px]">
         el futuro
         <svg
-          class="absolute -bottom-2 left-0 h-4 w-[85%] text-iris-gleam sm:h-5 md:h-6"
+          class="absolute -bottom-4 left-0 h-4 w-[85%] text-primary sm:h-5 md:h-6"
           viewBox="0 0 300 20"
           fill="none"
           preserveAspectRatio="none"
@@ -63,12 +63,6 @@ import { Image } from 'astro:assets'
     </a>
   </div>
 
-  <div class="hero-item absolute bottom-8 left-6 z-10 flex flex-col items-center gap-3 text-pure md:left-16 lg:left-24">
-    <span class="[writing-mode:vertical-rl] font-mono text-xs uppercase tracking-[0.18em]">Scroll</span>
-    <span class="flex h-8 w-5 items-start justify-center rounded-full border border-white/50 pt-1.5">
-      <span class="mouse-dot h-1.5 w-1.5 rounded-full bg-pure"></span>
-    </span>
-  </div>
 </section>
 
 <script>

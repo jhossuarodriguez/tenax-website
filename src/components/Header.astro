@@ -18,9 +18,9 @@ const ALL_LINKS = [...CENTER_LINKS, ...RIGHT_LINKS]
 
 <header
   id="site-header"
-  class="fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent px-4 sm:px-8 lg:px-16 py-4 transition-[background-color,backdrop-filter,border-color] duration-300"
+  class="fixed top-0 left-0 right-0 z-50 w-full border-b border-transparent py-4 transition-[background-color,backdrop-filter,border-color] duration-300"
 >
-  <div class="flex flex-row items-center justify-between gap-6">
+  <div class="content-shell flex flex-row items-center justify-between gap-6">
     <a
       class="flex shrink-0 items-center"
       href="/"
@@ -28,7 +28,7 @@ const ALL_LINKS = [...CENTER_LINKS, ...RIGHT_LINKS]
       aria-label="Ir a la página principal"
     >
       <Image
-        class="w-36 sm:w-44 md:w-48 lg:w-56 h-auto aspect-[786/317]"
+        class="w-36 sm:w-44 md:w-48 lg:w-56 h-auto aspect-786/317"
         width="240"
         height="180"
         src="/logo-tenax.webp"
@@ -45,7 +45,7 @@ const ALL_LINKS = [...CENTER_LINKS, ...RIGHT_LINKS]
         CENTER_LINKS.map((link) => (
           <a
             href={link.href}
-            class="nav-tab border-t-2 border-transparent px-4 py-3 font-sans text-lg font-medium tracking-wide text-pure/90 transition-colors duration-200 hover:border-iris-gleam hover:text-iris-gleam"
+            class="nav-tab border-t-2 border-transparent px-4 py-3 font-display text-lg font-medium tracking-wide text-pure/90 transition-colors duration-200 hover:border-primary                hover:text-primary"
             title={`Ir a ${link.label}`}
             aria-label={`Ir a ${link.label}`}
           >
@@ -71,7 +71,7 @@ const ALL_LINKS = [...CENTER_LINKS, ...RIGHT_LINKS]
         RIGHT_LINKS.map((link) => (
           <a
             href={link.href}
-            class="nav-link-right whitespace-nowrap font-sans text-sm font-medium tracking-wide text-pure/90 hover:text-iris-gleam"
+            class="nav-link-right whitespace-nowrap font-display text-lg font-medium tracking-wide text-pure/90 hover:text-primary"
             title={`Ir a ${link.label}`}
             aria-label={`Ir a ${link.label}`}
           >
@@ -171,6 +171,7 @@ const ALL_LINKS = [...CENTER_LINKS, ...RIGHT_LINKS]
         header.classList.toggle('is-scrolled', self.scroll() > 80)
       },
     })
+
   }
 </script>
 

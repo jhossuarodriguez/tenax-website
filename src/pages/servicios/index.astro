@@ -52,8 +52,8 @@ const iconMap = {
                 class="service-card group block rounded-lg border border-black/10 bg-paper p-8"
               >
                 <div class="mb-6 flex items-center gap-4">
-                  <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-iris-gleam/10">
-                    <IconComponent class="h-8 w-8 text-iris-gleam" />
+                  <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                    <IconComponent class="h-8 w-8 text-primary" />
                   </div>
                   <h2 class="font-display text-2xl leading-none text-ink">{servicio.titulo}</h2>
                 </div>
@@ -63,7 +63,7 @@ const iconMap = {
                 <ul class="mb-6 space-y-2">
                   {servicio.caracteristicas.slice(0, 4).map((caracteristica) => (
                     <li class="flex items-center gap-2 text-slate">
-                      <span class="h-1.5 w-1.5 rounded-full bg-iris-gleam" />
+                      <span class="h-1.5 w-1.5 rounded-full bg-primary" />
                       {caracteristica}
                     </li>
                   ))}

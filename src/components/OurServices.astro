@@ -38,16 +38,16 @@ const SERVICE_TILES = [
 ]
 ---
 
-<section id="servicios-home" class="w-full bg-paper py-24 md:py-32">
-  <div class="mx-auto max-w-6xl px-6">
-    <div class="services-reveal mx-auto max-w-2xl text-center">
+<section id="servicios-home" class="w-full bg-paper py-20 md:py-28">
+  <div class="content-shell">
+    <div class="services-reveal">
       <span class="font-mono text-xs uppercase tracking-[0.18em] text-slate">Lo que hacemos</span>
-      <h2 class="mt-4 font-display text-3xl leading-[0.95] text-ink md:text-[38px]">
+      <h2 class="mt-4 max-w-4xl font-display text-4xl leading-[0.95] text-ink md:text-6xl lg:text-[72px]">
         Nuestros servicios
       </h2>
     </div>
 
-    <div class="services-grid mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
+    <div class="services-grid mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
       {
         SERVICE_TILES.map((service, i) => (
           <a
@@ -57,8 +57,8 @@ const SERVICE_TILES = [
             <span class="font-mono text-xs text-slate/60">{`0${i + 1}`}</span>
 
             <div class="mt-8">
-              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-iris-gleam/10">
-                <service.icon class="h-8 w-8 text-iris-gleam" />
+              <div class="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+                <service.icon class="h-8 w-8 text-primary" />
               </div>
               <h3 class={`mt-5 font-display leading-none text-ink ${service.featured ? 'text-3xl md:text-4xl' : 'text-2xl'}`}>
                 {service.title}
@@ -79,7 +79,7 @@ const SERVICE_TILES = [
     <div class="services-reveal mt-12 flex justify-center">
       <a
         href="/servicios"
-        class="inline-flex items-center gap-2 rounded-lg bg-void px-6 py-3 font-sans text-base text-pure"
+        class="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-sans text-base text-pure"
       >
         Ver más servicios
         <span aria-hidden="true">→</span>

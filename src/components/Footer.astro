@@ -1,208 +1,77 @@
 ---
+import { Image } from 'astro:assets'
 import Facebook from '@/assets/icons/social/facebook.svg'
 import Instagram from '@/assets/icons/social/instagram.svg'
 import Linkedin from '@/assets/icons/social/linkedin.svg'
 import TikTok from '@/assets/icons/social/tiktok.svg'
-import { Image } from 'astro:assets'
+
+const NAVIGATION = [
+  { href: '/nosotros', label: 'Nosotros' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/#proyectos', label: 'Proyectos' },
+  { href: '/FAQ', label: 'Preguntas frecuentes' },
+  { href: '/contacto', label: 'Contacto' },
+]
 ---
 
-<footer class="w-full bg-mist pt-20">
-  <div
-    class="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row lg:justify-between lg:gap-x-16"
-  >
-    <div class="grid w-full grid-cols-2 gap-8 md:grid-cols-1 lg:w-auto lg:grid-cols-3 lg:gap-16">
-      <div class="flex flex-col">
-        <span class="font-mono text-xs uppercase tracking-[0.18em] text-ink mb-4">Servicios</span>
-        <ul class="flex flex-col gap-y-2">
-          <li>
-            <a
-              class="text-slate hover:text-ink transition-colors duration-200"
-              href="/#servicios"
-              title="Ver servicios de excavación"
-              aria-label="Ver servicios de excavación y movimiento de tierra"
-            >
-              Excavación
-            </a>
-          </li>
-          <li>
-            <a
-              class="text-slate hover:text-ink transition-colors duration-200"
-              href="/#servicios"
-              title="Ver servicios de movimiento de tierra"
-              aria-label="Ver servicios de movimiento de tierra"
-            >
-              Movimiento de Tierra
-            </a>
-          </li>
-          <li>
-            <a
-              class="text-slate hover:text-ink transition-colors duration-200"
-              href="/#servicios"
-              title="Ver servicios de Estructura de hormigón armado"
-              aria-label="Ver servicios de Estructura de hormigón armado"
-            >
-              Estructura de hormigón armado
-            </a>
-          </li>
-
-          <li>
-            <a
-              class="text-slate hover:text-ink transition-colors duration-200"
-              href="/#servicios"
-              title="Ver servicios de estructura metálica"
-              aria-label="Ver servicios de Estructura metálica"
-            >
-              Estructura metálica
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="flex flex-col">
-        <span class="font-mono text-xs uppercase tracking-[0.18em] text-ink mb-4">Nosotros</span>
-        <ul class="flex flex-col gap-y-2">
-          <li>
-            <a
-              class="text-slate hover:text-ink transition-colors duration-200"
-              href="/FAQ"
-              title="Ver preguntas frecuentes sobre nuestros servicios"
-              aria-label="Ver preguntas frecuentes sobre nuestros servicios"
-            >
-              Preguntas Frecuentes
-            </a>
-          </li>
-          <li>
-            <a
-              class="text-slate hover:text-ink transition-colors duration-200"
-              href="/#nosotros"
-              title="Conocer más sobre Tenax Construction"
-              aria-label="Conocer más sobre Tenax Construction"
-            >
-              Sobre Nosotros
-            </a>
-          </li>
-          <li>
-            <a
-              class="text-slate hover:text-ink transition-colors duration-200"
-              href="/contacto"
-              title="Formulario de contacto directo"
-              aria-label="Formulario de contacto directo"
-            >
-              Contáctanos
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="flex flex-col">
-        <span class="font-mono text-xs uppercase tracking-[0.18em] text-ink mb-4">Proyectos</span>
-        <ul class="flex flex-col gap-y-2">
-          <li>
-            <a
-              class="text-slate hover:text-ink transition-colors duration-200"
-              href="/#proyectos"
-              title="Ver galería de proyectos completados"
-              aria-label="Ver galería de proyectos completados"
-            >
-              Proyectos Realizados
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="flex w-full flex-col rounded-lg border border-black/10 bg-paper p-6 lg:w-[420px] lg:p-8">
-      <header class="font-mono text-xs uppercase tracking-[0.18em] text-ink">Suscríbete</header>
-      <div class="mt-6 flex flex-col gap-2 sm:flex-row">
-        <input
-          type="email"
-          placeholder="Ingresa tu correo electrónico"
-          class="w-full rounded-lg border border-black/15 bg-paper py-2 pl-4 pr-3 text-sm text-ink placeholder:text-slate/60 focus:outline-none focus:ring-1 focus:ring-black/30"
-          aria-label="Correo electrónico para suscribirse al boletín"
-        />
-        <button
-          type="submit"
-          class="whitespace-nowrap rounded-lg bg-void px-4 py-3 font-sans text-sm text-pure cursor-pointer"
-          title="Suscribirse al boletín de noticias"
-          aria-label="Suscribirse al boletín de noticias de Tenax Construction"
-        >
-          Suscribirse
-        </button>
-      </div>
-      <p class="mt-5 text-sm leading-relaxed text-slate">
-        Suscríbete a nuestro boletín para recibir las últimas novedades y actualizaciones de Tenax
-        Construction.
-      </p>
-    </div>
-  </div>
-
-  <hr class="mx-6 mt-16 border-t border-black/10" />
-
-  <div
-    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row"
-  >
-    <div class="flex flex-col items-center gap-x-6 gap-y-4 md:flex-row">
-      <a href="#inicio">
+<footer class="w-full overflow-hidden rounded-t-lg bg-primary text-pure">
+  <div class="grid border-y border-white/25 lg:grid-cols-[minmax(260px,1fr)_minmax(0,2fr)_minmax(260px,1fr)]">
+    <div class="flex items-center border-b border-white/25 px-6 py-10 lg:border-r lg:border-b-0 xl:px-20">
+      <a href="/#inicio" aria-label="Ir al inicio de Tenax Construction">
         <Image
-          class="hidden h-auto w-20 md:block md:w-24"
-          width="160"
-          height="120"
           src="/logo-tenax.webp"
-          alt="Tenax Construction Logo"
+          alt="Tenax Construction"
+          width={240}
+          height={100}
+          class="h-auto w-40 brightness-0 invert md:w-48"
           loading="lazy"
         />
       </a>
-      <span class="text-center text-xs text-fog md:text-left md:text-sm">
-        © Todos los derechos reservados.
-      </span>
     </div>
-    <div class="flex flex-col items-center gap-4 md:flex-row md:gap-x-6">
-      <a
-        href="#inicio"
-        class="order-2 text-sm font-medium text-slate hover:text-ink md:order-1"
-        title="Volver al inicio de la página"
-        aria-label="Volver al inicio de la página"
-      >
-        ↑ Ir arriba
+
+    <nav class="flex flex-wrap items-center gap-x-8 gap-y-5 border-b border-white/25 px-6 py-10 lg:border-b-0 xl:px-16" aria-label="Navegación del pie de página">
+      {
+        NAVIGATION.map((link) => (
+          <a href={link.href} class="font-sans text-base text-pure transition-opacity duration-200 hover:opacity-70 md:text-lg">
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-6 px-6 py-10 lg:border-l lg:border-white/25 xl:px-16">
+      <a href="https://www.facebook.com/Tnaxconstruction" target="_blank" rel="noopener noreferrer" aria-label="Tenax Construction en Facebook">
+        <Facebook class="h-8 w-8 text-pure" />
       </a>
-      <div class="order-1 flex items-center gap-x-4 md:order-2">
-        <a
-          href="https://www.facebook.com/Tnaxconstruction"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Tenax Construction en Facebook"
-          aria-label="Tenax Construction en Facebook"
-        >
-          <Facebook class="h-5 w-5 text-slate hover:text-ink md:h-6 md:w-6" />
-        </a>
-        <a
-          href="https://www.instagram.com/tenaxconstruction/"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Tenax Construction en Instagram"
-          aria-label="Tenax Construction en Instagram"
-        >
-          <Instagram class="h-5 w-5 text-slate hover:text-ink md:h-6 md:w-6" />
-        </a>
-        <a
-          href="https://www.linkedin.com/company/tenax-construction-srl/"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Tenax Construction en LinkedIn"
-          aria-label="Tenax Construction en LinkedIn"
-        >
-          <Linkedin class="h-5 w-5 text-slate hover:text-ink md:h-6 md:w-6" />
-        </a>
-        <a
-          href="https://www.tiktok.com/@tenaxconstruction"
-          target="_blank"
-          rel="noopener noreferrer"
-          title="Tenax Construction en TikTok"
-          aria-label="Tenax Construction en TikTok"
-        >
-          <TikTok class="h-5 w-5 text-slate hover:text-ink md:h-6 md:w-6" fill="currentColor" />
-        </a>
-      </div>
+      <a href="https://www.instagram.com/tenaxconstruction/" target="_blank" rel="noopener noreferrer" aria-label="Tenax Construction en Instagram">
+        <Instagram class="h-8 w-8 text-pure" />
+      </a>
+      <a href="https://www.linkedin.com/company/tenax-construction-srl/" target="_blank" rel="noopener noreferrer" aria-label="Tenax Construction en LinkedIn">
+        <Linkedin class="h-8 w-8 text-pure" />
+      </a>
+      <a href="https://www.tiktok.com/@tenaxconstruction" target="_blank" rel="noopener noreferrer" aria-label="Tenax Construction en TikTok">
+        <TikTok class="h-8 w-8 text-pure" fill="currentColor" />
+      </a>
+    </div>
+  </div>
+
+  <div class="grid lg:grid-cols-[minmax(260px,1fr)_minmax(0,2fr)_minmax(260px,1fr)]">
+    <div class="px-6 py-10 lg:border-r lg:border-white/25 xl:px-20">
+      <p class="max-w-xs text-sm leading-relaxed text-pure/85">© 2026 Tenax Construction SRL<br />Todos los derechos reservados.</p>
+    </div>
+
+    <div class="px-6 py-10 lg:border-r lg:border-white/25 xl:px-16">
+      <p class="max-w-3xl text-sm leading-relaxed text-pure/85">
+        Tenax Construction promueve una cultura de trabajo segura, responsable y respetuosa para nuestro equipo, clientes y aliados.
+      </p>
+      <a href="/contacto" class="mt-5 inline-block text-sm font-medium text-pure underline underline-offset-4 transition-opacity duration-200 hover:opacity-70">
+        Política de privacidad
+      </a>
+    </div>
+
+    <div class="flex items-start px-6 py-10 xl:px-16 flex-col">
+      <a href="/contacto" class="text-sm text-pure/85 transition-opacity duration-200 hover:opacity-70">Contacto y privacidad</a>
+      <a href="https://www.linkedin.com/in/jhossuarodriguez/" class="text-sm text-pure/85 transition-opacity duration-200 hover:opacity-70"> Hecha con amor por <span class="font-bold underline">Jhossua Roa</span></a>
     </div>
   </div>
 </footer>
