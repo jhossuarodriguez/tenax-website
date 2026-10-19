@@ -23,7 +23,7 @@ export const contactPage: ContactPageData = {
   form: {
     title: ['Solicita tu', 'cotización'],
     description: 'Completa el formulario y te contactaremos en las próximas 24 horas.',
-    action: '#',
+    action: '/api/cotizacion',
     rows: [
       [{ name: 'nombre', label: 'Nombre Completo', placeholder: 'Nombre completo', type: 'text', required: true, autocomplete: 'name' }],
       [
@@ -50,7 +50,7 @@ export const contactPage: ContactPageData = {
       ],
     ],
     submitLabel: 'Enviar Solicitud de Cotización',
-    successMessage: '¡Solicitud enviada! Te contactaremos en las próximas 24 horas.',
+    successMessage: '¡Cotización enviada exitosamente! Te contactaremos en las próximas 24 horas. Revisa tu email para la confirmación.',
   },
   band: {
     title: 'Construimos estructuras, elevamos tu proyecto',

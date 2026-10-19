@@ -2,9 +2,12 @@
 import { defineConfig } from 'astro/config';
 
 import tailwindcss from '@tailwindcss/vite';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
+  // Las páginas siguen siendo estáticas; el adaptador solo hace falta para /api/cotizacion (prerender = false).
+  adapter: vercel(),
   devToolbar: { enabled: false },
   vite: {
     plugins: [tailwindcss()],

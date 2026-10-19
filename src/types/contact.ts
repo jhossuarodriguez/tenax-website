@@ -27,7 +27,7 @@ export interface ContactPageForm {
   /** Título en dos líneas. */
   title: [string, string];
   description: string;
-  /** Destino del formulario (placeholder: no hay backend). */
+  /** Endpoint que envía la solicitud por correo (/api/cotizacion). */
   action: string;
   rows: ContactPageFormRow[];
   submitLabel: string;

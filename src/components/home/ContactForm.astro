@@ -1,11 +1,12 @@
 ---
 import { homeFormFields } from '@/data/home';
+import { contactPage } from '@/data/contact';
 
 const input =
   'block w-full rounded-[7px] border border-[#dadbdd] bg-[#fafafa] px-[15px] py-[11px] font-sans text-[17px] leading-[19px] text-[#606266] placeholder:text-[#a8abb2] focus:border-body focus:outline-none';
 ---
 
-<form class="grid grid-cols-1 gap-x-[15px] gap-y-[20px] md:grid-cols-2" method="post" action="#" novalidate data-home-form>
+<form class="grid grid-cols-1 gap-x-[15px] gap-y-[20px] md:grid-cols-2" method="post" action={contactPage.form.action} novalidate data-home-form data-success={contactPage.form.successMessage}>
   {
     homeFormFields.map((f) => (
       <div class:list={[f.half ? 'md:col-span-1' : 'md:col-span-2']}>
@@ -39,20 +40,24 @@ const input =
 </form>
 
 <script>
-  // Formulario de demostración: valida en el cliente y muestra un aviso (sin backend).
+  import { sendQuote } from '@/scripts/quote-form';
+
+  // Envía la cotización a /api/cotizacion y muestra el resultado bajo el botón.
   document.querySelectorAll<HTMLFormElement>('[data-home-form]').forEach((form) => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const status = form.querySelector<HTMLElement>('[data-form-status]');
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
+      const status = form.querySelector<HTMLElement>('[data-form-status]');
+      const result = await sendQuote(form);
       if (status) {
-        status.textContent = 'Gracias, hemos recibido tu mensaje.';
+        status.textContent = result.ok ? (form.dataset.success ?? result.message) : result.message;
         status.classList.remove('hidden');
+        status.classList.toggle('text-brand-dark', !result.ok);
       }
-      form.reset();
+      if (result.ok) form.reset();
     });
   });
 </script>

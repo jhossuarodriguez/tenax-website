@@ -68,6 +68,7 @@ const controlClass =
     >
       {form.submitLabel}
     </button>
+    <p hidden role="alert" class="mt-3 text-[17px] leading-[1.6] text-brand-dark" data-contact-error></p>
   </form>
 
   <div hidden role="status" class="mt-2.5 border border-[#ced4da] p-[15px] text-[17px] shadow-[0_1px_5px_rgba(0,0,0,0.1)]" data-contact-success>
@@ -76,11 +77,22 @@ const controlClass =
 </div>
 
 <script>
-  // Sin backend: valida con las reglas nativas y muestra el mensaje de éxito.
+  import { sendQuote } from '@/scripts/quote-form';
+
+  // Envía la cotización a /api/cotizacion; solo muestra el éxito si el servidor la envió.
   document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
-    form.addEventListener('submit', (event) => {
+    form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!form.reportValidity()) return;
+      const error = form.querySelector<HTMLElement>('[data-contact-error]');
+      const result = await sendQuote(form);
+      if (!result.ok) {
+        if (error) {
+          error.textContent = result.message;
+          error.hidden = false;
+        }
+        return;
+      }
       const success = form.parentElement?.querySelector<HTMLElement>('[data-contact-success]');
       form.reset();
       form.hidden = true;
