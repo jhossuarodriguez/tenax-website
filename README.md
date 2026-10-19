@@ -67,6 +67,16 @@ pnpm dev      # servidor local en http://localhost:4321
 pnpm build    # genera el sitio estático en dist/
 ```
 
+### Variables de entorno
+
+El formulario de cotización (`/api/cotizacion`) envía los correos con [Resend](https://resend.com). Configúralas en Vercel (Production y Preview) o en un `.env` local; ver `.env.example`.
+
+| Variable | Uso |
+|---|---|
+| `RESEND_API_KEY` | Clave de API de Resend |
+| `RESEND_FROM` | Remitente, con un dominio verificado en Resend. Ej.: `Tenax Construction <cotizaciones@tenaxconstruction.com.do>` |
+| `QUOTE_TO_EMAIL` | Buzón que recibe las solicitudes de cotización |
+
 ---
 
 ## 🏆 **Nuestro Compromiso**

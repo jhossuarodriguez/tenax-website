@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import { site } from '@/data/site';
 
 // Se ejecuta en el servidor (función de Vercel); el resto del sitio es estático.
@@ -27,10 +27,12 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ success: false, message: 'El correo electrónico no es válido.' }, 400);
   }
 
-  const user = import.meta.env.SMTP_USER;
-  const pass = import.meta.env.SMTP_PASS;
-  if (!user || !pass) {
-    console.error('cotizacion: faltan las variables SMTP_USER / SMTP_PASS');
+  // RESEND_FROM debe usar un dominio verificado en Resend; QUOTE_TO_EMAIL es el buzón que recibe las cotizaciones.
+  const apiKey = import.meta.env.RESEND_API_KEY;
+  const from = import.meta.env.RESEND_FROM;
+  const to = import.meta.env.QUOTE_TO_EMAIL;
+  if (!apiKey || !from || !to) {
+    console.error('cotizacion: faltan las variables RESEND_API_KEY / RESEND_FROM / QUOTE_TO_EMAIL');
     return json({ success: false, message: 'Error al enviar la cotización.' }, 500);
   }
 
@@ -79,28 +81,35 @@ export const POST: APIRoute = async ({ request }) => {
     <p>¡Gracias por confiar en ${site.name}!</p>
   `;
 
-  const transporter = nodemailer.createTransport({ service: 'gmail', auth: { user, pass } });
+  const resend = new Resend(apiKey);
 
   try {
-    await Promise.all([
-      transporter.sendMail({
-        // Gmail envía siempre desde la cuenta autenticada; replyTo permite responder directo al cliente.
-        from: `${field('nombre').replace(/[\r\n"<>]/g, '')} <${user}>`,
+    // En modo estricto (por defecto), si un correo no es válido Resend no envía ninguno de los dos.
+    const { error } = await resend.batch.send([
+      {
+        from,
+        to,
+        // Responder desde el buzón de Tenax contesta directo al cliente.
         replyTo: email,
-        to: user,
         subject: 'Nueva solicitud de cotización',
         html: messageReceived,
-      }),
-      transporter.sendMail({
-        from: `${site.name} <${user}>`,
+      },
+      {
+        from,
         to: email,
+        replyTo: to,
         subject: 'Confirmación - Solicitud de cotización recibida',
         html: messageConfirmation,
-      }),
+      },
     ]);
+    if (error) {
+      console.error('cotizacion: Resend rechazó el envío', error);
+      return json({ success: false, message: 'Error al enviar la cotización.' }, 500);
+    }
     return json({ success: true, message: 'Cotización enviada exitosamente.' }, 200);
   } catch (error) {
-    console.error('cotizacion: error al enviar el correo', error);
+    // Errores de red o de la propia petición (Resend no lanza por errores de la API).
+    console.error('cotizacion: error al contactar con Resend', error);
     return json({ success: false, message: 'Error al enviar la cotización.' }, 500);
   }
 };
