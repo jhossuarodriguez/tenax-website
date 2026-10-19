@@ -55,7 +55,17 @@ Brindar soluciones innovadoras y de alta calidad en el sector de la construcció
 
 La página web de Tenax Construction ha sido diseñada utilizando:
 
-- **Frontend:** Astro, Tailwind, JavaScript.
+- **Frontend:** Astro 7, Tailwind CSS v4 y TypeScript (strict).
+- **Experiencia:** scroll suave con Lenis y animaciones de aparición al hacer scroll.
+- **Rendimiento:** imágenes AVIF optimizadas, fuentes locales (Kanit y Work Sans) con preload y video de fondo en WebM.
+
+### Desarrollo
+
+```bash
+pnpm install
+pnpm dev      # servidor local en http://localhost:4321
+pnpm build    # genera el sitio estático en dist/
+```
 
 ---
 

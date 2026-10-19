@@ -1,0 +1,100 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ServiceHero from '@/components/services/ServiceHero.astro';
+import ServiceGallery from '@/components/services/ServiceGallery.astro';
+import ServiceSidebar from '@/components/services/ServiceSidebar.astro';
+import { getService, services, servicesPage } from '@/data/services';
+import type { Service } from '@/types';
+
+export const getStaticPaths = (() => services.map((service) => ({ params: { slug: service.slug }, props: { service } }))) satisfies GetStaticPaths;
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+const related = service.related.map(getService).filter((s): s is Service => s !== undefined);
+const collapse = service.collapseRailOnTablet;
+
+const sectionClass = [
+  'relative mb-[40px] before:absolute before:top-[4px] before:-left-[33.5px] before:size-[5px] before:rounded-full before:bg-brand',
+  collapse && 'max-[1024px]:before:hidden',
+];
+const labelClass = 'mb-[1.6em] inline-block border-b-2 border-brand pb-[6px] text-[0.78rem] font-semibold text-ink uppercase';
+---
+
+<BaseLayout title={service.title} description={service.tagline} image={service.image.src}>
+  <div class="bg-[#f5f5f5] leading-[1.6rem] text-ink">
+    <ServiceHero
+      service={service}
+      breadcrumbs={[{ label: 'Inicio', href: '/' }, { label: 'Servicios', href: '/servicios/' }, { label: service.title }]}
+    />
+
+    <div class="px-[24px] pt-[46px] pb-[8px]">
+      <div class="mx-auto max-w-[1080px]">
+        <p class="mb-[1.6em]">
+          <a
+            href="/servicios/"
+            class="mb-[30px] inline-block font-mono text-[0.78rem] tracking-[0.04em] text-body uppercase transition-colors duration-150 hover:text-brand"
+          >
+            &larr; Volver a Servicios
+          </a>
+        </p>
+
+        {
+          service.heroImage && (
+            <div data-reveal class:list={['aspect-[21/9] overflow-hidden rounded-[4px] bg-[#e8e8e8]', service.gallery ? 'mb-[14px]' : 'mb-[30px]']}>
+              <img
+                src={service.heroImage.src}
+                alt={service.heroImage.alt}
+                decoding="async"
+                class="block size-full object-cover"
+                style={service.heroImage.position ? `object-position:${service.heroImage.position}` : undefined}
+              />
+            </div>
+          )
+        }
+
+        {service.gallery && <ServiceGallery gallery={service.gallery} />}
+
+        <div class="flex flex-wrap items-start gap-[48px]">
+          <article
+            data-reveal-children
+            class:list={[
+              'min-w-0 flex-[10_1_460px] border-l-2 border-[#dddddd] pl-[32px]',
+              collapse && 'max-[1024px]:border-l-0 max-[1024px]:pl-0',
+            ]}
+          >
+            {
+              service.sections.map((section) => (
+                <div class:list={sectionClass} id={section.id}>
+                  <p class={labelClass}>{section.label}</p>
+                  <p class="mb-[1.6em] text-[1.02rem] leading-[1.7] text-[#333333]">{section.body}</p>
+                </div>
+              ))
+            }
+
+            {
+              service.lists.map((list) => (
+                <div class:list={sectionClass} id={list.id}>
+                  <p class={labelClass}>{list.label}</p>
+                  <ul class="border-t border-[#dddddd]">
+                    {list.items.map((item) => (
+                      <li class="flex items-baseline gap-[14px] border-b border-[#dddddd] py-[14px] text-[#333333]">
+                        <span class="flex-none font-mono text-[0.78rem] tracking-[0.04em] text-brand">—</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </article>
+
+          <ServiceSidebar service={service} related={related} ctaText={servicesPage.sideCtaText} />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

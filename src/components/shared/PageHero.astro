@@ -1,0 +1,74 @@
+---
+import type { PageHeroData } from '@/types';
+
+interface Props extends PageHeroData {
+  /** Chips opcionales bajo el subtítulo (usado en Sectores). */
+  chips?: { label: string; href: string }[];
+}
+
+const { breadcrumbs, eyebrow, title, titleEmphasis, subtitle, strip, chips } = Astro.props;
+---
+
+<header class="bg-grid-ink relative overflow-hidden bg-ink font-sans">
+  <!-- Resplandor rojo superior derecho -->
+  <div
+    class="pointer-events-none absolute -top-[190px] -right-[140px] size-[500px] bg-[radial-gradient(circle,rgba(244,103,56,0.30)_0%,transparent_62%)]"
+  >
+  </div>
+
+  <div data-reveal-children class="relative mx-auto max-w-[900px] px-[24px] pt-[64px] pb-[56px] text-center">
+    <nav aria-label="Migas de pan" class="mb-[22px] font-mono text-[0.72rem] leading-[1.6rem] tracking-[0.05em] text-stone uppercase">
+      {
+        breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span class="mx-[6px] text-brand">/</span>}
+            {b.href ? (
+              <a href={b.href} class="text-stone no-underline hover:text-brand">
+                {b.label}
+              </a>
+            ) : (
+              <span class="text-cream-2" aria-current="page">
+                {b.label}
+              </span>
+            )}
+          </>
+        ))
+      }
+    </nav>
+
+    <p
+      class="mb-[18px] inline-flex items-center gap-[10px] rounded-full border border-brand/40 px-[16px] py-[7px] font-mono text-[0.76rem] leading-[1.6rem] font-semibold tracking-[0.05em] text-brand uppercase"
+    >
+      <i class="size-[8px] flex-none bg-brand"></i>{eyebrow}
+    </p>
+
+    <h1 class="mb-[18px] font-display text-[clamp(2.1rem,4.8vw,3.4rem)] leading-[1.12] font-bold text-cream">
+      {title}{titleEmphasis && <>{' '}<em class="not-italic">{titleEmphasis}</em></>}
+    </h1>
+
+    <p class="mx-auto max-w-[640px] text-[1.05rem] leading-[1.65] text-sand">{subtitle}</p>
+
+    {
+      chips && (
+        <ul class="mt-[32px] flex flex-wrap justify-center gap-[10px] font-mono tracking-[0.05em]">
+          {chips.map((c) => (
+            <li>
+              <a
+                href={c.href}
+                class="inline-block rounded-full border border-[#4a4a4a] px-[18px] py-[9px] text-[0.82rem] font-semibold text-[#e5e5e5] transition-colors hover:border-brand hover:bg-brand hover:text-white"
+              >
+                {c.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+
+  <div class="relative border-t border-white/10 bg-black/25">
+    <ul class="mx-auto flex max-w-[1120px] flex-wrap justify-center px-[24px] py-[15px] font-mono text-[0.74rem] tracking-[0.05em] text-stone-2 uppercase">
+      {strip.map((s, i) => <li class:list={['px-[14px] py-[2px] leading-[1.6rem] lg:px-[22px]', i > 0 && 'border-l border-white/15']}>{s}</li>)}
+    </ul>
+  </div>
+</header>

@@ -1,64 +1,179 @@
-@import 'tailwindcss';
-@plugin '@midudev/tailwind-animations';
+@import "tailwindcss";
 
-@keyframes kenburns {
-  from {
-    transform: scale(1.15);
-  }
-  to {
-    transform: scale(1);
-  }
-}
-
-@layer utilities {
-  .animate-kenburns {
-    animation: kenburns 8s ease-in-out infinite alternate;
-  }
-}
-
-header img {
-  will-change: transform;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Simple Reveal Effect */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
-}
-
-[data-reveal].revealed {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+/* Tokens del diseño: paleta de Tenax Construction (naranja y blanco sobre neutros). */
 @theme {
-  --color-primary: #f46738;
+  --color-brand: #f46738;        /* naranja principal */
+  --color-brand-dark: #e35d2c;   /* naranja de hover, enlaces y CTA secundarios */
+  --color-heading: #404040;
+  --color-body: #555555;
+  --color-surface: #f5f5f5;
+  --color-surface-alt: #f7f7f7;
+  --color-dark: #1a1a1a;
+  --color-dark-2: #424242;
+  --color-card: #1a1a1a;         /* tarjetas oscuras de la portada */
+  --color-ink: #111111;          /* fondo de los heros interiores */
+  --color-ink-2: #1f1f1f;
+  --color-stone: #888888;
+  --color-stone-2: #a6a6a6;
+  --color-sand: #cccccc;
+  --color-cream: #f5f5f5;
+  --color-cream-2: #ededed;
+
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Kanit", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Kanit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --container-site: 1200px;
+  --container-wide: 1400px;
+
+  --shadow-card: 0 2px 10px rgba(0, 0, 0, 0.05);
+  --shadow-header: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  --breakpoint-tablet: 922px;
 }
 
+/* Tipografía base del tema: 17px en escritorio, ~15.5px en tablet/móvil. */
+@layer base {
+  html {
+    font-size: 106.25%;
+    scroll-behavior: smooth;
+  }
+  @media (max-width: 921px) {
+    html { font-size: 96.9%; }
+  }
 
-@font-face{
+  /* line-height en em, como el tema original: el valor calculado (27.2px) se hereda tal cual. */
+  body {
+    @apply bg-white font-sans text-body antialiased;
+    font-size: 1rem;
+    line-height: 1.6em;
+  }
+  @media (max-width: 921px) {
+    body { @apply bg-surface; }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-heading;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  h1 { @apply font-display; font-size: 30px; font-weight: 700; line-height: 1.4; }
+  h2 { font-size: 25px; font-weight: 700; line-height: 1.3; }
+  h3 { font-size: 20px; line-height: 1.3; }
+  h4 { font-size: 18px; }
+  h5 { font-size: 17px; }
+  h6 { font-size: 15px; line-height: 1.25; }
+
+  @media (min-width: 545px) {
+    h1 { font-size: 40px; }
+    h2 { font-size: 30px; }
+    h3 { font-size: 24px; }
+  }
+  @media (min-width: 922px) {
+    h1 { font-size: 50px; }
+    h2 { font-size: 35px; }
+    h3 { font-size: 28px; }
+    h4 { font-size: 24px; }
+    h5 { font-size: 20px; }
+    h6 { font-size: 16px; }
+  }
+
+  a { @apply text-body transition-colors; }
+  a:hover { @apply text-brand; }
+
+  img, video { max-width: 100%; height: auto; }
+}
+
+@layer components {
+  /* Contenedor de contenido estándar (1200px). */
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5;
+  }
+
+  /* Fondo cuadriculado de los heros interiores. */
+  .bg-grid-ink {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 46px 46px;
+  }
+}
+
+/* Con Lenis activo, el scroll suave lo hace Lenis (el smooth nativo lo haría ir a tirones). */
+html.lenis {
+  scroll-behavior: auto;
+}
+
+/*
+ * Reveal al hacer scroll (ver src/scripts/reveal.ts). Fuera de @layer para que gane a las
+ * utilidades de Tailwind mientras el elemento está oculto.
+ * Con @keyframes (y no transition) no pisa las transiciones propias del elemento ni hay que
+ * limpiar nada al terminar; solo anima transform/opacity, que el navegador mueve sin repintar.
+ */
+.js-reveal :is([data-reveal], [data-reveal-children] > *):not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(2rem);
+}
+.js-reveal [data-revealed] {
+  animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+}
+
+@font-face {
   font-display: swap;
-  font-family: 'Poppins';
+  font-family: 'Work Sans';
   font-style: normal;
   font-weight: 400;
-  src: url("/fonts/poppins-v24-latin-regular.woff2") format("woff2");
+  src: url('/fonts/work-sans-v24-latin-regular.woff2') format('woff2');
 }
-
-@font-face{
+@font-face {
   font-display: swap;
-  font-family: 'Poppins';
+  font-family: 'Work Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/work-sans-v24-latin-500.woff2') format('woff2');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Work Sans';
   font-style: normal;
   font-weight: 600;
-  src: url("/fonts/poppins-v24-latin-600.woff2") format("woff2");
+  src: url('/fonts/work-sans-v24-latin-600.woff2') format('woff2');
 }
-
-@font-face{
+@font-face {
   font-display: swap;
-  font-family: 'Poppins';
+  font-family: 'Work Sans';
   font-style: normal;
   font-weight: 700;
-  src: url("/fonts/poppins-v24-latin-700.woff2") format("woff2");
+  src: url('/fonts/work-sans-v24-latin-700.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/kanit-v17-latin-regular.woff2') format('woff2');
+}
+/* kanit-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/kanit-v17-latin-600.woff2') format('woff2');
+}
+/* kanit-700 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/kanit-v17-latin-700.woff2') format('woff2');
 }

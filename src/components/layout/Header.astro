@@ -1,0 +1,104 @@
+---
+import { site } from '@/data/site';
+import Icon from '@/components/ui/Icon.astro';
+import SocialLinks from '@/components/layout/SocialLinks.astro';
+
+const path = Astro.url.pathname;
+const isActive = (href: string): boolean => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<!-- Header oscuro, como el de Tenax: su logo está pensado para fondo oscuro. -->
+<header class="relative z-40 border-b border-white/10 bg-ink shadow-header">
+  <!-- Escritorio -->
+  <div class="hidden min-h-[72px] grid-cols-[minmax(140px,1fr)_minmax(0,724px)_minmax(130px,1fr)] items-center gap-[20px] px-[20px] tablet:grid">
+    <a href="/" class="flex items-center justify-self-start" aria-label="Inicio">
+      <img src={site.logo.src} alt={site.logo.alt} width={site.logo.width} height={site.logo.height} class="h-[52px] w-auto" />
+    </a>
+
+    <nav aria-label="Principal" class="justify-self-end">
+      <ul class="flex items-center">
+        {
+          site.nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={[
+                  'relative flex px-[12px] font-display xl:px-[17px] text-[17px] leading-[72px] hover:text-brand',
+                  'after:absolute after:bottom-0 after:left-[0.6em] after:right-[0.6em] after:h-px after:origin-center after:scale-x-0 after:bg-current after:transition-transform hover:after:scale-x-100',
+                  isActive(item.href) ? 'text-brand after:scale-x-100' : 'text-white/85',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a
+      href={site.cta.href}
+      class="justify-self-end rounded-[5px] bg-brand px-[20px] py-[12px] text-[14px] leading-[14px] font-medium text-white transition-colors hover:bg-brand-dark hover:text-white"
+    >
+      {site.cta.label}
+    </a>
+  </div>
+
+  <!-- Móvil / tablet -->
+  <div class="tablet:hidden" data-mobile-header>
+    <div class="flex min-h-[64px] items-center justify-between px-[20px] py-[8px]">
+      <a href="/" aria-label="Inicio">
+        <img src={site.logo.src} alt={site.logo.alt} width={site.logo.width} height={site.logo.height} class="h-[44px] w-auto" />
+      </a>
+      <button
+        type="button"
+        class="group grid size-[42px] place-items-center rounded-[2px] bg-white/10 text-white"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Abrir menú"
+        data-menu-toggle
+      >
+        <Icon name="menu" size={20} class="group-aria-expanded:hidden" />
+        <Icon name="close" size={20} class="hidden group-aria-expanded:block" />
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden border-t border-white/10 bg-ink pb-[20px]" data-menu-panel>
+      <nav aria-label="Principal móvil">
+        <ul>
+          {
+            site.nav.map((item) => (
+              <li class="border-b border-white/10">
+                <a
+                  href={item.href}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  class:list={['block px-[20px] py-[12px] font-display text-[17px]', isActive(item.href) ? 'text-brand' : 'text-white/85 hover:text-brand']}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <div class="flex flex-col items-start gap-[16px] px-[20px] pt-[20px]">
+        <a href={site.cta.href} class="rounded-[5px] bg-brand px-[20px] py-[12px] text-[14px] leading-[14px] font-medium text-white hover:bg-brand-dark hover:text-white">
+          {site.cta.label}
+        </a>
+        <SocialLinks variant="header" />
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const panel = document.querySelector<HTMLElement>('[data-menu-panel]');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    panel?.classList.toggle('hidden', !open);
+  });
+</script>

@@ -1,0 +1,28 @@
+---
+import type { AboutConnectBand } from '@/types';
+import { site } from '@/data/site';
+import Icon from '@/components/ui/Icon.astro';
+
+interface Props {
+  band: AboutConnectBand;
+}
+
+const { band } = Astro.props;
+---
+
+<section
+  class="bg-cover bg-center px-6 py-16 text-center text-white"
+  style={`background-image:linear-gradient(rgba(23,23,23,0.9),rgba(23,23,23,0.9)),url(${band.background.src})`}
+>
+  <div data-reveal-children class="mx-auto flex max-w-[1080px] flex-col items-center gap-7">
+    <div>
+      <p class="mb-4 text-[16px] leading-[1.7] tracking-[2px] uppercase">{band.prefix}</p>
+      <h2 class="mb-3 text-white">{band.title}</h2>
+      <p class="text-[17px] leading-[1.6]">{band.description}</p>
+    </div>
+    <a href={`tel:${site.contact.phoneHref}`} class="inline-flex items-center gap-3 text-[24px] leading-[1.13] font-bold text-white hover:text-brand">
+      <Icon name="phone" size={21} />
+      {site.contact.phone}
+    </a>
+  </div>
+</section>

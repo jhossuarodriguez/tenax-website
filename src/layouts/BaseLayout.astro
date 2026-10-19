@@ -1,0 +1,62 @@
+---
+import 'lenis/dist/lenis.css';
+import '@/styles/global.css';
+import { site } from '@/data/site';
+import type { SeoMeta } from '@/types';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import FloatingWidgets from '@/components/layout/FloatingWidgets.astro';
+
+type Props = SeoMeta;
+
+const { title, description = site.description, image } = Astro.props;
+const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    {image && <meta property="og:image" content={image} />}
+    <link rel="icon" href={site.favicon.small} sizes="32x32" />
+    <link rel="icon" href={site.favicon.large} sizes="192x192" />
+    <link rel="apple-touch-icon" href={site.favicon.apple} />
+
+    <!-- Fuentes locales (@font-face en global.css). Se precargan solo las de la primera pantalla: texto, menú y títulos. -->
+    <link rel="preload" href="/fonts/work-sans-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/kanit-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/kanit-v17-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Activa el reveal antes del primer pintado para que no parpadee el contenido. -->
+    <script is:inline>
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js-reveal');
+      }
+    </script>
+  </head>
+  <body>
+    <a href="#content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-2">
+      Ir al contenido
+    </a>
+    <Header />
+    <main id="content">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingWidgets />
+
+    <!-- Scripts separados: si uno falla al cargar, el otro sigue funcionando. -->
+    <script>
+      import '@/scripts/smooth-scroll';
+    </script>
+    <script>
+      import '@/scripts/reveal';
+    </script>
+  </body>
+</html>

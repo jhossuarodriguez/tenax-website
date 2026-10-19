@@ -1,0 +1,22 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import AboutFeatureRowBlock from '@/components/about/AboutFeatureRow.astro';
+import AboutFaq from '@/components/about/AboutFaq.astro';
+import AboutConnectBand from '@/components/about/AboutConnectBand.astro';
+import { aboutPage } from '@/data/about';
+---
+
+<BaseLayout title={aboutPage.seo.title} description={aboutPage.seo.description}>
+  <PageHero {...aboutPage.hero} />
+
+  <div class="pt-[1.6rem]">
+    {aboutPage.rows.map((row) => <AboutFeatureRowBlock row={row} />)}
+    <div class="mt-[1.6rem]">
+      <AboutFaq title={aboutPage.faqTitle} items={aboutPage.faqs} />
+    </div>
+  </div>
+
+  <div class="h-[100px] bg-[#1a1a1a]" aria-hidden="true"></div>
+  <AboutConnectBand band={aboutPage.band} />
+</BaseLayout>

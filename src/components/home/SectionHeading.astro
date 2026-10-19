@@ -1,0 +1,22 @@
+---
+/** Título de sección centrado (Kanit 35px) con el espaciado vertical del original. */
+interface Props {
+  title: string;
+  /** black: #000 (la mayoría). heading: #3a3a3a. */
+  tone?: 'black' | 'heading';
+  class?: string;
+}
+
+const { title, tone = 'black', class: className } = Astro.props;
+---
+
+<h2
+  data-reveal
+  class:list={[
+    'px-[20px] text-center font-heading leading-[1.3] font-bold',
+    tone === 'black' ? 'text-black' : 'text-heading',
+    className ?? 'mt-[72px] mb-[36px]',
+  ]}
+>
+  {title}
+</h2>

@@ -1,0 +1,18 @@
+---
+import type { ContactPageData } from '@/types';
+
+interface Props {
+  intro: ContactPageData['intro'];
+}
+
+const { intro } = Astro.props;
+---
+
+<section class="bg-surface-alt px-5 pt-[60px] pb-10 text-center">
+  <div data-reveal-children class="mx-auto max-w-[1100px]">
+    <h1 class="text-[2.4rem] leading-[1.4] font-bold text-[#1a1a1a]">
+      {intro.title[0]}<br />{intro.title[1]}
+    </h1>
+    <p class="mt-6 text-[1.1rem] leading-[1.6rem] text-[#555]">{intro.subtitle}</p>
+  </div>
+</section>

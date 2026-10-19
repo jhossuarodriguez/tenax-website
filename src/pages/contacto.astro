@@ -1,0 +1,30 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContactIntro from '@/components/contact/ContactIntro.astro';
+import ContactDetails from '@/components/contact/ContactDetails.astro';
+import ContactForm from '@/components/contact/ContactForm.astro';
+import ContactBand from '@/components/contact/ContactBand.astro';
+import { contactPage } from '@/data/contact';
+---
+
+<BaseLayout title={contactPage.seo.title} description={contactPage.seo.description}>
+  <ContactIntro intro={contactPage.intro} />
+
+  <section class="px-5 pt-[50px] pb-[70px]">
+    <div data-reveal-children class="mx-auto flex max-w-[1100px] flex-col gap-6 min-[782px]:flex-row min-[782px]:gap-10">
+      <div class="min-w-0 min-[782px]:basis-[42%]">
+        <ContactDetails
+          title={contactPage.detailsTitle}
+          cards={contactPage.cards}
+          mapLabel={contactPage.mapLabel}
+          mapUrl={contactPage.mapUrl}
+        />
+      </div>
+      <div class="min-w-0 min-[782px]:basis-[58%]">
+        <ContactForm form={contactPage.form} />
+      </div>
+    </div>
+  </section>
+
+  <ContactBand band={contactPage.band} />
+</BaseLayout>

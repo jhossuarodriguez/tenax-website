@@ -1,0 +1,49 @@
+---
+import type { AboutFaqItem } from '@/types';
+
+interface Props {
+  title: string;
+  items: AboutFaqItem[];
+}
+
+const { title, items } = Astro.props;
+---
+
+<section class="py-[104px]" aria-labelledby="faq-title">
+  <div class="mx-auto max-w-[1200px]">
+    <h2 data-reveal id="faq-title" class="px-6 text-center text-brand">{title}</h2>
+
+    <div data-reveal-children>
+      {
+        items.map((item) => (
+          <details name="about-faq" open={item.open} class="group border-b border-[#e0e0e0] pb-6">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-2 pt-9 pb-3 md:px-3 [&::-webkit-details-marker]:hidden">
+              <h3 class="font-display text-[30px] leading-[1.3] font-normal text-brand">{item.question}</h3>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                class="size-4 shrink-0 text-[#9f9f9f] transition-transform duration-200 group-open:rotate-45"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="4"
+                stroke-linecap="square"
+                aria-hidden="true"
+              >
+                <path d="M12 3v18M3 12h18" />
+              </svg>
+            </summary>
+
+            <div class="px-2 pt-3 pb-[50px] text-[17px] leading-[1.6] text-body md:px-3">
+              <p class:list={[item.points.length > 0 && 'mb-[calc(1.6em+24px)]']}>{item.intro}</p>
+              {item.points.map((point) => (
+                <p class="mb-[1.6em] last:mb-0">
+                  – <strong class="font-bold">{point.label}</strong> {point.text}
+                </p>
+              ))}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

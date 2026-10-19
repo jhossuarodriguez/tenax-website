@@ -1,0 +1,19 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import GalleryGrid from '@/components/gallery/GalleryGrid.astro';
+import GalleryBand from '@/components/gallery/GalleryBand.astro';
+import CtaBand from '@/components/sectors/CtaBand.astro';
+import { galleryPage } from '@/data/gallery';
+
+const { hero, photos, band, cta } = galleryPage;
+---
+
+<BaseLayout title="Galería" description={hero.subtitle}>
+  <PageHero {...hero} />
+  <div class="text-ink">
+    <GalleryGrid photos={photos} />
+    <GalleryBand data={band} />
+  </div>
+  <CtaBand data={cta} />
+</BaseLayout>

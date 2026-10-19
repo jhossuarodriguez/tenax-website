@@ -1,0 +1,46 @@
+---
+import { site } from '@/data/site';
+import Icon from '@/components/ui/Icon.astro';
+---
+
+<!-- Botón flotante de WhatsApp (abajo a la izquierda) -->
+<a
+  href={site.contact.whatsapp}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group fixed bottom-[25px] left-[29px] z-50 flex items-center gap-[10px] text-heading hover:text-heading"
+  aria-label="Escríbenos por WhatsApp"
+>
+  <span class="grid size-[54px] place-items-center rounded-full bg-black text-white shadow-[0_4px_14px_rgba(0,0,0,0.25)] transition-transform group-hover:scale-105">
+    <Icon name="chat" size={28} />
+  </span>
+  <span class="rounded-[6px] bg-white px-[16px] py-[4px] text-[16px] leading-[27px] shadow-[0_2px_8px_rgba(0,0,0,0.18)]">
+    Escríbenos
+  </span>
+</a>
+
+<!-- Volver arriba (abajo a la derecha) -->
+<button
+  type="button"
+  class="fixed right-[30px] bottom-[30px] z-50 grid size-[44px] translate-y-[16px] place-items-center bg-body text-white opacity-0 transition-all duration-300 hover:bg-brand data-[visible=true]:pointer-events-auto data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 pointer-events-none"
+  aria-label="Volver arriba"
+  data-scroll-top
+>
+  <Icon name="chevron-up" size={22} strokeWidth={2.5} />
+</button>
+
+<script>
+  import { lenis } from '@/scripts/smooth-scroll';
+
+  const btn = document.querySelector<HTMLButtonElement>('[data-scroll-top]');
+  if (btn) {
+    // Solo escribe si cambia: tocar el atributo en cada scroll obliga a recalcular estilos en cada frame.
+    const update = () => {
+      const visible = String(window.scrollY > 300);
+      if (btn.dataset.visible !== visible) btn.dataset.visible = visible;
+    };
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+    btn.addEventListener('click', () => lenis.scrollTo(0));
+  }
+</script>

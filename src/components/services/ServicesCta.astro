@@ -1,0 +1,24 @@
+---
+import type { NavItem } from '@/types';
+
+interface Props {
+  title: string;
+  text: string;
+  action: NavItem;
+}
+
+const { title, text, action } = Astro.props;
+---
+
+<section data-reveal-children class="bg-ink px-[20px] pt-[50px] pb-[50px] text-center">
+  <h2 class="mb-[12px] text-white">{title}</h2>
+  <p class="mb-[22px] leading-[1.6rem] text-white">{text}</p>
+  <p class="mb-[1.6rem] leading-[1.6rem]">
+    <a
+      href={action.href}
+      class="inline-block rounded-[6px] bg-brand px-[28px] py-[12px] font-semibold text-white no-underline transition-colors hover:bg-brand-dark hover:text-white"
+    >
+      {action.label}
+    </a>
+  </p>
+</section>

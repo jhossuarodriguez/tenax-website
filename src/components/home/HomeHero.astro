@@ -1,0 +1,79 @@
+---
+import type { HomeHeroData } from '@/types';
+import HomeButton from '@/components/home/HomeButton.astro';
+
+interface Props {
+  hero: HomeHeroData;
+}
+
+const { hero } = Astro.props;
+---
+
+<section class="relative isolate flex min-h-[719px] items-center overflow-hidden bg-black p-[16px] md:p-[24px]">
+  <!-- El video solo se muestra desde 768px; en móvil el fondo queda negro. -->
+  <video
+    class="absolute inset-0 -z-20 hidden size-full object-cover md:block"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="metadata"
+    aria-hidden="true"
+    data-hero-video
+  >
+    <!-- El navegador usa la primera fuente que soporta; el MP4 es solo de respaldo. -->
+    <source src={hero.video.webm} type="video/webm" />
+    <source src={hero.video.mp4} type="video/mp4" />
+  </video>
+  <div class="absolute inset-0 -z-10 bg-black/80"></div>
+
+  <div class="mx-auto w-full max-w-[1200px]">
+    <div data-reveal-children class="md:w-2/3">
+      <h1 class="font-display text-[40px] leading-[1.3] font-bold text-white md:text-[50px]">{hero.title}</h1>
+      <p class="mt-[24px] text-base leading-normal text-white">{hero.text}</p>
+      <div class="mt-[24px] flex flex-wrap gap-[12px]">
+        {
+          hero.buttons.map((b) => (
+            <HomeButton href={b.href} variant={b.variant}>
+              {b.label}
+            </HomeButton>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Cada fotograma nuevo del video mientras se hace scroll baja los fps (se nota en pantallas de 144/240 Hz).
+  // Por eso se pausa al hacer scroll o al salir de pantalla, y se reanuda al detenerse con el video a la vista.
+  const RESUME_DELAY_MS = 200;
+  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+
+  if (video) {
+    let inView = false;
+    let resumeTimer: number | undefined;
+
+    const scheduleResume = () => {
+      clearTimeout(resumeTimer);
+      resumeTimer = window.setTimeout(() => {
+        if (inView) video.play().catch(() => {});
+      }, RESUME_DELAY_MS);
+    };
+
+    new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+      if (inView) scheduleResume();
+      else video.pause();
+    }).observe(video);
+
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!video.paused) video.pause();
+        scheduleResume();
+      },
+      { passive: true },
+    );
+  }
+</script>

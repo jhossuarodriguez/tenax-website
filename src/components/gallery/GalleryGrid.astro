@@ -1,0 +1,72 @@
+---
+import type { GalleryPhoto } from '@/types';
+
+interface Props {
+  photos: GalleryPhoto[];
+}
+
+const { photos } = Astro.props;
+---
+
+<div class="mx-auto max-w-[1140px] px-6">
+  <!-- Mampostería con columnas CSS: 4 en escritorio, 2 en ≤ 900px -->
+  <div data-reveal-children class="columns-[2_150px] gap-x-3.5 pt-[34px] pb-[70px] min-[901px]:columns-[4_230px]">
+    {
+      photos.map((photo) => (
+        <figure class="group relative mb-3.5 break-inside-avoid overflow-hidden rounded-md bg-[#e8e8e8] shadow-[0_2px_10px_rgba(0,0,0,0.06)]">
+          <img
+            src={photo.image.src}
+            alt={photo.image.alt}
+            loading="lazy"
+            decoding="async"
+            data-lightbox-src={photo.image.src}
+            class="block w-full cursor-pointer transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+          />
+          <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-[rgba(17,17,17,0.78)] to-transparent to-55% opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <figcaption class="pointer-events-none absolute right-3.5 bottom-3 left-3.5 z-[1] translate-y-2 text-[0.82rem] leading-[1.6rem] font-semibold text-cream opacity-0 transition-[opacity,transform] duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+            {photo.caption}
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</div>
+
+<!-- Visor de imagen a pantalla completa -->
+<div
+  class="fixed inset-0 z-[9999] hidden cursor-zoom-out items-center justify-center bg-black/85 p-[30px] data-[open=true]:flex"
+  role="dialog"
+  data-lenis-prevent
+  aria-modal="true"
+  aria-label="Imagen ampliada"
+  data-lightbox
+>
+  <button type="button" class="absolute top-[18px] right-7 text-[2rem] leading-none font-light text-white" aria-label="Cerrar">&times;</button>
+  <img src="" alt="" class="max-h-[92vh] max-w-[95%] rounded-lg object-contain" data-lightbox-img />
+</div>
+
+<script>
+  const box = document.querySelector<HTMLElement>('[data-lightbox]');
+  const boxImg = document.querySelector<HTMLImageElement>('[data-lightbox-img]');
+
+  if (box && boxImg) {
+    const close = (): void => {
+      box.dataset.open = 'false';
+      document.body.style.overflow = '';
+    };
+
+    document.querySelectorAll<HTMLImageElement>('[data-lightbox-src]').forEach((img) => {
+      img.addEventListener('click', () => {
+        boxImg.src = img.dataset.lightboxSrc ?? img.src;
+        boxImg.alt = img.alt;
+        box.dataset.open = 'true';
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    box.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+</script>

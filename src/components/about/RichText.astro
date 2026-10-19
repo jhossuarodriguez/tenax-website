@@ -1,0 +1,21 @@
+---
+import type { AboutRichParagraph } from '@/types';
+
+interface Props {
+  paragraph: AboutRichParagraph;
+}
+
+const { paragraph } = Astro.props;
+---
+
+{
+  paragraph.map((segment) =>
+    typeof segment === 'string' ? (
+      segment
+    ) : (
+      <a href={segment.href} class="text-inherit hover:text-brand">
+        {segment.text}
+      </a>
+    ),
+  )
+}

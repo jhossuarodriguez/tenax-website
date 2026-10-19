@@ -1,0 +1,90 @@
+---
+import type { AboutFeatureRow } from '@/types';
+import RichText from '@/components/about/RichText.astro';
+
+interface Props {
+  row: AboutFeatureRow;
+}
+
+const { row } = Astro.props;
+// Columnas 50/50 desde 782px (como las columnas del editor original); apiladas debajo.
+const columnClass = 'flex min-w-0 min-[782px]:flex-1 min-[782px]:basis-0';
+---
+
+<div data-reveal-children class="mx-auto flex max-w-[1200px] flex-col gap-5 min-[782px]:flex-row min-[782px]:gap-0">
+  {
+    row.imageSide === 'left' && (
+      <div class:list={[columnClass, 'relative min-h-[430px] overflow-hidden']}>
+        <img
+          src={row.image.src}
+          alt={row.image.alt}
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 size-full object-cover"
+          style={row.image.position ? `object-position:${row.image.position}` : undefined}
+        />
+      </div>
+    )
+  }
+
+  <div class={columnClass}>
+    <div
+      class:list={[
+        'grid-effect relative isolate flex w-full flex-col justify-center overflow-hidden p-[2.5rem] min-[782px]:p-[4rem]',
+        row.tone === 'light' ? 'bg-[#f7f7f8]' : 'bg-white',
+      ]}
+    >
+      <div class="flex flex-col items-start gap-4 pt-4 pb-8">
+        <h2
+          class:list={[
+            'font-heading text-[2.375rem] leading-[1.25] font-medium tracking-[-0.01em] text-balance',
+            row.titleTone === 'brand' ? 'text-brand' : 'text-heading',
+          ]}
+        >
+          {row.title}
+        </h2>
+        {row.subtitle && <h3 class="text-balance text-heading">{row.subtitle}</h3>}
+        {
+          row.paragraphs.map((p) => (
+            <p class="max-w-[715px] text-[17px] leading-[1.6] text-balance text-[#3f3f50]">
+              <RichText paragraph={p} />
+            </p>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  {
+    row.imageSide === 'right' && (
+      <div class:list={[columnClass, 'relative min-h-[430px] overflow-hidden']}>
+        <img
+          src={row.image.src}
+          alt={row.image.alt}
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 size-full object-cover"
+          style={row.image.position ? `object-position:${row.image.position}` : undefined}
+        />
+      </div>
+    )
+  }
+</div>
+
+<style>
+  /* Cuadrícula sesgada y difuminada del fondo de la tarjeta. */
+  .grid-effect::after {
+    content: '';
+    position: absolute;
+    inset: -20% -40% 0 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.35;
+    background-image:
+      linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
+    background-size: 32px 80px;
+    transform: scale(1.5) skew(-30deg, 30deg);
+    mask-image: radial-gradient(ellipse 50% 50% at 50% 20%, #000 70%, rgba(0, 0, 0, 0.3) 100%);
+  }
+</style>

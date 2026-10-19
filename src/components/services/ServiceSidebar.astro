@@ -1,0 +1,53 @@
+---
+import type { Service } from '@/types';
+import { site } from '@/data/site';
+
+interface Props {
+  service: Service;
+  related: Service[];
+  ctaText: string;
+}
+
+const { service, related, ctaText } = Astro.props;
+---
+
+<aside
+  data-reveal-children
+  class:list={[
+    'sticky top-[24px] flex min-w-[240px] flex-[1_1_280px] flex-col gap-[18px]',
+    service.collapseRailOnTablet && 'max-[1024px]:static',
+  ]}
+>
+  <div class="rounded-[4px] border border-[#dddddd] bg-white p-[22px]">
+    <p class="mb-[8px] font-mono text-[0.7rem] tracking-[0.04em] text-body uppercase">Categoría</p>
+    <p class="text-[1.02rem] font-semibold text-ink">{service.category}</p>
+  </div>
+
+  <div class="rounded-[4px] border border-[#dddddd] bg-white p-[22px]">
+    <p class="mb-[8px] font-mono text-[0.7rem] tracking-[0.04em] text-body uppercase">Servicios relacionados</p>
+    <div class="mb-[1.6rem]">
+      {
+        related.map((r) => (
+          <a
+            href={`/servicios/${r.slug}/`}
+            class="block border-b border-[#dddddd] py-[12px] text-[0.92rem] font-semibold text-ink transition-[color,padding] duration-150 last:border-b-0 hover:pl-[4px] hover:text-brand"
+          >
+            {r.title}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="rounded-[4px] bg-ink p-[22px] text-center">
+    <p class="mb-[14px] text-[0.92rem] leading-[1.5] text-[#e5e5e5]">{ctaText}</p>
+    <p class="mb-[14px] text-[0.92rem] leading-[1.5]">
+      <a
+        href={site.cta.href}
+        class="block rounded-[3px] bg-brand p-[11px] text-[0.88rem] font-semibold text-white transition-colors duration-150 hover:bg-brand-dark hover:text-white"
+      >
+        Solicitar cotización
+      </a>
+    </p>
+  </div>
+</aside>

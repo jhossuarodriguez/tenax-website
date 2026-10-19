@@ -1,0 +1,32 @@
+---
+/**
+ * Botón de la portada (Kanit 17px, radio 5px).
+ * - white: blanco del hero; al pasar el cursor se vuelve naranja.
+ * - brand: naranja del hero; se invierte a fondo blanco.
+ * - cta: naranja de secciones; al pasar el cursor se oscurece.
+ */
+interface Props {
+  href: string;
+  variant: 'white' | 'brand' | 'cta';
+  class?: string;
+}
+
+const { href, variant, class: className } = Astro.props;
+
+const variants: Record<Props['variant'], string> = {
+  white: 'bg-white text-ink hover:bg-brand hover:text-white',
+  brand: 'bg-brand text-white hover:bg-white hover:text-brand',
+  cta: 'bg-brand text-white hover:bg-brand-dark hover:text-white',
+};
+---
+
+<a
+  href={href}
+  class:list={[
+    'inline-flex items-center justify-center rounded-[5px] px-[16px] py-[12px] text-center font-display text-[17px] leading-[27px] font-normal transition-colors',
+    variants[variant],
+    className,
+  ]}
+>
+  <slot />
+</a>

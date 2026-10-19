@@ -1,0 +1,30 @@
+---
+import { site } from '@/data/site';
+
+interface Props {
+  title: string;
+  text: string;
+  buttonLabel: string;
+}
+
+const { title, text, buttonLabel } = Astro.props;
+const { contact } = site;
+---
+
+<section data-reveal-children class="bg-[#1a1a1a] px-5 py-[50px] text-center">
+  <h2 class="mb-3 text-white">{title}</h2>
+  <p class="mb-3 text-[#ddd]">{text}</p>
+  <p class="mb-5 text-white">
+    {contact.address}<br />
+    <a href={`tel:${contact.phoneHref}`} class="text-white hover:text-brand">{contact.phone}</a>{' · '}
+    <a href={`mailto:${contact.email}`} class="text-white hover:text-brand">{contact.email}</a>
+  </p>
+  <p class="mb-[1.6em]">
+    <a
+      href={site.cta.href}
+      class="inline-block rounded-[6px] bg-brand px-7 py-3 font-semibold text-white transition-colors hover:bg-brand-dark hover:text-white"
+    >
+      {buttonLabel}
+    </a>
+  </p>
+</section>

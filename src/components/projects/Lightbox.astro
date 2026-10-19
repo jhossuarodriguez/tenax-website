@@ -1,0 +1,57 @@
+---
+/**
+ * Visor de imágenes a pantalla completa. Se abre con cualquier elemento
+ * `[data-lightbox-src]` de la página; se cierra con clic, el botón × o Escape.
+ */
+---
+
+<div
+  id="project-lightbox"
+  hidden
+  role="dialog"
+  data-lenis-prevent
+  aria-modal="true"
+  aria-label="Imagen ampliada"
+  class="fixed inset-0 z-[9999] flex cursor-zoom-out items-center justify-center bg-black/92 p-[30px]"
+  data-lightbox
+>
+  <button
+    type="button"
+    class="absolute top-[18px] right-[28px] cursor-pointer text-[2rem] leading-none font-light text-white hover:text-brand"
+    aria-label="Cerrar"
+    data-lightbox-close
+  >
+    &times;
+  </button>
+  <img src="" alt="" class="max-h-[92vh] max-w-[95%] rounded-lg object-contain shadow-[0_10px_40px_rgba(0,0,0,0.5)]" data-lightbox-img />
+</div>
+
+<script>
+  const box = document.querySelector<HTMLElement>('[data-lightbox]');
+  const img = box?.querySelector<HTMLImageElement>('[data-lightbox-img]');
+  const closeBtn = box?.querySelector<HTMLButtonElement>('[data-lightbox-close]');
+  let opener: HTMLElement | null = null;
+
+  const close = () => {
+    if (!box || box.hidden) return;
+    box.hidden = true;
+    opener?.focus();
+  };
+
+  if (box && img) {
+    document.querySelectorAll<HTMLElement>('[data-lightbox-src]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();
+        opener = el;
+        img.src = el.dataset.lightboxSrc ?? '';
+        img.alt = el.dataset.lightboxAlt ?? '';
+        box.hidden = false;
+        closeBtn?.focus();
+      });
+    });
+    box.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+  }
+</script>

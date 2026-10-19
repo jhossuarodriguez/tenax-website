@@ -1,33 +1,44 @@
 ---
-import Banner from '@/components/Banner.astro'
-import About from '@/components/About.astro'
-import Layout from '@/layouts/Layout.astro'
-import OurServices from '@/components/OurServices.astro'
-import Numbers from '@/components/Numbers.astro'
-import Projects from '@/components/Projects.astro'
-
-export const prerender = true
-
-const seo = {
-  canonical: 'https://tenaxconstruction.com.do',
-  title: 'Tenax Construction | Constructora en Santo Domingo, RD',
-  description:
-    'Constructora dominicana experta en administración, construcción y supervisión de obras civiles y naves industriales.',
-}
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { home } from '@/data/home';
+import HomeHero from '@/components/home/HomeHero.astro';
+import SectionHeading from '@/components/home/SectionHeading.astro';
+import HomeButton from '@/components/home/HomeButton.astro';
+import ProjectsCarousel from '@/components/home/ProjectsCarousel.astro';
+import ServiceCards from '@/components/home/ServiceCards.astro';
+import Techniques from '@/components/home/Techniques.astro';
+import Equipment from '@/components/home/Equipment.astro';
+import Reasons from '@/components/home/Reasons.astro';
+import ContactSection from '@/components/home/ContactSection.astro';
+import CtaBand from '@/components/home/CtaBand.astro';
 ---
 
-<Layout {...seo}>
-  <div id="inicio">
-    <Banner />
+<BaseLayout title="Inicio">
+  <HomeHero hero={home.hero} />
+
+  <!-- Proyectos -->
+  <SectionHeading title={home.projectsHeading} />
+  <ProjectsCarousel />
+  <div data-reveal class="mt-[24px] flex justify-center">
+    <HomeButton href={home.projectsCta.href} variant="cta">{home.projectsCta.label}</HomeButton>
   </div>
-  <div id="nosotros">
-    <About />
-  </div>
-  <div id="proyectos">
-    <Projects />
-  </div>
-  <div id="servicios">
-    <OurServices />
-  </div>
-  <Numbers />
-</Layout>
+
+  <!-- Servicios -->
+  <SectionHeading title={home.servicesHeading} />
+  <ServiceCards ctaLabel={home.serviceCtaLabel} />
+
+  <!-- Técnicas -->
+  <SectionHeading title={home.techniquesHeading} tone="heading" class="mt-[84px] mb-[36px]" />
+  <Techniques items={home.techniques} background={home.techniquesBackground} />
+
+  <!-- Equipos y maquinarias -->
+  <SectionHeading title={home.equipment.heading} class="mt-[80px] mb-0" />
+  <Equipment data={home.equipment} />
+
+  <!-- Por qué elegirnos -->
+  <SectionHeading title={home.reasonsHeading} class="mt-[108px] mb-[36px]" />
+  <Reasons items={home.reasons} />
+
+  <ContactSection data={home.contact} />
+  <CtaBand data={home.ctaBand} />
+</BaseLayout>
