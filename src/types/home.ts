@@ -8,8 +8,11 @@ export interface HomeButton extends NavItem {
 export interface HomeHeroData {
   title: string;
   text: string;
-  /** Video de fondo (solo escritorio/tablet): WebM ligero y MP4 de respaldo para navegadores sin WebM. */
-  video: { webm: string; mp4: string };
+  /**
+   * Video de fondo (solo escritorio/tablet): WebM ligero y MP4 de respaldo para navegadores sin WebM.
+   * El póster se ve mientras carga el video.
+   */
+  video: { webm: string; mp4: string; poster: string };
   buttons: HomeButton[];
 }
 

@@ -1,4 +1,5 @@
 import type { HomeFormField, HomeContent } from '@/types';
+import { obraPhoto } from '@/data/obras';
 
 /** Contenido de la portada, con los textos del sitio de Tenax Construction. */
 
@@ -8,7 +9,7 @@ export const home: HomeContent = {
   hero: {
     title: 'Bienvenido a Tenax Construction',
     text: 'Construimos estructuras, elevamos tu proyecto. Somos una constructora dominicana dedicada a la administración, construcción, diseño y supervisión de obras civiles.',
-    video: { webm: '/videos/tenax.webm', mp4: '/videos/tenax.mp4' },
+    video: { webm: '/videos/tenax.webm', mp4: '/videos/tenax.mp4', poster: obraPhoto('inicio').src },
     buttons: [
       { label: 'Ver proyectos', href: '/proyectos/', variant: 'brand' },
       { label: 'Nuestros servicios', href: '/servicios/', variant: 'white' },
