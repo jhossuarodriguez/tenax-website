@@ -2,6 +2,8 @@
 
 export interface ImageAsset {
   src: string;
+  /** Versión grande para el visor cuando `src` es una miniatura. */
+  fullSrc?: string;
   alt: string;
   width?: number;
   height?: number;
