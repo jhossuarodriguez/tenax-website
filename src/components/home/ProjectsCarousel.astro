@@ -1,0 +1,24 @@
+---
+import { portfolio, homeCarouselIds } from '@/data/projects';
+import type { PortfolioProject } from '@/types';
+import Carousel from '@/components/home/Carousel.astro';
+
+const slides = homeCarouselIds
+  .map((id) => portfolio.find((p) => p.id === id))
+  .filter((p): p is PortfolioProject => p !== undefined);
+---
+
+<div data-reveal class="mx-auto max-w-[1480px] px-[20px] md:px-[40px]">
+  <Carousel label="Proyectos destacados" visibleClass="[--n:1] md:[--n:3]" gap={3} infinite autoplay={4000}>
+    {
+      slides.map((p) => (
+        <figure class="group relative m-0 h-[480px] overflow-hidden">
+          <img src={p.cover.fullSrc ?? p.cover.src} alt={p.cover.alt} class="pointer-events-none block size-full object-cover" loading="lazy" decoding="async" />
+          <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2.5 bg-linear-to-t from-black/80 to-transparent px-[18px] py-[16px] text-left text-[0.95rem] font-semibold text-white opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+            {p.caption}
+          </figcaption>
+        </figure>
+      ))
+    }
+  </Carousel>
+</div>

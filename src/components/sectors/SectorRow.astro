@@ -1,0 +1,81 @@
+---
+import type { Sector, SectorBadgeVariant } from '@/types';
+
+interface Props {
+  sector: Sector;
+  /** Filas pares: imagen a la derecha en escritorio. */
+  reversed?: boolean;
+  first?: boolean;
+}
+
+const { sector, reversed = false, first = false } = Astro.props;
+
+const badgeClass: Record<SectorBadgeVariant, string> = {
+  signal: 'bg-brand text-white',
+  caution: 'bg-white text-brand ring-1 ring-brand',
+  steel: 'bg-body text-white',
+  ink: 'bg-ink text-white',
+  outline: 'border-2 border-brand bg-transparent text-brand',
+};
+---
+
+<section
+  data-reveal-children
+  id={sector.id}
+  class:list={[
+    'grid scroll-mt-6 grid-cols-1 items-center gap-9 py-14 min-[901px]:grid-cols-[1fr_1.05fr] min-[901px]:gap-[60px] min-[901px]:py-[70px]',
+    !first && 'border-t border-[#dddddd]',
+  ]}
+>
+  <div class:list={['relative', reversed && 'min-[901px]:order-2']}>
+    <img
+      src={sector.image.src}
+      alt={sector.image.alt}
+      loading="lazy"
+      decoding="async"
+      class="relative z-[1] block aspect-[4/3] w-full rounded border border-[#dddddd] object-cover"
+    />
+    <span
+      class:list={[
+        'absolute -top-3.5 -left-3.5 z-[2] rounded-[3px] px-2.5 py-[5px] font-mono text-[0.74rem] leading-[1.6rem] font-bold tracking-[0.05em] shadow-[0_2px_8px_rgba(0,0,0,0.18)]',
+        badgeClass[sector.badge],
+      ]}
+    >
+      {sector.code}
+    </span>
+  </div>
+
+  <div class="relative">
+    {
+      sector.number && (
+        <p
+          aria-hidden="true"
+          class="pointer-events-none absolute -top-10 right-0 font-display text-[3.4rem] leading-none font-bold text-transparent select-none [-webkit-text-stroke:1.5px_#dddddd] min-[901px]:-top-[58px] min-[901px]:text-[5rem]"
+        >
+          {sector.number}
+        </p>
+      )
+    }
+
+    <p class="mb-[21px] flex items-center gap-2.5 font-mono text-[0.78rem] leading-[1.6rem] font-semibold tracking-[0.05em] text-body uppercase">
+      <span class:list={['rounded-[3px] px-[9px] py-1 text-[0.72rem] font-bold tracking-[0.04em]', badgeClass[sector.badge]]}>
+        {sector.code}
+      </span>
+      {sector.kicker}
+    </p>
+
+    <h2 class="mb-3.5 font-display text-[1.75rem] leading-[1.2] font-bold text-ink">{sector.title}</h2>
+    <div class="mb-[18px] h-1 w-[46px] bg-brand"></div>
+    <p class="mb-[27px] text-base leading-[1.7] text-[#333333]">{sector.description}</p>
+
+    <ul class="flex flex-wrap gap-2">
+      {
+        sector.tags.map((tag) => (
+          <li class="rounded-[3px] border border-l-[3px] border-[#dddddd] border-l-brand bg-white px-[11px] py-[5px] text-[0.8rem] leading-[1.6rem] text-body">
+            {tag}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

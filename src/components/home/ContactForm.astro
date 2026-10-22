@@ -1,0 +1,63 @@
+---
+import { homeFormFields } from '@/data/home';
+import { contactPage } from '@/data/contact';
+
+const input =
+  'block w-full rounded-[7px] border border-[#dadbdd] bg-[#fafafa] px-[15px] py-[11px] font-sans text-[17px] leading-[19px] text-[#606266] placeholder:text-[#a8abb2] focus:border-body focus:outline-none';
+---
+
+<form class="grid grid-cols-1 gap-x-[15px] gap-y-[20px] md:grid-cols-2" method="post" action={contactPage.form.action} novalidate data-home-form data-success={contactPage.form.successMessage}>
+  {
+    homeFormFields.map((f) => (
+      <div class:list={[f.half ? 'md:col-span-1' : 'md:col-span-2']}>
+        <label for={`hf-${f.name}`} class="mb-[6px] block text-[17px] leading-[27px] font-medium text-body">
+          {f.label}
+          {f.required && <span class="ml-[6px] text-brand" aria-hidden="true">*</span>}
+        </label>
+        {f.type === 'textarea' ? (
+          <textarea id={`hf-${f.name}`} name={f.name} rows="6" placeholder={f.placeholder} required={f.required} class:list={[input, 'h-[126px] resize-y']} />
+        ) : f.type === 'select' ? (
+          <select id={`hf-${f.name}`} name={f.name} required={f.required} class={input}>
+            <option value="" disabled selected>{f.placeholder}</option>
+            {f.options?.map((o) => <option value={o}>{o}</option>)}
+          </select>
+        ) : (
+          <input id={`hf-${f.name}`} name={f.name} type={f.type} placeholder={f.placeholder} required={f.required} class={input} />
+        )}
+      </div>
+    ))
+  }
+
+  <div class="pb-[20px] md:col-span-2">
+    <button
+      type="submit"
+      class="rounded-[7px] bg-brand px-[20px] py-[8px] text-[16px] leading-[24px] font-medium text-white transition-colors hover:bg-brand-dark"
+    >
+      Enviar
+    </button>
+    <p class="mt-[12px] hidden text-[15px] text-body" role="status" data-form-status></p>
+  </div>
+</form>
+
+<script>
+  import { sendQuote } from '@/scripts/quote-form';
+
+  // Envía la cotización a /api/cotizacion y muestra el resultado bajo el botón.
+  document.querySelectorAll<HTMLFormElement>('[data-home-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const status = form.querySelector<HTMLElement>('[data-form-status]');
+      const result = await sendQuote(form);
+      if (status) {
+        status.textContent = result.ok ? (form.dataset.success ?? result.message) : result.message;
+        status.classList.remove('hidden');
+        status.classList.toggle('text-brand-dark', !result.ok);
+      }
+      if (result.ok) form.reset();
+    });
+  });
+</script>

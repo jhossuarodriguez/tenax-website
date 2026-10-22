@@ -1,0 +1,20 @@
+---
+import type { ContactPageData } from '@/types';
+import { site } from '@/data/site';
+
+interface Props {
+  band: ContactPageData['band'];
+}
+
+const { band } = Astro.props;
+---
+
+<section class="bg-[#1a1a1a] px-5 py-[50px] text-center">
+  <div data-reveal-children class="mx-auto max-w-[900px]">
+    <h2 class="text-[1.8rem] font-bold text-white">{band.title}</h2>
+    <p class="mt-6 text-[17px] leading-[1.6] text-[#ddd]">{band.description}</p>
+    <p class="mt-7 text-[1.3rem] leading-[1.6] font-bold text-white">
+      <a href={`tel:${site.contact.phoneHref}`} class="text-white hover:text-brand">{site.contact.phone}</a>{' · '}<a href={`mailto:${site.contact.email}`} class="text-white hover:text-brand">{site.contact.email}</a>
+    </p>
+  </div>
+</section>

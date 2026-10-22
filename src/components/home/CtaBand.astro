@@ -1,0 +1,28 @@
+---
+import { site } from '@/data/site';
+import type { HomeCtaBandData } from '@/types';
+import Icon from '@/components/ui/Icon.astro';
+
+interface Props {
+  data: HomeCtaBandData;
+}
+
+const { data } = Astro.props;
+---
+
+<section
+  class="bg-cover bg-center px-[24px] py-[64px] text-center text-white"
+  style={`background-image:linear-gradient(rgba(23,23,23,0.9),rgba(23,23,23,0.9)),url(${data.image})`}
+>
+  <div data-reveal-children class="mx-auto flex max-w-[1080px] flex-col items-center gap-[28px]">
+    <div>
+      <p class="mb-[16px] text-[16px] leading-[27px] tracking-[2px] uppercase">{data.eyebrow}</p>
+      <h2 class="mb-[12px] font-heading leading-[1.3] font-bold text-white">{data.title}</h2>
+      <p class="text-base">{data.text}</p>
+    </div>
+    <a href={`tel:${site.contact.phoneHref}`} class="inline-flex items-center gap-[12px] text-[24px] leading-[27px] font-bold text-white hover:text-brand">
+      <Icon name="phone" size={20} />
+      {site.contact.phone}
+    </a>
+  </div>
+</section>

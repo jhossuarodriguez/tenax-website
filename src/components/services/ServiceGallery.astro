@@ -1,0 +1,35 @@
+---
+import type { ServiceGallery } from '@/types';
+
+interface Props {
+  gallery: ServiceGallery;
+}
+
+const { gallery } = Astro.props;
+const isPair = gallery.layout === 'pair';
+---
+
+<div
+  data-reveal-children
+  class:list={[
+    'mb-[44px] grid',
+    isPair
+      ? 'mx-auto max-w-[820px] grid-cols-2 gap-[14px] max-[1024px]:max-w-[560px] max-[1024px]:grid-cols-1'
+      : 'grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-[10px]',
+  ]}
+>
+  {
+    gallery.images.map((image) => (
+      <div class:list={['overflow-hidden rounded-[4px] bg-[#e8e8e8]', isPair ? 'aspect-[4/3]' : 'aspect-square']}>
+        <img
+          src={image.src}
+          alt={image.alt}
+          loading="lazy"
+          decoding="async"
+          class:list={['block size-full', gallery.layout === 'tiles-contain' ? 'object-contain' : 'object-cover']}
+          style={image.position ? `object-position:${image.position}` : undefined}
+        />
+      </div>
+    ))
+  }
+</div>

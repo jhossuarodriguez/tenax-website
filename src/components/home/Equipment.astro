@@ -1,0 +1,42 @@
+---
+import type { HomeEquipmentData } from '@/types';
+import Carousel from '@/components/home/Carousel.astro';
+import HomeButton from '@/components/home/HomeButton.astro';
+
+interface Props {
+  data: HomeEquipmentData;
+}
+
+const { data } = Astro.props;
+---
+
+<div class="mx-auto max-w-[1320px] px-[20px] pt-[32px] pb-[48px] md:px-[40px] md:pt-[48px] md:pb-[72px]">
+  <div data-reveal-children class="grid md:grid-cols-[2fr_3fr]">
+    <div class="px-[8px] pt-[30px] md:px-[12px] md:pt-[70px]">
+      <h2 class="font-display text-[42px] leading-[1.1] font-bold text-heading">{data.title}</h2>
+      <p class="mt-[27px] font-display text-[1.05rem] leading-[1.7] font-light tracking-[0.01em] text-body">{data.text}</p>
+      <HomeButton href={data.cta.href} variant="cta" class="mt-[27px] w-full">
+        {data.cta.label}
+      </HomeButton>
+    </div>
+
+    <div class="px-[8px] pt-[60px] md:px-[12px] md:pt-[71px]">
+      <Carousel label="Equipos y maquinarias" autoplay={4000}>
+        {
+          data.slides.map((s) => (
+            <figure class="m-0 h-[525px] overflow-hidden">
+              <img
+                src={s.src}
+                alt={s.alt}
+                class="pointer-events-none block size-full object-cover"
+                style={s.position ? `object-position:${s.position}` : undefined}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          ))
+        }
+      </Carousel>
+    </div>
+  </div>
+</div>

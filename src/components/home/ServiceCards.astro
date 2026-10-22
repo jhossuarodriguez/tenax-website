@@ -1,0 +1,43 @@
+---
+import { services, featuredServiceSlugs } from '@/data/services';
+import type { Service } from '@/types';
+import HomeButton from '@/components/home/HomeButton.astro';
+
+interface Props {
+  ctaLabel: string;
+}
+
+const { ctaLabel } = Astro.props;
+const featured = featuredServiceSlugs
+  .map((slug) => services.find((s) => s.slug === slug))
+  .filter((s): s is Service => s !== undefined);
+---
+
+<div class="mx-auto max-w-[1400px] px-[16px] md:px-[40px] md:pt-[11px]">
+  <ul data-reveal-children class="grid gap-y-[18px] md:grid-cols-2 xl:grid-cols-4">
+    {
+      featured.map((s) => (
+        <li class="px-[12px]">
+          <article class="flex min-h-[520px] flex-col overflow-hidden rounded-[8.5px] border-2 border-white/10 bg-[#1a1a1a] transition-colors hover:border-brand shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
+            <figure class="m-0 h-[280px] overflow-hidden">
+              <img
+                src={s.image.src}
+                alt={s.image.alt}
+                class="size-full object-cover"
+                style={s.image.position ? `object-position:${s.image.position}` : undefined}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="flex flex-1 flex-col items-center px-[32px] pt-[32px] pb-[32px] text-center">
+              <h3 class="font-display text-[20px] leading-[1.3] font-semibold text-white sm:text-[24px] tablet:text-[28px]">{s.title}</h3>
+              <HomeButton href={`/servicios/${s.slug}/`} variant="cta" class="mt-[25px]">
+                {ctaLabel}
+              </HomeButton>
+            </div>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</div>

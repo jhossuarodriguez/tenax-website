@@ -1,0 +1,113 @@
+---
+/** Iconos SVG en línea. Los de trazo heredan `currentColor`. */
+export type IconName =
+  | 'facebook'
+  | 'linkedin'
+  | 'instagram'
+  | 'tiktok'
+  | 'menu'
+  | 'close'
+  | 'chevron-up'
+  | 'chevron-down'
+  | 'chevron-left'
+  | 'chevron-right'
+  | 'arrow-right'
+  | 'arrow-left'
+  | 'phone'
+  | 'mail'
+  | 'map-pin'
+  | 'chat'
+  | 'check'
+  | 'external';
+
+interface IconDef {
+  viewBox: string;
+  body: string;
+  mode: 'fill' | 'stroke';
+}
+
+const icons: Record<IconName, IconDef> = {
+  facebook: {
+    viewBox: '0 0 448 512',
+    mode: 'fill',
+    body: '<path d="M64 32C28.7 32 0 60.7 0 96v320c0 35.3 28.7 64 64 64h98.2V334.2h-52.8V256h52.8v-33.7c0-87.1 39.4-127.5 125-127.5 16.2 0 44.2 3.2 55.7 6.4V172c-6-.6-16.5-1-29.6-1-42 0-58.2 15.9-58.2 47.8V256h83.6l-14.4 78.2H255V480h129c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64z"/>',
+  },
+  linkedin: {
+    viewBox: '0 0 448 512',
+    mode: 'fill',
+    body: '<path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/>',
+  },
+  tiktok: {
+    viewBox: '0 0 48 48',
+    mode: 'fill',
+    body: '<path d="M34.145 0h-8.09v32.696c0 3.895-3.11 7.095-6.982 7.095-3.872 0-6.984-3.2-6.984-7.095 0-3.826 3.043-6.957 6.776-7.096v-8.209C10.637 17.531 4 24.278 4 32.696 4 41.183 10.776 48 19.142 48s15.141-6.887 15.141-15.304V15.93A18.732 18.732 0 0 0 45 19.548v-8.209C38.916 11.13 34.145 6.122 34.145 0Z"/>',
+  },
+  instagram: {
+    viewBox: '0 0 24 24',
+    mode: 'stroke',
+    body: '<rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="0.6" fill="currentColor"/>',
+  },
+  menu: { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="M4 6h16M4 12h16M4 18h16"/>' },
+  close: { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="M18 6 6 18M6 6l12 12"/>' },
+  'chevron-up': { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="m18 15-6-6-6 6"/>' },
+  'chevron-down': { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="m6 9 6 6 6-6"/>' },
+  'chevron-left': { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="m15 18-6-6 6-6"/>' },
+  'chevron-right': { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="m9 18 6-6-6-6"/>' },
+  'arrow-right': { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="M5 12h14M12 5l7 7-7 7"/>' },
+  'arrow-left': { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="M19 12H5M12 19l-7-7 7-7"/>' },
+  phone: {
+    viewBox: '0 0 512 512',
+    mode: 'fill',
+    body: '<path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64c0 247.4 200.6 448 448 448 18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3l49.3-40.3c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/>',
+  },
+  mail: {
+    viewBox: '0 0 24 24',
+    mode: 'stroke',
+    body: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+  },
+  'map-pin': {
+    viewBox: '0 0 24 24',
+    mode: 'stroke',
+    body: '<path d="M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+  },
+  chat: {
+    viewBox: '0 0 24 24',
+    mode: 'fill',
+    body: '<path d="M12 3C6.48 3 2 6.58 2 11c0 2.4 1.32 4.55 3.4 6.02L4.5 21l4.3-2.28c1 .19 2.07.28 3.2.28 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/><circle cx="8" cy="11" r="1.3" fill="#000"/><circle cx="12" cy="11" r="1.3" fill="#000"/><circle cx="16" cy="11" r="1.3" fill="#000"/>',
+  },
+  check: { viewBox: '0 0 24 24', mode: 'stroke', body: '<path d="M20 6 9 17l-5-5"/>' },
+  external: {
+    viewBox: '0 0 24 24',
+    mode: 'stroke',
+    body: '<path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+  },
+};
+
+interface Props {
+  name: IconName;
+  class?: string;
+  size?: number;
+  strokeWidth?: number;
+  label?: string;
+}
+
+const { name, class: className, size = 18, strokeWidth = 2, label } = Astro.props;
+const icon = icons[name];
+const paint: astroHTML.JSX.SVGAttributes =
+  icon.mode === 'stroke'
+    ? { fill: 'none', stroke: 'currentColor', 'stroke-width': strokeWidth, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }
+    : { fill: 'currentColor' };
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox={icon.viewBox}
+  width={size}
+  height={size}
+  class={className}
+  aria-hidden={label ? undefined : 'true'}
+  aria-label={label}
+  role={label ? 'img' : undefined}
+  {...paint}
+  set:html={icon.body}
+/>

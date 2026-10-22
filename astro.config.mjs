@@ -1,41 +1,20 @@
 // @ts-check
-import path from 'node:path'
-import { defineConfig } from 'astro/config'
-import tailwindcss from '@tailwindcss/vite'
-import vercel from '@astrojs/vercel'
-import react from '@astrojs/react'
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from 'astro/config';
+
+import tailwindcss from '@tailwindcss/vite';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
+  // Las páginas siguen siendo estáticas; el adaptador solo hace falta para /api/cotizacion (prerender = false).
   adapter: vercel(),
-  site: 'https://www.tenaxconstruction.com.do',
-  output: 'server',
-  trailingSlash: "never",
+  devToolbar: { enabled: false },
+  // Excavación se fusionó con Movimiento de tierra al rehacer los servicios con las fotos de obra.
+  redirects: { '/servicios/excavacion': '/servicios/movimiento-tierra' },
   vite: {
     plugins: [tailwindcss()],
-    resolve: {
-      alias: {
-        '@': path.resolve('./src'),
-      },
-    },
-  },
-
-  build: {
-    inlineStylesheets: 'always',
-  },
-
-  image: {
-    responsiveStyles: true,
-  },
-
-  integrations: [
-    sitemap({
-      filter: (page) => !page.includes('/404'),
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
-    }),
-    react(),
-  ],
-})
+    // Lenis solo se importa desde <script> de componentes; sin esto Vite lo descubre tarde en dev
+    // y puede servir una copia desactualizada (504) que rompe el scroll y el reveal.
+    optimizeDeps: { include: ['lenis'] }
+  }
+});

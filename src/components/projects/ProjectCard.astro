@@ -1,0 +1,43 @@
+---
+import type { PortfolioProject } from '@/types';
+
+interface Props {
+  project: PortfolioProject;
+}
+
+const { project } = Astro.props;
+const { cover, gallery } = project;
+// La portada ocupa todo el ancho de la tarjeta: con la miniatura se vería borrosa en pantallas de alta densidad.
+const coverSrc = cover.fullSrc ?? cover.src;
+---
+
+<article class="flex flex-col overflow-hidden rounded-[14px] border border-[#e5e5e5] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
+  <button type="button" class="block cursor-pointer" data-lightbox-src={coverSrc} data-lightbox-alt={cover.alt} aria-label="Ampliar imagen">
+    <img
+      src={coverSrc}
+      alt={cover.alt}
+      loading="lazy"
+      decoding="async"
+      class="block h-[240px] w-full object-cover"
+      style={cover.position ? `object-position:${cover.position}` : undefined}
+    />
+  </button>
+
+  <div class="px-[26px] pt-[26px] pb-2">
+    <p class="mb-[1.6em] text-[0.8rem] leading-[1.6rem] font-semibold text-brand-dark uppercase">{project.eyebrow}</p>
+    <h3 class="mb-3 font-heading text-[1.35rem] leading-[1.3] font-bold text-heading">{project.title}</h3>
+    <p class="mb-[1.6em] text-base leading-[1.55] text-[#444]">{project.description}</p>
+  </div>
+
+  {
+    gallery.length > 0 && (
+      <div class="flex gap-2 overflow-x-auto px-[26px] pt-[18px] pb-[26px]">
+        {gallery.map((g) => (
+          <button type="button" class="flex-none cursor-pointer" data-lightbox-src={g.fullSrc ?? g.src} data-lightbox-alt={g.alt} aria-label="Ampliar imagen">
+            <img src={g.src} alt={g.alt} loading="lazy" decoding="async" class="h-16 w-[84px] rounded-lg object-cover" />
+          </button>
+        ))}
+      </div>
+    )
+  }
+</article>

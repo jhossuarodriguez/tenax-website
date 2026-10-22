@@ -1,0 +1,22 @@
+---
+import type { CtaBandData } from '@/types';
+
+interface Props {
+  data: CtaBandData;
+}
+
+const { data } = Astro.props;
+---
+
+<section data-reveal-children class="bg-ink px-5 py-[50px] text-center">
+  <h2 class="mb-3 text-white">{data.title}</h2>
+  <p class="mb-[22px] text-white">{data.text}</p>
+  <p class="mb-[27px]">
+    <a
+      href={data.button.href}
+      class="inline-block rounded-md bg-brand px-7 py-3 font-semibold text-white transition-colors hover:bg-brand-dark hover:text-white"
+    >
+      {data.button.label}
+    </a>
+  </p>
+</section>

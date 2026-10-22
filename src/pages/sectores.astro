@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import SectorRow from '@/components/sectors/SectorRow.astro';
+import MachinerySection from '@/components/sectors/MachinerySection.astro';
+import CtaBand from '@/components/sectors/CtaBand.astro';
+import { sectorsPage } from '@/data/sectors';
+
+const { hero, sectors, machinery, cta } = sectorsPage;
+const chips = sectors.map((s) => ({ label: s.chipLabel, href: `#${s.id}` }));
+---
+
+<BaseLayout title="Sectores" description={hero.subtitle}>
+  <PageHero {...hero} chips={chips} />
+
+  <div class="pt-14 pb-2 text-ink">
+    <div class="mx-auto max-w-[1120px] px-6">
+      {sectors.map((sector, i) => <SectorRow sector={sector} reversed={i % 2 === 1} first={i === 0} />)}
+    </div>
+  </div>
+
+  <MachinerySection data={machinery} />
+  <CtaBand data={cta} />
+</BaseLayout>

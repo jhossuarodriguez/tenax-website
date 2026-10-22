@@ -1,0 +1,64 @@
+---
+import type { Breadcrumb, Service } from '@/types';
+import { site } from '@/data/site';
+
+interface Props {
+  service: Service;
+  breadcrumbs: Breadcrumb[];
+}
+
+const { service, breadcrumbs } = Astro.props;
+
+/** Franja de "estratos" de colores bajo el hero. */
+const strata = ['#555555', '#888888', '#F46738', '#333333', '#ffffff', '#555555', '#1f1f1f', '#888888'];
+---
+
+<section
+  class="relative overflow-hidden bg-ink px-[24px] pt-[52px] before:pointer-events-none before:absolute before:inset-0 before:bg-[repeating-linear-gradient(115deg,rgba(255,255,255,0.035)_0_1px,transparent_1px_26px)]"
+>
+  <div data-reveal-children class="relative mx-auto max-w-[820px] pb-[44px] text-center">
+    <nav aria-label="Migas de pan" class="mb-[1.6em] font-mono text-[0.72rem] tracking-[0.04em] text-stone uppercase">
+      {
+        breadcrumbs.map((b, i) => (
+          <>
+            {i > 0 && <span class="mx-[6px] text-brand">/</span>}
+            {b.href ? (
+              <a href={b.href} class="text-stone hover:text-brand">
+                {b.label}
+              </a>
+            ) : (
+              <span class="text-cream-2" aria-current="page">
+                {b.label}
+              </span>
+            )}
+          </>
+        ))
+      }
+    </nav>
+
+    <p class="mb-[1.6em] font-mono text-[0.78rem] font-semibold tracking-[0.04em] text-brand uppercase">// {service.category}</p>
+
+    <h1 class="mb-[18px] font-display text-[clamp(2rem,4.4vw,3.1rem)] leading-[1.12] font-bold text-cream">{service.title}</h1>
+
+    <p class="mx-auto mb-[1.6em] max-w-[620px] text-[1.05rem] leading-[1.6] text-sand">{service.tagline}</p>
+
+    <div class="flex flex-wrap items-center justify-center gap-[22px]">
+      <a
+        href={site.cta.href}
+        class="inline-block rounded-[3px] bg-brand px-[30px] py-[13px] text-[0.95rem] font-semibold text-white transition-colors duration-150 hover:bg-brand-dark hover:text-white focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white"
+      >
+        Solicitar Cotización
+      </a>
+      <a
+        href={`#${service.heroLink.target}`}
+        class="border-b border-[#55504a] pb-[2px] text-[0.9rem] font-semibold text-[#e5e5e5] transition-colors duration-150 hover:border-brand hover:text-brand"
+      >
+        {service.heroLink.label}
+      </a>
+    </div>
+  </div>
+
+  <div class="relative flex h-[10px] w-full" aria-hidden="true">
+    {strata.map((color) => <span class="flex-1" style={`background:${color}`}></span>)}
+  </div>
+</section>

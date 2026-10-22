@@ -1,0 +1,33 @@
+---
+import type { ContactPageCard } from '@/types';
+
+interface Props {
+  title: string;
+  cards: ContactPageCard[];
+  mapLabel: string;
+  mapUrl: string;
+}
+
+const { title, cards, mapLabel, mapUrl } = Astro.props;
+---
+
+<div>
+  <h2 class="mb-6 text-[1.8rem] font-bold">{title}</h2>
+
+  <ul class="flex flex-col gap-6">
+    {
+      cards.map((card, i) => (
+        <li class="rounded-lg border-l-4 border-brand-dark bg-[#fafafa] p-5">
+          <h3 class="mb-2 text-[1.05rem] leading-[1.3] font-bold">{card.title}</h3>
+          <p class:list={['text-[17px] leading-[1.6]', i === 0 ? 'text-[#444]' : 'text-body']}>
+            {card.href ? <a href={card.href}>{card.value}</a> : card.value}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p class="mt-5 text-[17px] leading-[1.6]">
+    <a href={mapUrl} target="_blank" rel="noopener">{mapLabel}</a>
+  </p>
+</div>

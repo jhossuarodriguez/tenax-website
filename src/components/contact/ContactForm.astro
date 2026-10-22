@@ -1,0 +1,102 @@
+---
+import type { ContactPageForm, ContactPageFormField } from '@/types';
+
+interface Props {
+  form: ContactPageForm;
+}
+
+const { form } = Astro.props;
+
+const id = (field: ContactPageFormField): string => `contact-${field.name}`;
+const controlClass =
+  'block w-full rounded-[7px] font-sans border border-[#dadbdd] bg-[#fafafa] px-[15px] py-[11px] text-[17px] leading-[17px] text-[#606266] transition-colors placeholder:text-[#868e96] focus:border-brand focus:bg-white focus:outline-none';
+---
+
+<div class="rounded-xl bg-white p-[30px]">
+  <h2 class="mb-2 text-[1.8rem] font-bold">{form.title[0]}<br />{form.title[1]}</h2>
+  <p class="my-6 text-[17px] leading-[1.6] text-[#555]">{form.description}</p>
+
+  <form action={form.action} method="post" novalidate={false} data-contact-form>
+    {
+      form.rows.map((row) => (
+        <div class:list={[row.length === 2 && 'md:grid md:grid-cols-2 md:gap-4']}>
+          {row.map((field) => (
+            <div class="mb-5">
+              <label for={id(field)} class="mb-[5px] block text-[17px] leading-[1.6] font-medium text-body">
+                {field.label}
+                {field.required && (
+                  <span class="ml-[3px] text-brand" aria-hidden="true">
+                    {' '}
+                    *
+                  </span>
+                )}
+              </label>
+              {field.type === 'select' ? (
+                <select id={id(field)} name={field.name} required={field.required} class:list={[controlClass, 'h-[43px]']}>
+                  <option value="" disabled selected>{field.placeholder}</option>
+                  {field.options?.map((o) => <option value={o}>{o}</option>)}
+                </select>
+              ) : field.type === 'textarea' ? (
+                <textarea
+                  id={id(field)}
+                  name={field.name}
+                  rows={field.rows ?? 4}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  class:list={[controlClass, 'resize-y']}
+                />
+              ) : (
+                <input
+                  id={id(field)}
+                  name={field.name}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  required={field.required}
+                  autocomplete={field.autocomplete}
+                  class:list={[controlClass, 'h-[43px]']}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      ))
+    }
+
+    <button
+      type="submit"
+      class="rounded-[7px] bg-brand px-5 py-2 text-[16px] leading-6 font-medium text-white transition-colors hover:bg-brand-dark focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+    >
+      {form.submitLabel}
+    </button>
+    <p hidden role="alert" class="mt-3 text-[17px] leading-[1.6] text-brand-dark" data-contact-error></p>
+  </form>
+
+  <div hidden role="status" class="mt-2.5 border border-[#ced4da] p-[15px] text-[17px] shadow-[0_1px_5px_rgba(0,0,0,0.1)]" data-contact-success>
+    {form.successMessage}
+  </div>
+</div>
+
+<script>
+  import { sendQuote } from '@/scripts/quote-form';
+
+  // Envía la cotización a /api/cotizacion; solo muestra el éxito si el servidor la envió.
+  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+      const error = form.querySelector<HTMLElement>('[data-contact-error]');
+      const result = await sendQuote(form);
+      if (!result.ok) {
+        if (error) {
+          error.textContent = result.message;
+          error.hidden = false;
+        }
+        return;
+      }
+      const success = form.parentElement?.querySelector<HTMLElement>('[data-contact-success]');
+      form.reset();
+      form.hidden = true;
+      if (success) success.hidden = false;
+    });
+  });
+</script>

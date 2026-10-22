@@ -1,0 +1,34 @@
+---
+import { site } from '@/data/site';
+import SocialLinks from '@/components/layout/SocialLinks.astro';
+---
+
+<footer class="bg-black py-[20px]">
+  <div class="grid items-center gap-[24px] px-[20px] text-center md:grid-cols-3 md:gap-x-[50px] md:gap-y-0 md:px-[35px]">
+    <nav aria-label="Pie de página">
+      <ul class="flex flex-col items-center gap-y-0 md:flex-row md:flex-wrap md:justify-center">
+        {
+          site.nav.map((item) => (
+            <li>
+              <a href={item.href} class="block px-[8.5px] text-[17px] leading-[27px] text-white hover:text-brand">
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <SocialLinks variant="footer" />
+
+    <!-- En el original esta columna mide 85px y el botón queda arriba; las otras dos se centran verticalmente. -->
+    <div class="flex justify-center md:min-h-[85px] md:items-start">
+      <a
+        href={site.cta.href}
+        class="rounded-[5px] bg-brand px-[20px] py-[12px] text-[13px] leading-[13px] font-medium text-white transition-colors hover:bg-brand-dark hover:text-white"
+      >
+        {site.cta.label}
+      </a>
+    </div>
+  </div>
+</footer>

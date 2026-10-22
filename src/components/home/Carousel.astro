@@ -1,0 +1,192 @@
+---
+/**
+ * Carrusel con flechas y puntos (réplica del bloque "carousel" de Stackable).
+ * Cada hijo directo del slot es una diapositiva. El número visible se controla con
+ * la variable CSS `--n` (clases `visibleClass`), así cambia por breakpoint sin JS.
+ */
+interface Props {
+  label: string;
+  /** Clases que fijan `--n` por breakpoint, p. ej. "[--n:1] md:[--n:3]". */
+  visibleClass?: string;
+  /** Separación entre diapositivas en px. */
+  gap?: number;
+  /** Bucle infinito: un punto por diapositiva y avance continuo. */
+  infinite?: boolean;
+  /** Milisegundos entre avances automáticos (0 = sin autoplay). */
+  autoplay?: number;
+  class?: string;
+}
+
+const { label, visibleClass = '[--n:1]', gap = 0, infinite = false, autoplay = 0, class: className } = Astro.props;
+---
+
+<div
+  class:list={['relative', visibleClass, className]}
+  style={`--gap:${gap}px`}
+  role="region"
+  aria-roledescription="carrusel"
+  aria-label={label}
+  data-carousel
+  data-infinite={infinite ? 'true' : 'false'}
+  data-autoplay={autoplay}
+>
+  <div class="relative">
+    <div class="overflow-hidden">
+      <div
+        class="flex gap-(--gap) will-change-transform *:flex-none *:basis-[calc((100%_-_(var(--n)_-_1)_*_var(--gap))_/_var(--n))]"
+        data-track
+      >
+        <slot />
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="absolute top-1/2 left-[12px] z-10 grid size-[40px] -translate-y-1/2 place-items-center rounded-full bg-white text-black opacity-90 shadow-sm transition-opacity hover:opacity-100"
+      aria-label="Anterior"
+      data-prev
+    >
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg>
+    </button>
+    <button
+      type="button"
+      class="absolute top-1/2 right-[12px] z-10 grid size-[40px] -translate-y-1/2 place-items-center rounded-full bg-white text-black opacity-90 shadow-sm transition-opacity hover:opacity-100"
+      aria-label="Siguiente"
+      data-next
+    >
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+    </button>
+  </div>
+
+  <div class="mt-[12px] flex justify-center" data-dots></div>
+</div>
+
+<script>
+  const DURATION = 500;
+
+  function setup(root: HTMLElement): void {
+    const track = root.querySelector<HTMLElement>('[data-track]');
+    const dotsBox = root.querySelector<HTMLElement>('[data-dots]');
+    if (!track || !dotsBox) return;
+
+    const originals = Array.from(track.children) as HTMLElement[];
+    const count = originals.length;
+    if (count === 0) return;
+
+    const infinite = root.dataset.infinite === 'true';
+    const autoplayMs = Number(root.dataset.autoplay ?? 0);
+    let index = 0;
+
+    // Para el bucle se clonan las primeras diapositivas al final del carril.
+    if (infinite) {
+      for (const slide of originals.slice(0, 3)) {
+        const clone = slide.cloneNode(true) as HTMLElement;
+        clone.setAttribute('aria-hidden', 'true');
+        clone.inert = true;
+        track.appendChild(clone);
+      }
+    }
+
+    const visible = (): number => Math.max(1, Number(getComputedStyle(root).getPropertyValue('--n')) || 1);
+    const maxIndex = (): number => (infinite ? count : Math.max(0, count - visible()));
+    const step = (): number => {
+      const slides = track.children;
+      if (slides.length < 2) return 0;
+      return (slides[1] as HTMLElement).offsetLeft - (slides[0] as HTMLElement).offsetLeft;
+    };
+
+    const dotCount = (): number => (infinite ? count : maxIndex() + 1);
+    let dots: HTMLButtonElement[] = [];
+
+    function renderDots(): void {
+      if (!dotsBox) return;
+      dotsBox.replaceChildren();
+      dots = Array.from({ length: dotCount() }, (_, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'group grid h-[24px] min-w-[24px] place-items-center px-0 data-[active=true]:mx-[8px]';
+        b.setAttribute('aria-label', `Ir a la diapositiva ${i + 1}`);
+        b.innerHTML =
+          '<span class="block h-[8px] w-[8px] rounded-full bg-black/20 transition-all group-data-[active=true]:w-[30px] group-data-[active=true]:bg-[#1f1f1f]"></span>';
+        b.addEventListener('click', () => go(i));
+        dotsBox.appendChild(b);
+        return b;
+      });
+    }
+
+    function updateDots(): void {
+      const active = infinite ? index % count : index;
+      dots.forEach((d, i) => {
+        d.dataset.active = String(i === active);
+        d.setAttribute('aria-current', i === active ? 'true' : 'false');
+      });
+    }
+
+    function go(i: number, animate = true): void {
+      if (!track) return;
+      index = Math.min(Math.max(i, 0), maxIndex());
+      track.style.transition = animate ? `transform ${DURATION}ms ease` : 'none';
+      track.style.transform = `translateX(${-index * step()}px)`;
+      updateDots();
+    }
+
+    function next(): void {
+      if (infinite) {
+        go(index + 1);
+        if (index === count) {
+          // Llegamos al clon de la primera: saltar sin animación al original.
+          window.setTimeout(() => go(0, false), DURATION);
+        }
+      } else {
+        go(index >= maxIndex() ? 0 : index + 1);
+      }
+    }
+
+    function prev(): void {
+      if (infinite) {
+        if (index === 0) {
+          go(count, false);
+          void track?.offsetWidth;
+        }
+        go(index - 1);
+      } else {
+        go(index <= 0 ? maxIndex() : index - 1);
+      }
+    }
+
+    root.querySelector('[data-next]')?.addEventListener('click', () => {
+      next();
+      restart();
+    });
+    root.querySelector('[data-prev]')?.addEventListener('click', () => {
+      prev();
+      restart();
+    });
+
+    let timer = 0;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function restart(): void {
+      window.clearInterval(timer);
+      if (autoplayMs > 0 && !reduceMotion) timer = window.setInterval(next, autoplayMs);
+    }
+    root.addEventListener('mouseenter', () => window.clearInterval(timer));
+    root.addEventListener('mouseleave', restart);
+    root.addEventListener('focusin', () => window.clearInterval(timer));
+    root.addEventListener('focusout', restart);
+
+    let lastDots = dotCount();
+    window.addEventListener('resize', () => {
+      if (dotCount() !== lastDots) {
+        lastDots = dotCount();
+        renderDots();
+      }
+      go(index, false);
+    });
+
+    renderDots();
+    go(0, false);
+    restart();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach(setup);
+</script>

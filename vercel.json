@@ -11,6 +11,31 @@
             "source": "/home",
             "destination": "/",
             "permanent": true
+        },
+        {
+            "source": "/nosotros",
+            "destination": "/sobre-nosotros",
+            "permanent": true
+        },
+        {
+            "source": "/FAQ",
+            "destination": "/sobre-nosotros",
+            "permanent": true
+        },
+        {
+            "source": "/cotizacion",
+            "destination": "/contacto",
+            "permanent": true
+        },
+        {
+            "source": "/projects",
+            "destination": "/proyectos",
+            "permanent": true
+        },
+        {
+            "source": "/projects/:id",
+            "destination": "/proyectos",
+            "permanent": true
         }
     ],
     "headers": [
