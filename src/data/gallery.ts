@@ -1,13 +1,13 @@
 import type { GalleryPageData, GalleryPhoto } from '@/types';
 import { ctaBand } from '@/data/sectors';
-import { categoryLabels, projectPhoto, projectPhotos, type ProjectPhotoId } from '@/data/projects';
+import { obraCaption, obraPhotos, obraThumb, type ObraPhotoId } from '@/data/obras';
+import { services } from '@/data/services';
 
-/** Todas las fotos de obra de Tenax; el pie de foto es "Título — Ubicación". */
-export const galleryPhotos: GalleryPhoto[] = (Object.keys(projectPhotos) as ProjectPhotoId[]).map((id) => {
-  const { title, location } = projectPhotos[id];
-  const caption = `${title} — ${location.replace(/, (RD|República Dominicana)$/, '')}`;
-  return { image: { ...projectPhoto(id), alt: caption }, caption };
-});
+/** Fotos de obra de "FOTOS TENAX": miniatura en la cuadrícula y foto completa en el visor. */
+export const galleryPhotos: GalleryPhoto[] = (Object.keys(obraPhotos) as ObraPhotoId[]).map((id) => ({
+  image: obraThumb(id),
+  caption: obraCaption(id),
+}));
 
 export const galleryPage: GalleryPageData = {
   hero: {
@@ -15,7 +15,8 @@ export const galleryPage: GalleryPageData = {
     eyebrow: 'Galería',
     title: 'Nuestros',
     titleEmphasis: 'Proyectos',
-    subtitle: 'Explora nuestros proyectos destacados: paneles solares, naves industriales, pavimentos y cimentaciones.',
+    subtitle:
+      'Explora nuestras obras: movimiento de tierra, naves industriales, puentes y alcantarillados, pavimentos, estructuras metálicas y más.',
     strip: ['80 proyectos completados', '80 clientes satisfechos', '13 años en el mercado'],
   },
   photos: galleryPhotos,
@@ -23,7 +24,7 @@ export const galleryPage: GalleryPageData = {
     kicker: '// Lo que construimos',
     title: 'Construimos estructuras, elevamos tu proyecto',
     text: 'Contamos con equipos especializados y maquinaria pesada de última generación para realizar proyectos con eficiencia y precisión en toda la República Dominicana.',
-    tags: [...Object.values(categoryLabels), 'Hormigón Armado'],
+    tags: services.map((s) => s.title),
   },
   cta: ctaBand,
 };
