@@ -9,6 +9,8 @@ export default defineConfig({
   // Las páginas siguen siendo estáticas; el adaptador solo hace falta para /api/cotizacion (prerender = false).
   adapter: vercel(),
   devToolbar: { enabled: false },
+  // Excavación se fusionó con Movimiento de tierra al rehacer los servicios con las fotos de obra.
+  redirects: { '/servicios/excavacion': '/servicios/movimiento-tierra' },
   vite: {
     plugins: [tailwindcss()],
     // Lenis solo se importa desde <script> de componentes; sin esto Vite lo descubre tarde en dev
