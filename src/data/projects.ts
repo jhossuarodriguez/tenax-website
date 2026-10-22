@@ -1,4 +1,6 @@
 import type { ImageAsset, PortfolioProject } from '@/types';
+import { obraPhotos, obraThumb, type ObraPhotoId } from '@/data/obras';
+import { getService } from '@/data/services';
 
 export type ProjectCategory = 'paneles-solares' | 'naves-industriales' | 'pavimentos-cimentaciones' | 'remodelacion' | 'estructura-metalica';
 
@@ -45,41 +47,245 @@ export const projectPhoto = (id: ProjectPhotoId, position?: string): ImageAsset 
   position,
 });
 
-/** Proyectos del portafolio: las fotos del mismo título y ubicación se agrupan en una tarjeta. */
-const projects: { id: string; caption: string; photos: [ProjectPhotoId, ...ProjectPhotoId[]] }[] = [
-  { id: 'paneles-solares-hato-mayor', caption: 'Parque fotovoltaico agroindustrial', photos: ['Paneles-1', 'Paneles-2'] },
-  { id: 'remodelacion-oficina', caption: 'Remodelación de oficina', photos: ['Remodelacion-1'] },
-  { id: 'verja-perimetral-haina', caption: 'Verja perimetral metálica', photos: ['villa-unifamiliar-lujo'] },
-  { id: 'nave-industrial-plasticos', caption: 'Nave industrial para fábrica de plásticos', photos: ['Naves-2'] },
-  { id: 'paneles-solares-el-seibo', caption: 'Parque fotovoltaico en El Seibo', photos: ['Paneles-3'] },
-  { id: 'paneles-solares-km-23', caption: 'Paneles solares en el km 23', photos: ['Paneles-4'] },
-  { id: 'losa-caja-ascensor-hato-mayor', caption: 'Losa en caja de ascensor', photos: ['Naves-1'] },
-  { id: 'nave-industrial-villa-mella', caption: 'Nave industrial para uso comercial', photos: ['Naves-3', 'Naves-4'] },
-  { id: 'losa-caja-ascensor-santo-domingo', caption: 'Losa en caja de ascensor', photos: ['Pavimentos-1'] },
-  { id: 'bases-paneles-solares', caption: 'Bases para paneles solares', photos: ['Pavimentos-2'] },
-  { id: 'rampa-peatonal-haina', caption: 'Acceso peatonal con rampa', photos: ['Pavimentos-3'] },
-  { id: 'muro-contencion-km-13', caption: 'Muro de contención tipo AB', photos: ['Pavimentos-4'] },
+interface ProjectSeed {
+  id: string;
+  /** Slug del servicio; su título va en las etiquetas de la tarjeta. */
+  servicio: string;
+  /** Título corto del pie de foto del carrusel de la portada. */
+  caption: string;
+  descripcion: string;
+  /** La primera es la portada; el título y la ubicación salen de ella. */
+  fotos: [ObraPhotoId, ...ObraPhotoId[]];
+}
+
+/** Proyectos del portafolio: las fotos de "FOTOS TENAX" con el mismo título y ubicación forman una tarjeta. */
+const projects: ProjectSeed[] = [
+  {
+    id: 'movimiento-tierra-las-terrenas',
+    servicio: 'movimiento-tierra',
+    caption: 'Movimiento de tierra en Las Terrenas',
+    descripcion:
+      'Desbroce, corte, relleno y nivelación de un terreno costero junto a la playa, con excavadora y rodillo compactador, hasta dejar a nivel la plataforma y el camino de acceso.',
+    fotos: ['movimiento-tierra-samana-3', 'movimiento-tierra-samana-1', 'movimiento-tierra-samana-2', 'movimiento-tierra-samana-4'],
+  },
+  {
+    id: 'movimiento-tierra',
+    servicio: 'movimiento-tierra',
+    caption: 'Movimiento de tierra',
+    descripcion: 'Excavación, carga y transporte de material con excavadoras y camiones volteo, y relleno de explanadas para nuevas obras.',
+    fotos: ['movimiento-tierra-3', 'movimiento-tierra-1', 'movimiento-tierra-2', 'movimiento-tierra-4'],
+  },
+  {
+    id: 'movimiento-tierra-pavimento',
+    servicio: 'movimiento-tierra',
+    caption: 'Movimiento de tierra para pavimento',
+    descripcion: 'Retiro del material inadecuado y preparación de la subrasante para un pavimento de hormigón.',
+    fotos: ['movimiento-tierra-pavimento-1'],
+  },
+  {
+    id: 'nivelacion-terreno',
+    servicio: 'movimiento-tierra',
+    caption: 'Nivelación de terreno',
+    descripcion: 'Nivelación y compactación con rodillo vibratorio de una explanada amplia, lista para recibir el pavimento.',
+    fotos: ['nivelacion-terreno-3', 'nivelacion-terreno-1', 'nivelacion-terreno-2'],
+  },
+  {
+    id: 'nave-industrial',
+    servicio: 'naves-industriales',
+    caption: 'Nave industrial',
+    descripcion:
+      'Naves con pórticos de acero, cerramientos de paneles prefabricados de hormigón o bloques, cubierta de lámina metálica y piso de hormigón, desde la estructura hasta el interior terminado.',
+    fotos: ['nave-industrial-6', 'nave-industrial-1', 'nave-industrial-4', 'nave-industrial-5', 'nave-industrial-7', 'nave-industrial-3'],
+  },
+  {
+    id: 'nave-industrial-bani',
+    servicio: 'naves-industriales',
+    caption: 'Nave industrial en Baní',
+    descripcion: 'Montaje de pórticos de acero a dos aguas sobre cimentación de hormigón armado para una nave industrial.',
+    fotos: ['nave-industrial-bani'],
+  },
+  {
+    id: 'nave-fabrica-plasticos',
+    servicio: 'naves-industriales',
+    caption: 'Nave para fábrica de plásticos',
+    descripcion: 'Estructura de columnas y vigas de hormigón armado y cerramiento de la nave de producción de una fábrica de plásticos.',
+    fotos: ['nave-fabrica-plasticos-2', 'nave-fabrica-plasticos-1'],
+  },
+  {
+    id: 'nave-bodega-importacion',
+    servicio: 'naves-industriales',
+    caption: 'Nave para bodega de importación',
+    descripcion:
+      'Nave de almacenaje terminada, con fachada de lámina metálica, escalera metálica de acceso a oficinas y patio de maniobras de hormigón.',
+    fotos: ['nave-bodega-importacion-2'],
+  },
+  {
+    id: 'nave-bodega-temporal',
+    servicio: 'naves-industriales',
+    caption: 'Bodega de importación temporal',
+    descripcion: 'Naves y cobertizos de estructura metálica para el almacenaje temporal de mercancía y chasis de contenedores.',
+    fotos: ['nave-bodega-temporal-1', 'nave-bodega-temporal-3', 'nave-bodega-temporal-2'],
+  },
+  {
+    id: 'puente-alcantarillado',
+    servicio: 'puentes-alcantarillados',
+    caption: 'Puente alcantarillado',
+    descripcion:
+      'Paso vehicular sobre un cauce con batería de tubos de hormigón armado, cabezales y aletas de hormigón, relleno compactado y rodadura de grava.',
+    fotos: [
+      'puente-alcantarillado-3',
+      'puente-alcantarillado-1',
+      'puente-alcantarillado-5',
+      'puente-alcantarillado-8',
+      'puente-alcantarillado-7',
+      'puente-alcantarillado-4',
+      'puente-alcantarillado-6',
+      'puente-alcantarillado-2',
+    ],
+  },
+  {
+    id: 'pavimento',
+    servicio: 'pavimentos',
+    caption: 'Pavimento de hormigón',
+    descripcion:
+      'Vaciado de pavimento rígido de hormigón en fajas, con acabado estriado antideslizante, para patios y accesos de tránsito pesado.',
+    fotos: ['pavimento-1', 'pavimento-2', 'pavimento-3', 'pavimento-4'],
+  },
+  {
+    id: 'pavimento-rannik',
+    servicio: 'pavimentos',
+    caption: 'Pavimento Rannik',
+    descripcion: 'Preparación de la base con excavadora y camiones para un pavimento de hormigón.',
+    fotos: ['pavimento-rannik'],
+  },
+  {
+    id: 'adoquines-parqueo',
+    servicio: 'pavimentos',
+    caption: 'Adoquines en parqueo',
+    descripcion: 'Parqueo de adoquines de hormigón intertrabados, asentados sobre cama de arena, junto a un patio de contenedores.',
+    fotos: ['adoquines-parqueo-1', 'adoquines-parqueo-2'],
+  },
+  {
+    id: 'envarillado-losa',
+    servicio: 'hormigon-armado',
+    caption: 'Envarillado y vaciado de losa',
+    descripcion:
+      'Encofrado de madera, armado del acero de refuerzo y vaciado de la losa de una caja de ascensor en la azotea de un edificio.',
+    fotos: ['envarillado-losa-1', 'envarillado-losa-2'],
+  },
+  {
+    id: 'colocacion-hormigon',
+    servicio: 'hormigon-armado',
+    caption: 'Colocación de hormigón',
+    descripcion: 'Colocación del hormigón desde el camión hormigonera, extendido y nivelación de franjas sobre acero de refuerzo.',
+    fotos: ['colocacion-hormigon-2', 'colocacion-hormigon-1'],
+  },
+  {
+    id: 'showroom',
+    servicio: 'estructura-metalica',
+    caption: 'Marquesina de showroom',
+    descripcion: 'Marquesina de estructura metálica reticulada para exhibir y proteger los vehículos en la entrada de un showroom.',
+    fotos: ['showroom-1'],
+  },
+  {
+    id: 'techo-tijerillas',
+    servicio: 'estructura-metalica',
+    caption: 'Techo de tijerillas en escuela',
+    descripcion:
+      'Cubierta del comedor de una escuela sobre tijerillas de tubo de acero, que cubren todo el salón sin columnas intermedias.',
+    fotos: ['techo-tijerillas-1', 'techo-tijerillas-2'],
+  },
+  {
+    id: 'techo-policarbonato',
+    servicio: 'estructura-metalica',
+    caption: 'Techo de policarbonato',
+    descripcion:
+      'Techo curvo de policarbonato sobre arcos metálicos en un pasillo de acceso: deja pasar la luz natural y protege de la lluvia y los rayos UV.',
+    fotos: ['techo-policarbonato-1', 'techo-policarbonato-2'],
+  },
+  {
+    id: 'escalera-emergencia',
+    servicio: 'estructura-metalica',
+    caption: 'Escalera de emergencia',
+    descripcion:
+      'Escalera exterior de acero con descansos y barandas en cada nivel, adosada a la fachada como ruta de evacuación del edificio.',
+    fotos: ['escalera-emergencia-1', 'escalera-emergencia-2'],
+  },
+  {
+    id: 'retrofit',
+    servicio: 'retrofit',
+    caption: 'Retrofit de columnas',
+    descripcion:
+      'Reforzamiento de columnas existentes con empresillado metálico (ángulos y platinas de acero) y acabado de mortero, sin demoler la estructura.',
+    fotos: ['retrofit-2', 'retrofit-1', 'retrofit-3', 'retrofit-4'],
+  },
+  {
+    id: 'muro-contencion-ab',
+    servicio: 'muros-contencion',
+    caption: 'Muro de contención tipo AB',
+    descripcion: 'Muro curvo de bloques segmentados tipo AB, apilados sin mortero, con relleno compactado detrás para contener el talud.',
+    fotos: ['muro-contencion-ab-1', 'muro-contencion-ab-2'],
+  },
+  {
+    id: 'cunetas',
+    servicio: 'cunetas',
+    caption: 'Cunetas',
+    descripcion: 'Cunetas de hormigón con malla de refuerzo a lo largo de un camino, para recoger y desviar el agua de lluvia.',
+    fotos: ['cunetas-2', 'cunetas-1'],
+  },
+  {
+    id: 'control-acceso',
+    servicio: 'control-acceso',
+    caption: 'Control de acceso vehicular',
+    descripcion: 'Marquesina metálica sobre los carriles de entrada, con dos casetas de vigilancia en islas de hormigón.',
+    fotos: ['control-acceso-1'],
+  },
+  {
+    id: 'garita-seguridad',
+    servicio: 'control-acceso',
+    caption: 'Garita de seguridad',
+    descripcion: 'Garita de vigilancia con ventanales en la entrada de un parqueo, con baranda metálica en el acceso peatonal.',
+    fotos: ['garita-seguridad-1', 'garita-seguridad-2'],
+  },
+  {
+    id: 'porton-acceso',
+    servicio: 'control-acceso',
+    caption: 'Portón de acceso',
+    descripcion: 'Portón y verja metálica de barrotes en el acceso de un edificio de oficinas.',
+    fotos: ['porton-acceso-1'],
+  },
+  {
+    id: 'vallado-perimetral',
+    servicio: 'vallado-perimetral',
+    caption: 'Vallado perimetral en Baní',
+    descripcion:
+      'Cerca de malla ciclónica galvanizada con alambre de púas sobre postes metálicos a lo largo del perímetro y del camino de acceso.',
+    fotos: ['vallado-perimetral-1', 'vallado-perimetral-2', 'vallado-perimetral-3'],
+  },
 ];
 
-export const portfolio: PortfolioProject[] = projects.map(({ id, caption, photos: [main, ...rest] }) => {
-  const photo = projectPhotos[main];
+export const portfolio: PortfolioProject[] = projects.map(({ id, servicio, caption, descripcion, fotos: [main, ...rest] }) => {
+  const service = getService(servicio);
+  if (!service) throw new Error(`Proyecto ${id}: no existe el servicio "${servicio}"`);
+  const { title, location = 'República Dominicana' }: { title: string; location?: string } = obraPhotos[main];
   return {
     id,
-    title: photo.title,
+    title,
     caption,
-    eyebrow: `${categoryLabels[photo.category]} · ${photo.location}`,
-    description: photo.description,
-    location: photo.location,
-    cover: projectPhoto(main),
-    gallery: rest.map((p) => projectPhoto(p)),
+    eyebrow: `${service.title} · ${location}`,
+    description: descripcion,
+    location,
+    cover: obraThumb(main),
+    gallery: rest.map(obraThumb),
   };
 });
 
-/** Proyectos del carrusel de la portada: los destacados del sitio de Tenax. */
+/** Proyectos del carrusel de la portada. */
 export const homeCarouselIds = [
-  'paneles-solares-hato-mayor',
-  'remodelacion-oficina',
-  'verja-perimetral-haina',
-  'nave-industrial-plasticos',
-  'nave-industrial-villa-mella',
+  'movimiento-tierra-las-terrenas',
+  'nave-industrial',
+  'puente-alcantarillado',
+  'nave-fabrica-plasticos',
+  'showroom',
+  'muro-contencion-ab',
 ] as const;

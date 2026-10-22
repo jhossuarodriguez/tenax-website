@@ -13,7 +13,7 @@ const slides = homeCarouselIds
     {
       slides.map((p) => (
         <figure class="group relative m-0 h-[480px] overflow-hidden">
-          <img src={p.cover.src} alt={p.cover.alt} class="pointer-events-none block size-full object-cover" loading="lazy" decoding="async" />
+          <img src={p.cover.fullSrc ?? p.cover.src} alt={p.cover.alt} class="pointer-events-none block size-full object-cover" loading="lazy" decoding="async" />
           <figcaption class="pointer-events-none absolute inset-x-0 bottom-0 translate-y-2.5 bg-linear-to-t from-black/80 to-transparent px-[18px] py-[16px] text-left text-[0.95rem] font-semibold text-white opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {p.caption}
           </figcaption>
