@@ -47,7 +47,7 @@ Brindar soluciones innovadoras y de alta calidad en el sector de la construcció
 
 - **Teléfono:** +1 (809) 898-6028
 - **Correo Electrónico:** info@tenaxconstruction.com.do
-- **Dirección:** Av. 27 de Febrero, Esquina Calle el Seminario #261 Plaza Comercial APH, 4to Piso,local 27 Santo Domingo, República Dominicana. Síguenos en nuestras redes sociales para más actualizaciones y proyectos destacados.
+- **Dirección:** Av. 27 de Febrero, Esquina Calle el Seminario #261 Plaza Comercial APH, 3er Piso, Local 15, Santo Domingo, República Dominicana. Síguenos en nuestras redes sociales para más actualizaciones y proyectos destacados.
 
 ---
 
