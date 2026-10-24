@@ -1,22 +1,25 @@
 @import "tailwindcss";
 
-/* Tokens del diseño: paleta de Tenax Construction (naranja y blanco sobre neutros). */
+/*
+ * Tokens del diseño: paleta de identidad de Tenax Construction.
+ * Naranja (acentos, tomado del logotipo), grafito (fondos), marfil (contenido) y gris acero (detalles).
+ */
 @theme {
-  --color-brand: #f46738;        /* naranja principal */
-  --color-brand-dark: #e35d2c;   /* naranja de hover, enlaces y CTA secundarios */
+  --color-brand: #dc5e2f;        /* naranja del logotipo: acentos, botones y CTA */
+  --color-brand-dark: #b9491f;   /* naranja oscuro: hover y texto naranja pequeño (contraste AA sobre blanco y marfil) */
   --color-heading: #404040;
   --color-body: #555555;
-  --color-surface: #f5f5f5;
+  --color-surface: #f5f5f2;      /* marfil: fondos de contenido */
   --color-surface-alt: #f7f7f7;
-  --color-dark: #1a1a1a;
+  --color-dark: #1c1f22;         /* grafito profundo: pie de página */
   --color-dark-2: #424242;
-  --color-card: #1a1a1a;         /* tarjetas oscuras de la portada */
-  --color-ink: #111111;          /* fondo de los heros interiores */
+  --color-card: #1c1f22;         /* tarjetas oscuras sobre grafito */
+  --color-ink: #24272b;          /* grafito: header, heros y bandas oscuras */
   --color-ink-2: #1f1f1f;
   --color-stone: #888888;
-  --color-stone-2: #a6a6a6;
+  --color-stone-2: #a5a7aa;      /* gris acero: detalles y textos secundarios sobre grafito */
   --color-sand: #cccccc;
-  --color-cream: #f5f5f5;
+  --color-cream: #f5f5f2;        /* marfil sobre fondos oscuros */
   --color-cream-2: #ededed;
 
   --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
@@ -37,7 +40,10 @@
 @layer base {
   html {
     font-size: 106.25%;
-    scroll-behavior: smooth;
+  }
+  /* Scroll nativo (sin JS): anclas y "volver arriba" se desplazan suave, salvo con movimiento reducido. */
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
   }
   @media (max-width: 921px) {
     html { font-size: 96.9%; }
@@ -100,11 +106,6 @@
   }
 }
 
-/* Con Lenis activo, el scroll suave lo hace Lenis (el smooth nativo lo haría ir a tirones). */
-html.lenis {
-  scroll-behavior: auto;
-}
-
 /*
  * Reveal al hacer scroll (ver src/scripts/reveal.ts). Fuera de @layer para que gane a las
  * utilidades de Tailwind mientras el elemento está oculto.
@@ -113,15 +114,15 @@ html.lenis {
  */
 .js-reveal :is([data-reveal], [data-reveal-children] > *):not([data-revealed]) {
   opacity: 0;
-  transform: translateY(2rem);
+  transform: translateY(1rem);
 }
 .js-reveal [data-revealed] {
-  animation: reveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation: reveal 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 @keyframes reveal {
   from {
     opacity: 0;
-    transform: translateY(2rem);
+    transform: translateY(1rem);
   }
 }
 

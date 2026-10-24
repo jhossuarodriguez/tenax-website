@@ -6,3 +6,4 @@ export * from '@/types/about';
 export * from '@/types/contact';
 export * from '@/types/sectors';
 export * from '@/types/gallery';
+export * from '@/types/equipment';

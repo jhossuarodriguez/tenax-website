@@ -12,9 +12,6 @@ export default defineConfig({
   // Excavación se fusionó con Movimiento de tierra al rehacer los servicios con las fotos de obra.
   redirects: { '/servicios/excavacion': '/servicios/movimiento-tierra' },
   vite: {
-    plugins: [tailwindcss()],
-    // Lenis solo se importa desde <script> de componentes; sin esto Vite lo descubre tarde en dev
-    // y puede servir una copia desactualizada (504) que rompe el scroll y el reveal.
-    optimizeDeps: { include: ['lenis'] }
+    plugins: [tailwindcss()]
   }
 });

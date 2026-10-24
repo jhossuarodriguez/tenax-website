@@ -30,8 +30,6 @@ import Icon from '@/components/ui/Icon.astro';
 </button>
 
 <script>
-  import { lenis } from '@/scripts/smooth-scroll';
-
   const btn = document.querySelector<HTMLButtonElement>('[data-scroll-top]');
   if (btn) {
     // Solo escribe si cambia: tocar el atributo en cada scroll obliga a recalcular estilos en cada frame.
@@ -41,6 +39,7 @@ import Icon from '@/components/ui/Icon.astro';
     };
     window.addEventListener('scroll', update, { passive: true });
     update();
-    btn.addEventListener('click', () => lenis.scrollTo(0));
+    // Sin `behavior`: usa el scroll-behavior de global.css (suave, salvo con movimiento reducido).
+    btn.addEventListener('click', () => window.scrollTo({ top: 0 }));
   }
 </script>

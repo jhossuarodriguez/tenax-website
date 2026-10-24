@@ -40,7 +40,7 @@ export const aboutPage: AboutPageData = {
     title: 'Nuestra',
     titleEmphasis: 'Historia',
     subtitle: 'Somos una constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles.',
-    strip: ['80 proyectos completados', '80 clientes satisfechos', '13 años en el mercado'],
+    strip: ['Ingeniería', 'Arquitectura', 'Construcción'],
   },
   rows: [
     {

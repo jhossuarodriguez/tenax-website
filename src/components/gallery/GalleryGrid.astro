@@ -22,8 +22,8 @@ const { photos } = Astro.props;
             data-lightbox-src={photo.image.fullSrc ?? photo.image.src}
             class="block w-full cursor-pointer transition-transform duration-500 ease-out group-hover:scale-[1.06]"
           />
-          <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-[rgba(17,17,17,0.78)] to-transparent to-55% opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <figcaption class="pointer-events-none absolute right-3.5 bottom-3 left-3.5 z-[1] translate-y-2 text-[0.82rem] leading-[1.6rem] font-semibold text-cream opacity-0 transition-[opacity,transform] duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-ink/80 to-transparent to-55% opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <figcaption class="pointer-events-none absolute right-3.5 bottom-3 left-3.5 z-[1] translate-y-2 text-[0.82rem] leading-[1.6rem] font-semibold text-cream opacity-0 transition-[opacity,translate] duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {photo.caption}
           </figcaption>
         </figure>
@@ -36,7 +36,6 @@ const { photos } = Astro.props;
 <div
   class="fixed inset-0 z-[9999] hidden cursor-zoom-out items-center justify-center bg-black/85 p-[30px] data-[open=true]:flex"
   role="dialog"
-  data-lenis-prevent
   aria-modal="true"
   aria-label="Imagen ampliada"
   data-lightbox

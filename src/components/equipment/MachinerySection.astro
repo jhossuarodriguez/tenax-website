@@ -17,13 +17,13 @@ const { data } = Astro.props;
     <div data-reveal-children class="grid grid-cols-2 gap-4 min-[901px]:grid-cols-4">
       {
         data.items.map((item) => (
-          <figure class="group overflow-hidden rounded border border-white/14 bg-black transition-[border-color,transform] duration-200 hover:-translate-y-1 hover:border-brand">
+          <figure class="group overflow-hidden rounded border border-white/14 bg-black transition-[border-color,translate] duration-200 hover:-translate-y-1 hover:border-brand">
             <img
               src={item.image.src}
               alt={item.image.alt}
               loading="lazy"
               decoding="async"
-              class="block aspect-[3/4] w-full object-cover opacity-92 transition-[transform,opacity] duration-500 group-hover:scale-105 group-hover:opacity-100"
+              class="block aspect-[3/4] w-full object-cover opacity-92 transition-[scale,opacity] duration-500 group-hover:scale-105 group-hover:opacity-100"
             />
             <figcaption class="border-t border-white/12 px-3 py-2.5 font-mono text-[0.72rem] leading-[1.6rem] tracking-[0.05em] text-stone-2 uppercase">
               {item.caption}

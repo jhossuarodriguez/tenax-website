@@ -1,7 +1,5 @@
-import type { CtaBandData, MachinerySection, Sector, SectorBadgeVariant, SectorsPageData } from '@/types';
-import { categoryLabels, projectPhoto, projectPhotos, type ProjectCategory, type ProjectPhotoId } from '@/data/projects';
-
-const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
+import type { CtaBandData, Sector, SectorBadgeVariant, SectorsPageData } from '@/types';
+import { categoryLabels, projectPhoto, projectPhotos, shortLocation, type ProjectCategory, type ProjectPhotoId } from '@/data/projects';
 
 interface SectorSeed {
   id: string;
@@ -54,9 +52,6 @@ const seeds: SectorSeed[] = [
   },
 ];
 
-/** "Navieras Haina, Santo Domingo, RD" → "Navieras Haina, Santo Domingo". */
-const shortLocation = (location: string): string => location.replace(/, (RD|República Dominicana)$/, '');
-
 export const sectors: Sector[] = seeds.map((s, i) => {
   const photos = Object.values(projectPhotos).filter((p) => s.categories.includes(p.category));
   const projects = new Set(photos.map((p) => `${p.title}|${p.location}`)).size;
@@ -74,19 +69,7 @@ export const sectors: Sector[] = seeds.map((s, i) => {
   };
 });
 
-export const machinery: MachinerySection = {
-  kicker: '// Equipos',
-  title: 'Equipos especializados y maquinaria pesada',
-  description: 'Contamos con equipos especializados y maquinaria pesada de última generación para realizar proyectos con eficiencia y precisión.',
-  items: [
-    { image: { src: img('banner1'), alt: 'Excavadora hidráulica en obra' }, caption: 'Excavadoras hidráulicas' },
-    { image: { src: img('crane'), alt: 'Grúa torre en una obra' }, caption: 'Grúas' },
-    { image: { src: img('banner5'), alt: 'Estructura metálica de una cubierta' }, caption: 'Estructura metálica' },
-    { image: { src: img('banner2'), alt: 'Supervisión técnica de una excavación' }, caption: 'Supervisión en obra' },
-  ],
-};
-
-/** Banda de llamada a la acción compartida por Sectores y Galería. */
+/** Banda de llamada a la acción compartida por Sectores, Equipos y Galería. */
 export const ctaBand: CtaBandData = {
   title: '¿Tienes un proyecto en mente?',
   text: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',
@@ -100,9 +83,8 @@ export const sectorsPage: SectorsPageData = {
     title: 'Nuestros',
     titleEmphasis: 'Sectores',
     subtitle: 'Paneles solares, naves industriales, pavimentos y cimentaciones, y remodelaciones en toda la República Dominicana.',
-    strip: ['80 proyectos completados', '80 clientes satisfechos', '13 años en el mercado'],
+    strip: ['Logístico', 'Agroindustrial', 'Energético', 'Turístico'],
   },
   sectors,
-  machinery,
   cta: ctaBand,
 };

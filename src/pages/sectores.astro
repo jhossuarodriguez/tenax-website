@@ -2,11 +2,10 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import SectorRow from '@/components/sectors/SectorRow.astro';
-import MachinerySection from '@/components/sectors/MachinerySection.astro';
 import CtaBand from '@/components/sectors/CtaBand.astro';
 import { sectorsPage } from '@/data/sectors';
 
-const { hero, sectors, machinery, cta } = sectorsPage;
+const { hero, sectors, cta } = sectorsPage;
 const chips = sectors.map((s) => ({ label: s.chipLabel, href: `#${s.id}` }));
 ---
 
@@ -19,6 +18,5 @@ const chips = sectors.map((s) => ({ label: s.chipLabel, href: `#${s.id}` }));
     </div>
   </div>
 
-  <MachinerySection data={machinery} />
   <CtaBand data={cta} />
 </BaseLayout>
