@@ -32,6 +32,8 @@ export interface ContactPageForm {
   rows: ContactPageFormRow[];
   submitLabel: string;
   successMessage: string;
+  /** Aviso si el envío falla; llega al script en `data-error` para no enviar `site` al navegador. */
+  errorMessage: string;
 }
 
 export interface ContactPageData {

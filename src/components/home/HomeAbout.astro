@@ -14,6 +14,8 @@ const { data } = Astro.props;
   <div data-reveal-children class="grid items-center gap-[32px] md:grid-cols-2 md:gap-[48px]">
     <img
       src={data.image.src}
+      srcset={data.image.srcset}
+      sizes="(min-width: 1200px) 552px, (min-width: 768px) calc((100vw - 96px) / 2), calc(100vw - 40px)"
       alt={data.image.alt}
       loading="lazy"
       decoding="async"

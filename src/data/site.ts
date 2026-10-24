@@ -4,7 +4,14 @@ import type { SiteConfig } from '@/types';
 export const site: SiteConfig = {
   name: 'Tenax Construction',
   description: 'Constructora dominicana experta en administración, construcción y supervisión de obras civiles y naves industriales.',
-  logo: { src: '/images/tenax/logo-tenax.webp', alt: 'Logo Tenax Construction', width: 786, height: 317 },
+  // 330 px de ancho: cubre el logo a 2x en escritorio (129 px) y a 3x en móvil (109 px).
+  logo: {
+    src: '/images/tenax/logo-tenax.webp',
+    avif: '/images/tenax/logo-tenax.avif',
+    alt: 'Logo Tenax Construction',
+    width: 330,
+    height: 133,
+  },
   favicon: {
     small: '/images/tenax/favicon-32.png',
     large: '/images/tenax/favicon-192.png',

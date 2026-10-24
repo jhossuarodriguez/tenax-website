@@ -1,5 +1,6 @@
 ---
 import type { ContactPageForm, ContactPageFormField } from '@/types';
+import QuoteFormScript from '@/components/shared/QuoteFormScript.astro';
 
 interface Props {
   form: ContactPageForm;
@@ -16,7 +17,7 @@ const controlClass =
   <h2 class="mb-2 text-[1.8rem] font-bold">{form.title[0]}<br />{form.title[1]}</h2>
   <p class="my-6 text-[17px] leading-[1.6] text-[#555]">{form.description}</p>
 
-  <form action={form.action} method="post" novalidate={false} data-contact-form>
+  <form action={form.action} method="post" novalidate={false} data-contact-form data-error={form.errorMessage}>
     {
       form.rows.map((row) => (
         <div class:list={[row.length === 2 && 'md:grid md:grid-cols-2 md:gap-4']}>
@@ -76,27 +77,4 @@ const controlClass =
   </div>
 </div>
 
-<script>
-  import { sendQuote } from '@/scripts/quote-form';
-
-  // Envía la cotización a /api/cotizacion; solo muestra el éxito si el servidor la envió.
-  document.querySelectorAll<HTMLFormElement>('[data-contact-form]').forEach((form) => {
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
-      const error = form.querySelector<HTMLElement>('[data-contact-error]');
-      const result = await sendQuote(form);
-      if (!result.ok) {
-        if (error) {
-          error.textContent = result.message;
-          error.hidden = false;
-        }
-        return;
-      }
-      const success = form.parentElement?.querySelector<HTMLElement>('[data-contact-success]');
-      form.reset();
-      form.hidden = true;
-      if (success) success.hidden = false;
-    });
-  });
-</script>
+<QuoteFormScript />

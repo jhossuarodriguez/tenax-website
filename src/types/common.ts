@@ -4,6 +4,8 @@ export interface ImageAsset {
   src: string;
   /** Versión grande para el visor cuando `src` es una miniatura. */
   fullSrc?: string;
+  /** Anchos disponibles ("url 400w, url 800w, …"); cada componente pone su `sizes`. */
+  srcset?: string;
   alt: string;
   width?: number;
   height?: number;
@@ -46,7 +48,8 @@ export interface ContactInfo {
 export interface SiteConfig {
   name: string;
   description: string;
-  logo: ImageAsset;
+  /** `src` es el respaldo (WebP) para navegadores sin AVIF. */
+  logo: ImageAsset & { avif: string };
   favicon: { small: string; large: string; apple: string };
   nav: MainNavItem[];
   cta: NavItem;

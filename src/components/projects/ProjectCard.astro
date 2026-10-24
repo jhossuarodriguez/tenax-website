@@ -7,14 +7,16 @@ interface Props {
 
 const { project } = Astro.props;
 const { cover, gallery } = project;
-// La portada ocupa todo el ancho de la tarjeta: con la miniatura se vería borrosa en pantallas de alta densidad.
-const coverSrc = cover.fullSrc ?? cover.src;
+// El visor abre la foto completa; la tarjeta deja que el srcset elija el ancho según la pantalla.
+const coverFull = cover.fullSrc ?? cover.src;
 ---
 
 <article class="flex flex-col overflow-hidden rounded-[14px] border border-[#e5e5e5] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
-  <button type="button" class="block cursor-pointer" data-lightbox-src={coverSrc} data-lightbox-alt={cover.alt} aria-label="Ampliar imagen">
+  <button type="button" class="block cursor-pointer" data-lightbox-src={coverFull} data-lightbox-alt={cover.alt} aria-label="Ampliar imagen">
     <img
-      src={coverSrc}
+      src={cover.src}
+      srcset={cover.srcset}
+      sizes="(min-width: 1140px) 348px, (min-width: 901px) calc((100vw - 68px) / 2), calc(100vw - 40px)"
       alt={cover.alt}
       loading="lazy"
       decoding="async"
@@ -34,7 +36,7 @@ const coverSrc = cover.fullSrc ?? cover.src;
       <div class="flex gap-2 overflow-x-auto px-[26px] pt-[18px] pb-[26px]">
         {gallery.map((g) => (
           <button type="button" class="flex-none cursor-pointer" data-lightbox-src={g.fullSrc ?? g.src} data-lightbox-alt={g.alt} aria-label="Ampliar imagen">
-            <img src={g.src} alt={g.alt} loading="lazy" decoding="async" class="h-16 w-[84px] rounded-lg object-cover" />
+            <img src={g.src} srcset={g.srcset} sizes="84px" alt={g.alt} loading="lazy" decoding="async" class="h-16 w-[84px] rounded-lg object-cover" />
           </button>
         ))}
       </div>

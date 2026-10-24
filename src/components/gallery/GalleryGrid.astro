@@ -16,6 +16,8 @@ const { photos } = Astro.props;
         <figure class="group relative mb-3.5 break-inside-avoid overflow-hidden rounded-md bg-[#e8e8e8] shadow-[0_2px_10px_rgba(0,0,0,0.06)]">
           <img
             src={photo.image.src}
+            srcset={photo.image.srcset}
+            sizes="(min-width: 1140px) 264px, (min-width: 901px) calc((100vw - 90px) / 4), calc(50vw - 31px)"
             alt={photo.image.alt}
             loading="lazy"
             decoding="async"

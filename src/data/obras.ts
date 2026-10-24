@@ -1,4 +1,5 @@
 import type { ImageAsset } from '@/types';
+import fullWidths from '@/data/obras-widths.json';
 
 interface ObraPhoto {
   /** Título de la foto según su archivo original; es el pie de foto de la galería. */
@@ -275,16 +276,29 @@ export const obraPhotos = {
 
 export type ObraPhotoId = keyof typeof obraPhotos;
 
+const dir = '/images/optimized/obras';
+
+/**
+ * Los anchos de cada foto: sm (400 px), thumbs (800 px) y la completa (lado máximo 1600 px).
+ * El ancho real de la completa sale de obras-widths.json, que se genera al optimizar las fotos;
+ * en las verticales muy altas no pasa de 800 px y no aporta nada al srcset.
+ */
+const obraSrcset = (id: ObraPhotoId): string => {
+  const full = fullWidths[id] > 800 ? `, ${dir}/${id}.avif ${fullWidths[id]}w` : '';
+  return `${dir}/sm/${id}.avif 400w, ${dir}/thumbs/${id}.avif 800w${full}`;
+};
+
 /** Foto completa (lado máximo 1600 px), para el visor de la galería y el póster de la portada. */
 export const obraPhoto = (id: ObraPhotoId): ImageAsset => ({
-  src: `/images/optimized/obras/${id}.avif`,
+  src: `${dir}/${id}.avif`,
   alt: obraPhotos[id].alt,
 });
 
-/** Miniatura (lado máximo 800 px) para tarjetas y cuadrículas; el visor abre la foto completa. */
+/** Miniatura (800 px de ancho) para tarjetas y cuadrículas, con srcset; el visor abre la foto completa. */
 export const obraThumb = (id: ObraPhotoId): ImageAsset => ({
-  src: `/images/optimized/obras/thumbs/${id}.avif`,
-  fullSrc: `/images/optimized/obras/${id}.avif`,
+  src: `${dir}/thumbs/${id}.avif`,
+  srcset: obraSrcset(id),
+  fullSrc: `${dir}/${id}.avif`,
   alt: obraPhotos[id].alt,
 });
 
