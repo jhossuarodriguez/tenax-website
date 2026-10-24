@@ -4,10 +4,10 @@ import { home } from '@/data/home';
 import HomeHero from '@/components/home/HomeHero.astro';
 import SectionHeading from '@/components/home/SectionHeading.astro';
 import HomeButton from '@/components/home/HomeButton.astro';
-import ProjectsCarousel from '@/components/home/ProjectsCarousel.astro';
+import FeaturedProjects from '@/components/home/FeaturedProjects.astro';
 import ServiceCards from '@/components/home/ServiceCards.astro';
-import Techniques from '@/components/home/Techniques.astro';
-import Equipment from '@/components/home/Equipment.astro';
+import Solutions from '@/components/home/Solutions.astro';
+import HomeAbout from '@/components/home/HomeAbout.astro';
 import Reasons from '@/components/home/Reasons.astro';
 import ContactSection from '@/components/home/ContactSection.astro';
 import CtaBand from '@/components/home/CtaBand.astro';
@@ -16,24 +16,25 @@ import CtaBand from '@/components/home/CtaBand.astro';
 <BaseLayout title="Inicio">
   <HomeHero hero={home.hero} />
 
-  <!-- Proyectos -->
-  <SectionHeading title={home.projectsHeading} />
-  <ProjectsCarousel />
-  <div data-reveal class="mt-[24px] flex justify-center">
-    <HomeButton href={home.projectsCta.href} variant="cta">{home.projectsCta.label}</HomeButton>
-  </div>
+  <!-- Proyectos destacados -->
+  <section class="bg-surface pt-[72px] pb-[72px]">
+    <SectionHeading title={home.projectsHeading} class="mb-[36px]" />
+    <FeaturedProjects items={home.projects} />
+    <div data-reveal class="mt-[36px] flex justify-center">
+      <HomeButton href={home.projectsCta.href} variant="cta">{home.projectsCta.label}</HomeButton>
+    </div>
+  </section>
 
   <!-- Servicios -->
   <SectionHeading title={home.servicesHeading} />
   <ServiceCards ctaLabel={home.serviceCtaLabel} />
 
-  <!-- Técnicas -->
-  <SectionHeading title={home.techniquesHeading} tone="heading" class="mt-[84px] mb-[36px]" />
-  <Techniques items={home.techniques} background={home.techniquesBackground} />
+  <!-- Soluciones integrales en construcción -->
+  <Solutions data={home.solutions} class="mt-[84px]" />
 
-  <!-- Equipos y maquinarias -->
-  <SectionHeading title={home.equipment.heading} class="mt-[80px] mb-0" />
-  <Equipment data={home.equipment} />
+  <!-- Sobre nosotros -->
+  <SectionHeading title={home.about.heading} class="mt-[80px] mb-0" />
+  <HomeAbout data={home.about} />
 
   <!-- Por qué elegirnos -->
   <SectionHeading title={home.reasonsHeading} class="mt-[108px] mb-[36px]" />

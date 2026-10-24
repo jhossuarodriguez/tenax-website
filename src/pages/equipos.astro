@@ -1,0 +1,17 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHero from '@/components/shared/PageHero.astro';
+import MachinerySection from '@/components/equipment/MachinerySection.astro';
+import EquipmentByService from '@/components/equipment/EquipmentByService.astro';
+import CtaBand from '@/components/sectors/CtaBand.astro';
+import { equipmentPage } from '@/data/equipment';
+
+const { hero, machinery, byService, cta } = equipmentPage;
+---
+
+<BaseLayout title="Equipos" description={hero.subtitle}>
+  <PageHero {...hero} />
+  <MachinerySection data={machinery} />
+  <EquipmentByService data={byService} />
+  <CtaBand data={cta} />
+</BaseLayout>

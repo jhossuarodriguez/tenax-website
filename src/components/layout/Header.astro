@@ -5,12 +5,14 @@ import SocialLinks from '@/components/layout/SocialLinks.astro';
 
 const path = Astro.url.pathname;
 const isActive = (href: string): boolean => (href === '/' ? path === '/' : path.startsWith(href));
+/** Número de cada entrada del menú móvil ("01", "02"...), como en la estructura del sitio de Tenax. */
+const navNumber = (i: number): string => String(i + 1).padStart(2, '0');
 ---
 
 <!-- Header oscuro, como el de Tenax: su logo está pensado para fondo oscuro. -->
 <header class="relative z-40 border-b border-white/10 bg-ink shadow-header">
-  <!-- Escritorio -->
-  <div class="hidden min-h-[72px] grid-cols-[minmax(140px,1fr)_minmax(0,724px)_minmax(130px,1fr)] items-center gap-[20px] px-[20px] tablet:grid">
+  <!-- Escritorio. La columna del botón mide al menos su contenido para que no se parta en dos líneas. -->
+  <div class="hidden min-h-[72px] grid-cols-[minmax(140px,1fr)_minmax(0,724px)_minmax(max-content,1fr)] items-center gap-[20px] px-[20px] tablet:grid">
     <a href="/" class="flex items-center justify-self-start" aria-label="Inicio">
       <img src={site.logo.src} alt={site.logo.alt} width={site.logo.width} height={site.logo.height} class="h-[52px] w-auto" />
     </a>
@@ -24,7 +26,7 @@ const isActive = (href: string): boolean => (href === '/' ? path === '/' : path.
                 href={item.href}
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 class:list={[
-                  'relative flex px-[12px] font-display xl:px-[17px] text-[17px] leading-[72px] hover:text-brand',
+                  'relative flex px-[8px] font-display text-[15px] leading-[72px] hover:text-brand lg:text-[16px] xl:px-[15px] xl:text-[17px]',
                   'after:absolute after:bottom-0 after:left-[0.6em] after:right-[0.6em] after:h-px after:origin-center after:scale-x-0 after:bg-current after:transition-transform hover:after:scale-x-100',
                   isActive(item.href) ? 'text-brand after:scale-x-100' : 'text-white/85',
                 ]}
@@ -68,14 +70,18 @@ const isActive = (href: string): boolean => (href === '/' ? path === '/' : path.
       <nav aria-label="Principal móvil">
         <ul>
           {
-            site.nav.map((item) => (
+            site.nav.map((item, i) => (
               <li class="border-b border-white/10">
                 <a
                   href={item.href}
                   aria-current={isActive(item.href) ? 'page' : undefined}
-                  class:list={['block px-[20px] py-[12px] font-display text-[17px]', isActive(item.href) ? 'text-brand' : 'text-white/85 hover:text-brand']}
+                  class:list={['flex items-baseline gap-[12px] px-[20px] py-[12px]', isActive(item.href) ? 'text-brand' : 'text-white/85 hover:text-brand']}
                 >
-                  {item.label}
+                  <span class="font-mono text-[12px] text-brand" aria-hidden="true">{navNumber(i)}</span>
+                  <span>
+                    <span class="block font-display text-[17px] leading-[1.4]">{item.label}</span>
+                    {item.description && <span class="block text-[13px] leading-[1.4] text-stone-2">{item.description}</span>}
+                  </span>
                 </a>
               </li>
             ))

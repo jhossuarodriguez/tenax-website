@@ -5,8 +5,8 @@
  * Los que entran a la vez se escalonan en orden. Los estilos están en global.css.
  */
 
-const STAGGER_MS = 90;
-const MAX_STAGGER_STEPS = 6;
+const STAGGER_MS = 60;
+const MAX_STAGGER_STEPS = 4;
 
 // Sin la clase (JS no ejecutado o reduced motion) todo se muestra sin animación.
 if (document.documentElement.classList.contains('js-reveal')) {
@@ -23,7 +23,8 @@ if (document.documentElement.classList.contains('js-reveal')) {
           el.dataset.revealed = '';
         });
     },
-    { rootMargin: '0px 0px -10% 0px' },
+    // Se activa un poco antes de entrar en pantalla: al llegar, el elemento ya está apareciendo.
+    { rootMargin: '0px 0px 10% 0px' },
   );
 
   document

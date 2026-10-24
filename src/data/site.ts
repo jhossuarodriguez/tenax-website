@@ -10,13 +10,15 @@ export const site: SiteConfig = {
     large: '/images/tenax/favicon-192.png',
     apple: '/images/tenax/favicon-180.png',
   },
+  // Orden del menú definido por Tenax (01-07); el logo enlaza al inicio.
   nav: [
-    { label: 'Inicio', href: '/' },
-    { label: 'Nosotros', href: '/sobre-nosotros/' },
-    { label: 'Servicios', href: '/servicios/' },
-    { label: 'Proyectos', href: '/proyectos/' },
-    { label: 'Sectores', href: '/sectores/' },
+    { label: 'Nosotros', href: '/sobre-nosotros/', description: 'Trayectoria, filosofía y equipo' },
+    { label: 'Servicios', href: '/servicios/', description: 'Soluciones y capacidades técnicas' },
+    { label: 'Proyectos', href: '/proyectos/', description: 'Casos de éxito documentados' },
+    { label: 'Sectores', href: '/sectores/', description: 'Industrias que atendemos' },
+    { label: 'Equipos', href: '/equipos/', description: 'Maquinaria y capacidad operativa' },
     { label: 'Galería', href: '/galeria/' },
+    { label: 'Contacto', href: '/contacto/', description: 'Cotizaciones y nuevos negocios' },
   ],
   cta: { label: 'Solicitar cotización', href: '/contacto/' },
   contact: {

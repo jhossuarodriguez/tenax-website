@@ -1,0 +1,36 @@
+---
+import type { ServiceEquipmentSection } from '@/types';
+
+interface Props {
+  data: ServiceEquipmentSection;
+}
+
+const { data } = Astro.props;
+---
+
+<section class="bg-surface">
+  <div class="mx-auto max-w-[1120px] px-6 pt-[62px] pb-[70px]">
+    <p data-reveal class="mb-[21px] font-mono text-[0.78rem] leading-[1.6rem] font-semibold tracking-[0.05em] text-brand-dark uppercase">{data.kicker}</p>
+    <h2 data-reveal class="mb-3.5 font-display text-[clamp(1.5rem,3vw,2rem)] leading-[1.3] font-bold text-ink">{data.title}</h2>
+    <p data-reveal class="mb-[27px] max-w-[660px] text-base leading-[1.65] text-body">{data.description}</p>
+
+    <ul data-reveal-children class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        data.services.map((s) => (
+          <li class="rounded border border-t-[3px] border-[#dddddd] border-t-brand bg-white p-5">
+            <h3 class="mb-3 text-[1.05rem] leading-[1.3] text-ink">
+              <a href={s.href} class="text-inherit hover:text-brand-dark">
+                {s.title}
+              </a>
+            </h3>
+            <ul class="flex flex-wrap gap-2">
+              {s.items.map((item) => (
+                <li class="rounded-[3px] border border-[#dddddd] px-[9px] py-[3px] text-[0.8rem] leading-[1.5] text-body">{item}</li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

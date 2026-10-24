@@ -20,19 +20,7 @@ export interface Sector {
   badge: SectorBadgeVariant;
 }
 
-export interface MachineryItem {
-  image: ImageAsset;
-  caption: string;
-}
-
-export interface MachinerySection {
-  kicker: string;
-  title: string;
-  description: string;
-  items: MachineryItem[];
-}
-
-/** Banda roja de llamada a la acción al pie de Sectores y Galería. */
+/** Banda oscura de llamada a la acción al pie de Sectores, Equipos y Galería. */
 export interface CtaBandData {
   title: string;
   text: string;
@@ -42,6 +30,5 @@ export interface CtaBandData {
 export interface SectorsPageData {
   hero: PageHeroData;
   sectors: Sector[];
-  machinery: MachinerySection;
   cta: CtaBandData;
 }

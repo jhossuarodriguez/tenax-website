@@ -16,17 +16,38 @@ export interface HomeHeroData {
   buttons: HomeButton[];
 }
 
-
-export interface HomeTechnique {
+/** Tarjeta de "Proyectos destacados": foto, ubicación, título y alcance de la obra. */
+export interface HomeProject {
+  image: ImageAsset;
+  /** Ubicación y cliente o tipo de obra: "Baní · Centro de acopio". */
+  eyebrow: string;
   title: string;
   text: string;
 }
 
-export interface HomeEquipmentData {
-  heading: string;
+/** Tarjeta numerada de "Soluciones integrales en construcción". */
+export interface HomeSolution {
   title: string;
   text: string;
+  image: ImageAsset;
+}
+
+export interface HomeSolutionsData {
+  eyebrow: string;
+  title: string;
+  text: string;
+  /** Enlace "Conocer más" de las tarjetas. */
   cta: NavItem;
+  items: HomeSolution[];
+}
+
+/** Bloque "Sobre Nosotros": imagen principal y presentación de la empresa. */
+export interface HomeAboutData {
+  heading: string;
+  title: string;
+  paragraphs: string[];
+  image: ImageAsset;
+  /** Fotos del carrusel, desactivado (comentado) en HomeAbout.astro. */
   slides: ImageAsset[];
 }
 
@@ -37,10 +58,7 @@ export interface HomeReason {
 }
 
 export interface HomeContactData {
-  /** Bloque introductorio centrado. */
-  introTitle: string;
-  introText: string;
-  /** Imagen de fondo fija entre la intro y el formulario. */
+  /** Imagen de fondo fija sobre el formulario. */
   bandImage: string;
   title: string;
   text: string;
@@ -56,13 +74,12 @@ export interface HomeCtaBandData {
 export interface HomeContent {
   hero: HomeHeroData;
   projectsHeading: string;
+  projects: HomeProject[];
   projectsCta: NavItem;
   servicesHeading: string;
   serviceCtaLabel: string;
-  techniquesHeading: string;
-  techniquesBackground: string;
-  techniques: HomeTechnique[];
-  equipment: HomeEquipmentData;
+  solutions: HomeSolutionsData;
+  about: HomeAboutData;
   reasonsHeading: string;
   reasons: HomeReason[];
   contact: HomeContactData;

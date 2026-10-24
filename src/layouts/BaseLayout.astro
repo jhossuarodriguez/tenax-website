@@ -1,5 +1,4 @@
 ---
-import 'lenis/dist/lenis.css';
 import '@/styles/global.css';
 import { site } from '@/data/site';
 import type { SeoMeta } from '@/types';
@@ -51,10 +50,6 @@ const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
     <Footer />
     <FloatingWidgets />
 
-    <!-- Scripts separados: si uno falla al cargar, el otro sigue funcionando. -->
-    <script>
-      import '@/scripts/smooth-scroll';
-    </script>
     <script>
       import '@/scripts/reveal';
     </script>

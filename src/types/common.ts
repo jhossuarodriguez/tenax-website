@@ -16,6 +16,11 @@ export interface NavItem {
   href: string;
 }
 
+/** Entrada del menú principal; la descripción se muestra en el menú móvil. */
+export interface MainNavItem extends NavItem {
+  description?: string;
+}
+
 export type SocialNetwork = 'facebook' | 'linkedin' | 'instagram' | 'tiktok';
 
 export interface SocialLink {
@@ -43,7 +48,7 @@ export interface SiteConfig {
   description: string;
   logo: ImageAsset;
   favicon: { small: string; large: string; apple: string };
-  nav: NavItem[];
+  nav: MainNavItem[];
   cta: NavItem;
   contact: ContactInfo;
   socials: SocialLink[];

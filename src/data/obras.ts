@@ -105,6 +105,22 @@ export const obraPhotos = {
     location: 'Santo Domingo Oeste',
     alt: 'Exterior de la nave terminada de una fábrica de plásticos',
   },
+  'porticos-andamios-1': {
+    title: 'Pórticos de acero y andamios',
+    alt: 'Pórticos de acero a dos aguas con andamios rojos sobre la cimentación de una nave',
+  },
+  'estructura-acero-epp-1': {
+    title: 'Trabajadores con EPP en estructura de acero',
+    alt: 'Obreros con equipo de protección sobre los pórticos de acero de una nave, junto a una grúa',
+  },
+  'izaje-viga-1': {
+    title: 'Trabajadores elevan una viga con grúa',
+    alt: 'Obreros guían una viga de acero izada con grúa en el montaje de una estructura metálica',
+  },
+  'andamio-rojo-1': {
+    title: 'Trabajadores en obra junto al andamio rojo',
+    alt: 'Obreros sobre un andamio rojo instalan láminas metálicas en la estructura azul de una nave',
+  },
 
   'puente-alcantarillado-1': { title: 'Puente alcantarillado', alt: 'Vista aérea del puente alcantarilla terminado sobre el cauce' },
   'puente-alcantarillado-2': {
@@ -179,6 +195,10 @@ export const obraPhotos = {
     title: 'Techo en policarbonato con estructura metálica',
     alt: 'Vista del techo de policarbonato y su estructura metálica sobre el pasillo de acceso',
   },
+  'cancha-boveda-tubular-1': {
+    title: 'Cancha de baloncesto bajo bóveda tubular',
+    alt: 'Cancha de baloncesto techada con una bóveda de estructura tubular metálica, rodeada de palmeras',
+  },
   'showroom-1': { title: 'Showroom', alt: 'Marquesina de estructura metálica reticulada sobre los vehículos de un showroom' },
   'escalera-emergencia-1': {
     title: 'Escalera de emergencia',
@@ -187,6 +207,18 @@ export const obraPhotos = {
   'escalera-emergencia-2': {
     title: 'Escalera de emergencia',
     alt: 'Vista lateral de la escalera de emergencia metálica con descansos en cada nivel',
+  },
+  'oficina-contenedor-1': {
+    title: 'Oficina en contenedor frente al agua',
+    alt: 'Oficina hecha en un contenedor, sobre una plataforma con barandas naranjas frente al agua',
+  },
+  'oficina-contenedor-2': {
+    title: 'Oficina en contenedor frente al agua',
+    alt: 'Interior de la oficina en contenedor, con escritorios, sillas y una franja naranja en la pared',
+  },
+  'izaje-contenedor-1': {
+    title: 'Izaje de contenedor en puerto industrial',
+    alt: 'Camión grúa iza un contenedor mientras dos obreros con chaleco supervisan la maniobra',
   },
 
   'retrofit-1': { title: 'Retrofit', alt: 'Columna reforzada con ángulos y platinas de acero (empresillado metálico)' },

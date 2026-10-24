@@ -1,5 +1,5 @@
 import type { HomeFormField, HomeContent } from '@/types';
-import { obraPhoto } from '@/data/obras';
+import { obraPhoto, obraThumb } from '@/data/obras';
 
 /** Contenido de la portada, con los textos del sitio de Tenax Construction. */
 
@@ -8,42 +8,95 @@ const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
 export const home: HomeContent = {
   hero: {
     title: 'Bienvenido a Tenax Construction',
-    text: 'Construimos estructuras, elevamos tu proyecto. Somos una constructora dominicana dedicada a la administración, construcción, diseño y supervisión de obras civiles.',
+    text: 'Especialistas en construcción industrial, estructuras metálicas, infraestructura energética, obras civiles, cimentaciones y movimiento de tierras en la República Dominicana.',
     video: { webm: '/videos/tenax.webm', mp4: '/videos/tenax.mp4', poster: obraPhoto('inicio').src },
     buttons: [
       { label: 'Ver proyectos', href: '/proyectos/', variant: 'brand' },
       { label: 'Nuestros servicios', href: '/servicios/', variant: 'white' },
     ],
   },
-  projectsHeading: 'Nuestros Proyectos',
+  projectsHeading: 'Proyectos destacados',
+  projects: [
+    {
+      image: obraThumb('nave-industrial-bani'),
+      eyebrow: 'Baní · Centro de acopio',
+      title: 'Nave para exportación de mango',
+      text: 'Nave industrial destinada a acopio, almacenamiento y operación logística.',
+    },
+    {
+      image: obraThumb('nave-bodega-temporal-1'),
+      eyebrow: 'Caucedo · BIT',
+      title: 'Bodega de importación temporal',
+      text: 'Infraestructura para almacenamiento y actividades logísticas.',
+    },
+    {
+      image: obraThumb('escalera-emergencia-1'),
+      eyebrow: 'Av. Abraham Lincoln · Rannik',
+      title: 'Escalera de emergencias',
+      text: 'Integración de estructura metálica a edificación existente.',
+    },
+    {
+      image: obraThumb('movimiento-tierra-samana-1'),
+      eyebrow: 'Las Terrenas · Silver Beach',
+      title: 'Movimiento de tierras y nivelación de terreno',
+      text: 'Preparación y conformación del terreno para el desarrollo del proyecto Silver Beach.',
+    },
+    {
+      image: obraThumb('pavimento-1'),
+      eyebrow: 'Haina · Container yard',
+      title: 'Pavimento en patio operativo',
+      text: 'Pavimento de concreto para container yard de una agencia naviera.',
+    },
+    {
+      image: obraThumb('puente-alcantarillado-6'),
+      eyebrow: 'Obra civil · Puente alcantarillado',
+      title: 'Puente alcantarillado',
+      text: 'Ejecución de infraestructura de drenaje y paso vehicular para obra civil.',
+    },
+  ],
   projectsCta: { label: 'Explora nuestros proyectos', href: '/proyectos/' },
   servicesHeading: 'Nuestros Servicios',
   serviceCtaLabel: 'Ver más detalles',
-  techniquesHeading: 'Soluciones integrales en construcción',
-  techniquesBackground: img('banner4'),
-  techniques: [
-    {
-      title: 'Administración de Proyectos',
-      text: 'Planificación y gestión eficiente de recursos. Coordinación integral para cumplir con los objetivos de tiempo y presupuesto.',
-    },
-    {
-      title: 'Diseño y Construcción',
-      text: 'Desarrollo de diseños funcionales y estéticamente atractivos. Construcción con altos estándares de calidad y seguridad.',
-    },
-    {
-      title: 'Supervisión de Obras Civiles',
-      text: 'Garantizamos el cumplimiento de las normativas vigentes. Seguimiento detallado para asegurar resultados óptimos.',
-    },
-    {
-      title: 'Estudios de Viabilidad',
-      text: 'Análisis socioeconómico y ambiental. Evaluaciones completas para determinar la factibilidad de proyectos.',
-    },
-  ],
-  equipment: {
+  solutions: {
+    eyebrow: 'Tenax Construction / Nuestra forma de trabajar',
+    title: 'Soluciones integrales en construcción',
+    text: 'Acompañamos el desarrollo de cada obra con planificación, diseño, seguimiento y análisis técnico.',
+    cta: { label: 'Conocer más', href: '/servicios/' },
+    items: [
+      {
+        title: 'Administración de Proyectos',
+        text: 'Organización de actividades, recursos y cronogramas para coordinar la ejecución de cada proyecto.',
+        image: obraThumb('inicio'),
+      },
+      {
+        title: 'Diseño y Construcción',
+        text: 'Desarrollo y ejecución de soluciones constructivas, como la nave para acopio y exportación de mango en Baní.',
+        image: obraThumb('nave-industrial-6'),
+      },
+      {
+        title: 'Supervisión de Obras Civiles',
+        text: 'Seguimiento de trabajos en campo, verificación de avances y control de la ejecución según especificaciones.',
+        image: obraThumb('colocacion-hormigon-1'),
+      },
+      {
+        title: 'Estudios de Viabilidad',
+        text: 'Evaluación preliminar de condiciones y alternativas técnicas para orientar decisiones antes de construir.',
+        image: obraThumb('galeria-1'),
+      },
+    ],
+  },
+  about: {
     heading: 'Sobre Nosotros',
-    title: 'En Tenax Construction',
-    text: 'Brindamos soluciones innovadoras y de alta calidad en el sector de la construcción, adaptándonos a las necesidades de nuestros clientes y contribuyendo al desarrollo sostenible de la República Dominicana. Contamos con equipos especializados y maquinaria pesada de última generación para realizar proyectos con eficiencia y precisión.',
-    cta: { label: 'Conoce nuestra historia', href: '/sobre-nosotros/' },
+    title: 'TENAX CONSTRUCTION, S.R.L.',
+    paragraphs: [
+      'En TENAX CONSTRUCTION somos una empresa dominicana de ingeniería, arquitectura y construcción, especializada en el desarrollo y ejecución de proyectos industriales, comerciales y de infraestructura.',
+      'Nuestra trayectoria abarca la construcción de naves industriales, estructuras metálicas, cimentaciones, pavimentos de concreto, movimientos de tierra y obras civiles, con participación en proyectos de los sectores logístico, agroindustrial, energético y turístico.',
+      'Contamos con personal técnico especializado, maquinaria pesada y experiencia en campo para ofrecer soluciones adaptadas a los requerimientos de cada proyecto, integrando planificación, coordinación y ejecución constructiva.',
+    ],
+    image: {
+      src: img('arq-gilberto-ramirez'),
+      alt: 'Arq. Gilberto Ramírez, con chaleco de seguridad, en un patio de contenedores junto a una excavadora',
+    },
     slides: [
       { src: img('about-image'), alt: 'Proyecto de paneles solares de Tenax Construction' },
       { src: img('banner2'), alt: 'Supervisión de excavación en obra' },
@@ -58,10 +111,7 @@ export const home: HomeContent = {
     { number: '04', title: 'Resultados Garantizados', text: 'Entregamos proyectos que superan las expectativas.' },
   ],
   contact: {
-    introTitle: 'Números que hablan',
-    introText:
-      'Más de 80 proyectos completados, 80 clientes satisfechos y 13 años en el mercado: nuestra trayectoria refleja nuestro compromiso y éxito en el sector de la construcción.',
-    bandImage: img('about-bg'),
+    bandImage: obraPhoto('nave-industrial-bani').src,
     title: 'Solicita tu cotización',
     text: 'Completa el formulario y te contactaremos en las próximas 24 horas.',
   },
