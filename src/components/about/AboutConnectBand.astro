@@ -8,11 +8,14 @@ interface Props {
 }
 
 const { band } = Astro.props;
+const overlay = 'linear-gradient(rgba(36,39,43,0.9),rgba(36,39,43,0.9))';
 ---
 
+<!-- El velo se ve de inmediato; la foto se carga al acercarse (ver scripts/lazy-bg.ts). -->
 <section
   class="bg-cover bg-center px-6 py-16 text-center text-white"
-  style={`background-image:linear-gradient(rgba(36,39,43,0.9),rgba(36,39,43,0.9)),url(${band.background.src})`}
+  style={`background-image:${overlay}`}
+  data-bg={`${overlay},url(${band.background.src})`}
 >
   <div data-reveal-children class="mx-auto flex max-w-[1080px] flex-col items-center gap-7">
     <div>

@@ -14,6 +14,8 @@ const { service } = Astro.props;
   <div class="aspect-[16/10] w-full overflow-hidden bg-[#eee]">
     <img
       src={service.image.src}
+      srcset={service.image.srcset}
+      sizes="(min-width: 1240px) 383px, (min-width: 692px) calc((100vw - 66px) / 2), calc(100vw - 40px)"
       alt={service.image.alt}
       loading="lazy"
       decoding="async"

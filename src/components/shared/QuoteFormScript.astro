@@ -1,0 +1,11 @@
+---
+/**
+ * Script de los formularios de cotización. Va en un componente propio para que Astro lo emita una sola
+ * vez y en línea dentro del HTML: si cada formulario lo importara desde su <script>, el código compartido
+ * saldría en un archivo aparte que el navegador pide al cargar (una cadena de peticiones más).
+ */
+---
+
+<script>
+  import '@/scripts/quote-form';
+</script>

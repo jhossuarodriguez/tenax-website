@@ -14,7 +14,10 @@ const navNumber = (i: number): string => String(i + 1).padStart(2, '0');
   <!-- Escritorio. La columna del botón mide al menos su contenido para que no se parta en dos líneas. -->
   <div class="hidden min-h-[72px] grid-cols-[minmax(140px,1fr)_minmax(0,724px)_minmax(max-content,1fr)] items-center gap-[20px] px-[20px] tablet:grid">
     <a href="/" class="flex items-center justify-self-start" aria-label="Inicio">
-      <img src={site.logo.src} alt={site.logo.alt} width={site.logo.width} height={site.logo.height} class="h-[52px] w-auto" />
+      <picture>
+        <source srcset={site.logo.avif} type="image/avif" />
+        <img src={site.logo.src} alt={site.logo.alt} width={site.logo.width} height={site.logo.height} class="h-[52px] w-auto" />
+      </picture>
     </a>
 
     <nav aria-label="Principal" class="justify-self-end">
@@ -51,7 +54,10 @@ const navNumber = (i: number): string => String(i + 1).padStart(2, '0');
   <div class="tablet:hidden" data-mobile-header>
     <div class="flex min-h-[64px] items-center justify-between px-[20px] py-[8px]">
       <a href="/" aria-label="Inicio">
-        <img src={site.logo.src} alt={site.logo.alt} width={site.logo.width} height={site.logo.height} class="h-[44px] w-auto" />
+        <picture>
+          <source srcset={site.logo.avif} type="image/avif" />
+          <img src={site.logo.src} alt={site.logo.alt} width={site.logo.width} height={site.logo.height} class="h-[44px] w-auto" />
+        </picture>
       </a>
       <button
         type="button"

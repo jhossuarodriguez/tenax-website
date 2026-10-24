@@ -95,6 +95,7 @@ export const home: HomeContent = {
     ],
     image: {
       src: img('arq-gilberto-ramirez'),
+      srcset: `${img('arq-gilberto-ramirez-800')} 800w, ${img('arq-gilberto-ramirez')} 1437w`,
       alt: 'Arq. Gilberto Ramírez, con chaleco de seguridad, en un patio de contenedores junto a una excavadora',
     },
     slides: [

@@ -22,7 +22,15 @@ const { data, class: className } = Astro.props;
         data.items.map((s, i) => (
           <li>
             <article class="flex h-full flex-col overflow-hidden rounded-[8px] bg-white shadow-[4px_4px_0_rgba(36,39,43,0.08),0_2px_12px_rgba(36,39,43,0.08)]">
-              <img src={s.image.src} alt={s.image.alt} loading="lazy" decoding="async" class="block aspect-[7/5] w-full border-b-[3px] border-brand object-cover" />
+              <img
+                src={s.image.src}
+                srcset={s.image.srcset}
+                sizes="(min-width: 1400px) 312px, (min-width: 1280px) calc((100vw - 152px) / 4), (min-width: 768px) calc((100vw - 104px) / 2), calc(100vw - 40px)"
+                alt={s.image.alt}
+                loading="lazy"
+                decoding="async"
+                class="block aspect-[7/5] w-full border-b-[3px] border-brand object-cover"
+              />
               <div class="flex flex-1 flex-col px-[22px] pt-[20px] pb-[24px]">
                 <span class="grid size-[32px] place-items-center rounded-[6px] bg-brand text-[13px] font-bold text-white" aria-hidden="true">
                   {String(i + 1).padStart(2, '0')}
