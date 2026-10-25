@@ -23,7 +23,7 @@ export const contactPage: ContactPageData = {
   form: {
     title: ['Solicita tu', 'cotización'],
     description: 'Completa el formulario y te contactaremos en las próximas 24 horas.',
-    action: '/api/cotizacion',
+    action: '/api/cotizacion/',
     rows: [
       [{ name: 'nombre', label: 'Nombre Completo', placeholder: 'Nombre completo', type: 'text', required: true, autocomplete: 'name' }],
       [
