@@ -3,11 +3,6 @@
     "trailingSlash": true,
     "redirects": [
         {
-            "source": "/servicios/excavacion",
-            "destination": "/servicios/movimiento-tierra/",
-            "permanent": true
-        },
-        {
             "source": "/servicios/excavacion/",
             "destination": "/servicios/movimiento-tierra/",
             "permanent": true
@@ -18,37 +13,37 @@
             "permanent": true
         },
         {
-            "source": "/home",
+            "source": "/home/",
             "destination": "/",
             "permanent": true
         },
         {
-            "source": "/nosotros",
+            "source": "/nosotros/",
             "destination": "/sobre-nosotros/",
             "permanent": true
         },
         {
-            "source": "/FAQ",
+            "source": "/FAQ/",
             "destination": "/sobre-nosotros/",
             "permanent": true
         },
         {
-            "source": "/cotizacion",
+            "source": "/cotizacion/",
             "destination": "/contacto/",
             "permanent": true
         },
         {
-            "source": "/projects",
+            "source": "/projects/",
             "destination": "/proyectos/",
             "permanent": true
         },
         {
-            "source": "/projects/:id",
+            "source": "/projects/:id/",
             "destination": "/proyectos/",
             "permanent": true
         },
         {
-            "source": "/archivos/:path*",
+            "source": "/archivos/:path*/",
             "destination": "/",
             "permanent": true
         }
