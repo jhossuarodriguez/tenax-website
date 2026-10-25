@@ -7,7 +7,11 @@ import ContactBand from '@/components/contact/ContactBand.astro';
 import { contactPage } from '@/data/contact';
 ---
 
-<BaseLayout title={contactPage.seo.title} description={contactPage.seo.description}>
+<BaseLayout
+  title={contactPage.seo.title}
+  description={contactPage.seo.description}
+  breadcrumbs={[{ label: 'Inicio', href: '/' }, { label: 'Contacto' }]}
+>
   <ContactIntro intro={contactPage.intro} />
 
   <section class="px-5 pt-[50px] pb-[70px]">

@@ -4,6 +4,16 @@ import type { SiteConfig } from '@/types';
 export const site: SiteConfig = {
   name: 'Tenax Construction',
   description: 'Constructora dominicana experta en administración, construcción y supervisión de obras civiles y naves industriales.',
+  ogImage: '/images/tenax/og-default.jpg',
+  business: {
+    legalName: 'Tenax Construction SRL',
+    streetAddress: 'Av. 27 de Febrero, Esq. Calle el Seminario #261, Plaza Comercial APH, 3er Piso, Local 15',
+    locality: 'Santo Domingo',
+    country: 'DO',
+    geo: { latitude: 18.465466, longitude: -69.9316248 },
+    openingHours: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '18:00' },
+    foundingYear: 2012,
+  },
   // 330 px de ancho: cubre el logo a 2x en escritorio (129 px) y a 3x en móvil (109 px).
   logo: {
     src: '/images/tenax/logo-tenax.webp',
@@ -36,7 +46,7 @@ export const site: SiteConfig = {
     whatsapp: 'https://wa.me/18098986028',
     hours: 'Lun - Vie: 9:00 AM - 6:00 PM',
     mapsUrl: 'https://maps.app.goo.gl/sa4gHQfY2zJr4QbFA',
-    mapEmbedUrl: 'https://maps.google.com/maps?q=18.468494,-69.939223&z=16&ie=UTF8&iwloc=&output=embed',
+    mapEmbedUrl: 'https://maps.google.com/maps?q=18.465466,-69.9316248&z=16&ie=UTF8&iwloc=&output=embed',
   },
   socials: [
     { network: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/Tnaxconstruction' },

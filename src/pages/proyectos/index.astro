@@ -5,11 +5,16 @@ import ProjectCard from '@/components/projects/ProjectCard.astro';
 import ProjectsCta from '@/components/projects/ProjectsCta.astro';
 import Lightbox from '@/components/projects/Lightbox.astro';
 import { portfolio } from '@/data/projects';
+const breadcrumbs = [{ label: 'Inicio', href: '/' }, { label: 'Proyectos' }];
 ---
 
-<BaseLayout title="Proyectos" description="Proyectos de Tenax Construction: movimiento de tierra, naves industriales, puentes, pavimentos, estructuras metálicas y seguridad perimetral en República Dominicana.">
+<BaseLayout
+  title="Proyectos"
+  description="Proyectos de Tenax Construction: movimiento de tierra, naves industriales, puentes, pavimentos, estructuras metálicas y seguridad perimetral en República Dominicana."
+  breadcrumbs={breadcrumbs}
+>
   <PageHero
-    breadcrumbs={[{ label: 'Inicio', href: '/' }, { label: 'Proyectos' }]}
+    breadcrumbs={breadcrumbs}
     eyebrow="Proyectos"
     title="Nuestros"
     titleEmphasis="Proyectos"

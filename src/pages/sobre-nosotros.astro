@@ -7,7 +7,7 @@ import AboutConnectBand from '@/components/about/AboutConnectBand.astro';
 import { aboutPage } from '@/data/about';
 ---
 
-<BaseLayout title={aboutPage.seo.title} description={aboutPage.seo.description}>
+<BaseLayout title={aboutPage.seo.title} description={aboutPage.seo.description} breadcrumbs={aboutPage.hero.breadcrumbs}>
   <PageHero {...aboutPage.hero} />
 
   <div class="pt-[1.6rem]">

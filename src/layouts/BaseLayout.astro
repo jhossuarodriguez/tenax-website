@@ -1,6 +1,7 @@
 ---
 import '@/styles/global.css';
 import { site } from '@/data/site';
+import { breadcrumbSchema, siteSchema } from '@/data/schema';
 import type { SeoMeta } from '@/types';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
@@ -8,8 +9,17 @@ import FloatingWidgets from '@/components/layout/FloatingWidgets.astro';
 
 type Props = SeoMeta;
 
-const { title, description = site.description, image } = Astro.props;
+const { title, description = site.description, breadcrumbs, schema, noindex = false } = Astro.props;
 const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
+
+// `site` viene de astro.config.mjs; sin él no hay URL absolutas para el canónico ni para Open Graph.
+const base = Astro.site!;
+const canonical = new URL(Astro.url.pathname, base).href;
+const ogImage = new URL(site.ogImage, base).href;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [...siteSchema(base), ...(breadcrumbs ? [breadcrumbSchema(breadcrumbs, base)] : []), ...(schema ? [schema] : [])],
+};
 ---
 
 <!doctype html>
@@ -20,9 +30,18 @@ const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="es_DO" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    {image && <meta property="og:image" content={image} />}
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="icon" href={site.favicon.small} sizes="32x32" />
     <link rel="icon" href={site.favicon.large} sizes="192x192" />
     <link rel="apple-touch-icon" href={site.favicon.apple} />

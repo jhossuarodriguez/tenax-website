@@ -9,7 +9,7 @@ const { hero, sectors, cta } = sectorsPage;
 const chips = sectors.map((s) => ({ label: s.chipLabel, href: `#${s.id}` }));
 ---
 
-<BaseLayout title="Sectores" description={hero.subtitle}>
+<BaseLayout title="Sectores" description={hero.subtitle} breadcrumbs={hero.breadcrumbs}>
   <PageHero {...hero} chips={chips} />
 
   <div class="pt-14 pb-2 text-ink">

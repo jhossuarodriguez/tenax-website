@@ -45,9 +45,26 @@ export interface ContactInfo {
   mapEmbedUrl: string;
 }
 
+/** Datos de la empresa que solo se usan en el JSON-LD. */
+export interface BusinessInfo {
+  legalName: string;
+  streetAddress: string;
+  locality: string;
+  /** Código ISO del país. */
+  country: string;
+  /** Coordenadas de la ficha de Google Business Profile. */
+  geo: { latitude: number; longitude: number };
+  /** Horario en formato schema.org (días en inglés, horas de 24 h). */
+  openingHours: { days: string[]; opens: string; closes: string };
+  foundingYear: number;
+}
+
 export interface SiteConfig {
   name: string;
   description: string;
+  /** Imagen para redes sociales (Open Graph): JPG de 1200x630, porque varias redes no leen AVIF. */
+  ogImage: string;
+  business: BusinessInfo;
   /** `src` es el respaldo (WebP) para navegadores sin AVIF. */
   logo: ImageAsset & { avif: string };
   favicon: { small: string; large: string; apple: string };
@@ -66,7 +83,11 @@ export interface Breadcrumb {
 export interface SeoMeta {
   title: string;
   description?: string;
-  image?: string;
+  /** Migas de pan de la página; se publican como BreadcrumbList. */
+  breadcrumbs?: Breadcrumb[];
+  /** JSON-LD propio de la página, además del de la empresa. */
+  schema?: Record<string, unknown>;
+  noindex?: boolean;
 }
 
 export interface PageHeroData {

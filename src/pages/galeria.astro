@@ -9,7 +9,7 @@ import { galleryPage } from '@/data/gallery';
 const { hero, photos, band, cta } = galleryPage;
 ---
 
-<BaseLayout title="Galería" description={hero.subtitle}>
+<BaseLayout title="Galería" description={hero.subtitle} breadcrumbs={hero.breadcrumbs}>
   <PageHero {...hero} />
   <div class="text-ink">
     <GalleryGrid photos={photos} />

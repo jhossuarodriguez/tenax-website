@@ -9,7 +9,7 @@ import { equipmentPage } from '@/data/equipment';
 const { hero, machinery, byService, cta } = equipmentPage;
 ---
 
-<BaseLayout title="Equipos" description={hero.subtitle}>
+<BaseLayout title="Equipos" description={hero.subtitle} breadcrumbs={hero.breadcrumbs}>
   <PageHero {...hero} />
   <MachinerySection data={machinery} />
   <EquipmentByService data={byService} />
