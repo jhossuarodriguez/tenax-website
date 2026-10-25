@@ -69,7 +69,8 @@ const { hero } = Astro.props;
   if (video) {
     const desktop = window.matchMedia('(min-width: 768px)');
 
-    // El MP4 va primero porque pesa menos (2 MB frente a 3 MB del WebM); el navegador usa el primero que soporta.
+    // El MP4 va primero porque pesa menos (713 KB frente a 760 KB del WebM); el navegador usa el primero que soporta.
+    // Ambos están muy comprimidos (H.264 CRF 34, VP9 CRF 52): la capa negra al 80 % tapa la pérdida de calidad.
     const loadSources = () => {
       if (video.childElementCount > 0) return;
       for (const [src, type] of [
