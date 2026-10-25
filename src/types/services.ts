@@ -66,6 +66,8 @@ export interface Service {
 
 /** Textos de la página /servicios/ y del bloque de llamada a la acción del detalle. */
 export interface ServicesPageContent {
+  /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
+  seo: { title: string; description: string };
   hero: PageHeroData;
   heading: string;
   intro: string;

@@ -472,6 +472,11 @@ export const getService = (slug: string): Service | undefined => services.find((
 export const featuredServiceSlugs = ['movimiento-tierra', 'naves-industriales', 'puentes-alcantarillados', 'pavimentos'] as const;
 
 export const servicesPage: ServicesPageContent = {
+  seo: {
+    title: 'Servicios de construcción en RD',
+    description:
+      'Movimiento de tierra, naves industriales, estructuras metálicas, pavimentos, puentes y más, en Santo Domingo y toda la República Dominicana.',
+  },
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Servicios' }],
     eyebrow: 'Servicios',

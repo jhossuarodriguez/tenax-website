@@ -28,6 +28,8 @@ export interface ServiceEquipmentSection {
 }
 
 export interface EquipmentPageData {
+  /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
+  seo: { title: string; description: string };
   hero: PageHeroData;
   machinery: MachinerySection;
   byService: ServiceEquipmentSection;

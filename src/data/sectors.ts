@@ -77,6 +77,11 @@ export const ctaBand: CtaBandData = {
 };
 
 export const sectorsPage: SectorsPageData = {
+  seo: {
+    title: 'Sectores que atendemos',
+    description:
+      'Paneles solares, naves industriales, pavimentos y cimentaciones, remodelaciones y control de acceso: los sectores en los que construimos en toda la RD.',
+  },
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Sectores' }],
     eyebrow: 'Sectores',

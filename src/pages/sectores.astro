@@ -5,11 +5,11 @@ import SectorRow from '@/components/sectors/SectorRow.astro';
 import CtaBand from '@/components/sectors/CtaBand.astro';
 import { sectorsPage } from '@/data/sectors';
 
-const { hero, sectors, cta } = sectorsPage;
+const { seo, hero, sectors, cta } = sectorsPage;
 const chips = sectors.map((s) => ({ label: s.chipLabel, href: `#${s.id}` }));
 ---
 
-<BaseLayout title="Sectores" description={hero.subtitle} breadcrumbs={hero.breadcrumbs}>
+<BaseLayout title={seo.title} description={seo.description} breadcrumbs={hero.breadcrumbs}>
   <PageHero {...hero} chips={chips} />
 
   <div class="pt-14 pb-2 text-ink">

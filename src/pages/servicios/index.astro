@@ -5,10 +5,10 @@ import ServiceCard from '@/components/services/ServiceCard.astro';
 import ServicesCta from '@/components/services/ServicesCta.astro';
 import { services, servicesPage } from '@/data/services';
 
-const { hero, heading, intro, cta } = servicesPage;
+const { seo, hero, heading, intro, cta } = servicesPage;
 ---
 
-<BaseLayout title="Servicios" description={hero.subtitle} breadcrumbs={hero.breadcrumbs}>
+<BaseLayout title={seo.title} description={seo.description} breadcrumbs={hero.breadcrumbs}>
   <PageHero {...hero} />
 
   <section class="bg-surface-alt px-[20px] pt-[50px] pb-[60px]">

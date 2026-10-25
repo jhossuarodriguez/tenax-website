@@ -6,8 +6,13 @@ import { obraPhoto, obraThumb } from '@/data/obras';
 const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
 
 export const home: HomeContent = {
+  seo: {
+    title: 'Constructora en Santo Domingo, RD',
+    description:
+      'Constructora dominicana de naves industriales, estructuras metálicas, movimiento de tierra y obras civiles, con oficina en Santo Domingo.',
+  },
   hero: {
-    title: 'Bienvenido a Tenax Construction',
+    title: 'Constructora industrial en República Dominicana',
     text: 'Especialistas en construcción industrial, estructuras metálicas, infraestructura energética, obras civiles, cimentaciones y movimiento de tierras en la República Dominicana.',
     video: { webm: '/videos/tenax.webm', mp4: '/videos/tenax.mp4', poster: obraPhoto('inicio').src },
     buttons: [

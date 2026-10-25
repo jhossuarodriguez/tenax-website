@@ -72,6 +72,8 @@ export interface HomeCtaBandData {
 }
 
 export interface HomeContent {
+  /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
+  seo: { title: string; description: string };
   hero: HomeHeroData;
   projectsHeading: string;
   projects: HomeProject[];

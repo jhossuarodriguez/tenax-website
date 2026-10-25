@@ -5,6 +5,11 @@ import { ctaBand } from '@/data/sectors';
 
 /** Página de Equipos: maquinaria en obra (fotos de "FOTOS TENAX") y los equipos de cada servicio. */
 export const equipmentPage: EquipmentPageData = {
+  seo: {
+    title: 'Maquinaria y equipos de construcción',
+    description:
+      'Excavadoras hidráulicas, rodillos compactadores, camiones volteo y camiones grúa: la maquinaria con la que ejecutamos cada obra en República Dominicana.',
+  },
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Equipos' }],
     eyebrow: 'Equipos',
