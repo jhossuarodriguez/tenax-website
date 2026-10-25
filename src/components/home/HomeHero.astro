@@ -25,21 +25,22 @@ const { hero } = Astro.props;
       class="absolute inset-0 -z-20 hidden size-full object-cover md:block"
     />
   </picture>
-  <!-- El video solo se muestra desde 768px; en móvil el fondo queda negro. -->
+  <!--
+    El video solo se muestra desde 768px; en móvil el fondo queda negro. Va sin <source>: con autoplay el
+    navegador lo descargaba entero aunque estuviera oculto, así que el script los añade solo en escritorio.
+  -->
   <video
     class="absolute inset-0 -z-20 hidden size-full object-cover md:block"
     autoplay
     muted
     loop
     playsinline
-    preload="metadata"
+    preload="none"
     aria-hidden="true"
     data-hero-video
-  >
-    <!-- El navegador usa la primera fuente que soporta; el MP4 es solo de respaldo. -->
-    <source src={hero.video.webm} type="video/webm" />
-    <source src={hero.video.mp4} type="video/mp4" />
-  </video>
+    data-mp4={hero.video.mp4}
+    data-webm={hero.video.webm}
+  ></video>
   <div class="absolute inset-0 -z-10 bg-black/80"></div>
 
   <div class="mx-auto w-full max-w-[1200px]">
@@ -66,6 +67,33 @@ const { hero } = Astro.props;
   const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
 
   if (video) {
+    const desktop = window.matchMedia('(min-width: 768px)');
+
+    // El MP4 va primero porque pesa menos (2 MB frente a 3 MB del WebM); el navegador usa el primero que soporta.
+    const loadSources = () => {
+      if (video.childElementCount > 0) return;
+      for (const [src, type] of [
+        [video.dataset.mp4, 'video/mp4'],
+        [video.dataset.webm, 'video/webm'],
+      ]) {
+        const source = document.createElement('source');
+        source.src = src!;
+        source.type = type!;
+        video.append(source);
+      }
+      video.preload = 'auto';
+      video.load();
+    };
+
+    // Tras el evento load, para que el video no compita con el póster, que es lo primero que se pinta.
+    const loadWhenReady = () => {
+      if (document.readyState === 'complete') loadSources();
+      else window.addEventListener('load', loadSources, { once: true });
+    };
+
+    if (desktop.matches) loadWhenReady();
+    else desktop.addEventListener('change', (e) => e.matches && loadWhenReady());
+
     let inView = false;
     let resumeTimer: number | undefined;
 

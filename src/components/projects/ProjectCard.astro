@@ -3,9 +3,11 @@ import type { PortfolioProject } from '@/types';
 
 interface Props {
   project: PortfolioProject;
+  /** Para la primera tarjeta: su portada es el LCP de la página y carga sin esperar. */
+  priority?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, priority = false } = Astro.props;
 const { cover, gallery } = project;
 // El visor abre la foto completa; la tarjeta deja que el srcset elija el ancho según la pantalla.
 const coverFull = cover.fullSrc ?? cover.src;
@@ -18,7 +20,8 @@ const coverFull = cover.fullSrc ?? cover.src;
       srcset={cover.srcset}
       sizes="(min-width: 1140px) 348px, (min-width: 901px) calc((100vw - 68px) / 2), calc(100vw - 40px)"
       alt={cover.alt}
-      loading="lazy"
+      loading={priority ? 'eager' : 'lazy'}
+      fetchpriority={priority ? 'high' : undefined}
       decoding="async"
       class="block h-[240px] w-full object-cover"
       style={cover.position ? `object-position:${cover.position}` : undefined}

@@ -47,15 +47,13 @@ const jsonLd = {
     <link rel="apple-touch-icon" href={site.favicon.apple} />
 
     <!--
-      Fuentes locales (@font-face en global.css). Se precargan las siete: el navegador las pide todas en la
-      primera maquetación y, sin precarga, las que no estaban aquí esperaban a que llegara el CSS.
+      Fuentes locales (@font-face en global.css). Solo se precargan las del encabezado y el hero, que se ven
+      al abrir cualquier página: texto (Work Sans 400), botón de cotización (500), menú (Kanit 400) y H1 (700).
+      Las demás llegan con el CSS; precargar las siete competía con la imagen principal.
     -->
     <link rel="preload" href="/fonts/work-sans-v24-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/work-sans-v24-latin-500.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/work-sans-v24-latin-600.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/work-sans-v24-latin-700.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/kanit-v17-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/kanit-v17-latin-600.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/kanit-v17-latin-700.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Activa el reveal antes del primer pintado para que no parpadee el contenido. -->
