@@ -33,7 +33,11 @@ const faqs: AboutFaqItem[] = [
 ];
 
 export const aboutPage: AboutPageData = {
-  seo: { title: 'Nosotros', description: 'Conoce más sobre Tenax Construction, nuestra historia y nuestros valores.' },
+  seo: {
+    title: 'Sobre nosotros: constructora desde 2012',
+    description:
+      'Tenax Construction S.R.L. es una constructora dominicana fundada en 2012 que administra, construye y supervisa obras civiles y naves industriales.',
+  },
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Nosotros' }],
     eyebrow: 'Tenax Construction, S.R.L.',

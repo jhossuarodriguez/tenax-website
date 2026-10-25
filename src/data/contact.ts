@@ -5,7 +5,11 @@ import { budgetRanges, projectTypes } from '@/data/home';
 const { contact } = site;
 
 export const contactPage: ContactPageData = {
-  seo: { title: 'Contacto', description: 'Contacta con Tenax Construction para obtener más información sobre nuestros servicios.' },
+  seo: {
+    title: 'Contacto y cotizaciones',
+    description:
+      'Pide una cotización a Tenax Construction. Oficina en la Av. 27 de Febrero, Santo Domingo. Llámanos al +1 (809) 898-6028 o escríbenos por WhatsApp.',
+  },
   intro: {
     title: ['¿Tienes un proyecto', 'en mente?'],
     subtitle: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',

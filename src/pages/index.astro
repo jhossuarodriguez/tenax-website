@@ -13,7 +13,7 @@ import ContactSection from '@/components/home/ContactSection.astro';
 import CtaBand from '@/components/home/CtaBand.astro';
 ---
 
-<BaseLayout title="Inicio">
+<BaseLayout title={home.seo.title} description={home.seo.description}>
   <HomeHero hero={home.hero} />
 
   <!-- Proyectos destacados -->
