@@ -42,7 +42,8 @@ export const POST: APIRoute = async ({ request }) => {
     telefono: escapeHtml(field('telefono')),
     tipoProyecto: escapeHtml(field('tipoProyecto')),
     ubicacion: escapeHtml(field('ubicacion') || 'No especificado'),
-    presupuesto: escapeHtml(field('presupuesto') || 'No especificado'),
+    // El monto y la moneda llegan en campos separados; sin monto no se muestra la moneda.
+    presupuesto: escapeHtml(field('presupuesto') ? [field('moneda'), field('presupuesto')].filter(Boolean).join(' ') : 'No especificado'),
     fechaInicio: escapeHtml(field('fechaInicio') || 'No especificado'),
     descripcion: escapeHtml(field('descripcion')).replace(/\n/g, '<br>'),
   };
