@@ -1,6 +1,6 @@
 import type { ContactPageData } from '@/types';
 import { site } from '@/data/site';
-import { budgetRanges, projectTypes } from '@/data/home';
+import { currencies, projectTypes } from '@/data/home';
 
 const { contact } = site;
 
@@ -39,9 +39,10 @@ export const contactPage: ContactPageData = {
         { name: 'tipoProyecto', label: 'Tipo de Proyecto', placeholder: 'Selecciona el tipo de proyecto', type: 'select', options: projectTypes, required: true },
       ],
       [
-        { name: 'presupuesto', label: 'Presupuesto Estimado', placeholder: 'Selecciona un rango', type: 'select', options: budgetRanges, required: false },
-        { name: 'fechaInicio', label: 'Fecha Deseada de Inicio', placeholder: '', type: 'date', required: false },
+        { name: 'presupuesto', label: 'Presupuesto Estimado', placeholder: 'Ej. 150,000', type: 'text', required: false },
+        { name: 'moneda', label: 'Moneda', placeholder: 'Selecciona la moneda', type: 'select', options: currencies, required: false },
       ],
+      [{ name: 'fechaInicio', label: 'Fecha Deseada de Inicio', placeholder: '', type: 'date', required: false }],
       [
         {
           name: 'descripcion',

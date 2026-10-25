@@ -129,16 +129,18 @@ export const home: HomeContent = {
   },
 };
 
-/** Tipos de proyecto y rangos de presupuesto del formulario de cotización de Tenax. */
+/** Tipos de proyecto y monedas del presupuesto del formulario de cotización de Tenax. */
 export const projectTypes = ['Casa Residencial', 'Edificio/Apartamentos', 'Proyecto Comercial', 'Nave Industrial', 'Remodelación', 'Otro'];
-export const budgetRanges = ['$50,000 - $100,000', '$100,000 - $250,000', '$250,000 - $500,000', '$500,000 - $1,000,000', 'Más de $1,000,000'];
+// El cliente escribe el monto y elige la moneda: Tenax cotiza tanto en dólares como en pesos.
+export const currencies = ['US$', 'RD$'];
 
 export const homeFormFields: HomeFormField[] = [
   { name: 'nombre', label: 'Nombre Completo', type: 'text', placeholder: 'Nombre completo', required: true },
   { name: 'email', label: 'Email', type: 'email', placeholder: 'Ingresa tu correo electrónico', required: true, half: true },
   { name: 'telefono', label: 'Teléfono', type: 'tel', placeholder: '+1 (809) 000-0000', required: true, half: true },
-  { name: 'tipoProyecto', label: 'Tipo de Proyecto', type: 'select', placeholder: 'Selecciona el tipo de proyecto', options: projectTypes, required: true, half: true },
-  { name: 'presupuesto', label: 'Presupuesto Estimado', type: 'select', placeholder: 'Selecciona un rango', options: budgetRanges, required: false, half: true },
+  { name: 'tipoProyecto', label: 'Tipo de Proyecto', type: 'select', placeholder: 'Selecciona el tipo de proyecto', options: projectTypes, required: true },
+  { name: 'presupuesto', label: 'Presupuesto Estimado', type: 'text', placeholder: 'Ej. 150,000', required: false, half: true },
+  { name: 'moneda', label: 'Moneda', type: 'select', placeholder: 'Selecciona la moneda', options: currencies, required: false, half: true },
   {
     name: 'descripcion',
     label: 'Descripción del Proyecto',
