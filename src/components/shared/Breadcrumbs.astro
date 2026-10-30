@@ -1,0 +1,30 @@
+---
+import type { Breadcrumb } from '@/types';
+
+interface Props {
+  items: Breadcrumb[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<!-- Migas de pan sobre fondo claro (fichas y categorías de proyectos). -->
+<nav aria-label="Migas de pan" class:list={['text-[0.82rem] leading-[1.6rem] text-stone', className]}>
+  {
+    items.map((b, i) => (
+      <>
+        {i > 0 && <span class="mx-[8px] text-brand" aria-hidden="true">›</span>}
+        {b.href ? (
+          <a href={b.href} class="text-stone hover:text-brand-dark">
+            {b.label}
+          </a>
+        ) : (
+          <span class="text-ink" aria-current="page">
+            {b.label}
+          </span>
+        )}
+      </>
+    ))
+  }
+</nav>

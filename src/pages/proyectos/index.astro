@@ -1,16 +1,17 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
-import ProjectCard from '@/components/projects/ProjectCard.astro';
+import ProjectTile from '@/components/projects/ProjectTile.astro';
 import ProjectsCta from '@/components/projects/ProjectsCta.astro';
-import Lightbox from '@/components/projects/Lightbox.astro';
-import { portfolio } from '@/data/projects';
+import { categories, projectsIn } from '@/data/portfolio';
 const breadcrumbs = [{ label: 'Inicio', href: '/' }, { label: 'Proyectos' }];
+// Cada categoría se presenta con la portada de su primer proyecto.
+const tiles = categories.map((c) => ({ category: c, projects: projectsIn(c.id) })).filter((t) => t.projects.length > 0);
 ---
 
 <BaseLayout
   title="Proyectos de construcción en RD"
-  description="Obras de Tenax Construction en República Dominicana: movimiento de tierra, naves industriales, puentes, pavimentos y estructuras metálicas."
+  description="Proyectos de Tenax Construction en República Dominicana por categoría: industrial, comercial, energía, logística, agroindustrial, residencial, institucional y puentes."
   breadcrumbs={breadcrumbs}
 >
   <PageHero
@@ -18,20 +19,30 @@ const breadcrumbs = [{ label: 'Inicio', href: '/' }, { label: 'Proyectos' }];
     eyebrow="Proyectos"
     title="Nuestros"
     titleEmphasis="Proyectos"
-    subtitle="Explora nuestros proyectos de movimiento de tierra, naves industriales, puentes y alcantarillados, pavimentos y estructuras metálicas."
-    strip={['Industria', 'Comercio', 'Infraestructura']}
+    subtitle="Obras industriales, comerciales, energéticas y de infraestructura ejecutadas por Tenax Construction en la República Dominicana, organizadas por categoría."
+    strip={['Industria', 'Comercio', 'Energía', 'Infraestructura']}
   />
 
-  <section class="bg-surface-alt px-5 pt-[50px] pb-10">
-    <div class="mx-auto max-w-[1100px]">
-      <h2 data-reveal class="mb-6 text-[1.7rem] leading-[1.3]">Proyectos realizados</h2>
-      <div data-reveal-children class="grid grid-cols-[repeat(auto-fill,minmax(340px,1fr))] gap-7 max-[900px]:grid-cols-1">
-        {portfolio.map((project) => <ProjectCard project={project} />)}
+  <section class="bg-surface px-[20px] pt-[56px] pb-[64px]">
+    <div class="mx-auto max-w-[1200px]">
+      <div data-reveal class="mb-[32px] border-l-2 border-brand pl-[20px]">
+        <h2 class="text-[1.7rem] leading-[1.3]">Proyectos por categoría</h2>
+        <p class="mt-[8px] max-w-[720px] text-[1.05rem] text-body">Elige una categoría para ver sus proyectos y la ficha técnica de cada obra.</p>
+      </div>
+      <div data-reveal-children class="grid gap-[6px] sm:grid-cols-2 lg:grid-cols-3">
+        {
+          tiles.map(({ category, projects }) => (
+            <ProjectTile
+              href={category.href}
+              image={projects[0].cover}
+              caption={category.title}
+              meta={projects.length === 1 ? '1 proyecto' : `${projects.length} proyectos`}
+            />
+          ))
+        }
       </div>
     </div>
   </section>
 
   <ProjectsCta title="¿Tienes un proyecto en mente?" text="Contáctanos para una cotización personalizada." buttonLabel="Solicitar cotización" />
-
-  <Lightbox />
 </BaseLayout>

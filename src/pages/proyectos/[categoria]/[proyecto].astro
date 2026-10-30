@@ -1,0 +1,167 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
+import ProjectTile from '@/components/projects/ProjectTile.astro';
+import ProjectsCta from '@/components/projects/ProjectsCta.astro';
+import Lightbox from '@/components/projects/Lightbox.astro';
+import { portfolio } from '@/data/portfolio';
+import type { PortfolioProject } from '@/types';
+
+export const getStaticPaths = (() =>
+  portfolio.map((project) => ({ params: { categoria: project.category.id, proyecto: project.slug }, props: { project } }))) satisfies GetStaticPaths;
+
+interface Props {
+  project: PortfolioProject;
+}
+
+const RELATED_LIMIT = 3;
+
+const { project } = Astro.props;
+const { category, cover, feature, gallery } = project;
+const place = project.location ? `${project.location}, República Dominicana` : 'República Dominicana';
+const specs = [
+  { label: 'Categoría', value: category.title, href: category.href },
+  { label: 'Tipo de obra', value: project.service.title, href: project.service.href },
+  { label: 'Ubicación', value: project.location ?? 'República Dominicana' },
+  ...project.specs,
+];
+// Relacionados: primero los de la misma categoría; si no alcanzan, se completan con el resto del portafolio.
+const others = portfolio.filter((p) => p.slug !== project.slug);
+const related = [...others.filter((p) => p.category.id === category.id), ...others.filter((p) => p.category.id !== category.id)].slice(0, RELATED_LIMIT);
+const sameCategory = related.every((p) => p.category.id === category.id);
+const breadcrumbs = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Proyectos', href: '/proyectos/' },
+  { label: category.title, href: category.href },
+  { label: project.title },
+];
+const seoTitle = project.location ? `${project.title}, ${project.location}` : project.title;
+---
+
+<BaseLayout title={seoTitle} description={`${project.summary} ${place}.`} breadcrumbs={breadcrumbs}>
+  <!-- Portada: título y ubicación sobre grafito, foto de gran formato con corte diagonal y franja naranja. -->
+  <section class="bg-white">
+    <div class="relative grid bg-ink md:min-h-[440px] md:grid-cols-[minmax(0,38%)_1fr]">
+      <div data-reveal-children class="relative z-10 flex flex-col justify-end px-[24px] py-[36px] md:py-[48px] md:pr-[12px] md:pl-[max(24px,calc((100vw-1200px)/2))]">
+        <p class="font-mono text-[0.74rem] tracking-[0.05em] text-stone-2 uppercase">Proyecto · {category.title}</p>
+        <h1 class="mt-[10px] font-display text-[clamp(1.6rem,3.2vw,2.5rem)] leading-[1.15] font-semibold text-white">{project.title}</h1>
+        <p class="mt-[12px] text-[1.05rem] leading-[1.5] text-sand">{place}</p>
+      </div>
+      <div class="relative min-h-[260px] md:[clip-path:polygon(70px_0,100%_0,100%_100%,0_100%)]">
+        <img
+          src={cover.fullSrc ?? cover.src}
+          srcset={cover.srcset}
+          sizes="(min-width: 768px) 62vw, 100vw"
+          alt={cover.alt}
+          fetchpriority="high"
+          decoding="async"
+          class="absolute inset-0 size-full object-cover"
+        />
+        <span
+          class="absolute top-0 right-0 hidden h-[62%] w-[14px] bg-[repeating-linear-gradient(135deg,var(--color-brand)_0_6px,transparent_6px_12px)] md:block"
+          aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-[20px] pt-[24px] pb-[48px]">
+    <div class="mx-auto max-w-[1200px]">
+      <Breadcrumbs items={breadcrumbs} class="mb-[40px]" />
+
+      <div class="grid gap-[40px] md:grid-cols-[240px_1fr] lg:gap-[64px]">
+        <!-- Información técnica: sin nombres de clientes ni contratistas. -->
+        <aside data-reveal>
+          <dl class="border-l-2 border-brand pl-[20px]">
+            {
+              specs.map((s) => (
+                <div class="mb-[18px] last:mb-0">
+                  <dt class="font-mono text-[0.7rem] tracking-[0.05em] text-stone uppercase">{s.label}</dt>
+                  <dd class="mt-[2px] text-[0.98rem] leading-[1.4] text-ink">
+                    {'href' in s && s.href ? (
+                      <a href={s.href} class="text-ink hover:text-brand-dark">
+                        {s.value}
+                      </a>
+                    ) : (
+                      s.value
+                    )}
+                  </dd>
+                </div>
+              ))
+            }
+          </dl>
+        </aside>
+
+        <div data-reveal-children class="max-w-[760px]">
+          {project.lead && <h2 class="mb-[20px] text-[clamp(1.3rem,2.4vw,1.6rem)] leading-[1.35] font-semibold text-brand-dark">{project.lead}</h2>}
+          {project.body.map((p) => <p class="mb-[1em] text-[1.02rem] leading-[1.7] text-body">{p}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    feature && (
+      <section class="bg-white px-[20px] pb-[48px]">
+        <div class="mx-auto max-w-[1200px]">
+          <button type="button" class="block w-full cursor-zoom-in" data-lightbox-src={feature.fullSrc ?? feature.src} data-lightbox-alt={feature.alt} aria-label="Ampliar imagen">
+            <img
+              src={feature.fullSrc ?? feature.src}
+              srcset={feature.srcset}
+              sizes="(min-width: 1240px) 1200px, calc(100vw - 40px)"
+              alt={feature.alt}
+              loading="lazy"
+              decoding="async"
+              class="aspect-[16/7] w-full object-cover"
+            />
+          </button>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    (project.closing.length > 0 || gallery.length > 0) && (
+      <section class="bg-white px-[20px] pb-[64px]">
+        <div class="mx-auto grid max-w-[1200px] gap-[40px] md:grid-cols-[240px_1fr] lg:gap-[64px]">
+          <div class="max-md:hidden" />
+          <div class="max-w-[760px]">
+            {project.closing.map((p) => (
+              <p data-reveal class="mb-[1em] text-[1.02rem] leading-[1.7] text-body">
+                {p}
+              </p>
+            ))}
+            {gallery.length > 0 && (
+              <>
+                <h2 class="mt-[24px] mb-[16px] font-mono text-[0.78rem] font-semibold tracking-[0.05em] text-stone uppercase">Proceso constructivo</h2>
+                <div data-reveal-children class="grid grid-cols-2 gap-[6px] sm:grid-cols-3">
+                  {gallery.map((g) => (
+                    <button type="button" class="block cursor-zoom-in" data-lightbox-src={g.fullSrc ?? g.src} data-lightbox-alt={g.alt} aria-label="Ampliar imagen">
+                      <img src={g.src} srcset={g.srcset} sizes="(min-width: 1100px) 250px, 33vw" alt={g.alt} loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="bg-surface px-[20px] pt-[48px] pb-[64px]">
+    <div class="mx-auto max-w-[1200px]">
+      <div data-reveal class="mb-[24px] border-l-2 border-brand pl-[20px]">
+        <h2 class="text-[1.6rem] leading-[1.3]">Proyectos relacionados</h2>
+        <p class="mt-[4px] text-stone">{sameCategory ? `Conoce otros proyectos en la categoría ${category.title}.` : 'Conoce otros proyectos de Tenax Construction.'}</p>
+      </div>
+      <div data-reveal-children class="grid gap-[6px] sm:grid-cols-2 lg:grid-cols-3">
+        {related.map((p) => <ProjectTile href={p.href} image={p.cover} caption={p.title} meta={p.location ?? p.category.title} />)}
+      </div>
+    </div>
+  </section>
+
+  <ProjectsCta title="¿Tienes un proyecto en mente?" text="Contáctanos para una cotización personalizada." buttonLabel="Solicitar cotización" />
+
+  <Lightbox />
+</BaseLayout>
