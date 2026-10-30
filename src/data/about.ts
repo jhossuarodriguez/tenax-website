@@ -1,4 +1,5 @@
 import type { AboutFaqItem, AboutPageData } from '@/types';
+import { obraThumb } from '@/data/obras';
 
 const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
 
@@ -49,6 +50,7 @@ export const aboutPage: AboutPageData = {
   rows: [
     {
       image: { src: img('banner2'), alt: 'Equipo de Tenax supervisando una excavación' },
+      id: 'quienes-somos',
       imageSide: 'left',
       tone: 'light',
       title: 'Nuestra Historia',
@@ -78,6 +80,7 @@ export const aboutPage: AboutPageData = {
     },
     {
       image: { src: img('drawing'), alt: 'Diseño de planos de un proyecto' },
+      id: 'equipo',
       imageSide: 'left',
       tone: 'white',
       title: '¿Por qué elegirnos?',
@@ -91,6 +94,21 @@ export const aboutPage: AboutPageData = {
       ],
     },
   ],
+  // Texto provisional: Tenax tiene pendiente desarrollar esta sección.
+  safety: {
+    id: 'seguridad-calidad-medio-ambiente',
+    title: 'Seguridad, calidad y medio ambiente',
+    paragraphs: [
+      'La seguridad de nuestro personal, la calidad de cada obra y el cuidado del entorno guían la forma en que planificamos y ejecutamos nuestros proyectos.',
+      'Trabajamos con equipo de protección personal, supervisión en campo y control de obra en cada etapa, y fomentamos prácticas responsables con el medio ambiente.',
+    ],
+    cta: { label: 'Ver proyectos', href: '/proyectos/' },
+    columns: [
+      [obraThumb('control-acceso-1'), obraThumb('parque-fotovoltaico-calabaza'), obraThumb('estructura-acero-epp-1')],
+      [obraThumb('inicio'), obraThumb('izaje-viga-1'), obraThumb('nivelacion-terreno-3')],
+      [obraThumb('vallado-perimetral-3'), obraThumb('colocacion-hormigon-2'), obraThumb('parque-fotovoltaico-sabana-de-la-mar'), obraThumb('retrofit-4')],
+    ],
+  },
   faqTitle: 'Preguntas Frecuentes',
   faqs,
   band: {

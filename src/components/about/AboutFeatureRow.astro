@@ -11,7 +11,7 @@ const { row } = Astro.props;
 const columnClass = 'flex min-w-0 min-[782px]:flex-1 min-[782px]:basis-0';
 ---
 
-<div data-reveal-children class="mx-auto flex max-w-[1200px] flex-col gap-5 min-[782px]:flex-row min-[782px]:gap-0">
+<div id={row.id} data-reveal-children class="mx-auto flex max-w-[1200px] scroll-mt-[20px] flex-col gap-5 min-[782px]:flex-row min-[782px]:gap-0">
   {
     row.imageSide === 'left' && (
       <div class:list={[columnClass, 'relative min-h-[430px] overflow-hidden']}>

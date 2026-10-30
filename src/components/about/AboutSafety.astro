@@ -1,0 +1,35 @@
+---
+import type { AboutSafetyData } from '@/types';
+import HomeButton from '@/components/home/HomeButton.astro';
+
+interface Props {
+  data: AboutSafetyData;
+}
+
+const { data } = Astro.props;
+// Columnas desfasadas en vertical, como el collage de referencia.
+const offsets = ['', 'md:mt-[48px]', 'md:-mt-[24px]'];
+---
+
+<section id={data.id} class="scroll-mt-[20px] overflow-hidden bg-surface px-[20px] py-[64px]">
+  <div class="mx-auto grid max-w-[1200px] items-center gap-[40px] md:grid-cols-[1.25fr_1fr] lg:gap-[64px]">
+    <div data-reveal class="grid max-h-[620px] grid-cols-3 gap-[8px] overflow-hidden" aria-hidden="true">
+      {
+        data.columns.map((col, i) => (
+          <div class:list={['flex flex-col gap-[8px]', offsets[i]]}>
+            {col.map((img) => (
+              <img src={img.src} srcset={img.srcset} sizes="(min-width: 768px) 220px, 33vw" alt="" loading="lazy" decoding="async" class="aspect-[3/4] w-full object-cover" />
+            ))}
+          </div>
+        ))
+      }
+    </div>
+
+    <div data-reveal-children>
+      <p class="font-mono text-[0.74rem] tracking-[0.06em] text-brand-dark uppercase">Nosotros</p>
+      <h2 class="mt-[10px] text-[clamp(1.7rem,3.2vw,2.4rem)] leading-[1.15] font-semibold text-ink uppercase">{data.title}</h2>
+      {data.paragraphs.map((p) => <p class="mt-[16px] text-[1.02rem] leading-[1.7] text-body">{p}</p>)}
+      <HomeButton href={data.cta.href} variant="cta" class="mt-[24px]">{data.cta.label}</HomeButton>
+    </div>
+  </div>
+</section>

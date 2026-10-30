@@ -1,4 +1,4 @@
-import type { ImageAsset, PageHeroData } from '@/types/common';
+import type { ImageAsset, NavItem, PageHeroData } from '@/types/common';
 
 /** Fragmento de texto enriquecido: texto plano o enlace en línea. */
 export type AboutRichSegment = string | { text: string; href: string };
@@ -8,6 +8,8 @@ export type AboutRichParagraph = AboutRichSegment[];
 
 /** Fila "imagen + tarjeta con cuadrícula" de Sobre nosotros. */
 export interface AboutFeatureRow {
+  /** Ancla para los enlaces del submenú de Nosotros. */
+  id?: string;
   image: ImageAsset;
   /** Lado en el que va la imagen; también define el orden al apilarse en móvil. */
   imageSide: 'left' | 'right';
@@ -45,7 +47,18 @@ export interface AboutPageData {
   seo: { title: string; description: string };
   hero: PageHeroData;
   rows: AboutFeatureRow[];
+  safety: AboutSafetyData;
   faqTitle: string;
   faqs: AboutFaqItem[];
   band: AboutConnectBand;
+}
+
+/** "Seguridad, calidad y medio ambiente": collage de fotos de obra y texto a la derecha. */
+export interface AboutSafetyData {
+  id: string;
+  title: string;
+  paragraphs: string[];
+  cta: NavItem;
+  /** Tres columnas de fotos, de arriba abajo. */
+  columns: ImageAsset[][];
 }
