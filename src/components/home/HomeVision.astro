@@ -43,7 +43,7 @@ const labelClass =
       <dl class="grid grid-cols-3">
         {
           data.stats.map((s, i) => (
-            <div class:list={['flex flex-col-reverse px-[12px] first:pl-0 md:px-[28px]', i > 0 && 'border-l border-sand']}>
+            <div class:list={['flex flex-col-reverse items-center px-[12px] text-center md:px-[28px]', i > 0 && 'border-l border-sand']}>
               <dt class="text-[0.82rem] leading-[1.4] text-ink">{s.label}</dt>
               <dd class="font-display text-[clamp(1.8rem,3.4vw,2.4rem)] leading-[1.2] font-semibold text-stone-2">{s.value}</dd>
             </div>
