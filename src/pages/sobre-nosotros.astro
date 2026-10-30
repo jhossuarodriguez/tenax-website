@@ -4,6 +4,9 @@ import PageHero from '@/components/shared/PageHero.astro';
 import AboutFeatureRowBlock from '@/components/about/AboutFeatureRow.astro';
 import AboutFaq from '@/components/about/AboutFaq.astro';
 import AboutConnectBand from '@/components/about/AboutConnectBand.astro';
+import AboutSafety from '@/components/about/AboutSafety.astro';
+import HomeVision from '@/components/home/HomeVision.astro';
+import { home } from '@/data/home';
 import { aboutPage } from '@/data/about';
 ---
 
@@ -12,6 +15,11 @@ import { aboutPage } from '@/data/about';
 
   <div class="pt-[1.6rem]">
     {aboutPage.rows.map((row) => <AboutFeatureRowBlock row={row} />)}
+    <!-- Trayectoria: la misma visión, cifras y valores de la portada. -->
+    <div id="trayectoria" class="mt-[1.6rem] scroll-mt-[20px]">
+      <HomeVision data={home.vision} />
+    </div>
+    <AboutSafety data={aboutPage.safety} />
     <div class="mt-[1.6rem]">
       <AboutFaq title={aboutPage.faqTitle} items={aboutPage.faqs} />
     </div>
