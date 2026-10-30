@@ -17,12 +17,15 @@ const valueIcons: Record<HomeValueIcon, IconName> = {
   responsabilidad: 'circle-check',
 };
 
-const rowClass = 'grid gap-[16px] border-b border-cream-2 py-[36px] last:border-b-0 md:grid-cols-[200px_1fr] md:gap-[40px]';
+const rowClass = 'grid gap-[16px] border-b border-sand py-[36px] last:border-b-0 md:grid-cols-[200px_1fr] md:gap-[40px]';
 const labelClass =
-  'font-mono text-[0.72rem] leading-[1.6] tracking-[0.06em] text-stone uppercase after:mt-[10px] after:block after:h-[2px] after:w-[28px] after:bg-brand';
+  'font-mono text-[0.72rem] leading-[1.6] tracking-[0.06em] text-stone-2 uppercase after:mt-[10px] after:block after:h-[2px] after:w-[28px] after:bg-brand';
 ---
 
-<!-- Bajo la portada: visión, cifras y valores, cada fila con su etiqueta a la izquierda. -->
+<!--
+  Bajo la portada: visión, cifras y valores, cada fila con su etiqueta a la izquierda.
+  Cifras, íconos y etiquetas en gris acero (#a5a7aa); los textos en grafito.
+-->
 <section class="bg-surface px-[20px]">
   <div class="mx-auto max-w-[1100px]">
     <div data-reveal class={rowClass}>
@@ -41,8 +44,8 @@ const labelClass =
         {
           data.stats.map((s, i) => (
             <div class:list={['flex flex-col-reverse px-[12px] first:pl-0 md:px-[28px]', i > 0 && 'border-l border-sand']}>
-              <dt class="text-[0.82rem] leading-[1.4] text-stone">{s.label}</dt>
-              <dd class="font-display text-[clamp(1.8rem,3.4vw,2.4rem)] leading-[1.2] font-semibold text-ink">{s.value}</dd>
+              <dt class="text-[0.82rem] leading-[1.4] text-ink">{s.label}</dt>
+              <dd class="font-display text-[clamp(1.8rem,3.4vw,2.4rem)] leading-[1.2] font-semibold text-stone-2">{s.value}</dd>
             </div>
           ))
         }
@@ -55,7 +58,7 @@ const labelClass =
         {
           data.values.map((v, i) => (
             <li class:list={['flex flex-col items-center gap-[10px] px-[8px] text-center', i % 6 > 0 && 'lg:border-l lg:border-sand', i % 3 > 0 && 'max-lg:border-l max-lg:border-sand']}>
-              <Icon name={valueIcons[v.icon]} size={30} strokeWidth={1.5} class="text-ink" />
+              <Icon name={valueIcons[v.icon]} size={30} strokeWidth={1.5} class="text-stone-2" />
               <span class="text-[0.82rem] leading-[1.3] font-medium text-ink">{v.label}</span>
             </li>
           ))
