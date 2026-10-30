@@ -1,0 +1,67 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
+import ProjectTile from '@/components/projects/ProjectTile.astro';
+import ProjectsCta from '@/components/projects/ProjectsCta.astro';
+import { categories, projectsIn } from '@/data/portfolio';
+import type { PortfolioCategory } from '@/types';
+
+// Solo se publican las categorías que ya tienen proyectos.
+export const getStaticPaths = (() =>
+  categories.filter((c) => projectsIn(c.id).length > 0).map((category) => ({ params: { categoria: category.id }, props: { category } }))) satisfies GetStaticPaths;
+
+interface Props {
+  category: PortfolioCategory;
+}
+
+const { category } = Astro.props;
+const projects = projectsIn(category.id);
+const others = categories.filter((c) => c.id !== category.id && projectsIn(c.id).length > 0);
+const breadcrumbs = [{ label: 'Inicio', href: '/' }, { label: 'Proyectos', href: '/proyectos/' }, { label: category.title }];
+---
+
+<BaseLayout
+  title={`Proyectos ${category.title.toLowerCase()} en RD`}
+  description={`${category.intro} Proyectos de Tenax Construction en la República Dominicana.`}
+  breadcrumbs={breadcrumbs}
+>
+  <section class="bg-white px-[20px] pt-[32px] pb-[64px]">
+    <div class="mx-auto max-w-[1200px]">
+      <Breadcrumbs items={breadcrumbs} class="mb-[36px]" />
+
+      <!-- Encabezado con la línea vertical naranja, como la página de categoría de referencia. -->
+      <header data-reveal class="mb-[40px] border-l-2 border-brand pl-[24px] md:ml-[60px]">
+        <p class="font-mono text-[0.74rem] tracking-[0.05em] text-brand-dark uppercase">Proyectos</p>
+        <h1 class="mt-[4px] font-display text-[clamp(2rem,4vw,2.6rem)] leading-[1.15] font-semibold text-ink">{category.title}</h1>
+        <p class="mt-[16px] max-w-[760px] text-[clamp(1.1rem,2vw,1.35rem)] leading-[1.5] text-stone">{category.intro}</p>
+      </header>
+
+      <div data-reveal-children class="grid gap-[6px] sm:grid-cols-2 lg:grid-cols-3">
+        {projects.map((p) => <ProjectTile href={p.href} image={p.cover} caption={p.title} meta={p.location} />)}
+      </div>
+
+      {
+        others.length > 0 && (
+          <nav aria-label="Otras categorías" class="mt-[56px] border-t border-cream-2 pt-[28px]">
+            <h2 class="mb-[14px] font-mono text-[0.78rem] font-semibold tracking-[0.05em] text-stone uppercase">Otras categorías</h2>
+            <ul class="flex flex-wrap gap-[10px]">
+              {others.map((c) => (
+                <li>
+                  <a
+                    href={c.href}
+                    class="inline-block rounded-full border border-sand px-[16px] py-[7px] text-[0.88rem] text-ink transition-colors hover:border-brand hover:bg-brand hover:text-white"
+                  >
+                    {c.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )
+      }
+    </div>
+  </section>
+
+  <ProjectsCta title="¿Tienes un proyecto en mente?" text="Contáctanos para una cotización personalizada." buttonLabel="Solicitar cotización" />
+</BaseLayout>

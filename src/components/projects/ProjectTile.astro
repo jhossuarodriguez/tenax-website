@@ -1,0 +1,34 @@
+---
+import type { ImageAsset } from '@/types';
+
+interface Props {
+  href: string;
+  image: ImageAsset;
+  caption: string;
+  /** Línea pequeña sobre el pie (ubicación o número de proyectos). */
+  meta?: string;
+  sizes?: string;
+}
+
+const { href, image, caption, meta, sizes = '(min-width: 1200px) 396px, (min-width: 640px) calc((100vw - 60px) / 2), calc(100vw - 40px)' } = Astro.props;
+---
+
+<!-- Foto con el pie en una pestaña blanca de borde diagonal, abajo a la derecha (como el portafolio de referencia). -->
+<a href={href} class="group relative block aspect-[4/3] overflow-hidden bg-ink">
+  <img
+    src={image.src}
+    srcset={image.srcset}
+    sizes={sizes}
+    alt={image.alt}
+    loading="lazy"
+    decoding="async"
+    class="size-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+    style={image.position ? `object-position:${image.position}` : undefined}
+  />
+  <span
+    class="absolute right-0 bottom-0 max-w-[82%] bg-white py-[10px] pr-[16px] pl-[30px] text-right [clip-path:polygon(18px_0,100%_0,100%_100%,0_100%)]"
+  >
+    {meta && <span class="block font-mono text-[0.68rem] leading-[1.4] tracking-[0.05em] text-brand-dark uppercase">{meta}</span>}
+    <span class="block text-[0.86rem] leading-[1.35] font-medium text-ink group-hover:text-brand-dark">{caption}</span>
+  </span>
+</a>
