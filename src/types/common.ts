@@ -21,6 +21,8 @@ export interface NavItem {
 /** Entrada del menú principal; la descripción se muestra en el menú móvil. */
 export interface MainNavItem extends NavItem {
   description?: string;
+  /** Panel desplegable en escritorio (lista de enlaces y foto); en móvil, sublista bajo la entrada. */
+  submenu?: { items: NavItem[]; image: ImageAsset };
 }
 
 export type SocialNetwork = 'facebook' | 'linkedin' | 'instagram' | 'tiktok';

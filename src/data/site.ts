@@ -1,4 +1,6 @@
 import type { SiteConfig } from '@/types';
+import { obraThumb } from '@/data/obras';
+import { categories } from '@/data/portfolio';
 
 /** Configuración global: navegación, contacto y redes de Tenax Construction. */
 export const site: SiteConfig = {
@@ -29,9 +31,28 @@ export const site: SiteConfig = {
   },
   // Orden del menú definido por Tenax (01-07); el logo enlaza al inicio.
   nav: [
-    { label: 'Nosotros', href: '/sobre-nosotros/', description: 'Trayectoria, filosofía y equipo' },
+    {
+      label: 'Nosotros',
+      href: '/sobre-nosotros/',
+      description: 'Trayectoria, filosofía y equipo',
+      submenu: {
+        items: [
+          { label: 'Quiénes Somos', href: '/sobre-nosotros/#quienes-somos' },
+          { label: 'Capacidades y Equipos', href: '/equipos/' },
+          { label: 'Seguridad, Calidad y Medio Ambiente', href: '/sobre-nosotros/#seguridad-calidad-medio-ambiente' },
+          { label: 'Nuestra Trayectoria', href: '/sobre-nosotros/#trayectoria' },
+          { label: 'Nuestro Equipo', href: '/sobre-nosotros/#equipo' },
+        ],
+        image: obraThumb('izaje-contenedor-1'),
+      },
+    },
     { label: 'Servicios', href: '/servicios/', description: 'Soluciones y capacidades técnicas' },
-    { label: 'Proyectos', href: '/proyectos/', description: 'Casos de éxito documentados' },
+    {
+      label: 'Proyectos',
+      href: '/proyectos/',
+      description: 'Casos de éxito documentados',
+      submenu: { items: categories.map((c) => ({ label: c.title, href: c.href })), image: obraThumb('nave-industrial-1') },
+    },
     { label: 'Sectores', href: '/sectores/', description: 'Industrias que atendemos' },
     { label: 'Equipos', href: '/equipos/', description: 'Maquinaria y capacidad operativa' },
     { label: 'Galería', href: '/galeria/' },
