@@ -1,9 +1,13 @@
 import type { HomeFormField, HomeContent } from '@/types';
 import { obraPhoto, obraThumb } from '@/data/obras';
+import { site } from '@/data/site';
 
 /** Contenido de la portada, con los textos del sitio de Tenax Construction. */
 
 const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
+
+/** "14 años de experiencia" en 2026: se recalcula en cada build a partir del año de fundación. */
+const yearsOfExperience = new Date().getFullYear() - site.business.foundingYear;
 
 export const home: HomeContent = {
   seo: {
@@ -12,13 +16,47 @@ export const home: HomeContent = {
       'Constructora dominicana de naves industriales, estructuras metálicas, movimiento de tierra y obras civiles, con oficina en Santo Domingo.',
   },
   hero: {
-    title: 'Constructora industrial en República Dominicana',
+    kicker: 'Constructora industrial en República Dominicana',
+    lines: ['Estructuras metálicas.', 'Movimiento de tierra.', 'Obras civiles.'],
     text: 'Especialistas en construcción industrial, estructuras metálicas, infraestructura energética, obras civiles, cimentaciones y movimiento de tierras en la República Dominicana.',
-    video: { webm: '/videos/tenax.webm', mp4: '/videos/tenax.mp4', poster: obraPhoto('inicio').src },
+    image: obraThumb('hero-estructura-atardecer'),
     buttons: [
       { label: 'Ver proyectos', href: '/proyectos/', variant: 'brand' },
       { label: 'Nuestros servicios', href: '/servicios/', variant: 'white' },
     ],
+  },
+  vision: {
+    visionLabel: 'Nuestra visión',
+    title: 'Construimos el futuro con ingeniería y solidez, desde 2012.',
+    text: [
+      `TENAX Construction cuenta con ${yearsOfExperience} años de experiencia en el `,
+      { highlight: 'desarrollo y ejecución de proyectos de ingeniería y construcción' },
+      ', especializándose en estructuras metálicas, naves industriales, obras civiles y movimientos de tierra, con participación en los sectores ',
+      { highlight: 'industrial, comercial, logístico, agroindustrial y energético' },
+      '.',
+    ],
+    statsLabel: 'Tenax en cifras',
+    stats: [
+      { value: String(yearsOfExperience), label: 'Años de experiencia' },
+      { value: '+80', label: 'Proyectos ejecutados' },
+      { value: '5', label: 'Áreas de especialización' },
+    ],
+    valuesLabel: 'Nuestros valores',
+    values: [
+      { icon: 'compromiso', label: 'Compromiso' },
+      { icon: 'excelencia', label: 'Excelencia' },
+      { icon: 'seguridad', label: 'Seguridad' },
+      { icon: 'integridad', label: 'Integridad' },
+      { icon: 'precision', label: 'Precisión' },
+      { icon: 'responsabilidad', label: 'Responsabilidad' },
+    ],
+  },
+  earthworks: {
+    eyebrow: 'Movimientos de tierra',
+    title: 'Preparamos el terreno para grandes proyectos.',
+    text: 'En TENAX Construction ejecutamos movimientos de tierra, excavación, nivelación y compactación, preparando las condiciones necesarias para el desarrollo de nuevas obras.',
+    cta: { label: 'Conoce más', href: '/servicios/movimiento-tierra/' },
+    image: obraThumb('nivelacion-terreno-2'),
   },
   projectsHeading: 'Proyectos destacados',
   projects: [
