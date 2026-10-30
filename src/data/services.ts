@@ -468,9 +468,6 @@ export const services: Service[] = tenaxServices.map((s) => ({
 
 export const getService = (slug: string): Service | undefined => services.find((s) => s.slug === slug);
 
-/** Servicios de la portada: los cuatro con más obra fotografiada. */
-export const featuredServiceSlugs = ['movimiento-tierra', 'naves-industriales', 'puentes-alcantarillados', 'pavimentos'] as const;
-
 export const servicesPage: ServicesPageContent = {
   seo: {
     title: 'Servicios de construcción en RD',

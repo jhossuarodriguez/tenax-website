@@ -4,13 +4,8 @@ import { home } from '@/data/home';
 import HomeHero from '@/components/home/HomeHero.astro';
 import HomeVision from '@/components/home/HomeVision.astro';
 import FeatureBand from '@/components/home/FeatureBand.astro';
-import SectionHeading from '@/components/home/SectionHeading.astro';
-import HomeButton from '@/components/home/HomeButton.astro';
-import FeaturedProjects from '@/components/home/FeaturedProjects.astro';
-import ServiceCards from '@/components/home/ServiceCards.astro';
-import Solutions from '@/components/home/Solutions.astro';
-import HomeAbout from '@/components/home/HomeAbout.astro';
-import Reasons from '@/components/home/Reasons.astro';
+import HomeSpecialties from '@/components/home/HomeSpecialties.astro';
+import HomeShowcase from '@/components/home/HomeShowcase.astro';
 import ContactSection from '@/components/home/ContactSection.astro';
 import CtaBand from '@/components/home/CtaBand.astro';
 ---
@@ -22,29 +17,10 @@ import CtaBand from '@/components/home/CtaBand.astro';
   <!-- Movimientos de tierra -->
   <FeatureBand data={home.earthworks} />
 
-  <!-- Proyectos destacados -->
-  <section class="bg-surface pt-[72px] pb-[72px]">
-    <SectionHeading title={home.projectsHeading} class="mb-[36px]" />
-    <FeaturedProjects items={home.projects} />
-    <div data-reveal class="mt-[36px] flex justify-center">
-      <HomeButton href={home.projectsCta.href} variant="cta">{home.projectsCta.label}</HomeButton>
-    </div>
-  </section>
-
-  <!-- Servicios -->
-  <SectionHeading title={home.servicesHeading} />
-  <ServiceCards ctaLabel={home.serviceCtaLabel} />
-
-  <!-- Soluciones integrales en construcción -->
-  <Solutions data={home.solutions} class="mt-[84px]" />
-
-  <!-- Sobre nosotros -->
-  <SectionHeading title={home.about.heading} class="mt-[80px] mb-0" />
-  <HomeAbout data={home.about} />
-
-  <!-- Por qué elegirnos -->
-  <SectionHeading title={home.reasonsHeading} class="mt-[108px] mb-[36px]" />
-  <Reasons items={home.reasons} />
+  <!-- Diseño de Tenax en Canva (págs. 8-12): especialidades, proyectos destacados y barra naranja antes del contacto. -->
+  <HomeSpecialties data={home.specialties} />
+  <HomeShowcase data={home.showcase} />
+  <div class="h-[24px] bg-brand" aria-hidden="true"></div>
 
   <ContactSection data={home.contact} />
   <CtaBand data={home.ctaBand} />

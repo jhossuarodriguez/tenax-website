@@ -1,0 +1,62 @@
+---
+import type { HomeShowcaseData } from '@/types';
+import BrandRule from '@/components/home/BrandRule.astro';
+
+interface Props {
+  data: HomeShowcaseData;
+}
+
+const { data } = Astro.props;
+---
+
+<!--
+  "Proyectos Destacados" (diseño de Tenax en Canva, pág. 11): banda grafito con texto y una foto grande que
+  sobresale por arriba; debajo, tres proyectos con su pie, que enlazan a su ficha.
+-->
+<section class="relative bg-white lg:pt-[80px]">
+  <BrandRule />
+  <div class="bg-ink px-[20px] py-[56px] lg:pt-0 lg:pb-[72px]">
+    <div class="mx-auto grid max-w-[980px] gap-[40px] lg:grid-cols-[360fr_568fr] lg:items-start lg:gap-[52px]">
+      <div data-reveal-children class="lg:pt-[66px]">
+        <h2 class="font-display text-[clamp(2.1rem,3.6vw,3.2rem)] leading-[1.1] font-normal text-white">{data.title}</h2>
+        {data.paragraphs.map((p) => <p class="mt-[24px] text-[clamp(1.05rem,1.4vw,1.25rem)] leading-[1.35] text-white">{p}</p>)}
+      </div>
+      <div data-reveal class="aspect-[250/258] overflow-hidden bg-dark lg:-mt-[80px]">
+        <img
+          src={data.image.src}
+          srcset={data.image.srcset}
+          sizes="(min-width: 1020px) 568px, calc(100vw - 40px)"
+          alt={data.image.alt}
+          loading="lazy"
+          decoding="async"
+          class="size-full object-cover"
+        />
+      </div>
+    </div>
+  </div>
+
+  <ul data-reveal-children class="mx-auto grid max-w-[1150px] gap-x-[26px] gap-y-[32px] px-[20px] pt-[64px] pb-[44px] sm:grid-cols-2 lg:grid-cols-3">
+    {
+      data.projects.map((project) => (
+        <li>
+          <a href={project.href} class="group block">
+            <div class="aspect-[155/142] overflow-hidden bg-surface">
+              <img
+                src={project.image.src}
+                srcset={project.image.srcset}
+                sizes="(min-width: 1150px) 352px, (min-width: 1024px) calc((100vw - 92px) / 3), (min-width: 640px) calc((100vw - 66px) / 2), calc(100vw - 40px)"
+                alt={project.image.alt}
+                loading="lazy"
+                decoding="async"
+                class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+            </div>
+            <p class="mt-[10px] max-w-[72%] text-[12px] leading-[1.4] font-bold tracking-[0.02em] text-ink uppercase group-hover:text-brand">
+              {project.caption}
+            </p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
