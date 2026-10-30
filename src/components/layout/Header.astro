@@ -45,16 +45,20 @@ const navNumber = (i: number): string => String(i + 1).padStart(2, '0');
                       Los enlaces siguen alineados con el contenedor de 1200px; la columna de la foto suma el margen
                       derecho de la pantalla para llegar hasta la esquina sin dejar una franja vacía.
                     -->
-                    <div class="grid grid-cols-[minmax(0,1fr)_calc(380px_+_max(20px,_(100vw_-_1200px)_/_2_+_20px))] gap-[40px] pl-[max(20px,calc((100vw_-_1200px)/2_+_20px))]">
+                    <div class="grid grid-cols-[minmax(max-content,1fr)_minmax(240px,calc(380px_+_max(20px,_(100vw_-_1200px)_/_2_+_20px)))] gap-[40px] pl-[max(20px,calc((100vw_-_1200px)/2_+_20px))]">
                       <div class="py-[32px]">
                         <a href={item.href} class="flex items-center justify-between border-b border-white/15 pb-[14px] font-display text-[17px] tracking-[0.04em] text-brand uppercase hover:text-white">
                           {item.label}
                           <Icon name="arrow-right" size={16} />
                         </a>
-                        <ul class="mt-[20px] grid grid-cols-2 gap-x-[40px]">
+                        <!--
+                          Siempre 4 filas (las de Proyectos) y cada opción en una línea: así Nosotros, con 5 opciones,
+                          mide lo mismo. En pantallas angostas cede la foto (mínimo 240px), no el texto.
+                        -->
+                        <ul class="mt-[20px] grid grid-cols-2 grid-rows-4 gap-x-[40px]">
                           {item.submenu.items.map((sub) => (
                             <li>
-                              <a href={sub.href} class="flex items-baseline gap-[10px] py-[9px] text-[15px] leading-[1.4] text-white/90 hover:text-brand">
+                              <a href={sub.href} class="flex items-baseline gap-[10px] py-[9px] whitespace-nowrap text-[15px] leading-[1.4] text-white/90 hover:text-brand">
                                 <span class="text-brand" aria-hidden="true">↗</span>
                                 {sub.label}
                               </a>
