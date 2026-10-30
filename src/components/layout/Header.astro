@@ -24,18 +24,48 @@ const navNumber = (i: number): string => String(i + 1).padStart(2, '0');
       <ul class="flex items-center">
         {
           site.nav.map((item) => (
-            <li>
+            <li class="group">
               <a
                 href={item.href}
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 class:list={[
-                  'relative flex px-[8px] font-display text-[15px] leading-[72px] hover:text-brand lg:text-[16px] xl:px-[15px] xl:text-[17px]',
+                  'relative flex items-center gap-[4px] px-[8px] font-display text-[15px] leading-[72px] hover:text-brand lg:text-[16px] xl:px-[15px] xl:text-[17px]',
                   'after:absolute after:bottom-0 after:left-[0.6em] after:right-[0.6em] after:h-px after:origin-center after:scale-x-0 after:bg-current after:transition-transform hover:after:scale-x-100',
                   isActive(item.href) ? 'text-brand after:scale-x-100' : 'text-white/85',
                 ]}
               >
                 {item.label}
+                {item.submenu && <Icon name="chevron-down" size={12} class="opacity-70 transition-transform group-hover:rotate-180" />}
               </a>
+              {
+                // Panel desplegable (como el menú de referencia): se abre al pasar el ratón o al llegar con el teclado.
+                item.submenu && (
+                  <div class="invisible absolute inset-x-0 top-full border-t border-white/10 bg-ink opacity-0 shadow-[0_18px_30px_rgba(0,0,0,0.25)] transition-[opacity,visibility] duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                    <div class="mx-auto grid max-w-[1200px] grid-cols-[1fr_380px] gap-[40px] px-[20px]">
+                      <div class="py-[32px]">
+                        <a href={item.href} class="flex items-center justify-between border-b border-white/15 pb-[14px] font-display text-[17px] tracking-[0.04em] text-brand uppercase hover:text-white">
+                          {item.label}
+                          <Icon name="arrow-right" size={16} />
+                        </a>
+                        <ul class="mt-[20px] grid grid-cols-2 gap-x-[40px]">
+                          {item.submenu.items.map((sub) => (
+                            <li>
+                              <a href={sub.href} class="flex items-baseline gap-[10px] py-[9px] text-[15px] leading-[1.4] text-white/90 hover:text-brand">
+                                <span class="text-brand" aria-hidden="true">↗</span>
+                                {sub.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div class="relative">
+                        <img src={item.submenu.image.src} alt="" loading="lazy" decoding="async" class="absolute inset-0 size-full object-cover" />
+                        <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/40 to-transparent" aria-hidden="true"></div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
             </li>
           ))
         }
@@ -89,6 +119,18 @@ const navNumber = (i: number): string => String(i + 1).padStart(2, '0');
                     {item.description && <span class="block text-[13px] leading-[1.4] text-stone-2">{item.description}</span>}
                   </span>
                 </a>
+                {item.submenu && (
+                  <ul class="-mt-[4px] pb-[10px] pl-[52px]">
+                    {item.submenu.items.map((sub) => (
+                      <li>
+                        <a href={sub.href} class="flex items-baseline gap-[8px] py-[5px] text-[14px] leading-[1.4] text-white/75 hover:text-brand">
+                          <span class="text-brand" aria-hidden="true">↗</span>
+                          {sub.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))
           }
