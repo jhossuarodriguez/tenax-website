@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { home } from '@/data/home';
 import HomeHero from '@/components/home/HomeHero.astro';
+import HomeVision from '@/components/home/HomeVision.astro';
+import FeatureBand from '@/components/home/FeatureBand.astro';
 import SectionHeading from '@/components/home/SectionHeading.astro';
 import HomeButton from '@/components/home/HomeButton.astro';
 import FeaturedProjects from '@/components/home/FeaturedProjects.astro';
@@ -15,6 +17,10 @@ import CtaBand from '@/components/home/CtaBand.astro';
 
 <BaseLayout title={home.seo.title} description={home.seo.description}>
   <HomeHero hero={home.hero} />
+  <HomeVision data={home.vision} />
+
+  <!-- Movimientos de tierra -->
+  <FeatureBand data={home.earthworks} />
 
   <!-- Proyectos destacados -->
   <section class="bg-surface pt-[72px] pb-[72px]">

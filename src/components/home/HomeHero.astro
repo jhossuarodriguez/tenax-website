@@ -9,44 +9,33 @@ interface Props {
 const { hero } = Astro.props;
 ---
 
-<section class="relative isolate flex min-h-[719px] items-center overflow-hidden bg-black p-[16px] md:p-[24px]">
-  <!--
-    Póster detrás del video (que es transparente hasta su primer fotograma). Va en <picture> y no en el
-    atributo poster porque este se descarga siempre, también en móvil, donde no hay video: aquí la imagen
-    solo carga desde 768px, y con prioridad alta porque es lo primero que se ve.
-  -->
-  <picture>
-    <source media="(min-width: 768px)" srcset={hero.video.poster} type="image/avif" />
-    <img
-      src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      alt=""
-      fetchpriority="high"
-      decoding="async"
-      class="absolute inset-0 -z-20 hidden size-full object-cover md:block"
-    />
-  </picture>
-  <!--
-    El video solo se muestra desde 768px; en móvil el fondo queda negro. Va sin <source>: con autoplay el
-    navegador lo descargaba entero aunque estuviera oculto, así que el script los añade solo en escritorio.
-  -->
-  <video
-    class="absolute inset-0 -z-20 hidden size-full object-cover md:block"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="none"
-    aria-hidden="true"
-    data-hero-video
-    data-mp4={hero.video.mp4}
-    data-webm={hero.video.webm}
-  ></video>
-  <div class="absolute inset-0 -z-10 bg-black/80"></div>
+<section class="relative isolate flex min-h-[640px] items-center overflow-hidden bg-ink px-[16px] py-[64px] md:min-h-[719px] md:px-[24px]">
+  <!-- Foto de fondo con prioridad alta: es lo primero que se ve. El degradado oscurece solo el lado del texto. -->
+  <img
+    src={hero.image.src}
+    srcset={hero.image.srcset}
+    sizes="100vw"
+    alt=""
+    fetchpriority="high"
+    decoding="async"
+    class="absolute inset-0 -z-20 size-full object-cover"
+    style={hero.image.position ? `object-position:${hero.image.position}` : undefined}
+  />
+  <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.55)_50%,rgba(0,0,0,0.2)_100%)]"></div>
 
   <div class="mx-auto w-full max-w-[1200px]">
     <div data-reveal-children class="md:w-2/3">
-      <h1 class="font-display text-[40px] leading-[1.3] font-bold text-white md:text-[50px]">{hero.title}</h1>
-      <p class="mt-[24px] text-base leading-normal text-white">{hero.text}</p>
+      <h1 class="font-display font-bold text-white">
+        <span class="mb-[18px] block font-sans text-[0.8rem] leading-[1.5] font-semibold tracking-[0.08em] text-white/80 uppercase">{hero.kicker}</span>
+        {
+          hero.lines.map((line) => (
+            <span class="block">
+              <span class="mb-[8px] inline-block bg-brand px-[10px] py-[2px] text-[34px] leading-[1.25] box-decoration-clone md:text-[48px]">{line}</span>
+            </span>
+          ))
+        }
+      </h1>
+      <p class="mt-[24px] max-w-[560px] text-base leading-normal text-white">{hero.text}</p>
       <div class="mt-[24px] flex flex-wrap gap-[12px]">
         {
           hero.buttons.map((b) => (
@@ -59,65 +48,3 @@ const { hero } = Astro.props;
     </div>
   </div>
 </section>
-
-<script>
-  // Cada fotograma nuevo del video mientras se hace scroll baja los fps (se nota en pantallas de 144/240 Hz).
-  // Por eso se pausa al hacer scroll o al salir de pantalla, y se reanuda al detenerse con el video a la vista.
-  const RESUME_DELAY_MS = 200;
-  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
-
-  if (video) {
-    const desktop = window.matchMedia('(min-width: 768px)');
-
-    // El MP4 va primero porque pesa menos (713 KB frente a 760 KB del WebM); el navegador usa el primero que soporta.
-    // Ambos están muy comprimidos (H.264 CRF 34, VP9 CRF 52): la capa negra al 80 % tapa la pérdida de calidad.
-    const loadSources = () => {
-      if (video.childElementCount > 0) return;
-      for (const [src, type] of [
-        [video.dataset.mp4, 'video/mp4'],
-        [video.dataset.webm, 'video/webm'],
-      ]) {
-        const source = document.createElement('source');
-        source.src = src!;
-        source.type = type!;
-        video.append(source);
-      }
-      video.preload = 'auto';
-      video.load();
-    };
-
-    // Tras el evento load, para que el video no compita con el póster, que es lo primero que se pinta.
-    const loadWhenReady = () => {
-      if (document.readyState === 'complete') loadSources();
-      else window.addEventListener('load', loadSources, { once: true });
-    };
-
-    if (desktop.matches) loadWhenReady();
-    else desktop.addEventListener('change', (e) => e.matches && loadWhenReady());
-
-    let inView = false;
-    let resumeTimer: number | undefined;
-
-    const scheduleResume = () => {
-      clearTimeout(resumeTimer);
-      resumeTimer = window.setTimeout(() => {
-        if (inView) video.play().catch(() => {});
-      }, RESUME_DELAY_MS);
-    };
-
-    new IntersectionObserver(([entry]) => {
-      inView = entry.isIntersecting;
-      if (inView) scheduleResume();
-      else video.pause();
-    }).observe(video);
-
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (!video.paused) video.pause();
-        scheduleResume();
-      },
-      { passive: true },
-    );
-  }
-</script>

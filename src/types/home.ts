@@ -6,14 +6,41 @@ export interface HomeButton extends NavItem {
 }
 
 export interface HomeHeroData {
+  /** Primera línea del H1, pequeña: lleva la ubicación para buscadores. */
+  kicker: string;
+  /** Líneas grandes del H1, cada una sobre su recuadro naranja. */
+  lines: string[];
+  text: string;
+  /** Foto de fondo; se carga con prioridad alta porque es lo primero que se ve. */
+  image: ImageAsset;
+  buttons: HomeButton[];
+}
+
+/** Fragmento de párrafo; `highlight` va en naranja. */
+export type RichSegment = string | { highlight: string };
+
+export type HomeValueIcon = 'compromiso' | 'excelencia' | 'seguridad' | 'integridad' | 'precision' | 'responsabilidad';
+
+/** Sección bajo el hero: visión, cifras y valores, cada fila con su etiqueta a la izquierda. */
+export interface HomeVisionData {
+  visionLabel: string;
+  title: string;
+  text: RichSegment[];
+  statsLabel: string;
+  stats: { value: string; label: string }[];
+  valuesLabel: string;
+  values: { icon: HomeValueIcon; label: string }[];
+}
+
+/** Banda oscura con texto a la izquierda y foto (o video) a la derecha. */
+export interface HomeFeatureBandData {
+  eyebrow: string;
   title: string;
   text: string;
-  /**
-   * Video de fondo (solo escritorio/tablet): WebM ligero y MP4 de respaldo para navegadores sin WebM.
-   * El póster se ve mientras carga el video.
-   */
-  video: { webm: string; mp4: string; poster: string };
-  buttons: HomeButton[];
+  cta: NavItem;
+  image: ImageAsset;
+  /** Video opcional sobre la foto (pendiente: el del dron en Las Terrenas). */
+  video?: { mp4: string; webm?: string };
 }
 
 /** Tarjeta de "Proyectos destacados": foto, ubicación, título y alcance de la obra. */
@@ -75,6 +102,8 @@ export interface HomeContent {
   /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
   seo: { title: string; description: string };
   hero: HomeHeroData;
+  vision: HomeVisionData;
+  earthworks: HomeFeatureBandData;
   projectsHeading: string;
   projects: HomeProject[];
   projectsCta: NavItem;

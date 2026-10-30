@@ -1,0 +1,41 @@
+---
+import type { HomeFeatureBandData } from '@/types';
+
+interface Props {
+  data: HomeFeatureBandData;
+}
+
+const { data } = Astro.props;
+---
+
+<!-- Banda de servicio (como la de la página de referencia): texto sobre grafito y foto o video a la derecha. -->
+<section class="grid bg-ink md:grid-cols-2">
+  <div data-reveal-children class="flex flex-col justify-center px-[24px] py-[56px] md:py-[72px] md:pr-[48px] md:pl-[max(24px,calc((100vw-1200px)/2))]">
+    <p class="font-mono text-[0.74rem] tracking-[0.06em] text-brand uppercase">{data.eyebrow}</p>
+    <h2 class="mt-[14px] max-w-[460px] text-[clamp(1.6rem,3vw,2.2rem)] leading-[1.2] font-semibold text-white">{data.title}</h2>
+    <p class="mt-[16px] max-w-[480px] text-[1rem] leading-[1.7] text-sand">{data.text}</p>
+    <a href={data.cta.href} class="mt-[28px] inline-flex items-center gap-[8px] self-start font-display text-[0.95rem] tracking-[0.06em] text-brand uppercase hover:text-white">
+      {data.cta.label}
+      <span aria-hidden="true">↗</span>
+    </a>
+  </div>
+  <div class="relative min-h-[300px] md:min-h-[420px]">
+    <img
+      src={data.image.src}
+      srcset={data.image.srcset}
+      sizes="(min-width: 768px) 50vw, 100vw"
+      alt={data.image.alt}
+      loading="lazy"
+      decoding="async"
+      class="absolute inset-0 size-full object-cover"
+    />
+    {
+      data.video && (
+        <video class="absolute inset-0 size-full object-cover" autoplay muted loop playsinline preload="none" aria-hidden="true">
+          {data.video.webm && <source src={data.video.webm} type="video/webm" />}
+          <source src={data.video.mp4} type="video/mp4" />
+        </video>
+      )
+    }
+  </div>
+</section>

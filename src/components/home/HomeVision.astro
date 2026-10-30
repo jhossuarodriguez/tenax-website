@@ -1,0 +1,66 @@
+---
+import type { HomeValueIcon, HomeVisionData } from '@/types';
+import Icon, { type IconName } from '@/components/ui/Icon.astro';
+
+interface Props {
+  data: HomeVisionData;
+}
+
+const { data } = Astro.props;
+
+const valueIcons: Record<HomeValueIcon, IconName> = {
+  compromiso: 'shield-check',
+  excelencia: 'award',
+  seguridad: 'hard-hat',
+  integridad: 'handshake',
+  precision: 'ruler',
+  responsabilidad: 'circle-check',
+};
+
+const rowClass = 'grid gap-[16px] border-b border-cream-2 py-[36px] last:border-b-0 md:grid-cols-[200px_1fr] md:gap-[40px]';
+const labelClass =
+  'font-mono text-[0.72rem] leading-[1.6] tracking-[0.06em] text-stone uppercase after:mt-[10px] after:block after:h-[2px] after:w-[28px] after:bg-brand';
+---
+
+<!-- Bajo la portada: visión, cifras y valores, cada fila con su etiqueta a la izquierda. -->
+<section class="bg-surface px-[20px]">
+  <div class="mx-auto max-w-[1100px]">
+    <div data-reveal class={rowClass}>
+      <p class={labelClass}>{data.visionLabel}</p>
+      <div>
+        <h2 class="max-w-[620px] text-[clamp(1.6rem,3vw,2.1rem)] leading-[1.25] font-semibold text-ink">{data.title}</h2>
+        <p class="mt-[16px] max-w-[720px] text-[1.02rem] leading-[1.7] text-body">
+          {data.text.map((seg) => (typeof seg === 'string' ? seg : <strong class="font-medium text-brand-dark">{seg.highlight}</strong>))}
+        </p>
+      </div>
+    </div>
+
+    <div data-reveal class={rowClass}>
+      <p class={labelClass}>{data.statsLabel}</p>
+      <dl class="grid grid-cols-3">
+        {
+          data.stats.map((s, i) => (
+            <div class:list={['flex flex-col-reverse px-[12px] first:pl-0 md:px-[28px]', i > 0 && 'border-l border-sand']}>
+              <dt class="text-[0.82rem] leading-[1.4] text-stone">{s.label}</dt>
+              <dd class="font-display text-[clamp(1.8rem,3.4vw,2.4rem)] leading-[1.2] font-semibold text-ink">{s.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div data-reveal class={rowClass}>
+      <p class={labelClass}>{data.valuesLabel}</p>
+      <ul class="grid grid-cols-3 gap-y-[24px] lg:grid-cols-6">
+        {
+          data.values.map((v, i) => (
+            <li class:list={['flex flex-col items-center gap-[10px] px-[8px] text-center', i % 6 > 0 && 'lg:border-l lg:border-sand', i % 3 > 0 && 'max-lg:border-l max-lg:border-sand']}>
+              <Icon name={valueIcons[v.icon]} size={30} strokeWidth={1.5} class="text-ink" />
+              <span class="text-[0.82rem] leading-[1.3] font-medium text-ink">{v.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
