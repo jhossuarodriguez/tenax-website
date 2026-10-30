@@ -16,7 +16,7 @@ export interface HomeHeroData {
   buttons: HomeButton[];
 }
 
-/** Fragmento de párrafo; `highlight` va en naranja. */
+/** Fragmento de párrafo; `highlight` va resaltado (en naranja en la visión). */
 export type RichSegment = string | { highlight: string };
 
 export type HomeValueIcon = 'compromiso' | 'excelencia' | 'seguridad' | 'integridad' | 'precision' | 'responsabilidad';
@@ -43,50 +43,43 @@ export interface HomeFeatureBandData {
   video?: { mp4: string; webm?: string };
 }
 
-/** Tarjeta de "Proyectos destacados": foto, ubicación, título y alcance de la obra. */
-export interface HomeProject {
+/** Foto con pie y enlace: tarjetas de especialidades y de proyectos destacados de la portada. */
+export interface HomeLinkedPhoto {
   image: ImageAsset;
-  /** Ubicación y cliente o tipo de obra: "Baní · Centro de acopio". */
-  eyebrow: string;
-  title: string;
-  text: string;
+  /** Pie en mayúsculas bajo la foto. */
+  caption: string;
+  href: string;
 }
 
-/** Tarjeta numerada de "Soluciones integrales en construcción". */
-export interface HomeSolution {
-  title: string;
-  text: string;
-  image: ImageAsset;
+/**
+ * Columna del collage de especialidades. Ancho y altos son las medidas del diseño de Tenax en Canva:
+ * solo cuentan sus proporciones, para que las tres columnas terminen a la misma altura.
+ */
+export interface HomeCollageColumn {
+  width: number;
+  photos: { image: ImageAsset; height: number }[];
 }
 
-export interface HomeSolutionsData {
-  eyebrow: string;
+/** "Nuestras especialidades": banda oscura con collage y texto; debajo, una foto por especialidad. */
+export interface HomeSpecialtiesData {
   title: string;
-  text: string;
-  /** Enlace "Conocer más" de las tarjetas. */
-  cta: NavItem;
-  items: HomeSolution[];
+  lead: string;
+  /** `highlight` va en negrita. */
+  text: RichSegment[];
+  /** Columnas del collage, de izquierda a derecha. */
+  collage: HomeCollageColumn[];
+  items: HomeLinkedPhoto[];
 }
 
-/** Bloque "Sobre Nosotros": imagen principal y presentación de la empresa. */
-export interface HomeAboutData {
-  heading: string;
+/** "Proyectos destacados": banda oscura con texto y foto grande; debajo, tres proyectos. */
+export interface HomeShowcaseData {
   title: string;
   paragraphs: string[];
   image: ImageAsset;
-  /** Fotos del carrusel, desactivado (comentado) en HomeAbout.astro. */
-  slides: ImageAsset[];
-}
-
-export interface HomeReason {
-  number: string;
-  title: string;
-  text: string;
+  projects: HomeLinkedPhoto[];
 }
 
 export interface HomeContactData {
-  /** Imagen de fondo fija sobre el formulario. */
-  bandImage: string;
   title: string;
   text: string;
 }
@@ -104,15 +97,8 @@ export interface HomeContent {
   hero: HomeHeroData;
   vision: HomeVisionData;
   earthworks: HomeFeatureBandData;
-  projectsHeading: string;
-  projects: HomeProject[];
-  projectsCta: NavItem;
-  servicesHeading: string;
-  serviceCtaLabel: string;
-  solutions: HomeSolutionsData;
-  about: HomeAboutData;
-  reasonsHeading: string;
-  reasons: HomeReason[];
+  specialties: HomeSpecialtiesData;
+  showcase: HomeShowcaseData;
   contact: HomeContactData;
   ctaBand: HomeCtaBandData;
 }

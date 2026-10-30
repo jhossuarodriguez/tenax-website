@@ -1,0 +1,90 @@
+---
+import type { HomeSpecialtiesData } from '@/types';
+import BrandRule from '@/components/home/BrandRule.astro';
+
+interface Props {
+  data: HomeSpecialtiesData;
+}
+
+const { data } = Astro.props;
+const collage = data.collage;
+// Proporciones del collage del diseño: anchos de columna y alto de la más alta (las tres miden casi lo mismo).
+const columnsTemplate = collage.map((c) => `${c.width}fr`).join(' ');
+const collageWidth = collage.reduce((sum, c) => sum + c.width, 0);
+const collageHeight = Math.max(...collage.map((c) => c.photos.reduce((sum, p) => sum + p.height, 0)));
+---
+
+<!--
+  "Nuestras Especialidades" (diseño de Tenax en Canva, pág. 10): banda grafito con collage a la izquierda y
+  texto a la derecha. El collage sobresale por debajo de la banda; luego, una foto por especialidad.
+-->
+<section class="bg-ink px-[20px] pt-[64px] pb-[56px] lg:pt-[92px] lg:pb-0">
+  <div class="mx-auto grid max-w-[1180px] gap-[48px] lg:grid-cols-[257fr_226fr] lg:items-start lg:gap-[64px]">
+    <div
+      class="relative z-10 grid gap-[12px] lg:-mb-[28px] lg:gap-[18px]"
+      style={`grid-template-columns:${columnsTemplate};aspect-ratio:${collageWidth}/${collageHeight}`}
+      aria-hidden="true"
+    >
+      {
+        collage.map((column) => (
+          <div class="flex min-h-0 flex-col gap-[12px] lg:gap-[18px]">
+            {column.photos.map(({ image, height }) => (
+              <div class="min-h-0 basis-0 overflow-hidden bg-dark" style={`flex-grow:${height}`}>
+                <img
+                  src={image.src}
+                  srcset={image.srcset}
+                  sizes="(min-width: 1180px) 230px, 30vw"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  class="size-full object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+
+    <div data-reveal-children class="max-lg:order-first lg:pt-[64px]">
+      <h2
+        class="font-display text-[clamp(2.1rem,3.6vw,3.2rem)] leading-[1.1] font-normal text-white after:mt-[18px] after:block after:h-[3px] after:w-[94px] after:bg-brand"
+      >
+        {data.title}
+      </h2>
+      <p class="mt-[32px] max-w-[520px] text-[clamp(1.05rem,1.4vw,1.25rem)] leading-[1.35] font-bold text-white">{data.lead}</p>
+      <p class="mt-[24px] max-w-[520px] text-[clamp(1.05rem,1.4vw,1.25rem)] leading-[1.35] text-white">
+        {data.text.map((seg) => (typeof seg === 'string' ? seg : <strong class="font-bold">{seg.highlight}</strong>))}
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Una foto por especialidad: tres arriba y dos centradas abajo, con el pie a la derecha. -->
+<div class="relative bg-white px-[20px] pt-[64px] pb-[72px] lg:pt-[150px]">
+  <BrandRule />
+  <ul data-reveal-children class="mx-auto flex max-w-[1180px] flex-wrap justify-center gap-x-[14px] gap-y-[28px]">
+    {
+      data.items.map((item) => (
+        <li class="w-full sm:w-[calc((100%-14px)/2)] lg:w-[calc((100%-28px)/3)]">
+          <a href={item.href} class="group block">
+            <div class="aspect-[174/126] overflow-hidden bg-surface">
+              <img
+                src={item.image.src}
+                srcset={item.image.srcset}
+                sizes="(min-width: 1220px) 384px, (min-width: 1024px) calc((100vw - 68px) / 3), (min-width: 640px) calc((100vw - 54px) / 2), calc(100vw - 40px)"
+                alt={item.image.alt}
+                loading="lazy"
+                decoding="async"
+                class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+            </div>
+            <p class="mt-[10px] text-right text-[12px] leading-[1.4] font-bold tracking-[0.04em] text-ink uppercase group-hover:text-brand">
+              {item.caption}
+            </p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

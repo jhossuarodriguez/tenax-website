@@ -1,10 +1,18 @@
 import type { HomeFormField, HomeContent } from '@/types';
-import { obraPhoto, obraThumb } from '@/data/obras';
+import { obraThumb } from '@/data/obras';
+import { portfolio } from '@/data/portfolio';
 import { site } from '@/data/site';
 
 /** Contenido de la portada, con los textos del sitio de Tenax Construction. */
 
 const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
+
+/** Enlace a la ficha de un proyecto del portafolio; falla el build si el proyecto no existe. */
+const projectHref = (slug: string): string => {
+  const project = portfolio.find((p) => p.slug === slug);
+  if (!project) throw new Error(`Portada: no existe el proyecto "${slug}"`);
+  return project.href;
+};
 
 /** "14 años de experiencia" en 2026: se recalcula en cada build a partir del año de fundación. */
 const yearsOfExperience = new Date().getFullYear() - site.business.foundingYear;
@@ -58,104 +66,80 @@ export const home: HomeContent = {
     cta: { label: 'Conoce más', href: '/servicios/movimiento-tierra/' },
     image: obraThumb('nivelacion-terreno-2'),
   },
-  projectsHeading: 'Proyectos destacados',
-  projects: [
-    {
-      image: obraThumb('nave-industrial-bani'),
-      eyebrow: 'Baní · Centro de acopio',
-      title: 'Nave para exportación de mango',
-      text: 'Nave industrial destinada a acopio, almacenamiento y operación logística.',
-    },
-    {
-      image: obraThumb('nave-bodega-temporal-1'),
-      eyebrow: 'Caucedo · BIT',
-      title: 'Bodega de importación temporal',
-      text: 'Infraestructura para almacenamiento y actividades logísticas.',
-    },
-    {
-      image: obraThumb('escalera-emergencia-1'),
-      eyebrow: 'Av. Abraham Lincoln · Rannik',
-      title: 'Escalera de emergencias',
-      text: 'Integración de estructura metálica a edificación existente.',
-    },
-    {
-      image: obraThumb('movimiento-tierra-samana-1'),
-      eyebrow: 'Las Terrenas · Silver Beach',
-      title: 'Movimiento de tierras y nivelación de terreno',
-      text: 'Preparación y conformación del terreno para el desarrollo del proyecto Silver Beach.',
-    },
-    {
-      image: obraThumb('pavimento-1'),
-      eyebrow: 'Haina · Container yard',
-      title: 'Pavimento en patio operativo',
-      text: 'Pavimento de concreto para container yard de una agencia naviera.',
-    },
-    {
-      image: obraThumb('puente-alcantarillado-6'),
-      eyebrow: 'Obra civil · Puente alcantarillado',
-      title: 'Puente alcantarillado',
-      text: 'Ejecución de infraestructura de drenaje y paso vehicular para obra civil.',
-    },
-  ],
-  projectsCta: { label: 'Explora nuestros proyectos', href: '/proyectos/' },
-  servicesHeading: 'Nuestros Servicios',
-  serviceCtaLabel: 'Ver más detalles',
-  solutions: {
-    eyebrow: 'Tenax Construction / Nuestra forma de trabajar',
-    title: 'Soluciones integrales en construcción',
-    text: 'Acompañamos el desarrollo de cada obra con planificación, diseño, seguimiento y análisis técnico.',
-    cta: { label: 'Conocer más', href: '/servicios/' },
+  // Diseño de Tenax en Canva (págs. 8-12): especialidades y proyectos destacados; sale lo demás.
+  specialties: {
+    title: 'Nuestras Especialidades',
+    lead: 'Hemos tenido la oportunidad de participar en una amplia variedad de proyectos de ingeniería y construcción.',
+    text: [
+      'A lo largo de nuestra trayectoria, ',
+      { highlight: 'Tenax Construction' },
+      ' ha desarrollado experiencia en diferentes áreas de la construcción, participando en proyectos que abarcan desde estructuras metálicas y naves industriales hasta movimientos de tierra, cimentaciones, pavimentos, remodelaciones e instalaciones para energía solar.',
+    ],
+    collage: [
+      {
+        width: 86,
+        photos: [
+          { image: obraThumb('inicio'), height: 48 },
+          { image: obraThumb('andamio-rojo-1'), height: 136 },
+          { image: obraThumb('puente-alcantarillado-6'), height: 110 },
+        ],
+      },
+      {
+        width: 91,
+        photos: [
+          { image: obraThumb('parque-fotovoltaico-mata-de-palma'), height: 90 },
+          { image: obraThumb('galeria-1'), height: 138 },
+          { image: obraThumb('nave-bodega-temporal-1'), height: 68 },
+        ],
+      },
+      {
+        width: 60,
+        photos: [
+          { image: obraThumb('techo-policarbonato-1'), height: 70 },
+          { image: obraThumb('vallado-perimetral-3'), height: 137 },
+          { image: obraThumb('colocacion-hormigon-1'), height: 89 },
+        ],
+      },
+    ],
     items: [
+      { image: obraThumb('nave-industrial-1'), caption: 'Estructuras metálicas', href: '/servicios/estructura-metalica/' },
+      { image: obraThumb('parque-fotovoltaico-calabaza'), caption: 'Energía', href: '/proyectos/energia/' },
+      { image: obraThumb('galeria-6'), caption: 'Pavimento y cimentaciones', href: '/servicios/pavimentos/' },
       {
-        title: 'Administración de Proyectos',
-        text: 'Organización de actividades, recursos y cronogramas para coordinar la ejecución de cada proyecto.',
-        image: obraThumb('inicio'),
+        image: obraThumb('movimiento-tierra-1'),
+        caption: 'Movimientos de tierra y nivelación de terreno',
+        href: '/servicios/movimiento-tierra/',
       },
-      {
-        title: 'Diseño y Construcción',
-        text: 'Desarrollo y ejecución de soluciones constructivas, como la nave para acopio y exportación de mango en Baní.',
-        image: obraThumb('nave-industrial-6'),
-      },
-      {
-        title: 'Supervisión de Obras Civiles',
-        text: 'Seguimiento de trabajos en campo, verificación de avances y control de la ejecución según especificaciones.',
-        image: obraThumb('colocacion-hormigon-1'),
-      },
-      {
-        title: 'Estudios de Viabilidad',
-        text: 'Evaluación preliminar de condiciones y alternativas técnicas para orientar decisiones antes de construir.',
-        image: obraThumb('galeria-1'),
-      },
+      { image: obraThumb('puente-alcantarillado-4'), caption: 'Obras civiles', href: '/servicios/' },
     ],
   },
-  about: {
-    heading: 'Sobre Nosotros',
-    title: 'TENAX CONSTRUCTION, S.R.L.',
+  showcase: {
+    title: 'Proyectos Destacados',
     paragraphs: [
-      'En TENAX CONSTRUCTION somos una empresa dominicana de ingeniería, arquitectura y construcción, especializada en el desarrollo y ejecución de proyectos industriales, comerciales y de infraestructura.',
-      'Nuestra trayectoria abarca la construcción de naves industriales, estructuras metálicas, cimentaciones, pavimentos de concreto, movimientos de tierra y obras civiles, con participación en proyectos de los sectores logístico, agroindustrial, energético y turístico.',
-      'Contamos con personal técnico especializado, maquinaria pesada y experiencia en campo para ofrecer soluciones adaptadas a los requerimientos de cada proyecto, integrando planificación, coordinación y ejecución constructiva.',
+      'Nuestro trabajo forma parte del desarrollo de espacios, infraestructuras y edificaciones que impulsan el crecimiento de distintos sectores.',
+      'Te invitamos a conocer algunos de nuestros proyectos, donde la experiencia, la ingeniería y la construcción se materializan en obras sólidas, duraderas y que aportan valor a su entorno y a las comunidades que sirven.',
     ],
-    image: {
-      src: img('arq-gilberto-ramirez'),
-      srcset: `${img('arq-gilberto-ramirez-800')} 800w, ${img('arq-gilberto-ramirez')} 1437w`,
-      alt: 'Arq. Gilberto Ramírez, con chaleco de seguridad, en un patio de contenedores junto a una excavadora',
-    },
-    slides: [
-      { src: img('about-image'), alt: 'Proyecto de paneles solares de Tenax Construction' },
-      { src: img('banner2'), alt: 'Supervisión de excavación en obra' },
-      { src: img('banner1'), alt: 'Excavadora en trabajos de movimiento de tierra' },
+    // Pendiente: las dos fotos de la escalera pintada del diseño; mientras, las de la escalera en obra.
+    image: obraThumb('escalera-emergencia-2'),
+    projects: [
+      {
+        image: obraThumb('escalera-emergencia-1'),
+        caption: 'Diseño y construcción de escalera metálica de emergencia para edificio corporativo – Av. Abraham Lincoln, Distrito Nacional, República Dominicana',
+        href: projectHref('escalera-emergencia'),
+      },
+      {
+        image: obraThumb('parque-fotovoltaico-mata-de-palma'),
+        caption: 'Obras de arte y drenaje en parque fotovoltaico Mata de Palma, República Dominicana',
+        href: projectHref('parque-fotovoltaico-mata-de-palma'),
+      },
+      {
+        image: obraThumb('nave-mango-bani-aerea'),
+        caption: 'Estructura y cubierta metálica de nave planta hidrotérmica y empacadora de mango en Matanzas, Baní, República Dominicana',
+        href: projectHref('nave-acopio-mango-bani'),
+      },
     ],
   },
-  reasonsHeading: '¿Por qué elegirnos?',
-  reasons: [
-    { number: '01', title: 'Experiencia Local', text: 'Profundo conocimiento del contexto dominicano.' },
-    { number: '02', title: 'Equipo Experto', text: 'Profesionales altamente capacitados en diversas áreas.' },
-    { number: '03', title: 'Compromiso con la Sostenibilidad', text: 'Fomentamos prácticas responsables con el medio ambiente.' },
-    { number: '04', title: 'Resultados Garantizados', text: 'Entregamos proyectos que superan las expectativas.' },
-  ],
   contact: {
-    bandImage: obraPhoto('nave-industrial-bani').src,
     title: 'Solicita tu cotización',
     text: 'Completa el formulario y te contactaremos en las próximas 24 horas.',
   },
