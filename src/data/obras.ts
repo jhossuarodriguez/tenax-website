@@ -272,6 +272,46 @@ export const obraPhotos = {
     location: 'Peravia, Baní',
     alt: 'Obreros instalando la malla ciclónica del vallado perimetral',
   },
+
+  // Fotos del documento de contenido de Tenax (octubre de 2026).
+  'hero-estructura-atardecer': {
+    title: 'Montaje de estructura metálica',
+    alt: 'Pórticos de acero de una nave en montaje al atardecer, con una grúa izando una viga',
+  },
+  'parque-fotovoltaico-mata-de-palma': {
+    title: 'Obras de arte y drenaje en parque fotovoltaico',
+    location: 'Mata de Palma',
+    alt: 'Cuneta de hormigón a lo largo de un camino entre filas de paneles solares',
+  },
+  'parque-fotovoltaico-calabaza': {
+    title: 'Caminos de tierra en parque fotovoltaico',
+    alt: 'Vista aérea de un parque fotovoltaico con sus caminos de tierra entre colinas',
+  },
+  'parque-fotovoltaico-sabana-de-la-mar': {
+    title: 'Obras civiles en parque fotovoltaico',
+    location: 'Sabana de la Mar',
+    alt: 'Paneles solares sobre bases de hormigón frente a un palmar',
+  },
+  'parque-fotovoltaico-san-pedro': {
+    title: 'Movimiento de tierra y obras civiles para parque fotovoltaico',
+    location: 'San Pedro de Macorís',
+    alt: 'Vista aérea de un parque fotovoltaico con sus bloques de paneles',
+  },
+  'nave-ceramitejas-villa-mella': {
+    title: 'Nave industrial para uso comercial',
+    location: 'Villa Mella',
+    alt: 'Nave de lámina metálica con mercancía y un camión de carga en el patio',
+  },
+  'supermercado-villa-mella': {
+    title: 'Nave industrial para supermercado',
+    location: 'Villa Mella',
+    alt: 'Supermercado con fachada naranja y nave de lámina metálica, con su explanada de parqueo',
+  },
+  'container-yard-haina': {
+    title: 'Pavimento de container yard',
+    location: 'Haina',
+    alt: 'Patio de contenedores con pavimento terminado y contenedores azules al fondo',
+  },
 } satisfies Record<string, ObraPhoto>;
 
 export type ObraPhotoId = keyof typeof obraPhotos;
