@@ -41,7 +41,11 @@ const navNumber = (i: number): string => String(i + 1).padStart(2, '0');
                 // Panel desplegable (como el menú de referencia): se abre al pasar el ratón o al llegar con el teclado.
                 item.submenu && (
                   <div class="invisible absolute inset-x-0 top-full border-t border-white/10 bg-ink opacity-0 shadow-[0_18px_30px_rgba(0,0,0,0.25)] transition-[opacity,visibility] duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                    <div class="mx-auto grid max-w-[1200px] grid-cols-[1fr_380px] gap-[40px] px-[20px]">
+                    <!--
+                      Los enlaces siguen alineados con el contenedor de 1200px; la columna de la foto suma el margen
+                      derecho de la pantalla para llegar hasta la esquina sin dejar una franja vacía.
+                    -->
+                    <div class="grid grid-cols-[minmax(0,1fr)_calc(380px_+_max(20px,_(100vw_-_1200px)_/_2_+_20px))] gap-[40px] pl-[max(20px,calc((100vw_-_1200px)/2_+_20px))]">
                       <div class="py-[32px]">
                         <a href={item.href} class="flex items-center justify-between border-b border-white/15 pb-[14px] font-display text-[17px] tracking-[0.04em] text-brand uppercase hover:text-white">
                           {item.label}
@@ -59,7 +63,15 @@ const navNumber = (i: number): string => String(i + 1).padStart(2, '0');
                         </ul>
                       </div>
                       <div class="relative">
-                        <img src={item.submenu.image.src} alt="" loading="lazy" decoding="async" class="absolute inset-0 size-full object-cover" />
+                        <img
+                          src={item.submenu.image.src}
+                          srcset={item.submenu.image.srcset}
+                          sizes="calc(380px + max(20px, (100vw - 1200px) / 2 + 20px))"
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          class="absolute inset-0 size-full object-cover"
+                        />
                         <div class="absolute inset-0 bg-gradient-to-r from-ink via-ink/40 to-transparent" aria-hidden="true"></div>
                       </div>
                     </div>
