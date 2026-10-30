@@ -51,7 +51,7 @@ export const site: SiteConfig = {
       label: 'Proyectos',
       href: '/proyectos/',
       description: 'Casos de éxito documentados',
-      submenu: { items: categories.map((c) => ({ label: c.title, href: c.href })), image: obraThumb('nave-industrial-1') },
+      submenu: { items: categories.map((c) => ({ label: c.title, href: c.href })), image: obraThumb('estructura-acero-epp-1') },
     },
     { label: 'Sectores', href: '/sectores/', description: 'Industrias que atendemos' },
     { label: 'Equipos', href: '/equipos/', description: 'Maquinaria y capacidad operativa' },
