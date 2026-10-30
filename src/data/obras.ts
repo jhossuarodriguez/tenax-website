@@ -307,6 +307,11 @@ export const obraPhotos = {
     location: 'Villa Mella',
     alt: 'Supermercado con fachada naranja y nave de lámina metálica, con su explanada de parqueo',
   },
+  'nave-mango-bani-aerea': {
+    title: 'Estructura y cubierta metálica de nave para planta empacadora de mango',
+    location: 'Matanzas, Baní',
+    alt: 'Vista aérea de la nave terminada, con techo blanco y paredes verdes, junto a su parqueo asfaltado',
+  },
   'container-yard-haina': {
     title: 'Pavimento de container yard',
     location: 'Haina',
