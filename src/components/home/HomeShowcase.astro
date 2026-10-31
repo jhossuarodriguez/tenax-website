@@ -18,7 +18,7 @@ const { data } = Astro.props;
   <div class="bg-ink px-[20px] py-[56px] lg:pt-0 lg:pb-[72px]">
     <div class="mx-auto grid max-w-[980px] gap-[40px] lg:grid-cols-[360fr_568fr] lg:items-start lg:gap-[52px]">
       <div data-reveal-children class="lg:pt-[66px]">
-        <h2 class="font-display text-[clamp(2.1rem,3.6vw,3.2rem)] leading-[1.1] font-normal text-white">{data.title}</h2>
+        <h2 class="font-display text-[clamp(2.1rem,3.6vw,3.2rem)] leading-[1.1] font-semibold text-white">{data.title}</h2>
         {data.paragraphs.map((p) => <p class="mt-[24px] text-[clamp(1.05rem,1.4vw,1.25rem)] leading-[1.35] text-white">{p}</p>)}
       </div>
       <div data-reveal class="aspect-[250/258] overflow-hidden bg-dark lg:-mt-[80px]">

@@ -48,7 +48,7 @@ const collageHeight = Math.max(...collage.map((c) => c.photos.reduce((sum, p) =>
 
     <div data-reveal-children class="max-lg:order-first lg:pt-[64px]">
       <h2
-        class="font-display text-[clamp(2.1rem,3.6vw,3.2rem)] leading-[1.1] font-normal text-white after:mt-[18px] after:block after:h-[3px] after:w-[94px] after:bg-brand"
+        class="font-display text-[clamp(2.1rem,3.6vw,3.2rem)] leading-[1.1] font-semibold text-white after:mt-[18px] after:block after:h-[3px] after:w-[94px] after:bg-brand"
       >
         {data.title}
       </h2>
@@ -60,26 +60,39 @@ const collageHeight = Math.max(...collage.map((c) => c.photos.reduce((sum, p) =>
   </div>
 </section>
 
-<!-- Una foto por especialidad: tres arriba y dos centradas abajo, con el pie a la derecha. -->
+<!--
+  Una foto por especialidad en mosaico casi sin separación: cuadrícula de 3 × 2 en la que la foto "wide" ocupa
+  dos casillas, así las cinco quedan alineadas. El pie va en una pestaña blanca de borde diagonal sobre la
+  esquina inferior derecha de la foto.
+-->
 <div class="relative bg-white px-[20px] pt-[64px] pb-[72px] lg:pt-[150px]">
   <BrandRule />
-  <ul data-reveal-children class="mx-auto flex max-w-[1180px] flex-wrap justify-center gap-x-[14px] gap-y-[28px]">
+  <ul data-reveal-children class="mx-auto grid max-w-[1180px] gap-[6px] sm:grid-flow-row-dense sm:grid-cols-2 lg:grid-cols-3">
     {
       data.items.map((item) => (
-        <li class="w-full sm:w-[calc((100%-14px)/2)] lg:w-[calc((100%-28px)/3)]">
-          <a href={item.href} class="group block">
-            <div class="aspect-[174/126] overflow-hidden bg-surface">
-              <img
-                src={item.image.src}
-                srcset={item.image.srcset}
-                sizes="(min-width: 1220px) 384px, (min-width: 1024px) calc((100vw - 68px) / 3), (min-width: 640px) calc((100vw - 54px) / 2), calc(100vw - 40px)"
-                alt={item.image.alt}
-                loading="lazy"
-                decoding="async"
-                class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-              />
-            </div>
-            <p class="mt-[10px] text-right text-[12px] leading-[1.4] font-bold tracking-[0.04em] text-ink uppercase group-hover:text-brand">
+        <li class:list={[item.wide && 'relative sm:col-span-2']}>
+          <a
+            href={item.href}
+            class:list={[
+              'group relative block overflow-hidden bg-surface',
+              // En escritorio la ancha no impone alto: rellena su casilla y la fila toma el alto de su vecina.
+              item.wide ? 'aspect-[174/126] sm:aspect-[354/126] lg:absolute lg:inset-0 lg:aspect-auto' : 'aspect-[174/126]',
+            ]}
+          >
+            <img
+              src={item.image.src}
+              srcset={item.image.srcset}
+              sizes={
+                item.wide
+                  ? '(min-width: 1220px) 786px, (min-width: 1024px) calc((100vw - 52px) * 2 / 3), calc(100vw - 40px)'
+                  : '(min-width: 1220px) 390px, (min-width: 1024px) calc((100vw - 52px) / 3), (min-width: 640px) calc((100vw - 46px) / 2), calc(100vw - 40px)'
+              }
+              alt={item.image.alt}
+              loading="lazy"
+              decoding="async"
+              class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+            />
+            <p class="absolute right-0 bottom-0 max-w-[calc(100%-32px)] bg-white py-[10px] pr-[14px] pl-[36px] text-right text-[13px] leading-[1.3] text-ink [clip-path:polygon(24px_0,100%_0,100%_100%,0_100%)] group-hover:text-brand">
               {item.caption}
             </p>
           </a>

@@ -12,8 +12,8 @@ const { data } = Astro.props;
 <section class="grid bg-ink md:grid-cols-2">
   <div data-reveal-children class="flex flex-col justify-center px-[24px] py-[56px] md:py-[72px] md:pr-[48px] md:pl-[max(24px,calc((100vw-1200px)/2))]">
     <p class="font-mono text-[0.74rem] tracking-[0.06em] text-brand uppercase">{data.eyebrow}</p>
-    <h2 class="mt-[14px] max-w-[460px] text-[clamp(1.6rem,3vw,2.2rem)] leading-[1.2] font-semibold text-white">{data.title}</h2>
-    <p class="mt-[16px] max-w-[480px] text-[1rem] leading-[1.7] text-sand">{data.text}</p>
+    <h2 class="mt-[14px] max-w-[460px] text-[clamp(2.1rem,3.6vw,3.2rem)] leading-[1.1] font-semibold text-white">{data.title}</h2>
+    <p class="mt-[16px] max-w-[480px] text-[clamp(1.05rem,1.4vw,1.25rem)] leading-[1.35] text-white">{data.text}</p>
     <a href={data.cta.href} class="mt-[28px] inline-flex items-center gap-[8px] self-start font-display text-[0.95rem] tracking-[0.06em] text-brand uppercase hover:text-white">
       {data.cta.label}
       <span aria-hidden="true">↗</span>
