@@ -1,4 +1,6 @@
+import type { ImageMetadata } from 'astro';
 import type { ImageAsset } from '@/types';
+import { imageVersions } from '@/data/images';
 
 export type ProjectCategory = 'paneles-solares' | 'naves-industriales' | 'pavimentos-cimentaciones' | 'remodelacion' | 'estructura-metalica';
 
@@ -18,7 +20,10 @@ interface ProjectPhoto {
   category: ProjectCategory;
 }
 
-/** Fotos de obra de Tenax (clave = nombre del archivo), con sus textos originales. */
+/**
+ * Fotos de obra de Tenax (clave = nombre del archivo), con sus textos originales. Todas cuentan para los sectores,
+ * pero solo tienen imagen las que se muestran (las de src/assets/tenax/).
+ */
 export const projectPhotos = {
   'Paneles-1': { title: 'Paneles solares en parque fotovoltaico para fábrica agroindustrial', location: 'El Valle, Hato Mayor, RD', description: 'Proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.', category: 'paneles-solares' },
   'Paneles-2': { title: 'Paneles solares en parque fotovoltaico para fábrica agroindustrial', location: 'El Valle, Hato Mayor, RD', description: 'Proyecto de paneles solares en parque fotovoltaico para fábrica agroindustrial.', category: 'paneles-solares' },
@@ -38,12 +43,28 @@ export const projectPhotos = {
 
 export type ProjectPhotoId = keyof typeof projectPhotos;
 
-/** Imagen de una foto de obra (AVIF optimizado), con su título como texto alternativo. */
-export const projectPhoto = (id: ProjectPhotoId, position?: string): ImageAsset => ({
-  src: `/images/optimized/tenax/${id}.avif`,
-  alt: projectPhotos[id].title,
-  position,
-});
+const tenaxMasters = import.meta.glob<{ default: ImageMetadata }>('/src/assets/tenax/*.avif', { eager: true });
+
+/** Versiones de cada foto del sitio anterior, generadas al compilar desde su imagen única (reescalada con IA, 1600 px). */
+const tenaxVersions = Object.fromEntries(
+  await Promise.all(
+    Object.entries(tenaxMasters).map(async ([path, image]) => [path.slice(path.lastIndexOf('/') + 1, -'.avif'.length), await imageVersions(image.default)]),
+  ),
+);
+
+/**
+ * Foto del sitio anterior: miniatura de 800 px con srcset hasta la original y la original para el visor. Falla el
+ * build si la foto no tiene imagen en src/assets/tenax/.
+ */
+export const tenaxImage = (file: string, alt: string, position?: string): ImageAsset => {
+  const image = tenaxVersions[file];
+  if (!image) throw new Error(`Foto del sitio anterior sin imagen en src/assets/tenax/: "${file}"`);
+  const { thumb, srcset, original, width, height } = image;
+  return { src: thumb, srcset, fullSrc: original, alt, position, width, height };
+};
+
+/** Imagen de una foto de obra del sitio anterior, con su título como texto alternativo. */
+export const projectPhoto = (id: ProjectPhotoId, position?: string): ImageAsset => tenaxImage(id, projectPhotos[id].title, position);
 
 /** "Navieras Haina, Santo Domingo, RD" → "Navieras Haina, Santo Domingo". */
 export const shortLocation = (location: string): string => location.replace(/, (RD|República Dominicana)$/, '');
