@@ -25,7 +25,7 @@ export const home: HomeContent = {
   },
   hero: {
     kicker: 'Constructora industrial en República Dominicana',
-    lines: ['Estructuras metálicas.', 'Movimiento de tierras.', 'Obras civiles.'],
+    lines: ['Movimiento de tierras.', 'Obras civiles.'],
     text: 'Especialistas en construcción industrial, estructuras metálicas, infraestructura energética, obras civiles, cimentaciones y movimiento de tierras en la República Dominicana.',
     image: obraThumb('hero-estructura-atardecer'),
     buttons: [
@@ -109,6 +109,7 @@ export const home: HomeContent = {
         image: obraThumb('movimiento-tierra-1'),
         caption: 'Movimientos de tierras y nivelación de terreno',
         href: '/servicios/movimiento-tierra/',
+        wide: true,
       },
       { image: obraThumb('puente-alcantarillado-4'), caption: 'Obras civiles', href: '/servicios/' },
     ],

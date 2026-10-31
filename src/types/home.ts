@@ -49,6 +49,8 @@ export interface HomeLinkedPhoto {
   /** Pie en mayúsculas bajo la foto. */
   caption: string;
   href: string;
+  /** Ocupa dos columnas del mosaico de especialidades (cinco fotos llenan las seis casillas de 3 × 2). */
+  wide?: boolean;
 }
 
 /**
