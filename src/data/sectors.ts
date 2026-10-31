@@ -1,5 +1,6 @@
-import type { CtaBandData, Sector, SectorBadgeVariant, SectorsPageData } from '@/types';
-import { categoryLabels, projectPhoto, projectPhotos, shortLocation, type ProjectCategory, type ProjectPhotoId } from '@/data/projects';
+import type { CtaBandData, ImageAsset, Sector, SectorBadgeVariant, SectorsPageData } from '@/types';
+import { obraThumb } from '@/data/obras';
+import { categoryLabels, projectPhoto, projectPhotos, shortLocation, type ProjectCategory } from '@/data/projects';
 
 interface SectorSeed {
   id: string;
@@ -8,7 +9,8 @@ interface SectorSeed {
   /** Categorías de proyecto que agrupa (de ahí salen el número de proyectos y las ubicaciones). */
   categories: ProjectCategory[];
   description: string;
-  image: ProjectPhotoId;
+  /** Foto de obra de "FOTOS TENAX" si la hay; si no, la del sitio anterior. */
+  image: ImageAsset;
   badge: SectorBadgeVariant;
 }
 
@@ -20,7 +22,7 @@ const seeds: SectorSeed[] = [
     title: categoryLabels['paneles-solares'],
     categories: ['paneles-solares'],
     description: 'Hincado, montaje y colocación de paneles solares en parques fotovoltaicos para fábricas agroindustriales, desde las bases estructurales hasta la instalación final.',
-    image: 'Paneles-1',
+    image: projectPhoto('Paneles-1'),
     badge: 'signal',
   },
   {
@@ -29,7 +31,7 @@ const seeds: SectorSeed[] = [
     title: categoryLabels['naves-industriales'],
     categories: ['naves-industriales'],
     description: 'Diseñamos, fabricamos e instalamos estructuras metálicas de alta calidad para proyectos industriales, comerciales y residenciales.',
-    image: 'Naves-3',
+    image: obraThumb('nave-industrial-3'),
     badge: 'caution',
   },
   {
@@ -38,7 +40,7 @@ const seeds: SectorSeed[] = [
     title: categoryLabels['pavimentos-cimentaciones'],
     categories: ['pavimentos-cimentaciones'],
     description: 'Ejecutamos obras de hormigón armado con los más altos estándares de calidad, desde cimentaciones hasta estructuras completas.',
-    image: 'Pavimentos-1',
+    image: obraThumb('envarillado-losa-1'),
     badge: 'steel',
   },
   {
@@ -47,7 +49,7 @@ const seeds: SectorSeed[] = [
     title: 'Remodelaciones y Control de Acceso',
     categories: ['remodelacion', 'estructura-metalica'],
     description: 'Remodelación de oficinas y obras de control de acceso con verjas perimetrales metálicas.',
-    image: 'Remodelacion-1',
+    image: projectPhoto('Remodelacion-1'),
     badge: 'ink',
   },
 ];
@@ -64,7 +66,7 @@ export const sectors: Sector[] = seeds.map((s, i) => {
     title: s.title,
     description: s.description,
     tags: [...new Set(photos.map((p) => shortLocation(p.location)))],
-    image: projectPhoto(s.image),
+    image: s.image,
     badge: s.badge,
   };
 });

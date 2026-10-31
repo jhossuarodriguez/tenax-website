@@ -9,6 +9,7 @@ interface Props {
 const { row } = Astro.props;
 // Columnas 50/50 desde 782px (como las columnas del editor original); apiladas debajo.
 const columnClass = 'flex min-w-0 min-[782px]:flex-1 min-[782px]:basis-0';
+const imageSizes = '(min-width: 1200px) 600px, (min-width: 782px) 50vw, 100vw';
 ---
 
 <div id={row.id} data-reveal-children class="mx-auto flex max-w-[1200px] scroll-mt-[20px] flex-col gap-5 min-[782px]:flex-row min-[782px]:gap-0">
@@ -17,6 +18,8 @@ const columnClass = 'flex min-w-0 min-[782px]:flex-1 min-[782px]:basis-0';
       <div class:list={[columnClass, 'relative min-h-[430px] overflow-hidden']}>
         <img
           src={row.image.src}
+          srcset={row.image.srcset}
+          sizes={imageSizes}
           alt={row.image.alt}
           loading="lazy"
           decoding="async"
@@ -60,6 +63,8 @@ const columnClass = 'flex min-w-0 min-[782px]:flex-1 min-[782px]:basis-0';
       <div class:list={[columnClass, 'relative min-h-[430px] overflow-hidden']}>
         <img
           src={row.image.src}
+          srcset={row.image.srcset}
+          sizes={imageSizes}
           alt={row.image.alt}
           loading="lazy"
           decoding="async"

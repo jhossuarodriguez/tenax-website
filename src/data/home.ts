@@ -1,11 +1,9 @@
 import type { HomeFormField, HomeContent } from '@/types';
-import { obraThumb } from '@/data/obras';
+import { obraPhoto, obraThumb } from '@/data/obras';
 import { portfolio } from '@/data/portfolio';
 import { site } from '@/data/site';
 
 /** Contenido de la portada, con los textos del sitio de Tenax Construction. */
-
-const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
 
 /** Enlace a la ficha de un proyecto del portafolio; falla el build si el proyecto no existe. */
 const projectHref = (slug: string): string => {
@@ -147,7 +145,7 @@ export const home: HomeContent = {
     eyebrow: 'Construimos estructuras, elevamos tu proyecto',
     title: '¿Tienes un proyecto en mente?',
     text: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',
-    image: img('banner2'),
+    image: obraPhoto('inicio').src,
   },
 };
 
