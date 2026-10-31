@@ -1,7 +1,8 @@
 ---
 /**
  * Visor de imágenes a pantalla completa. Se abre con cualquier elemento
- * `[data-lightbox-src]` de la página; se cierra con clic, el botón × o Escape.
+ * `[data-lightbox-src]` de la página (con `data-lightbox-srcset`, elige versión según la pantalla, hasta la 4K);
+ * se cierra con clic, el botón × o Escape.
  */
 ---
 
@@ -22,7 +23,7 @@
   >
     &times;
   </button>
-  <img src="" alt="" class="max-h-[92vh] max-w-[95%] rounded-lg object-contain shadow-[0_10px_40px_rgba(0,0,0,0.5)]" data-lightbox-img />
+  <img src="" alt="" sizes="95vw" class="max-h-[92vh] max-w-[95%] rounded-lg object-contain shadow-[0_10px_40px_rgba(0,0,0,0.5)]" data-lightbox-img />
 </div>
 
 <script>
@@ -42,6 +43,8 @@
       el.addEventListener('click', (e) => {
         e.stopPropagation();
         opener = el;
+        // Vacío si la foto no tiene versiones, para no heredar el srcset de la anterior.
+        img.srcset = el.dataset.lightboxSrcset ?? '';
         img.src = el.dataset.lightboxSrc ?? '';
         img.alt = el.dataset.lightboxAlt ?? '';
         box.hidden = false;
