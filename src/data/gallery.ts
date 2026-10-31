@@ -14,7 +14,8 @@ const obras: GalleryPhoto[] = (Object.keys(obraPhotos) as ObraPhotoId[]).map((id
 
 /**
  * Fotos del portafolio del sitio anterior que no salían en ninguna página.
- * Naves-1 y Naves-2 no van: son las mismas fotos que nave-industrial-1 y nave-fabrica-plasticos-2.
+ * No van las que ya están en las de obra a mejor calidad: Naves-1, Naves-2, Pavimentos-4 y villa-unifamiliar-lujo
+ * son nave-industrial-1, nave-fabrica-plasticos-2, muro-contencion-ab-2 y porton-acceso-1.
  */
 const portfolioIds: ProjectPhotoId[] = [
   'Naves-4',
@@ -23,8 +24,6 @@ const portfolioIds: ProjectPhotoId[] = [
   'Paneles-4',
   'Pavimentos-2',
   'Pavimentos-3',
-  'Pavimentos-4',
-  'villa-unifamiliar-lujo',
 ];
 
 /** Fotos de los banners del sitio anterior; no tienen ubicación registrada. */

@@ -337,7 +337,7 @@ const obraSrcset = (id: ObraPhotoId): string => {
   return `${dir}/sm/${id}.avif 400w, ${dir}/thumbs/${id}.avif 800w${full}`;
 };
 
-/** Foto completa (lado máximo 1600 px), para el visor de la galería y el póster de la portada. */
+/** Foto completa (lado máximo 1600 px), para los fondos a todo lo ancho de las bandas de contacto. */
 export const obraPhoto = (id: ObraPhotoId): ImageAsset => ({
   src: `${dir}/${id}.avif`,
   alt: obraPhotos[id].alt,

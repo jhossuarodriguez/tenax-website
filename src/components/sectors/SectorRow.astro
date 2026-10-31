@@ -30,6 +30,8 @@ const badgeClass: Record<SectorBadgeVariant, string> = {
   <div class:list={['relative', reversed && 'min-[901px]:order-2']}>
     <img
       src={sector.image.src}
+      srcset={sector.image.srcset}
+      sizes="(min-width: 1120px) 518px, (min-width: 901px) calc((100vw - 108px) * 0.52), calc(100vw - 48px)"
       alt={sector.image.alt}
       loading="lazy"
       decoding="async"

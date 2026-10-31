@@ -1,5 +1,5 @@
 import type { AboutFaqItem, AboutPageData } from '@/types';
-import { obraThumb } from '@/data/obras';
+import { obraPhoto, obraThumb } from '@/data/obras';
 
 const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
 
@@ -49,7 +49,7 @@ export const aboutPage: AboutPageData = {
   },
   rows: [
     {
-      image: { src: img('banner2'), alt: 'Equipo de Tenax supervisando una excavación' },
+      image: obraThumb('inicio'),
       id: 'quienes-somos',
       imageSide: 'left',
       tone: 'light',
@@ -115,6 +115,6 @@ export const aboutPage: AboutPageData = {
     prefix: 'Construimos estructuras, elevamos tu proyecto',
     title: '¿Tienes un proyecto en mente?',
     description: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',
-    background: { src: img('banner1'), alt: '' },
+    background: { src: obraPhoto('galeria-2').src, alt: '' },
   },
 };
