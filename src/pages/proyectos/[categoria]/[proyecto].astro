@@ -105,7 +105,7 @@ const seoTitle = project.location ? `${project.title}, ${project.location}` : pr
     feature && (
       <section class="bg-white px-[20px] pb-[48px]">
         <div class="mx-auto max-w-[1200px]">
-          <button type="button" class="block w-full cursor-zoom-in" data-lightbox-src={feature.fullSrc ?? feature.src} data-lightbox-alt={feature.alt} aria-label="Ampliar imagen">
+          <button type="button" class="block w-full cursor-zoom-in" data-lightbox-src={feature.fullSrc ?? feature.src} data-lightbox-srcset={feature.srcset} data-lightbox-alt={feature.alt} aria-label="Ampliar imagen">
             <img
               src={feature.fullSrc ?? feature.src}
               srcset={coverSrcset(feature, 16 / 7)}
@@ -137,7 +137,7 @@ const seoTitle = project.location ? `${project.title}, ${project.location}` : pr
                 <h2 class="mt-[24px] mb-[16px] font-mono text-[0.78rem] font-semibold tracking-[0.05em] text-stone uppercase">Proceso constructivo</h2>
                 <div data-reveal-children class="grid grid-cols-2 gap-[6px] sm:grid-cols-3">
                   {gallery.map((g) => (
-                    <button type="button" class="block cursor-zoom-in" data-lightbox-src={g.fullSrc ?? g.src} data-lightbox-alt={g.alt} aria-label="Ampliar imagen">
+                    <button type="button" class="block cursor-zoom-in" data-lightbox-src={g.fullSrc ?? g.src} data-lightbox-srcset={g.srcset} data-lightbox-alt={g.alt} aria-label="Ampliar imagen">
                       <img src={g.src} srcset={coverSrcset(g, 4 / 3)} sizes="(min-width: 1100px) 250px, 33vw" alt={g.alt} loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" />
                     </button>
                   ))}

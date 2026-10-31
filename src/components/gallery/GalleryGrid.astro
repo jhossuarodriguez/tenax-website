@@ -22,6 +22,7 @@ const { photos } = Astro.props;
             loading="lazy"
             decoding="async"
             data-lightbox-src={photo.image.fullSrc ?? photo.image.src}
+            data-lightbox-srcset={photo.image.srcset}
             class="block w-full cursor-pointer transition-transform duration-500 ease-out group-hover:scale-[1.06]"
           />
           <span class="pointer-events-none absolute inset-0 bg-linear-to-t from-ink/80 to-transparent to-55% opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -43,7 +44,7 @@ const { photos } = Astro.props;
   data-lightbox
 >
   <button type="button" class="absolute top-[18px] right-7 text-[2rem] leading-none font-light text-white" aria-label="Cerrar">&times;</button>
-  <img src="" alt="" class="max-h-[92vh] max-w-[95%] rounded-lg object-contain" data-lightbox-img />
+  <img src="" alt="" sizes="95vw" class="max-h-[92vh] max-w-[95%] rounded-lg object-contain" data-lightbox-img />
 </div>
 
 <script>
@@ -58,6 +59,8 @@ const { photos } = Astro.props;
 
     document.querySelectorAll<HTMLImageElement>('[data-lightbox-src]').forEach((img) => {
       img.addEventListener('click', () => {
+        // Hasta la 4K en pantallas grandes; vacío si la foto no tiene versiones, para no heredar el de la anterior.
+        boxImg.srcset = img.dataset.lightboxSrcset ?? '';
         boxImg.src = img.dataset.lightboxSrc ?? img.src;
         boxImg.alt = img.alt;
         box.dataset.open = 'true';
