@@ -1,5 +1,6 @@
 ---
 import type { MachinerySection } from '@/types';
+import { coverSrcset } from '@/data/obras';
 
 interface Props {
   data: MachinerySection;
@@ -20,7 +21,7 @@ const { data } = Astro.props;
           <figure class="group overflow-hidden rounded border border-white/14 bg-black transition-[border-color,translate] duration-200 hover:-translate-y-1 hover:border-brand">
             <img
               src={item.image.src}
-              srcset={item.image.srcset}
+              srcset={coverSrcset(item.image, 3 / 4)}
               sizes="(min-width: 1120px) 256px, (min-width: 901px) calc((100vw - 96px) / 4), calc(50vw - 32px)"
               alt={item.image.alt}
               loading="lazy"

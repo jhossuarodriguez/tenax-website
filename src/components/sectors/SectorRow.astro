@@ -1,5 +1,6 @@
 ---
 import type { Sector, SectorBadgeVariant } from '@/types';
+import { coverSrcset } from '@/data/obras';
 
 interface Props {
   sector: Sector;
@@ -30,7 +31,7 @@ const badgeClass: Record<SectorBadgeVariant, string> = {
   <div class:list={['relative', reversed && 'min-[901px]:order-2']}>
     <img
       src={sector.image.src}
-      srcset={sector.image.srcset}
+      srcset={coverSrcset(sector.image, 4 / 3)}
       sizes="(min-width: 1120px) 518px, (min-width: 901px) calc((100vw - 108px) * 0.52), calc(100vw - 48px)"
       alt={sector.image.alt}
       loading="lazy"
