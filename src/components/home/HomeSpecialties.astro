@@ -92,6 +92,7 @@ const collageHeight = Math.max(...collage.map((c) => c.photos.reduce((sum, p) =>
               loading="lazy"
               decoding="async"
               class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              style={item.image.position ? `object-position:${item.image.position}` : undefined}
             />
             <p class="absolute right-0 bottom-0 max-w-[calc(100%-32px)] bg-white py-[10px] pr-[14px] pl-[36px] text-right text-[13px] leading-[1.3] text-ink [clip-path:polygon(24px_0,100%_0,100%_100%,0_100%)] group-hover:text-brand">
               {item.caption}

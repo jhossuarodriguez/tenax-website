@@ -104,7 +104,8 @@ export const home: HomeContent = {
       { image: obraThumb('parque-fotovoltaico-calabaza'), caption: 'Energía', href: '/proyectos/energia/' },
       { image: obraThumb('galeria-6'), caption: 'Pavimento y cimentaciones', href: '/servicios/pavimentos/' },
       {
-        image: obraThumb('movimiento-tierra-1'),
+        // Foto cuadrada en una casilla muy ancha: se sube el encuadre para que entre la cabina de la excavadora.
+        image: { ...obraThumb('movimiento-tierra-1'), position: 'center 35%' },
         caption: 'Movimientos de tierras y nivelación de terreno',
         href: '/servicios/movimiento-tierra/',
         wide: true,
