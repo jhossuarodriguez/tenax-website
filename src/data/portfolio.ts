@@ -6,7 +6,7 @@ import { getService } from '@/data/services';
 const categorySeeds: Record<PortfolioCategoryId, { title: string; intro: string }> = {
   industrial: {
     title: 'Industrial',
-    intro: 'Naves, cimentaciones, movimientos de tierra y obras civiles para plantas y espacios de producción.',
+    intro: 'Naves, cimentaciones, movimientos de tierras y obras civiles para plantas y espacios de producción.',
   },
   comercial: {
     title: 'Comercial',
@@ -14,7 +14,7 @@ const categorySeeds: Record<PortfolioCategoryId, { title: string; intro: string 
   },
   energia: {
     title: 'Energía',
-    intro: 'Movimiento de tierra, caminos, drenaje, obras civiles y vallado para parques fotovoltaicos.',
+    intro: 'Movimiento de tierras, caminos, drenaje, obras civiles y vallado para parques fotovoltaicos.',
   },
   'institucional-educativo': {
     title: 'Institucional y Educativo',
@@ -72,14 +72,14 @@ const seeds: ProjectSeed[] = [
     servicio: 'movimiento-tierra',
     title: 'Silver Beach',
     location: 'Las Terrenas, Samaná',
-    lead: 'Movimiento de tierra para la conformación de plataformas base para edificaciones.',
+    lead: 'Movimiento de tierras para la conformación de plataformas base para edificaciones.',
     body: [
-      'TENAX Construction ejecutó los trabajos de movimiento de tierra para el desarrollo residencial Silver Beach, ubicado en Las Terrenas, Samaná, con una superficie de terminación de 49,642.71 m².',
+      'TENAX Construction ejecutó los trabajos de movimiento de tierras para el desarrollo residencial Silver Beach, ubicado en Las Terrenas, Samaná, con una superficie de terminación de 49,642.71 m².',
       'El alcance comprendió la limpieza y desbroce del terreno, excavación y retiro de material inservible, excavación en roca, así como la colocación, nivelación, humectación y compactación de 73,838 m³ de relleno.',
       'Los trabajos incluyeron escarificación de superficies, conformación y perfilado de taludes, apoyados por labores de topografía, nivelación y control de obra.',
     ],
     closing: [
-      'Silver Beach representa una muestra de la capacidad técnica y operativa de TENAX Construction para ejecutar movimientos de tierra de gran escala, preparando las condiciones necesarias para el desarrollo de nuevas edificaciones.',
+      'Silver Beach representa una muestra de la capacidad técnica y operativa de TENAX Construction para ejecutar movimientos de tierras de gran escala, preparando las condiciones necesarias para el desarrollo de nuevas edificaciones.',
     ],
     specs: [
       { label: 'Área de intervención', value: '49,642.71 m²' },
@@ -120,9 +120,9 @@ const seeds: ProjectSeed[] = [
     slug: 'parque-fotovoltaico-san-pedro-de-macoris',
     category: 'energia',
     servicio: 'movimiento-tierra',
-    title: 'Movimiento de tierra y obras civiles para parque fotovoltaico, con vallado metálico y bases para paneles solares',
+    title: 'Movimiento de tierras y obras civiles para parque fotovoltaico, con vallado metálico y bases para paneles solares',
     location: 'San Pedro de Macorís',
-    body: ['Movimiento de tierra y obras civiles para un parque fotovoltaico en San Pedro de Macorís, incluyendo el vallado metálico y las bases para los paneles solares.'],
+    body: ['Movimiento de tierras y obras civiles para un parque fotovoltaico en San Pedro de Macorís, incluyendo el vallado metálico y las bases para los paneles solares.'],
     fotos: ['parque-fotovoltaico-san-pedro'],
   },
 

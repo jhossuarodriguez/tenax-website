@@ -21,7 +21,7 @@ interface TenaxService {
 const tenaxServices: TenaxService[] = [
   {
     id: 'movimiento-tierra',
-    titulo: 'Movimiento de Tierra y Nivelación',
+    titulo: 'Movimiento de Tierras y Nivelación',
     categoria: 'Obras de tierra',
     imagen: 'movimiento-tierra-samana-1',
     descripcionCorta: 'Desbroce, corte, relleno, nivelación y compactación de terrenos para obras civiles, viales y turísticas.',
@@ -472,7 +472,7 @@ export const servicesPage: ServicesPageContent = {
   seo: {
     title: 'Servicios de construcción en RD',
     description:
-      'Movimiento de tierra, naves industriales, estructuras metálicas, pavimentos, puentes y más, en Santo Domingo y toda la República Dominicana.',
+      'Movimiento de tierras, naves industriales, estructuras metálicas, pavimentos, puentes y más, en Santo Domingo y toda la República Dominicana.',
   },
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Servicios' }],
@@ -484,7 +484,7 @@ export const servicesPage: ServicesPageContent = {
   },
   heading: 'Soluciones integrales en construcción',
   intro:
-    'Descubre nuestros servicios: movimiento de tierra, naves industriales, puentes y alcantarillados, pavimentos, hormigón armado, estructuras metálicas, retrofit, muros de contención, drenaje y seguridad perimetral.',
+    'Descubre nuestros servicios: movimiento de tierras, naves industriales, puentes y alcantarillados, pavimentos, hormigón armado, estructuras metálicas, retrofit, muros de contención, drenaje y seguridad perimetral.',
   cta: {
     title: '¿Tienes un proyecto en mente?',
     text: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',

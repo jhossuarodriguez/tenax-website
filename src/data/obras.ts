@@ -17,7 +17,7 @@ export const obraPhotos = {
   },
   'galeria-1': { title: 'Excavación de terreno', alt: 'Excavadora abriendo camino en un terreno de material calizo' },
   'galeria-2': { title: 'Excavación en patio de contenedores', alt: 'Excavadora cargando material junto a un patio de contenedores' },
-  'galeria-3': { title: 'Carga de material', alt: 'Excavadora amarilla cargando un camión volteo en un movimiento de tierra' },
+  'galeria-3': { title: 'Carga de material', alt: 'Excavadora amarilla cargando un camión volteo en un movimiento de tierras' },
   'galeria-4': { title: 'Acceso de edificio comercial', alt: 'Entrada de un edificio comercial con jardinera y escalones de acceso' },
   'galeria-5': {
     title: 'Pavimento de hormigón estriado',
@@ -29,31 +29,31 @@ export const obraPhotos = {
   },
 
   'movimiento-tierra-samana-1': {
-    title: 'Movimiento de tierra y nivelación de terreno',
+    title: 'Movimiento de tierras y nivelación de terreno',
     location: 'Las Terrenas, Samaná',
     alt: 'Vista aérea de una excavadora y un rodillo nivelando un terreno rodeado de vegetación',
   },
   'movimiento-tierra-samana-2': {
-    title: 'Movimiento de tierra y nivelación de terreno',
+    title: 'Movimiento de tierras y nivelación de terreno',
     location: 'Las Terrenas, Samaná',
     alt: 'Vista aérea del terreno durante el corte y la nivelación con maquinaria pesada',
   },
   'movimiento-tierra-samana-3': {
-    title: 'Movimiento de tierra y nivelación de terreno',
+    title: 'Movimiento de tierras y nivelación de terreno',
     location: 'Las Terrenas, Samaná',
     alt: 'Vista aérea de la plataforma de tierra nivelada junto a un cocotal frente al mar',
   },
   'movimiento-tierra-samana-4': {
-    title: 'Movimiento de tierra y nivelación de terreno',
+    title: 'Movimiento de tierras y nivelación de terreno',
     location: 'Las Terrenas, Samaná',
     alt: 'Vista aérea del camino nivelado que bordea la costa entre palmeras',
   },
-  'movimiento-tierra-1': { title: 'Movimiento de tierra', alt: 'Excavadora retirando la capa vegetal de una ladera' },
-  'movimiento-tierra-2': { title: 'Movimiento de tierra', alt: 'Excavadora cargando material en un camión volteo' },
-  'movimiento-tierra-3': { title: 'Movimiento de tierra', alt: 'Excavadora amarilla cargando un camión volteo sobre suelo arcilloso' },
-  'movimiento-tierra-4': { title: 'Movimiento de tierra', alt: 'Camión volteo descargando material de relleno en una explanada' },
+  'movimiento-tierra-1': { title: 'Movimiento de tierras', alt: 'Excavadora retirando la capa vegetal de una ladera' },
+  'movimiento-tierra-2': { title: 'Movimiento de tierras', alt: 'Excavadora cargando material en un camión volteo' },
+  'movimiento-tierra-3': { title: 'Movimiento de tierras', alt: 'Excavadora amarilla cargando un camión volteo sobre suelo arcilloso' },
+  'movimiento-tierra-4': { title: 'Movimiento de tierras', alt: 'Camión volteo descargando material de relleno en una explanada' },
   'movimiento-tierra-pavimento-1': {
-    title: 'Movimiento de tierra para pavimento',
+    title: 'Movimiento de tierras para pavimento',
     alt: 'Excavadora cargando camiones volteo en la preparación del terreno para un pavimento',
   },
   'nivelacion-terreno-1': { title: 'Nivelación de terreno', alt: 'Rodillo compactador nivelando una explanada' },
@@ -293,7 +293,7 @@ export const obraPhotos = {
     alt: 'Paneles solares sobre bases de hormigón frente a un palmar',
   },
   'parque-fotovoltaico-san-pedro': {
-    title: 'Movimiento de tierra y obras civiles para parque fotovoltaico',
+    title: 'Movimiento de tierras y obras civiles para parque fotovoltaico',
     location: 'San Pedro de Macorís',
     alt: 'Vista aérea de un parque fotovoltaico con sus bloques de paneles',
   },
