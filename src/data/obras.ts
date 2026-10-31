@@ -209,6 +209,10 @@ export const obraPhotos = {
     title: 'Escalera de emergencia',
     alt: 'Vista lateral de la escalera de emergencia metálica con descansos en cada nivel',
   },
+  'escalera-metalica-exterior-moderna': {
+    title: 'Escalera metálica exterior',
+    alt: 'Escalera metálica exterior pintada de azul claro, con descansos y barandas horizontales, adosada a la fachada de un edificio',
+  },
   'oficina-contenedor-1': {
     title: 'Oficina en contenedor frente al agua',
     alt: 'Oficina hecha en un contenedor, sobre una plataforma con barandas naranjas frente al agua',
