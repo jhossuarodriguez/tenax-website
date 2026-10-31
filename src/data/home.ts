@@ -21,11 +21,11 @@ export const home: HomeContent = {
   seo: {
     title: 'Constructora en Santo Domingo, RD',
     description:
-      'Constructora dominicana de naves industriales, estructuras metálicas, movimiento de tierra y obras civiles, con oficina en Santo Domingo.',
+      'Constructora dominicana de naves industriales, estructuras metálicas, movimiento de tierras y obras civiles, con oficina en Santo Domingo.',
   },
   hero: {
     kicker: 'Constructora industrial en República Dominicana',
-    lines: ['Estructuras metálicas.', 'Movimiento de tierra.', 'Obras civiles.'],
+    lines: ['Estructuras metálicas.', 'Movimiento de tierras.', 'Obras civiles.'],
     text: 'Especialistas en construcción industrial, estructuras metálicas, infraestructura energética, obras civiles, cimentaciones y movimiento de tierras en la República Dominicana.',
     image: obraThumb('hero-estructura-atardecer'),
     buttons: [
@@ -39,7 +39,7 @@ export const home: HomeContent = {
     text: [
       `TENAX Construction cuenta con ${yearsOfExperience} años de experiencia en el `,
       { highlight: 'desarrollo y ejecución de proyectos de ingeniería y construcción' },
-      ', especializándose en estructuras metálicas, naves industriales, obras civiles y movimientos de tierra, con participación en los sectores ',
+      ', especializándose en estructuras metálicas, naves industriales, obras civiles y movimientos de tierras, con participación en los sectores ',
       { highlight: 'industrial, comercial, logístico, agroindustrial y energético' },
       '.',
     ],
@@ -60,9 +60,9 @@ export const home: HomeContent = {
     ],
   },
   earthworks: {
-    eyebrow: 'Movimientos de tierra',
+    eyebrow: 'Movimientos de tierras',
     title: 'Preparamos el terreno para grandes proyectos.',
-    text: 'En TENAX Construction ejecutamos movimientos de tierra, excavación, nivelación y compactación, preparando las condiciones necesarias para el desarrollo de nuevas obras.',
+    text: 'En TENAX Construction ejecutamos movimientos de tierras, excavación, nivelación y compactación, preparando las condiciones necesarias para el desarrollo de nuevas obras.',
     cta: { label: 'Conoce más', href: '/servicios/movimiento-tierra/' },
     image: obraThumb('nivelacion-terreno-2'),
   },
@@ -73,7 +73,7 @@ export const home: HomeContent = {
     text: [
       'A lo largo de nuestra trayectoria, ',
       { highlight: 'Tenax Construction' },
-      ' ha desarrollado experiencia en diferentes áreas de la construcción, participando en proyectos que abarcan desde estructuras metálicas y naves industriales hasta movimientos de tierra, cimentaciones, pavimentos, remodelaciones e instalaciones para energía solar.',
+      ' ha desarrollado experiencia en diferentes áreas de la construcción, participando en proyectos que abarcan desde estructuras metálicas y naves industriales hasta movimientos de tierras, cimentaciones, pavimentos, remodelaciones e instalaciones para energía solar.',
     ],
     collage: [
       {
@@ -107,7 +107,7 @@ export const home: HomeContent = {
       { image: obraThumb('galeria-6'), caption: 'Pavimento y cimentaciones', href: '/servicios/pavimentos/' },
       {
         image: obraThumb('movimiento-tierra-1'),
-        caption: 'Movimientos de tierra y nivelación de terreno',
+        caption: 'Movimientos de tierras y nivelación de terreno',
         href: '/servicios/movimiento-tierra/',
       },
       { image: obraThumb('puente-alcantarillado-4'), caption: 'Obras civiles', href: '/servicios/' },

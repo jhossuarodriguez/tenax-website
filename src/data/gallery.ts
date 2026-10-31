@@ -57,7 +57,7 @@ export const galleryPage: GalleryPageData = {
   seo: {
     title: 'Galería de obras',
     description:
-      'Fotos de nuestras obras en República Dominicana: movimiento de tierra, naves industriales, puentes, pavimentos y estructuras metálicas.',
+      'Fotos de nuestras obras en República Dominicana: movimiento de tierras, naves industriales, puentes, pavimentos y estructuras metálicas.',
   },
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Galería' }],
@@ -65,7 +65,7 @@ export const galleryPage: GalleryPageData = {
     title: 'Nuestras',
     titleEmphasis: 'Obras',
     subtitle:
-      'Explora nuestras obras: movimiento de tierra, naves industriales, puentes y alcantarillados, pavimentos, estructuras metálicas y más.',
+      'Explora nuestras obras: movimiento de tierras, naves industriales, puentes y alcantarillados, pavimentos, estructuras metálicas y más.',
     strip: ['Naves industriales', 'Estructuras metálicas', 'Cimentaciones', 'Pavimentos', 'Movimiento de tierras', 'Obras civiles'],
   },
   photos: galleryPhotos,
