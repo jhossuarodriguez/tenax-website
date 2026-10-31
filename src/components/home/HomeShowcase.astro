@@ -1,6 +1,7 @@
 ---
 import type { HomeShowcaseData } from '@/types';
 import BrandRule from '@/components/home/BrandRule.astro';
+import { coverSrcset } from '@/data/obras';
 
 interface Props {
   data: HomeShowcaseData;
@@ -24,7 +25,7 @@ const { data } = Astro.props;
       <div data-reveal class="aspect-[250/258] overflow-hidden bg-dark lg:-mt-[80px]">
         <img
           src={data.image.src}
-          srcset={data.image.srcset}
+          srcset={coverSrcset(data.image, 250 / 258)}
           sizes="(min-width: 1020px) 568px, calc(100vw - 40px)"
           alt={data.image.alt}
           loading="lazy"
@@ -43,7 +44,7 @@ const { data } = Astro.props;
             <div class="aspect-[155/142] overflow-hidden bg-surface">
               <img
                 src={project.image.src}
-                srcset={project.image.srcset}
+                srcset={coverSrcset(project.image, 155 / 142)}
                 sizes="(min-width: 1150px) 352px, (min-width: 1024px) calc((100vw - 92px) / 3), (min-width: 640px) calc((100vw - 66px) / 2), calc(100vw - 40px)"
                 alt={project.image.alt}
                 loading="lazy"

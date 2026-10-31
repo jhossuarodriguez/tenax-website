@@ -1,5 +1,6 @@
 ---
-import type { ServiceGallery } from '@/types';
+import type { ImageAsset, ServiceGallery } from '@/types';
+import { coverSrcset } from '@/data/obras';
 
 interface Props {
   gallery: ServiceGallery;
@@ -7,6 +8,8 @@ interface Props {
 
 const { gallery } = Astro.props;
 const isPair = gallery.layout === 'pair';
+const contain = gallery.layout === 'tiles-contain';
+const srcset = (image: ImageAsset): string | undefined => (contain ? image.srcset : coverSrcset(image, isPair ? 4 / 3 : 1));
 ---
 
 <div
@@ -23,12 +26,12 @@ const isPair = gallery.layout === 'pair';
       <div class:list={['overflow-hidden rounded-[4px] bg-[#e8e8e8]', isPair ? 'aspect-[4/3]' : 'aspect-square']}>
         <img
           src={image.src}
-          srcset={image.srcset}
+          srcset={srcset(image)}
           sizes={isPair ? '(min-width: 1025px) 403px, calc(100vw - 40px)' : '(min-width: 600px) 160px, 50vw'}
           alt={image.alt}
           loading="lazy"
           decoding="async"
-          class:list={['block size-full', gallery.layout === 'tiles-contain' ? 'object-contain' : 'object-cover']}
+          class:list={['block size-full', contain ? 'object-contain' : 'object-cover']}
           style={image.position ? `object-position:${image.position}` : undefined}
         />
       </div>

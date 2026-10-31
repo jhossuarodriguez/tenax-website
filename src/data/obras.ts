@@ -354,6 +354,17 @@ export const obraThumb = (id: ObraPhotoId): ImageAsset => {
   return { src: thumb, srcset, fullSrc: original, alt: obraPhotos[id].alt, width, height };
 };
 
+/**
+ * srcset de una foto recortada con object-cover en una caja de proporción `box` (ancho / alto). Si la foto es más
+ * apaisada que la caja, solo se ve una parte de su ancho: cada versión se declara con el ancho que se ve, para que
+ * el navegador no elija una pequeña y la estire (p. ej., una panorámica en una tarjeta 4:3).
+ */
+export const coverSrcset = (image: ImageAsset, box: number): string | undefined => {
+  const scale = image.width && image.height ? image.width / image.height / box : 1;
+  if (!image.srcset || scale <= 1) return image.srcset;
+  return image.srcset.replace(/ (\d+)w/g, (_, width: string) => ` ${Math.round(Number(width) / scale)}w`);
+};
+
 /** Pie de foto de la galería: "Título — Ubicación". */
 export const obraCaption = (id: ObraPhotoId): string => {
   const photo: ObraPhoto = obraPhotos[id];

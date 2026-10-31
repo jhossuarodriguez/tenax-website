@@ -1,6 +1,7 @@
 ---
 import type { AboutSafetyData } from '@/types';
 import HomeButton from '@/components/home/HomeButton.astro';
+import { coverSrcset } from '@/data/obras';
 
 interface Props {
   data: AboutSafetyData;
@@ -18,7 +19,7 @@ const offsets = ['', 'md:mt-[48px]', 'md:-mt-[24px]'];
         data.columns.map((col, i) => (
           <div class:list={['flex flex-col gap-[8px]', offsets[i]]}>
             {col.map((img) => (
-              <img src={img.src} srcset={img.srcset} sizes="(min-width: 768px) 220px, 33vw" alt="" loading="lazy" decoding="async" class="aspect-[3/4] w-full object-cover" />
+              <img src={img.src} srcset={coverSrcset(img, 3 / 4)} sizes="(min-width: 768px) 220px, 33vw" alt="" loading="lazy" decoding="async" class="aspect-[3/4] w-full object-cover" />
             ))}
           </div>
         ))

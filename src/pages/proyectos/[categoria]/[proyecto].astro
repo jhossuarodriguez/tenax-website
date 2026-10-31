@@ -5,6 +5,7 @@ import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
 import ProjectTile from '@/components/projects/ProjectTile.astro';
 import ProjectsCta from '@/components/projects/ProjectsCta.astro';
 import Lightbox from '@/components/projects/Lightbox.astro';
+import { coverSrcset } from '@/data/obras';
 import { portfolio } from '@/data/portfolio';
 import type { PortfolioProject } from '@/types';
 
@@ -107,7 +108,7 @@ const seoTitle = project.location ? `${project.title}, ${project.location}` : pr
           <button type="button" class="block w-full cursor-zoom-in" data-lightbox-src={feature.fullSrc ?? feature.src} data-lightbox-alt={feature.alt} aria-label="Ampliar imagen">
             <img
               src={feature.fullSrc ?? feature.src}
-              srcset={feature.srcset}
+              srcset={coverSrcset(feature, 16 / 7)}
               sizes="(min-width: 1240px) 1200px, calc(100vw - 40px)"
               alt={feature.alt}
               loading="lazy"
@@ -137,7 +138,7 @@ const seoTitle = project.location ? `${project.title}, ${project.location}` : pr
                 <div data-reveal-children class="grid grid-cols-2 gap-[6px] sm:grid-cols-3">
                   {gallery.map((g) => (
                     <button type="button" class="block cursor-zoom-in" data-lightbox-src={g.fullSrc ?? g.src} data-lightbox-alt={g.alt} aria-label="Ampliar imagen">
-                      <img src={g.src} srcset={g.srcset} sizes="(min-width: 1100px) 250px, 33vw" alt={g.alt} loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" />
+                      <img src={g.src} srcset={coverSrcset(g, 4 / 3)} sizes="(min-width: 1100px) 250px, 33vw" alt={g.alt} loading="lazy" decoding="async" class="aspect-[4/3] w-full object-cover" />
                     </button>
                   ))}
                 </div>

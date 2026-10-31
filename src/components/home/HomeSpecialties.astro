@@ -1,6 +1,7 @@
 ---
 import type { HomeSpecialtiesData } from '@/types';
 import BrandRule from '@/components/home/BrandRule.astro';
+import { coverSrcset } from '@/data/obras';
 
 interface Props {
   data: HomeSpecialtiesData;
@@ -81,7 +82,7 @@ const collageHeight = Math.max(...collage.map((c) => c.photos.reduce((sum, p) =>
           >
             <img
               src={item.image.src}
-              srcset={item.image.srcset}
+              srcset={coverSrcset(item.image, item.wide ? 354 / 126 : 174 / 126)}
               sizes={
                 item.wide
                   ? '(min-width: 1220px) 786px, (min-width: 1024px) calc((100vw - 52px) * 2 / 3), calc(100vw - 40px)'

@@ -1,5 +1,6 @@
 ---
 import type { Service } from '@/types';
+import { coverSrcset } from '@/data/obras';
 
 interface Props {
   service: Service;
@@ -14,7 +15,7 @@ const { service } = Astro.props;
   <div class="aspect-[16/10] w-full overflow-hidden bg-[#eee]">
     <img
       src={service.image.src}
-      srcset={service.image.srcset}
+      srcset={coverSrcset(service.image, 16 / 10)}
       sizes="(min-width: 1240px) 383px, (min-width: 692px) calc((100vw - 66px) / 2), calc(100vw - 40px)"
       alt={service.image.alt}
       loading="lazy"

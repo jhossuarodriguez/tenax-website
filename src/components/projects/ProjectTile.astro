@@ -1,5 +1,6 @@
 ---
 import type { ImageAsset } from '@/types';
+import { coverSrcset } from '@/data/obras';
 
 interface Props {
   href: string;
@@ -17,7 +18,7 @@ const { href, image, caption, meta, sizes = '(min-width: 1200px) 396px, (min-wid
 <a href={href} class="group relative block aspect-[4/3] overflow-hidden bg-ink">
   <img
     src={image.src}
-    srcset={image.srcset}
+    srcset={coverSrcset(image, 4 / 3)}
     sizes={sizes}
     alt={image.alt}
     loading="lazy"
