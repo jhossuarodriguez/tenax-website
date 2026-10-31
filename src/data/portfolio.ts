@@ -327,7 +327,8 @@ const seeds: ProjectSeed[] = [
     servicio: 'naves-industriales',
     title: 'Nave para acopio y exportación de mango',
     body: ['Montaje de pórticos de acero a dos aguas sobre cimentación de hormigón armado para una nave de acopio, almacenamiento y operación logística.'],
-    fotos: ['nave-industrial-bani'],
+    // La aérea de la nave terminada va primero: es la portada de la ficha y la foto de la portada del sitio.
+    fotos: ['nave-mango-bani-aerea', 'nave-industrial-bani'],
   },
 
   // Institucional y educativo
