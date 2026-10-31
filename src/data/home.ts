@@ -119,8 +119,7 @@ export const home: HomeContent = {
       'Nuestro trabajo forma parte del desarrollo de espacios, infraestructuras y edificaciones que impulsan el crecimiento de distintos sectores.',
       'Te invitamos a conocer algunos de nuestros proyectos, donde la experiencia, la ingeniería y la construcción se materializan en obras sólidas, duraderas y que aportan valor a su entorno y a las comunidades que sirven.',
     ],
-    // Pendiente: las dos fotos de la escalera pintada del diseño; mientras, las de la escalera en obra.
-    image: obraThumb('escalera-emergencia-2'),
+    image: obraThumb('escalera-metalica-exterior-moderna'),
     projects: [
       {
         image: obraThumb('escalera-emergencia-1'),
