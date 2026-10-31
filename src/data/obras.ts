@@ -1,5 +1,6 @@
+import type { ImageMetadata } from 'astro';
 import type { ImageAsset } from '@/types';
-import fullWidths from '@/data/obras-widths.json';
+import { imageVersions, type ImageVersions } from '@/data/images';
 
 interface ObraPhoto {
   /** Título de la foto según su archivo original; es el pie de foto de la galería. */
@@ -9,7 +10,7 @@ interface ObraPhoto {
   location?: string;
 }
 
-/** Fotos de obra de la carpeta "FOTOS TENAX" (clave = nombre del AVIF en /images/optimized/obras/). */
+/** Fotos de obra de la carpeta "FOTOS TENAX" (clave = nombre del AVIF en src/assets/obras/). */
 export const obraPhotos = {
   inicio: {
     title: 'Supervisión de obra',
@@ -325,31 +326,33 @@ export const obraPhotos = {
 
 export type ObraPhotoId = keyof typeof obraPhotos;
 
-const dir = '/images/optimized/obras';
+const masters = import.meta.glob<{ default: ImageMetadata }>('/src/assets/obras/*.avif', { eager: true });
 
 /**
- * Los anchos de cada foto: sm (400 px), thumbs (800 px) y la completa (lado máximo 1600 px).
- * El ancho real de la completa sale de obras-widths.json, que se genera al optimizar las fotos;
- * en las verticales muy altas no pasa de 800 px y no aporta nada al srcset.
+ * Cada foto se guarda una sola vez en src/assets/obras/ (2K reescalada con IA desde el original de "FOTOS TENAX"; el
+ * hero, 4K) y Astro genera al compilar las versiones más pequeñas. Falla el build si una foto no tiene imagen.
  */
-const obraSrcset = (id: ObraPhotoId): string => {
-  const full = fullWidths[id] > 800 ? `, ${dir}/${id}.avif ${fullWidths[id]}w` : '';
-  return `${dir}/sm/${id}.avif 400w, ${dir}/thumbs/${id}.avif 800w${full}`;
+const versions = Object.fromEntries(
+  await Promise.all(
+    (Object.keys(obraPhotos) as ObraPhotoId[]).map(async (id) => {
+      const master = masters[`/src/assets/obras/${id}.avif`];
+      if (!master) throw new Error(`Foto de obra sin imagen en src/assets/obras/: "${id}"`);
+      return [id, await imageVersions(master.default)];
+    }),
+  ),
+) as Record<ObraPhotoId, ImageVersions>;
+
+/** Foto a 1600 px, para los fondos a todo lo ancho de las bandas de contacto. */
+export const obraPhoto = (id: ObraPhotoId): ImageAsset => {
+  const { large, width, height } = versions[id];
+  return { src: large, alt: obraPhotos[id].alt, width, height };
 };
 
-/** Foto completa (lado máximo 1600 px), para los fondos a todo lo ancho de las bandas de contacto. */
-export const obraPhoto = (id: ObraPhotoId): ImageAsset => ({
-  src: `${dir}/${id}.avif`,
-  alt: obraPhotos[id].alt,
-});
-
-/** Miniatura (800 px de ancho) para tarjetas y cuadrículas, con srcset; el visor abre la foto completa. */
-export const obraThumb = (id: ObraPhotoId): ImageAsset => ({
-  src: `${dir}/thumbs/${id}.avif`,
-  srcset: obraSrcset(id),
-  fullSrc: `${dir}/${id}.avif`,
-  alt: obraPhotos[id].alt,
-});
+/** Miniatura (800 px de ancho) para tarjetas y cuadrículas, con srcset hasta la original; el visor abre la original. */
+export const obraThumb = (id: ObraPhotoId): ImageAsset => {
+  const { thumb, srcset, original, width, height } = versions[id];
+  return { src: thumb, srcset, fullSrc: original, alt: obraPhotos[id].alt, width, height };
+};
 
 /** Pie de foto de la galería: "Título — Ubicación". */
 export const obraCaption = (id: ObraPhotoId): string => {

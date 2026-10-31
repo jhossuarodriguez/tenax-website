@@ -1,10 +1,8 @@
 import type { GalleryPageData, GalleryPhoto } from '@/types';
 import { ctaBand } from '@/data/sectors';
 import { obraCaption, obraPhotos, obraThumb, type ObraPhotoId } from '@/data/obras';
-import { projectCaption, projectPhoto, type ProjectPhotoId } from '@/data/projects';
+import { projectCaption, projectPhoto, tenaxImage, type ProjectPhotoId } from '@/data/projects';
 import { services } from '@/data/services';
-
-const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
 
 /** Fotos de obra de "FOTOS TENAX": miniatura en la cuadrícula y foto completa en el visor. */
 const obras: GalleryPhoto[] = (Object.keys(obraPhotos) as ObraPhotoId[]).map((id) => ({
@@ -29,19 +27,19 @@ const portfolioIds: ProjectPhotoId[] = [
 /** Fotos de los banners del sitio anterior; no tienen ubicación registrada. */
 const banners: GalleryPhoto[] = [
   {
-    image: { src: img('banner3'), alt: 'Marquesina metálica y casetas de contenedores en el acceso vehicular de un patio de contenedores' },
+    image: tenaxImage('banner3', 'Marquesina metálica y casetas de contenedores en el acceso vehicular de un patio de contenedores'),
     caption: 'Control de acceso en patio de contenedores',
   },
   {
-    image: { src: img('banner4'), alt: 'Nave de estructura metálica con cerramientos azules y vehículos estacionados al frente' },
+    image: tenaxImage('banner4', 'Nave de estructura metálica con cerramientos azules y vehículos estacionados al frente'),
     caption: 'Nave con estructura metálica',
   },
   {
-    image: { src: img('banner5'), alt: 'Cubierta de lámina sobre vigas de acero vista desde abajo, sobre una estructura azul' },
+    image: tenaxImage('banner5', 'Cubierta de lámina sobre vigas de acero vista desde abajo, sobre una estructura azul'),
     caption: 'Cubierta de estructura metálica',
   },
   {
-    image: { src: img('about-image'), alt: 'Render de un parqueo con techos de paneles solares sobre los vehículos y una caseta de vigilancia' },
+    image: tenaxImage('about-image', 'Render de un parqueo con techos de paneles solares sobre los vehículos y una caseta de vigilancia'),
     caption: 'Render de parqueo con paneles solares',
   },
 ];

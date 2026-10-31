@@ -1,7 +1,6 @@
 import type { AboutFaqItem, AboutPageData } from '@/types';
 import { obraPhoto, obraThumb } from '@/data/obras';
-
-const img = (file: string): string => `/images/optimized/tenax/${file}.avif`;
+import { tenaxImage } from '@/data/projects';
 
 /** Preguntas frecuentes de Tenax: cada respuesta es un solo párrafo. */
 const faqs: AboutFaqItem[] = [
@@ -65,7 +64,7 @@ export const aboutPage: AboutPageData = {
       ],
     },
     {
-      image: { src: img('crane'), alt: 'Grúa torre en una obra en construcción' },
+      image: tenaxImage('crane', 'Grúa torre en una obra en construcción'),
       imageSide: 'right',
       tone: 'white',
       title: 'Nuestra Misión',
@@ -79,7 +78,7 @@ export const aboutPage: AboutPageData = {
       ],
     },
     {
-      image: { src: img('drawing'), alt: 'Diseño de planos de un proyecto' },
+      image: tenaxImage('drawing', 'Diseño de planos de un proyecto'),
       id: 'equipo',
       imageSide: 'left',
       tone: 'white',

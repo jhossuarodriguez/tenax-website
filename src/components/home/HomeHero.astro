@@ -10,11 +10,14 @@ const { hero } = Astro.props;
 ---
 
 <section class="relative isolate flex min-h-[640px] items-center overflow-hidden bg-ink px-[16px] py-[64px] md:min-h-[719px] md:px-[24px]">
-  <!-- Foto de fondo con prioridad alta: es lo primero que se ve. El degradado oscurece solo el lado del texto. -->
+  <!--
+    Foto de fondo con prioridad alta: es lo primero que se ve. El degradado oscurece solo el lado del texto.
+    La panorámica cubre una caja de alto fijo (640-719 px): se pinta a unos 1920 px de ancho en cualquier pantalla más estrecha.
+  -->
   <img
     src={hero.image.src}
     srcset={hero.image.srcset}
-    sizes="100vw"
+    sizes="(min-width: 1920px) 100vw, 1920px"
     alt=""
     fetchpriority="high"
     decoding="async"
