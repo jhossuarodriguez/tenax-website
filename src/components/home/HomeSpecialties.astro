@@ -19,7 +19,9 @@ const collageHeight = Math.max(...collage.map((c) => c.photos.reduce((sum, p) =>
   "Nuestras Especialidades" (diseño de Tenax en Canva, pág. 10): banda grafito con collage a la izquierda y
   texto a la derecha. El collage sobresale por debajo de la banda; luego, una foto por especialidad.
 -->
-<section class="bg-ink px-[20px] pt-[64px] pb-[56px] lg:pt-[92px] lg:pb-0">
+<section class="relative bg-ink px-[20px] pt-[64px] pb-[56px] lg:pt-[92px] lg:pb-0">
+  <!-- La línea naranja arranca arriba de la banda y sigue por las secciones de abajo. -->
+  <BrandRule />
   <div class="mx-auto grid max-w-[1180px] gap-[48px] lg:grid-cols-[257fr_226fr] lg:items-start lg:gap-[64px]">
     <div
       class="relative z-10 grid gap-[12px] lg:-mb-[28px] lg:gap-[18px]"
