@@ -25,7 +25,7 @@ export interface MainNavItem extends NavItem {
   submenu?: { items: NavItem[]; image: ImageAsset };
 }
 
-export type SocialNetwork = 'facebook' | 'linkedin' | 'instagram' | 'tiktok';
+export type SocialNetwork = 'facebook' | 'linkedin' | 'instagram' | 'tiktok' | 'whatsapp';
 
 export interface SocialLink {
   network: SocialNetwork;
@@ -74,6 +74,27 @@ export interface SiteConfig {
   cta: NavItem;
   contact: ContactInfo;
   socials: SocialLink[];
+}
+
+/** Grupo de enlaces del pie, con su título. */
+export interface FooterLinkGroup {
+  title: string;
+  links: NavItem[];
+}
+
+export interface FooterData {
+  /** Llamado a contacto: la primera parte en blanco y el remate en naranja. */
+  title: string;
+  titleEmphasis: string;
+  cta: NavItem;
+  officeLabel: string;
+  /** Dirección completa tal como se muestra; enlaza al mapa. */
+  address: string;
+  hours: string;
+  whatsappLabel: string;
+  socials: SocialLink[];
+  /** Una entrada por columna; una columna puede apilar varios grupos. */
+  columns: FooterLinkGroup[][];
 }
 
 export interface Breadcrumb {

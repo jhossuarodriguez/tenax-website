@@ -1,33 +1,82 @@
 ---
+import { footer } from '@/data/footer';
 import { site } from '@/data/site';
-import SocialLinks from '@/components/layout/SocialLinks.astro';
+import Icon from '@/components/ui/Icon.astro';
+import LogoMark from '@/components/ui/LogoMark.astro';
+
+/** Los enlaces a otros sitios (mapa, redes) abren en otra pestaña. */
+const external = (href: string) => (href.startsWith('http') ? { target: '_blank', rel: 'noopener' } : {});
+const labelClass = 'font-display text-[13px] leading-[1.3] font-semibold tracking-[0.16em] text-white uppercase';
 ---
 
-<footer class="bg-dark py-[20px]">
-  <div class="grid items-center gap-[24px] px-[20px] text-center md:grid-cols-3 md:gap-x-[50px] md:gap-y-0 md:px-[35px]">
-    <nav aria-label="Pie de página">
-      <ul class="flex flex-col items-center gap-y-0 md:flex-row md:flex-wrap md:justify-center">
+<!--
+  Pie (diseño de Tenax en Canva, pág. 12): isotipo, llamado a contacto y oficina a la izquierda; redes y
+  enlaces a la derecha, en tres columnas (la tercera más estrecha). La dirección abre el mapa.
+-->
+<footer class="bg-ink px-[20px] pt-[64px] pb-[64px] text-white lg:pt-[96px] lg:pb-[104px]">
+  <div class="mx-auto grid max-w-[1180px] gap-[56px] lg:grid-cols-[344fr_798fr] lg:gap-[38px]">
+    <div>
+      <LogoMark class="w-[96px] lg:w-[136px]" />
+      <p class="mt-[28px] font-display text-[clamp(1.6rem,2.4vw,1.85rem)] leading-[1.25] text-white">
+        {footer.title}
+        <strong class="block font-semibold text-brand">{footer.titleEmphasis}</strong>
+      </p>
+      <a
+        href={footer.cta.href}
+        class="mt-[36px] inline-block bg-brand px-[34px] py-[16px] text-[13px] leading-none font-semibold tracking-[0.14em] text-white uppercase transition-colors hover:bg-brand-dark hover:text-white"
+      >
+        {footer.cta.label}
+      </a>
+
+      <address class="mt-[40px] max-w-[340px] text-[13px] leading-[1.6] not-italic">
+        <p class:list={[labelClass, 'mb-[12px]']}>{footer.officeLabel}</p>
+        <a href={site.contact.mapsUrl} {...external(site.contact.mapsUrl)} class="block text-white/80 hover:text-brand">{footer.address}</a>
+        <p class="text-stone-2">{footer.hours}</p>
+        <a href={`tel:${site.contact.phoneHref}`} class="mt-[10px] block text-white/80 hover:text-brand">{site.contact.phone}</a>
+        <a href={`mailto:${site.contact.email}`} class="block text-white/80 hover:text-brand">{site.contact.email}</a>
+        <a href={site.contact.whatsapp} {...external(site.contact.whatsapp)} class="block text-stone-2 hover:text-brand">{footer.whatsappLabel}</a>
+      </address>
+    </div>
+
+    <nav aria-label="Pie de página" class="grid grid-cols-2 gap-x-[20px] gap-y-[44px] sm:grid-cols-3 lg:grid-cols-[314fr_314fr_170fr] lg:gap-x-0 lg:gap-y-[72px] lg:pt-[52px]">
+      <!-- Las redes quedan sobre la tercera columna, como en el diseño. -->
+      <ul class="col-span-full flex items-center gap-[16px] lg:col-span-1 lg:col-start-3">
         {
-          site.nav.map((item) => (
+          footer.socials.map((s) => (
             <li>
-              <a href={item.href} class="block px-[8.5px] text-[17px] leading-[27px] text-white hover:text-brand">
-                {item.label}
+              <a href={s.href} {...external(s.href)} aria-label={s.label} class="inline-flex text-white hover:text-brand">
+                <Icon name={s.network} size={22} />
               </a>
             </li>
           ))
         }
       </ul>
+
+      {
+        footer.columns.map((groups) => (
+          <div class="flex flex-col gap-[44px]">
+            {groups.map((group) => (
+              <div>
+                <h2 class:list={[labelClass, 'after:mt-[14px] after:block after:h-[3px] after:w-[44px] after:bg-brand']}>{group.title}</h2>
+                <ul class="mt-[22px] flex flex-col gap-[12px]">
+                  {group.links.map((link) => (
+                    <li>
+                      <a
+                        href={link.href}
+                        {...external(link.href)}
+                        class="inline-flex items-start gap-[12px] text-[14px] leading-[1.4] text-white/80 hover:text-brand lg:text-[15px]"
+                      >
+                        <Icon name="arrow-up-right" size={14} strokeWidth={2.6} class="mt-[3px] shrink-0 text-brand" />
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        ))
+      }
     </nav>
-
-    <SocialLinks variant="footer" />
-
-    <div class="flex justify-center">
-      <a
-        href={site.cta.href}
-        class="rounded-[5px] bg-brand px-[20px] py-[12px] text-[13px] leading-[13px] font-medium text-white transition-colors hover:bg-brand-dark hover:text-white"
-      >
-        {site.cta.label}
-      </a>
-    </div>
   </div>
 </footer>
