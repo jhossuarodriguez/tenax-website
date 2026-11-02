@@ -86,13 +86,6 @@ export interface HomeContactData {
   text: string;
 }
 
-export interface HomeCtaBandData {
-  eyebrow: string;
-  title: string;
-  text: string;
-  image: string;
-}
-
 export interface HomeContent {
   /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
   seo: { title: string; description: string };
@@ -102,7 +95,6 @@ export interface HomeContent {
   specialties: HomeSpecialtiesData;
   showcase: HomeShowcaseData;
   contact: HomeContactData;
-  ctaBand: HomeCtaBandData;
 }
 
 /** Campo del formulario de contacto de la portada. */
