@@ -1,5 +1,5 @@
 import type { HomeFormField, HomeContent } from '@/types';
-import { obraPhoto, obraThumb } from '@/data/obras';
+import { obraThumb } from '@/data/obras';
 import { portfolio } from '@/data/portfolio';
 import { site } from '@/data/site';
 
@@ -141,12 +141,6 @@ export const home: HomeContent = {
   contact: {
     title: 'Solicita tu cotización',
     text: 'Completa el formulario y te contactaremos en las próximas 24 horas.',
-  },
-  ctaBand: {
-    eyebrow: 'Construimos estructuras, elevamos tu proyecto',
-    title: '¿Tienes un proyecto en mente?',
-    text: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',
-    image: obraPhoto('inicio').src,
   },
 };
 
