@@ -36,28 +36,46 @@ const { data } = Astro.props;
     </div>
   </div>
 
-  <ul data-reveal-children class="mx-auto grid max-w-[1150px] gap-x-[26px] gap-y-[32px] px-[20px] pt-[64px] pb-[44px] sm:grid-cols-2 lg:grid-cols-3">
-    {
-      data.projects.map((project) => (
-        <li>
-          <a href={project.href} class="group block">
-            <div class="aspect-[155/142] overflow-hidden bg-surface">
-              <img
-                src={project.image.src}
-                srcset={coverSrcset(project.image, 155 / 142)}
-                sizes="(min-width: 1150px) 352px, (min-width: 1024px) calc((100vw - 92px) / 3), (min-width: 640px) calc((100vw - 66px) / 2), calc(100vw - 40px)"
-                alt={project.image.alt}
-                loading="lazy"
-                decoding="async"
-                class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-              />
-            </div>
-            <p class="mt-[10px] max-w-[72%] text-[12px] leading-[1.4] font-bold tracking-[0.02em] text-ink uppercase group-hover:text-brand">
-              {project.caption}
-            </p>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+  <!--
+    Mismo mosaico que las especialidades: fotos casi sin separación y el pie en una pestaña blanca de borde
+    diagonal sobre la esquina inferior derecha. En tablet (2 columnas) la tercera ocupa toda la fila.
+  -->
+  <div class="px-[20px] pt-[64px] pb-[44px]">
+    <ul data-reveal-children class="mx-auto grid max-w-[1180px] gap-[6px] sm:grid-cols-2 lg:grid-cols-3">
+      {
+        data.projects.map((project, i) => {
+          const spansTablet = i === data.projects.length - 1 && data.projects.length % 2 === 1;
+          return (
+            <li class:list={[spansTablet && 'sm:col-span-2 lg:col-span-1']}>
+              <a
+                href={project.href}
+                class:list={[
+                  'group relative block aspect-[174/126] overflow-hidden bg-surface',
+                  spansTablet && 'sm:aspect-[354/126] lg:aspect-[174/126]',
+                ]}
+              >
+                <img
+                  src={project.image.src}
+                  srcset={coverSrcset(project.image, 174 / 126)}
+                  sizes={
+                    spansTablet
+                      ? '(min-width: 1220px) 390px, (min-width: 1024px) calc((100vw - 52px) / 3), calc(100vw - 40px)'
+                      : '(min-width: 1220px) 390px, (min-width: 1024px) calc((100vw - 52px) / 3), (min-width: 640px) calc((100vw - 46px) / 2), calc(100vw - 40px)'
+                  }
+                  alt={project.image.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                  style={project.image.position ? `object-position:${project.image.position}` : undefined}
+                />
+                <p class="absolute right-0 bottom-0 max-w-[calc(100%-32px)] bg-white py-[10px] pr-[14px] pl-[36px] text-right text-[13px] leading-[1.3] text-ink [clip-path:polygon(24px_0,100%_0,100%_100%,0_100%)] group-hover:text-brand">
+                  {project.caption}
+                </p>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
 </section>
