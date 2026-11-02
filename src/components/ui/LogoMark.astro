@@ -1,0 +1,19 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<!--
+  Isotipo de Tenax (la "T" con el arco), redibujado en SVG a partir del favicon para que se vea nítido a
+  cualquier tamaño. Colores tomados del logotipo.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="34 30 122 116" class={className} role="img" aria-label="Tenax Construction">
+  <path d="M76.52 141.48A54.3 54.3 0 1 1 149.67 75.62" fill="none" stroke="#e75a2a" stroke-width="4.3" />
+  <path d="M48.33 76.11A54.5 54.5 0 0 1 115.79 45.72L114.52 49.51A50.5 50.5 0 0 0 52.01 77.67Z" fill="#fdea4f" />
+  <path d="M87.5 31h16v75.5h-16z" fill="#fdea4f" />
+  <path d="M87.5 106.5h16v14h-16z" fill="#e75a2a" />
+  <path d="M39.5 72.35A64.1 64.1 0 0 1 119.9 36.98L116.69 46.03A54.5 54.5 0 0 0 48.33 76.11Z" fill="#e75a2a" />
+</svg>
