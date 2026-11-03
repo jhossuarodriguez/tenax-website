@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import PageHero from '@/components/shared/PageHero.astro';
+import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
+import ServicesHero from '@/components/services/ServicesHero.astro';
 import ServiceCard from '@/components/services/ServiceCard.astro';
 import ServicesCta from '@/components/services/ServicesCta.astro';
 import { services, servicesPage } from '@/data/services';
@@ -9,10 +10,11 @@ const { seo, hero, heading, intro, cta } = servicesPage;
 ---
 
 <BaseLayout title={seo.title} description={seo.description} breadcrumbs={hero.breadcrumbs}>
-  <PageHero {...hero} />
+  <ServicesHero hero={hero} />
 
-  <section class="bg-surface-alt px-[20px] pt-[50px] pb-[60px]">
+  <section class="bg-surface-alt px-[20px] pt-[32px] pb-[60px]">
     <div class="mx-auto max-w-site">
+      <Breadcrumbs items={hero.breadcrumbs} class="mb-[28px] text-center" />
       <h2 data-reveal class="mb-[12px] text-center">{heading}</h2>
       <p class="mx-auto mb-[35px] max-w-[760px] text-center leading-[1.6rem] text-[#555]">{intro}</p>
       <div data-reveal-children class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[26px]">

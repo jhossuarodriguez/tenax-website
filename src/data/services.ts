@@ -476,11 +476,10 @@ export const servicesPage: ServicesPageContent = {
   },
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Servicios' }],
-    eyebrow: 'Servicios',
-    title: 'Nuestros',
-    titleEmphasis: 'Servicios',
-    subtitle: 'Ofrecemos soluciones integrales en construcción con los más altos estándares de calidad y compromiso.',
-    strip: [...new Set(tenaxServices.map((s) => s.categoria))],
+    title: 'Servicios',
+    text: 'Ofrecemos una amplia gama de servicios especializados en ingeniería y construcción, adaptados a las necesidades de cada proyecto. Conoce nuestras áreas de especialización y descubre cómo podemos contribuir al desarrollo y ejecución de tu próxima obra.',
+    photo: obraThumb('instalacion-cerca-alambre-1'),
+    background: obraThumb('instalacion-cerca-alambre-1'),
   },
   heading: 'Soluciones integrales en construcción',
   intro:
