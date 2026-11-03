@@ -33,7 +33,7 @@ const categorySeeds: Record<PortfolioCategoryId, { title: string; intro: string 
     intro: 'Naves de almacenaje, pavimentos, control de acceso y oficinas para puertos y centros logísticos.',
   },
   puentes: {
-    title: 'Puentes',
+    title: 'Infraestructura vial y puentes',
     intro: 'Puentes alcantarillados y obras de drenaje para el paso vehicular sobre cauces.',
   },
 };
