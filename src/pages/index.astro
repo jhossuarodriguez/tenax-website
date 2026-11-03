@@ -6,7 +6,6 @@ import HomeVision from '@/components/home/HomeVision.astro';
 import FeatureBand from '@/components/home/FeatureBand.astro';
 import HomeSpecialties from '@/components/home/HomeSpecialties.astro';
 import HomeShowcase from '@/components/home/HomeShowcase.astro';
-import ContactSection from '@/components/home/ContactSection.astro';
 ---
 
 <BaseLayout title={home.seo.title} description={home.seo.description}>
@@ -22,5 +21,4 @@ import ContactSection from '@/components/home/ContactSection.astro';
   <HomeShowcase data={home.showcase} />
   <div class="h-[24px] bg-brand" aria-hidden="true"></div>
 
-  <ContactSection data={home.contact} />
 </BaseLayout>
