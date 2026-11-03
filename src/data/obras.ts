@@ -277,6 +277,10 @@ export const obraPhotos = {
     location: 'Peravia, Baní',
     alt: 'Obreros instalando la malla ciclónica del vallado perimetral',
   },
+  'instalacion-cerca-alambre-1': {
+    title: 'Trabajadores instalando cerca de alambre',
+    alt: 'Un obrero sobre una escalera fija la malla ciclónica a un poste mientras otro la sostiene, junto a un vallado con alambre de púas',
+  },
 
   // Fotos del documento de contenido de Tenax (octubre de 2026).
   'hero-estructura-atardecer': {
