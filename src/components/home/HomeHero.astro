@@ -29,7 +29,7 @@ const { hero } = Astro.props;
   <div class="mx-auto w-full max-w-[1200px]">
     <div data-reveal-children class="md:w-2/3">
       <h1 class="font-display font-bold text-white">
-        <span class="mb-[18px] block font-sans text-[0.8rem] leading-[1.5] font-semibold tracking-[0.08em] text-white/80 uppercase">{hero.kicker}</span>
+        <span class="sr-only mb-[18px] font-sans text-[0.8rem] leading-[1.5] font-semibold tracking-[0.08em] text-white/80 uppercase">{hero.kicker}</span>
         {
           hero.lines.map((line) => (
             <span class="block">
