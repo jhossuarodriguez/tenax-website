@@ -60,7 +60,7 @@ export const home: HomeContent = {
   earthworks: {
     eyebrow: 'Movimientos de tierras',
     title: 'Preparamos el terreno para grandes proyectos.',
-    text: 'En TENAX Construction ejecutamos movimientos de tierras, excavación, nivelación y compactación, preparando las condiciones necesarias para el desarrollo de nuevas obras.',
+    text: 'En Tenax Construction ejecutamos movimientos de tierras, excavación, nivelación y compactación, preparando las condiciones necesarias para el desarrollo de nuevas obras.',
     cta: { label: 'Conoce más', href: '/servicios/movimiento-tierra/' },
     image: obraThumb('nivelacion-terreno-2'),
   },
