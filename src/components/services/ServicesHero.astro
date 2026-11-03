@@ -1,0 +1,62 @@
+---
+import type { ServicesHeroData } from '@/types';
+import { coverSrcset } from '@/data/obras';
+
+interface Props {
+  hero: ServicesHeroData;
+}
+
+const { hero } = Astro.props;
+---
+
+<!--
+  Hero de /servicios/: a la izquierda grafito; a la derecha, panel naranja con el título. La foto cruza la unión de
+  los dos paneles, con una trama blanca detrás. En pantallas < 1024 px se apila: la foto sobre el grafito y el panel
+  naranja debajo, montado bajo la foto.
+  Columnas en escritorio: margen | foto (máx. 440 px) | texto (máx. 760 px) | margen; el naranja ocupa las dos últimas.
+-->
+<header
+  class="relative isolate overflow-hidden bg-ink lg:grid lg:min-h-[520px] lg:grid-cols-[minmax(24px,1fr)_minmax(0,440px)_minmax(0,760px)_minmax(24px,1fr)]"
+>
+  <div class="relative z-10 px-[16px] pt-[48px] md:px-[24px] lg:col-start-2 lg:row-start-1 lg:self-center lg:px-0 lg:py-[72px]">
+    <div class="relative isolate mx-auto max-w-[420px] lg:mr-[-180px] lg:ml-auto lg:w-[320px] lg:max-w-none xl:mr-[-220px] xl:w-[380px]">
+      <div
+        class="absolute -top-[18px] -left-[28px] -z-10 size-full bg-[repeating-linear-gradient(135deg,#fff_0_3px,transparent_3px_10px)]"
+        aria-hidden="true"
+      >
+      </div>
+      <img
+        src={hero.photo.src}
+        srcset={coverSrcset(hero.photo, 11 / 10)}
+        sizes="(min-width: 1280px) 380px, (min-width: 1024px) 320px, min(420px, calc(100vw - 32px))"
+        alt={hero.photo.alt}
+        width={hero.photo.width}
+        height={hero.photo.height}
+        fetchpriority="high"
+        decoding="async"
+        class="aspect-[11/10] w-full object-cover shadow-[0_18px_40px_rgba(0,0,0,0.3)]"
+      />
+    </div>
+  </div>
+
+  <!-- Panel naranja: la foto de fondo, difuminada, en gris y oscurecida al 85 % (contraste AA del texto blanco). Se amplía un 10 % para que el desenfoque no deje bordes claros. -->
+  <div class="relative isolate -mt-[72px] overflow-hidden lg:col-[3/5] lg:row-start-1 lg:mt-0 lg:flex lg:items-center">
+    <img
+      src={hero.background.src}
+      srcset={hero.background.srcset}
+      sizes="(min-width: 1024px) 60vw, 100vw"
+      alt=""
+      decoding="async"
+      class="absolute inset-0 -z-20 size-full scale-110 object-cover blur-[6px] brightness-[0.85] grayscale"
+    />
+    <div class="absolute inset-0 -z-10 bg-brand mix-blend-multiply" aria-hidden="true"></div>
+
+    <div
+      data-reveal-children
+      class="mx-auto max-w-[620px] px-[16px] pt-[112px] pb-[56px] md:px-[24px] lg:mx-0 lg:max-w-[540px] lg:py-[72px] lg:pr-[24px] lg:pl-[228px] xl:pl-[276px]"
+    >
+      <h1 class="font-display text-[clamp(1.8rem,3.2vw,2.4rem)] leading-[1.15] font-bold text-white">{hero.title}</h1>
+      <p class="mt-[12px] text-[0.95rem] leading-[1.6] text-white">{hero.text}</p>
+    </div>
+  </div>
+</header>

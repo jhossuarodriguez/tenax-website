@@ -1,4 +1,4 @@
-import type { ImageAsset, NavItem, PageHeroData } from '@/types/common';
+import type { Breadcrumb, ImageAsset, NavItem } from '@/types/common';
 
 export interface ServiceSection {
   /** Ancla de la sección (para el enlace secundario del hero). */
@@ -64,11 +64,23 @@ export interface Service {
   collapseRailOnTablet: boolean;
 }
 
+/** Hero de /servicios/: panel grafito, panel naranja con el texto y una foto que cruza la unión de los dos. */
+export interface ServicesHeroData {
+  /** Se muestran bajo el hero y se publican como BreadcrumbList. */
+  breadcrumbs: Breadcrumb[];
+  title: string;
+  text: string;
+  /** Foto sobre la unión de los paneles, con la trama blanca detrás. */
+  photo: ImageAsset;
+  /** Foto de fondo del panel naranja: se ve en gris, teñida de naranja. */
+  background: ImageAsset;
+}
+
 /** Textos de la página /servicios/ y del bloque de llamada a la acción del detalle. */
 export interface ServicesPageContent {
   /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
   seo: { title: string; description: string };
-  hero: PageHeroData;
+  hero: ServicesHeroData;
   heading: string;
   intro: string;
   cta: { title: string; text: string; action: NavItem };
