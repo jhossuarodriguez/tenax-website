@@ -1,4 +1,4 @@
-import type { HomeFormField, HomeContent } from '@/types';
+import type { HomeContent } from '@/types';
 import { obraThumb } from '@/data/obras';
 import { portfolio } from '@/data/portfolio';
 import { site } from '@/data/site';
@@ -138,29 +138,4 @@ export const home: HomeContent = {
       },
     ],
   },
-  contact: {
-    title: 'Solicita tu cotización',
-    text: 'Completa el formulario y te contactaremos en las próximas 24 horas.',
-  },
 };
-
-/** Tipos de proyecto y monedas del presupuesto del formulario de cotización de Tenax. */
-export const projectTypes = ['Casa Residencial', 'Edificio/Apartamentos', 'Proyecto Comercial', 'Nave Industrial', 'Remodelación', 'Otro'];
-// El cliente escribe el monto y elige la moneda: Tenax cotiza tanto en dólares como en pesos.
-export const currencies = ['US$', 'RD$'];
-
-export const homeFormFields: HomeFormField[] = [
-  { name: 'nombre', label: 'Nombre Completo', type: 'text', placeholder: 'Nombre completo', required: true },
-  { name: 'email', label: 'Email', type: 'email', placeholder: 'Ingresa tu correo electrónico', required: true, half: true },
-  { name: 'telefono', label: 'Teléfono', type: 'tel', placeholder: '+1 (809) 000-0000', required: true, half: true },
-  { name: 'tipoProyecto', label: 'Tipo de Proyecto', type: 'select', placeholder: 'Selecciona el tipo de proyecto', options: projectTypes, required: true },
-  { name: 'presupuesto', label: 'Presupuesto Estimado', type: 'text', placeholder: 'Ej. 150,000', required: false, half: true },
-  { name: 'moneda', label: 'Moneda', type: 'select', placeholder: 'Selecciona la moneda', options: currencies, required: false, half: true },
-  {
-    name: 'descripcion',
-    label: 'Descripción del Proyecto',
-    type: 'textarea',
-    placeholder: 'Describe tu proyecto: tipo de construcción, tamaño aproximado, características especiales, etc.',
-    required: true,
-  },
-];

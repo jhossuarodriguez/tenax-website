@@ -1,8 +1,12 @@
 import type { ContactPageData } from '@/types';
 import { site } from '@/data/site';
-import { currencies, projectTypes } from '@/data/home';
 
 const { contact } = site;
+
+/** Tipos de proyecto y monedas del presupuesto del formulario de cotización de Tenax. */
+const projectTypes = ['Casa Residencial', 'Edificio/Apartamentos', 'Proyecto Comercial', 'Nave Industrial', 'Remodelación', 'Otro'];
+// El cliente escribe el monto y elige la moneda: Tenax cotiza tanto en dólares como en pesos.
+const currencies = ['US$', 'RD$'];
 
 export const contactPage: ContactPageData = {
   seo: {

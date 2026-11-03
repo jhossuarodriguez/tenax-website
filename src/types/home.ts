@@ -81,11 +81,6 @@ export interface HomeShowcaseData {
   projects: HomeLinkedPhoto[];
 }
 
-export interface HomeContactData {
-  title: string;
-  text: string;
-}
-
 export interface HomeContent {
   /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
   seo: { title: string; description: string };
@@ -94,19 +89,4 @@ export interface HomeContent {
   earthworks: HomeFeatureBandData;
   specialties: HomeSpecialtiesData;
   showcase: HomeShowcaseData;
-  contact: HomeContactData;
-}
-
-/** Campo del formulario de contacto de la portada. */
-export interface HomeFormField {
-  name: string;
-  label: string;
-  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'date';
-  /** En select, el placeholder es la primera opción (deshabilitada). */
-  placeholder: string;
-  /** Opciones del select. */
-  options?: string[];
-  required: boolean;
-  /** Ocupa media fila en escritorio (Nombre / Apellidos). */
-  half?: boolean;
 }
