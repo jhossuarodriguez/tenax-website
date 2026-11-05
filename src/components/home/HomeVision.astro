@@ -19,17 +19,18 @@ const valueIcons: Record<HomeValueIcon, IconName> = {
 
 const rowClass = 'grid gap-[16px] border-b border-sand py-[36px] last:border-b-0 md:grid-cols-[200px_1fr] md:gap-[40px]';
 const labelClass =
-  'font-mono text-[0.72rem] leading-[1.6] tracking-[0.06em] text-stone-2 uppercase after:mt-[10px] after:block after:h-[2px] after:w-[28px] after:bg-brand';
+  'font-mono text-[0.72rem] leading-[1.6] tracking-[0.06em] uppercase after:mt-[10px] after:block after:h-[2px] after:w-[28px] after:bg-brand';
 ---
 
 <!--
   Bajo la portada: visión, cifras y valores, cada fila con su etiqueta a la izquierda.
-  Cifras, íconos y etiquetas en gris acero (#a5a7aa); los textos en grafito.
+  Cifras, íconos y la etiqueta de la visión en gris acero (#a5a7aa); las etiquetas de cifras y valores, más oscuras
+  (#555555); los textos en grafito.
 -->
 <section class="bg-surface px-[20px]">
   <div class="mx-auto max-w-[1100px]">
     <div data-reveal class={rowClass}>
-      <p class={labelClass}>{data.visionLabel}</p>
+      <p class:list={[labelClass, 'text-stone-2']}>{data.visionLabel}</p>
       <div>
         <h2 class="max-w-[620px] text-[clamp(1.6rem,3vw,2.1rem)] leading-[1.25] font-semibold text-ink">{data.title}</h2>
         <p class="mt-[16px] max-w-[720px] text-[1.02rem] leading-[1.7] text-body">
@@ -39,7 +40,7 @@ const labelClass =
     </div>
 
     <div data-reveal class={rowClass}>
-      <p class={labelClass}>{data.statsLabel}</p>
+      <p class:list={[labelClass, 'text-body']}>{data.statsLabel}</p>
       <dl class="grid grid-cols-3">
         {
           data.stats.map((s, i) => (
@@ -53,7 +54,7 @@ const labelClass =
     </div>
 
     <div data-reveal class={rowClass}>
-      <p class={labelClass}>{data.valuesLabel}</p>
+      <p class:list={[labelClass, 'text-body']}>{data.valuesLabel}</p>
       <ul class="grid grid-cols-3 gap-y-[24px] lg:grid-cols-6">
         {
           data.values.map((v, i) => (
