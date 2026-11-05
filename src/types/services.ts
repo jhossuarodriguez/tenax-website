@@ -1,4 +1,4 @@
-import type { Breadcrumb, ImageAsset, NavItem } from '@/types/common';
+import type { Breadcrumb, ImageAsset } from '@/types/common';
 
 export interface ServiceSection {
   /** Ancla de la sección (para el enlace secundario del hero). */
@@ -83,7 +83,4 @@ export interface ServicesPageContent {
   hero: ServicesHeroData;
   heading: string;
   intro: string;
-  cta: { title: string; text: string; action: NavItem };
-  /** Texto de la tarjeta oscura de la barra lateral del detalle. */
-  sideCtaText: string;
 }

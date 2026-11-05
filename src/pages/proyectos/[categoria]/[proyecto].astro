@@ -3,7 +3,6 @@ import type { GetStaticPaths } from 'astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
 import ProjectTile from '@/components/projects/ProjectTile.astro';
-import ProjectsCta from '@/components/projects/ProjectsCta.astro';
 import Lightbox from '@/components/projects/Lightbox.astro';
 import { coverSrcset } from '@/data/obras';
 import { portfolio } from '@/data/portfolio';
@@ -161,8 +160,6 @@ const seoTitle = project.location ? `${project.title}, ${project.location}` : pr
       </div>
     </div>
   </section>
-
-  <ProjectsCta title="¿Tienes un proyecto en mente?" text="Contáctanos para una cotización personalizada." buttonLabel="Solicitar cotización" />
 
   <Lightbox />
 </BaseLayout>

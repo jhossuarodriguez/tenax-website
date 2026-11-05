@@ -1,5 +1,4 @@
 import type { GalleryPageData, GalleryPhoto } from '@/types';
-import { ctaBand } from '@/data/sectors';
 import { obraCaption, obraPhotos, obraThumb, type ObraPhotoId } from '@/data/obras';
 import { projectCaption, projectPhoto, tenaxImage, type ProjectPhotoId } from '@/data/projects';
 import { services } from '@/data/services';
@@ -72,5 +71,4 @@ export const galleryPage: GalleryPageData = {
     text: 'Contamos con equipos especializados y maquinaria pesada de última generación para realizar proyectos con eficiencia y precisión en toda la República Dominicana.',
     tags: services.map((s) => s.title),
   },
-  cta: ctaBand,
 };

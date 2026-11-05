@@ -1,5 +1,4 @@
 import type { ImageAsset, PageHeroData } from '@/types/common';
-import type { CtaBandData } from '@/types/sectors';
 
 export interface GalleryPhoto {
   image: ImageAsset;
@@ -20,5 +19,4 @@ export interface GalleryPageData {
   hero: PageHeroData;
   photos: GalleryPhoto[];
   band: GalleryBand;
-  cta: CtaBandData;
 }

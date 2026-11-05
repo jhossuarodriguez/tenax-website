@@ -36,12 +36,6 @@ export interface AboutFaqItem {
 }
 
 /** Banda "Trabajemos juntos" con imagen de fondo oscurecida. */
-export interface AboutConnectBand {
-  prefix: string;
-  title: string;
-  description: string;
-  background: ImageAsset;
-}
 
 export interface AboutPageData {
   seo: { title: string; description: string };
@@ -50,7 +44,6 @@ export interface AboutPageData {
   safety: AboutSafetyData;
   faqTitle: string;
   faqs: AboutFaqItem[];
-  band: AboutConnectBand;
 }
 
 /** "Seguridad, calidad y medio ambiente": collage de fotos de obra y texto a la derecha. */
