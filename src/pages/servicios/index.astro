@@ -17,9 +17,19 @@ const { seo, hero, heading, intro, cta } = servicesPage;
       <Breadcrumbs items={hero.breadcrumbs} class="mb-[28px] text-center" />
       <h2 data-reveal class="mb-[12px] text-center">{heading}</h2>
       <p class="mx-auto mb-[35px] max-w-[760px] text-center leading-[1.6rem] text-[#555]">{intro}</p>
-      <div data-reveal-children class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[26px]">
-        {services.map((service) => <ServiceCard service={service} />)}
-      </div>
+      <!-- Mosaico como "Proyectos Destacados" del home: fotos casi sin separación; en tablet, si el total es impar, la última ocupa toda la fila. -->
+      <ul data-reveal-children class="grid gap-[6px] sm:grid-cols-2 lg:grid-cols-3">
+        {
+          services.map((service, i) => {
+            const wide = i === services.length - 1 && services.length % 2 === 1;
+            return (
+              <li class:list={[wide && 'sm:col-span-2 lg:col-span-1']}>
+                <ServiceCard service={service} wide={wide} />
+              </li>
+            );
+          })
+        }
+      </ul>
     </div>
   </section>
 
