@@ -35,7 +35,7 @@ export const home: HomeContent = {
     visionLabel: 'Nuestra visión',
     title: 'Construimos el futuro con ingeniería y solidez, desde 2012.',
     text: [
-      `TENAX Construction cuenta con ${yearsOfExperience} años de experiencia en el `,
+      `Tenax Construction cuenta con ${yearsOfExperience} años de experiencia en el `,
       { highlight: 'desarrollo y ejecución de proyectos de ingeniería y construcción' },
       ', especializándose en estructuras metálicas, naves industriales, obras civiles y movimientos de tierras, con participación en los sectores ',
       { highlight: 'industrial, comercial, logístico, agroindustrial y energético' },
