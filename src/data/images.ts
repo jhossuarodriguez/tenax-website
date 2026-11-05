@@ -1,7 +1,7 @@
 import type { ImageMetadata } from 'astro';
 import { getImage } from 'astro:assets';
 
-/** Anchos que Astro genera al compilar (2048 solo en las más anchas, como el hero 4K); la original es la más grande. */
+/** Anchos que Astro genera al compilar (2048 solo en las más anchas); la original es la más grande. */
 const WIDTHS = [400, 800, 1600, 2048];
 const QUALITY = 62;
 
