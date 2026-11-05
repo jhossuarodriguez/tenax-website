@@ -334,7 +334,7 @@ const masters = import.meta.glob<{ default: ImageMetadata }>('/src/assets/obras/
 
 /**
  * Cada foto se guarda una sola vez en src/assets/obras/ (2K reescalada con IA desde el original de "FOTOS TENAX"; el
- * hero, 4K) y Astro genera al compilar las versiones más pequeñas. Falla el build si una foto no tiene imagen.
+ * hero, 2050 × 767) y Astro genera al compilar las versiones más pequeñas. Falla el build si una foto no tiene imagen.
  */
 const versions = Object.fromEntries(
   await Promise.all(
