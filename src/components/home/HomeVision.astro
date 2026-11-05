@@ -19,12 +19,13 @@ const valueIcons: Record<HomeValueIcon, IconName> = {
 
 const rowClass = 'grid gap-[16px] border-b border-sand py-[36px] last:border-b-0 md:grid-cols-[200px_1fr] md:gap-[40px]';
 const labelClass =
-  'font-mono text-[0.72rem] leading-[1.6] tracking-[0.06em] text-stone-2 uppercase after:mt-[10px] after:block after:h-[2px] after:w-[28px] after:bg-brand';
+  'font-mono text-[0.72rem] leading-[1.6] tracking-[0.06em] text-stone-2 after:mt-[10px] after:block after:h-[2px] after:w-[28px] after:bg-brand';
 ---
 
 <!--
   Bajo la portada: visión, cifras y valores, cada fila con su etiqueta a la izquierda.
   Cifras, íconos y etiquetas en gris acero (#a5a7aa); los textos en grafito.
+  Las etiquetas no van en mayúsculas para que la marca se lea "Tenax", no "TENAX".
 -->
 <section class="bg-surface px-[20px]">
   <div class="mx-auto max-w-[1100px]">
