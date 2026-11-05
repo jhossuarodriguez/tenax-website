@@ -10,41 +10,45 @@ const { hero } = Astro.props;
 ---
 
 <!--
-  Hero de /servicios/: a la izquierda grafito; a la derecha, panel naranja con el título. La foto cruza la unión de
-  los dos paneles, con una trama blanca detrás. En pantallas < 1024 px se apila: la foto sobre el grafito y el panel
-  naranja debajo, montado bajo la foto.
-  Columnas en escritorio: margen | foto (máx. 440 px) | texto (máx. 760 px) | margen; el naranja ocupa las dos últimas.
+  Hero de /servicios/, según la referencia de Tenax (medidas tomadas a 1920 px y escaladas en % / vw):
+  - Panel grafito a la izquierda (30 % del ancho, todo el alto).
+  - Cortina naranja: caja que empieza un poco más abajo, monta sobre el grafito y se detiene antes del borde derecho.
+  - Foto cruzando la unión de los dos, con una banda de franjas blancas encima de su parte superior.
+  En pantallas < 1024 px se apila: la foto sobre el grafito y la cortina naranja debajo, montada bajo la foto.
 -->
-<header
-  class="relative isolate overflow-hidden bg-ink lg:grid lg:min-h-[520px] lg:grid-cols-[minmax(24px,1fr)_minmax(0,440px)_minmax(0,760px)_minmax(24px,1fr)]"
->
-  <div class="relative z-10 px-[16px] pt-[48px] md:px-[24px] lg:col-start-2 lg:row-start-1 lg:self-center lg:px-0 lg:py-[72px]">
-    <div class="relative isolate mx-auto max-w-[420px] lg:mr-[-180px] lg:ml-auto lg:w-[320px] lg:max-w-none xl:mr-[-220px] xl:w-[380px]">
-      <div
-        class="absolute -top-[18px] -left-[28px] -z-10 size-full bg-[repeating-linear-gradient(135deg,#fff_0_3px,transparent_3px_10px)]"
-        aria-hidden="true"
-      >
-      </div>
+<header class="relative isolate overflow-hidden bg-ink lg:h-[clamp(480px,45.8vw,880px)] lg:bg-surface-alt">
+  <div class="absolute inset-y-0 left-0 hidden w-[30.3%] bg-ink lg:block" aria-hidden="true"></div>
+
+  <div class="relative z-10 px-[16px] pt-[48px] md:px-[24px] lg:absolute lg:top-[53.4%] lg:left-[13.8%] lg:w-[30.7%] lg:-translate-y-1/2 lg:p-0">
+    <div class="relative mx-auto max-w-[420px] lg:max-w-none">
       <img
         src={hero.photo.src}
         srcset={coverSrcset(hero.photo, 11 / 10)}
-        sizes="(min-width: 1280px) 380px, (min-width: 1024px) 320px, min(420px, calc(100vw - 32px))"
+        sizes="(min-width: 1024px) 31vw, min(420px, calc(100vw - 32px))"
         alt={hero.photo.alt}
         width={hero.photo.width}
         height={hero.photo.height}
         fetchpriority="high"
         decoding="async"
-        class="aspect-[11/10] w-full object-cover shadow-[0_18px_40px_rgba(0,0,0,0.3)]"
+        class="aspect-[11/10] w-full object-cover"
       />
+      <!-- Banda de franjas sobre la esquina superior de la foto: sale a la izquierda y no llega a su borde derecho. -->
+      <div
+        class="absolute -top-[9.3%] -left-[23.6%] h-[18.7%] w-[115%] bg-[repeating-linear-gradient(45deg,#fff_0_8px,transparent_8px_18px)]"
+        aria-hidden="true"
+      >
+      </div>
     </div>
   </div>
 
-  <!-- Panel naranja: la foto de fondo, difuminada, en gris y oscurecida al 85 % (contraste AA del texto blanco). Se amplía un 10 % para que el desenfoque no deje bordes claros. -->
-  <div class="relative isolate -mt-[72px] overflow-hidden lg:col-[3/5] lg:row-start-1 lg:mt-0 lg:flex lg:items-center">
+  <!-- Cortina naranja: la foto de fondo, difuminada, en gris y oscurecida al 85 % (contraste AA del texto blanco), teñida con brand en modo multiplicar. La foto se amplía un 10 % para que el desenfoque no deje bordes claros. -->
+  <div
+    class="relative isolate -mt-[72px] overflow-hidden lg:absolute lg:top-[2.7vw] lg:right-[10.5%] lg:bottom-0 lg:left-[24.4%] lg:mt-0 lg:flex lg:items-center"
+  >
     <img
       src={hero.background.src}
       srcset={hero.background.srcset}
-      sizes="(min-width: 1024px) 60vw, 100vw"
+      sizes="(min-width: 1024px) 65vw, 100vw"
       alt=""
       decoding="async"
       class="absolute inset-0 -z-20 size-full scale-110 object-cover blur-[6px] brightness-[0.85] grayscale"
@@ -53,10 +57,10 @@ const { hero } = Astro.props;
 
     <div
       data-reveal-children
-      class="mx-auto max-w-[620px] px-[16px] pt-[112px] pb-[56px] md:px-[24px] lg:mx-0 lg:max-w-[540px] lg:py-[72px] lg:pr-[24px] lg:pl-[228px] xl:pl-[276px]"
+      class="mx-auto max-w-[620px] px-[16px] pt-[112px] pb-[56px] md:px-[24px] lg:mx-0 lg:w-full lg:max-w-none lg:py-0 lg:pr-[18.4%] lg:pl-[39%]"
     >
-      <h1 class="font-display text-[clamp(1.8rem,3.2vw,2.4rem)] leading-[1.15] font-bold text-white">{hero.title}</h1>
-      <p class="mt-[12px] text-[0.95rem] leading-[1.6] text-white">{hero.text}</p>
+      <h1 class="font-display text-[clamp(2rem,2.95vw,3.5rem)] leading-[1.1] font-normal text-white">{hero.title}</h1>
+      <p class="mt-[clamp(12px,1.3vw,24px)] text-[clamp(0.95rem,1.16vw,1.375rem)] leading-[1.6] text-white">{hero.text}</p>
     </div>
   </div>
 </header>
