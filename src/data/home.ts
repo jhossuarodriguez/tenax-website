@@ -23,7 +23,7 @@ export const home: HomeContent = {
   },
   hero: {
     kicker: 'Constructora industrial en República Dominicana',
-    lines: ['Movimiento de tierras.', 'Obras civiles.'],
+    lines: ['Estructuras metálicas.', 'Movimiento de tierras.', 'Obras civiles.'],
     text: 'Especialistas en construcción industrial, infraestructura energética, obras civiles, cimentaciones y movimiento de tierras en la República Dominicana.',
     image: obraThumb('hero-estructura-atardecer'),
     buttons: [
