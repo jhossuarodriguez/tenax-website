@@ -1,14 +1,12 @@
 ---
 import type { Service } from '@/types';
-import { site } from '@/data/site';
 
 interface Props {
   service: Service;
   related: Service[];
-  ctaText: string;
 }
 
-const { service, related, ctaText } = Astro.props;
+const { service, related } = Astro.props;
 ---
 
 <aside
@@ -37,17 +35,5 @@ const { service, related, ctaText } = Astro.props;
         ))
       }
     </div>
-  </div>
-
-  <div class="rounded-[4px] bg-ink p-[22px] text-center">
-    <p class="mb-[14px] text-[0.92rem] leading-[1.5] text-[#e5e5e5]">{ctaText}</p>
-    <p class="mb-[14px] text-[0.92rem] leading-[1.5]">
-      <a
-        href={site.cta.href}
-        class="block rounded-[3px] bg-brand p-[11px] text-[0.88rem] font-semibold text-white transition-colors duration-150 hover:bg-brand-dark hover:text-white"
-      >
-        Solicitar cotización
-      </a>
-    </p>
   </div>
 </aside>

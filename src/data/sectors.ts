@@ -1,4 +1,4 @@
-import type { CtaBandData, ImageAsset, Sector, SectorBadgeVariant, SectorsPageData } from '@/types';
+import type { ImageAsset, Sector, SectorBadgeVariant, SectorsPageData } from '@/types';
 import { obraThumb } from '@/data/obras';
 import { categoryLabels, projectPhoto, projectPhotos, shortLocation, type ProjectCategory } from '@/data/projects';
 
@@ -71,12 +71,6 @@ export const sectors: Sector[] = seeds.map((s, i) => {
   };
 });
 
-/** Banda de llamada a la acción compartida por Sectores, Equipos y Galería. */
-export const ctaBand: CtaBandData = {
-  title: '¿Tienes un proyecto en mente?',
-  text: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',
-  button: { label: 'Solicitar cotización', href: '/contacto/' },
-};
 
 export const sectorsPage: SectorsPageData = {
   seo: {
@@ -93,5 +87,4 @@ export const sectorsPage: SectorsPageData = {
     strip: ['Logístico', 'Agroindustrial', 'Energético', 'Turístico'],
   },
   sectors,
-  cta: ctaBand,
 };

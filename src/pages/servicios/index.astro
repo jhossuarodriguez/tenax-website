@@ -3,10 +3,9 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
 import ServicesHero from '@/components/services/ServicesHero.astro';
 import ServiceCard from '@/components/services/ServiceCard.astro';
-import ServicesCta from '@/components/services/ServicesCta.astro';
 import { services, servicesPage } from '@/data/services';
 
-const { seo, hero, heading, intro, cta } = servicesPage;
+const { seo, hero, heading, intro } = servicesPage;
 ---
 
 <BaseLayout title={seo.title} description={seo.description} breadcrumbs={hero.breadcrumbs}>
@@ -32,6 +31,4 @@ const { seo, hero, heading, intro, cta } = servicesPage;
       </ul>
     </div>
   </section>
-
-  <ServicesCta {...cta} />
 </BaseLayout>

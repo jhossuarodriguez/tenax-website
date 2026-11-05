@@ -1,5 +1,5 @@
 import type { AboutFaqItem, AboutPageData } from '@/types';
-import { obraPhoto, obraThumb } from '@/data/obras';
+import { obraThumb } from '@/data/obras';
 import { tenaxImage } from '@/data/projects';
 
 /** Preguntas frecuentes de Tenax: cada respuesta es un solo párrafo. */
@@ -110,10 +110,4 @@ export const aboutPage: AboutPageData = {
   },
   faqTitle: 'Preguntas Frecuentes',
   faqs,
-  band: {
-    prefix: 'Construimos estructuras, elevamos tu proyecto',
-    title: '¿Tienes un proyecto en mente?',
-    description: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',
-    background: { src: obraPhoto('galeria-2').src, alt: '' },
-  },
 };

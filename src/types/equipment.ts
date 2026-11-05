@@ -1,5 +1,4 @@
 import type { ImageAsset, PageHeroData } from '@/types/common';
-import type { CtaBandData } from '@/types/sectors';
 
 export interface MachineryItem {
   image: ImageAsset;
@@ -33,5 +32,4 @@ export interface EquipmentPageData {
   hero: PageHeroData;
   machinery: MachinerySection;
   byService: ServiceEquipmentSection;
-  cta: CtaBandData;
 }

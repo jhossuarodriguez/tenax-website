@@ -3,7 +3,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import AboutFeatureRowBlock from '@/components/about/AboutFeatureRow.astro';
 import AboutFaq from '@/components/about/AboutFaq.astro';
-import AboutConnectBand from '@/components/about/AboutConnectBand.astro';
 import AboutSafety from '@/components/about/AboutSafety.astro';
 import HomeVision from '@/components/home/HomeVision.astro';
 import { home } from '@/data/home';
@@ -25,6 +24,4 @@ import { aboutPage } from '@/data/about';
     </div>
   </div>
 
-  <div class="h-[100px] bg-ink" aria-hidden="true"></div>
-  <AboutConnectBand band={aboutPage.band} />
 </BaseLayout>

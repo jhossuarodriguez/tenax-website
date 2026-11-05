@@ -3,7 +3,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ContactIntro from '@/components/contact/ContactIntro.astro';
 import ContactDetails from '@/components/contact/ContactDetails.astro';
 import ContactForm from '@/components/contact/ContactForm.astro';
-import ContactBand from '@/components/contact/ContactBand.astro';
 import { contactPage } from '@/data/contact';
 ---
 
@@ -29,6 +28,4 @@ import { contactPage } from '@/data/contact';
       </div>
     </div>
   </section>
-
-  <ContactBand band={contactPage.band} />
 </BaseLayout>

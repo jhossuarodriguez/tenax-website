@@ -1,4 +1,4 @@
-import type { ImageAsset, NavItem, PageHeroData } from '@/types/common';
+import type { ImageAsset, PageHeroData } from '@/types/common';
 
 /** Estilo del distintivo de código (badge sobre la imagen y caja del kicker). */
 export type SectorBadgeVariant = 'signal' | 'caution' | 'steel' | 'ink' | 'outline';
@@ -20,17 +20,10 @@ export interface Sector {
   badge: SectorBadgeVariant;
 }
 
-/** Banda oscura de llamada a la acción al pie de Sectores, Equipos y Galería. */
-export interface CtaBandData {
-  title: string;
-  text: string;
-  button: NavItem;
-}
 
 export interface SectorsPageData {
   /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
   seo: { title: string; description: string };
   hero: PageHeroData;
   sectors: Sector[];
-  cta: CtaBandData;
 }

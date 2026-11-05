@@ -58,8 +58,4 @@ export const contactPage: ContactPageData = {
     successMessage: '¡Cotización enviada exitosamente! Te contactaremos en las próximas 24 horas. Revisa tu email para la confirmación.',
     errorMessage: `No pudimos enviar tu solicitud. Inténtalo de nuevo o escríbenos por WhatsApp al ${contact.phone}.`,
   },
-  band: {
-    title: 'Construimos estructuras, elevamos tu proyecto',
-    description: site.description,
-  },
 };

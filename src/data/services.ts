@@ -484,10 +484,4 @@ export const servicesPage: ServicesPageContent = {
   heading: 'Soluciones integrales en construcción',
   intro:
     'Descubre nuestros servicios: movimiento de tierras, naves industriales, puentes y alcantarillados, pavimentos, hormigón armado, estructuras metálicas, retrofit, muros de contención, drenaje y seguridad perimetral.',
-  cta: {
-    title: '¿Tienes un proyecto en mente?',
-    text: 'Contáctanos para una cotización personalizada. Nuestro equipo está listo para ayudarte a hacer realidad tu proyecto.',
-    action: { label: 'Solicitar cotización', href: '/contacto/' },
-  },
-  sideCtaText: 'Contáctanos para una cotización personalizada.',
 };

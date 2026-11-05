@@ -4,7 +4,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ServiceHero from '@/components/services/ServiceHero.astro';
 import ServiceGallery from '@/components/services/ServiceGallery.astro';
 import ServiceSidebar from '@/components/services/ServiceSidebar.astro';
-import { getService, services, servicesPage } from '@/data/services';
+import { getService, services } from '@/data/services';
 import { serviceSchema } from '@/data/schema';
 import type { Service } from '@/types';
 
@@ -94,7 +94,7 @@ const seoDescription = `${service.tagline} En Santo Domingo y toda la República
             }
           </article>
 
-          <ServiceSidebar service={service} related={related} ctaText={servicesPage.sideCtaText} />
+          <ServiceSidebar service={service} related={related} />
         </div>
       </div>
     </div>

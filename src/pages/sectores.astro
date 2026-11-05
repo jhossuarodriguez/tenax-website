@@ -2,10 +2,9 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import PageHero from '@/components/shared/PageHero.astro';
 import SectorRow from '@/components/sectors/SectorRow.astro';
-import CtaBand from '@/components/sectors/CtaBand.astro';
 import { sectorsPage } from '@/data/sectors';
 
-const { seo, hero, sectors, cta } = sectorsPage;
+const { seo, hero, sectors } = sectorsPage;
 const chips = sectors.map((s) => ({ label: s.chipLabel, href: `#${s.id}` }));
 ---
 
@@ -18,5 +17,4 @@ const chips = sectors.map((s) => ({ label: s.chipLabel, href: `#${s.id}` }));
     </div>
   </div>
 
-  <CtaBand data={cta} />
 </BaseLayout>

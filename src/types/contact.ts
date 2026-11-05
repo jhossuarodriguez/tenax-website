@@ -44,5 +44,4 @@ export interface ContactPageData {
   mapLabel: string;
   mapUrl: string;
   form: ContactPageForm;
-  band: { title: string; description: string };
 }

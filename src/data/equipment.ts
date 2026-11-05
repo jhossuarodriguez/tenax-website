@@ -1,7 +1,6 @@
 import type { EquipmentPageData } from '@/types';
 import { obraThumb } from '@/data/obras';
 import { services } from '@/data/services';
-import { ctaBand } from '@/data/sectors';
 
 /** Página de Equipos: maquinaria en obra (fotos de "FOTOS TENAX") y los equipos de cada servicio. */
 export const equipmentPage: EquipmentPageData = {
@@ -40,5 +39,4 @@ export const equipmentPage: EquipmentPageData = {
       items: s.lists.find((l) => l.id === 'equipos')?.items ?? [],
     })),
   },
-  cta: ctaBand,
 };

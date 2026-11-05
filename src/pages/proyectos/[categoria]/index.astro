@@ -3,7 +3,6 @@ import type { GetStaticPaths } from 'astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
 import ProjectTile from '@/components/projects/ProjectTile.astro';
-import ProjectsCta from '@/components/projects/ProjectsCta.astro';
 import { categories, projectsIn } from '@/data/portfolio';
 import type { PortfolioCategory } from '@/types';
 
@@ -63,5 +62,4 @@ const breadcrumbs = [{ label: 'Inicio', href: '/' }, { label: 'Proyectos', href:
     </div>
   </section>
 
-  <ProjectsCta title="¿Tienes un proyecto en mente?" text="Contáctanos para una cotización personalizada." buttonLabel="Solicitar cotización" />
 </BaseLayout>
