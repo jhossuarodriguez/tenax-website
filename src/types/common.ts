@@ -113,6 +113,16 @@ export interface SeoMeta {
   noindex?: boolean;
 }
 
+/** Banner con panel gris, cortina naranja y foto con franjas (formato de severfield.com): Servicios. */
+export interface PageBannerData {
+  /** Se muestran bajo el banner y se publican como BreadcrumbList. */
+  breadcrumbs: Breadcrumb[];
+  title: string;
+  text: string;
+  /** Foto sobre la unión del panel gris y la cortina, con las franjas encima. */
+  photo: ImageAsset;
+}
+
 export interface PageHeroData {
   breadcrumbs: Breadcrumb[];
   eyebrow: string;
