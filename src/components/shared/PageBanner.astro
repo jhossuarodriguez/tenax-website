@@ -1,12 +1,12 @@
 ---
-import type { ServicesHeroData } from '@/types';
+import type { PageBannerData } from '@/types';
 import { coverSrcset } from '@/data/obras';
 
 interface Props {
-  hero: ServicesHeroData;
+  banner: PageBannerData;
 }
 
-const { hero } = Astro.props;
+const { banner } = Astro.props;
 
 /** Franjas a 45° en mosaicos de 20 px: el mismo patrón que la referencia, en blanco. */
 const stripes =
@@ -14,7 +14,7 @@ const stripes =
 ---
 
 <!--
-  Hero de /servicios/ copiado del banner de severfield.com/products-and-services (c-page-banner), mismos puntos de corte:
+  Banner de /servicios/ copiado del de severfield.com (c-page-banner), mismos puntos de corte:
   - Margen superior: 70 px (≥ 1024), 50 px (840–1023), 0 (< 840). Margen inferior de 25 px en < 568.
   - Contenedor de 1200 px con relleno de 40 × 50 px (40 × 20 px en < 840; 50 px abajo en < 568).
     Alto mínimo: 663 (≥ 1280), 600 (≥ 1024), 520 (≥ 768), 460 (≥ 640), automático (< 640).
@@ -44,12 +44,12 @@ const stripes =
       class="relative z-10 m-0 hidden aspect-[467/428] w-[45%] shrink-0 bg-steel min-[35.5rem]:block md:h-[315px] md:w-[344px] lg:h-[366px] lg:w-[400px] xl:h-[428px] xl:w-[467px]"
     >
       <img
-        src={hero.photo.src}
-        srcset={coverSrcset(hero.photo, 467 / 428)}
+        src={banner.photo.src}
+        srcset={coverSrcset(banner.photo, 467 / 428)}
         sizes="(min-width: 1280px) 467px, (min-width: 1024px) 400px, (min-width: 768px) 344px, 45vw"
-        alt={hero.photo.alt}
-        width={hero.photo.width}
-        height={hero.photo.height}
+        alt={banner.photo.alt}
+        width={banner.photo.width}
+        height={banner.photo.height}
         fetchpriority="high"
         decoding="async"
         class="size-full object-cover"
@@ -62,12 +62,12 @@ const stripes =
       class="relative z-10 mx-auto max-w-[360px] text-white min-[35.5rem]:mx-0 min-[35.5rem]:max-w-[510px] min-[35.5rem]:pl-[40px] min-[52.5rem]:pl-[80px]"
     >
       <h1 class="mb-[15px] font-display text-[2rem] leading-[1.167] font-normal text-white sm:text-[2.5rem] sm:leading-[1.16] md:text-[3rem] md:leading-none">
-        {hero.title}
+        {banner.title}
       </h1>
-      <p class="mb-0 text-[1rem] leading-[1.5] text-white md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]">{hero.text}</p>
+      <p class="mb-0 text-[1rem] leading-[1.5] text-white md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]">{banner.text}</p>
     </div>
 
-    <!-- Franjas del móvil (< 568 px, sin foto): montadas sobre el borde inferior del hero. -->
+    <!-- Franjas del móvil (< 568 px, sin foto): montadas sobre el borde inferior del banner. -->
     <span
       class:list={['absolute bottom-0 left-[10px] z-10 h-[50px] w-[65%] translate-y-1/2 min-[35.5rem]:hidden', stripes]}
       aria-hidden="true"

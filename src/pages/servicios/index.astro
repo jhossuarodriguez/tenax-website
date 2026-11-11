@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
-import ServicesHero from '@/components/services/ServicesHero.astro';
+import PageBanner from '@/components/shared/PageBanner.astro';
 import ServiceCard from '@/components/services/ServiceCard.astro';
 import { services, servicesPage } from '@/data/services';
 
@@ -9,7 +9,7 @@ const { seo, hero, heading, intro } = servicesPage;
 ---
 
 <BaseLayout title={seo.title} description={seo.description} breadcrumbs={hero.breadcrumbs}>
-  <ServicesHero hero={hero} />
+  <PageBanner banner={hero} />
 
   <section class="bg-surface-alt px-[20px] pt-[32px] pb-[60px]">
     <div class="mx-auto max-w-site">
