@@ -1,0 +1,91 @@
+---
+import type { AboutIntroData, Breadcrumb } from '@/types';
+import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
+import HomeButton from '@/components/home/HomeButton.astro';
+import { coverSrcset } from '@/data/obras';
+
+interface Props {
+  data: AboutIntroData;
+  breadcrumbs: Breadcrumb[];
+}
+
+const { data, breadcrumbs } = Astro.props;
+
+/** Tamaño del texto de la referencia (el color va aparte): 18 px (20 px en 768–1023, 16 px en < 768). */
+const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]';
+/** Subtítulos del bloque de texto: 32 px (28 px en < 1024, 24 px en < 768). */
+const subheading =
+  'mb-[24px] font-display text-[1.5rem] leading-[1.333] font-normal text-brand-dark md:text-[1.75rem] md:leading-[1.308] lg:text-[2rem] lg:leading-[1.2]';
+---
+
+<!--
+  Bajo el banner, con las medidas de severfield.com/about:
+  - Migas de pan (c-breadcrumb): 1180 px como máximo, 30 px arriba; 60 px debajo (50 en < 1024, 40 en < 768, 30 en < 640).
+  - "Somos Tenax" (c-text-and-video): 1100 px como máximo; el texto ocupa la mitad y deja 100 px hasta la foto
+    (60 px en < 1150, 30 px en < 840). En < 640 se apila con la foto arriba y el texto centrado de 360 px.
+    La foto ocupa el lugar del video: 16:9. Título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px (20 en < 1024).
+  - Debajo (c-text): columna de 896 px como máximo (todo el ancho en < 1024).
+  Los márgenes inferiores de cada bloque son 80 px (60 en < 1024, 50 en < 640, 40 en < 420).
+-->
+<section class="bg-surface-alt">
+  <div class="mx-auto mb-[30px] max-w-[1180px] px-[20px] pt-[30px] sm:mb-[40px] md:mb-[50px] lg:mb-[60px]">
+    <Breadcrumbs items={breadcrumbs} />
+  </div>
+
+  <div id={data.id} class="mb-[40px] scroll-mt-[20px] min-[26.25rem]:mb-[50px] sm:mb-[60px] lg:mb-[80px]">
+    <div
+      class="mx-auto flex max-w-[1100px] flex-col-reverse items-center px-[20px] pt-[40px] sm:flex-row sm:items-stretch sm:pt-0"
+    >
+      <div
+        data-reveal-children
+        class="mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:mr-[30px] sm:w-1/2 sm:max-w-none min-[52.5rem]:mr-[60px] min-[71.875rem]:mr-[100px]"
+      >
+        <h2 class="mb-[12px] font-display text-[1.75rem] leading-[1.222] font-normal text-brand-dark sm:text-[2rem] sm:leading-[1.2] lg:text-[2.5rem]">
+          {data.title}
+        </h2>
+        <p class="mb-[24px] text-[1.25rem] leading-[1.4] text-ink md:leading-[1.364] lg:text-[1.5rem] lg:leading-[1.333]">{data.lede}</p>
+        <p class:list={['mb-0 text-body', body]}>{data.text}</p>
+      </div>
+
+      <figure data-reveal class="m-0 mb-[24px] w-full sm:mb-0">
+        <img
+          src={data.image.src}
+          srcset={coverSrcset(data.image, 16 / 9)}
+          sizes="(min-width: 1150px) 430px, (min-width: 640px) 45vw, 100vw"
+          alt={data.image.alt}
+          width={data.image.width}
+          height={data.image.height}
+          loading="lazy"
+          decoding="async"
+          class="aspect-video w-full object-cover"
+        />
+      </figure>
+    </div>
+  </div>
+
+  <div
+    data-reveal-children
+    class="mx-auto px-[20px] pb-[40px] min-[26.25rem]:pb-[50px] sm:pb-[60px] lg:max-w-[56rem] lg:pb-[80px]"
+  >
+    <h3 class:list={[subheading]}>{data.who.title}</h3>
+    {data.who.paragraphs.map((p) => <p class:list={['mb-[24px] text-body', body]}>{p}</p>)}
+
+    <h3 class:list={['mt-[1.5em]', subheading]}>{data.sectors.title}</h3>
+    <ul class="mb-[24px] grid gap-x-[40px] sm:grid-cols-2">
+      {
+        data.sectors.items.map((item) => (
+          <li class="mb-[8px]">
+            <a href={item.href} class:list={['inline-flex gap-[10px] text-ink hover:text-brand-dark', body]}>
+              <span class="text-brand-dark" aria-hidden="true">→</span>
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <HomeButton href={data.cta.href} variant="cta">{data.cta.label}</HomeButton>
+
+    <h3 class:list={['mt-[1.5em]', subheading]}>{data.where.title}</h3>
+    <p class:list={['mb-0 text-body', body]}>{data.where.text}</p>
+  </div>
+</section>
