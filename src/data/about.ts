@@ -52,8 +52,7 @@ export const aboutPage: AboutPageData = {
     title: 'Sobre nosotros',
     lede: 'Nos enorgullece lo que hemos construido. Nos entusiasma aún más lo que queda por construir.',
     text: 'Desde 2012, Tenax Construction ha ejecutado más de 80 proyectos en la República Dominicana. Nuestra trayectoria abarca desde naves industriales y centros logísticos hasta edificaciones residenciales, comerciales e institucionales, obras del sector energético y puentes. Conoce los proyectos que han marcado nuestra historia.',
-    // Provisional: el Canva pide la foto del supervisor frente al contenedor Crowley, que aún no está en el proyecto.
-    photo: obraThumb('inicio'),
+    photo: obraThumb('arq_gilberto_ramirez'),
   },
   intro: {
     id: 'quienes-somos',
