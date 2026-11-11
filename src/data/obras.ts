@@ -326,6 +326,11 @@ export const obraPhotos = {
     location: 'Haina',
     alt: 'Patio de contenedores con pavimento terminado y contenedores azules al fondo',
   },
+  // Foto del banner de Nosotros (Canva, pág. 18).
+  arq_gilberto_ramirez: {
+    title: 'Supervisión en patio de contenedores',
+    alt: 'El Ing. Arq. Gilberto Ramírez, con chaleco reflectante y el casco en la mano, frente a una excavadora que iza un contenedor',
+  },
 } satisfies Record<string, ObraPhoto>;
 
 export type ObraPhotoId = keyof typeof obraPhotos;
