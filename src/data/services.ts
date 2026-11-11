@@ -479,7 +479,6 @@ export const servicesPage: ServicesPageContent = {
     title: 'Servicios',
     text: 'Ofrecemos una amplia gama de servicios especializados en ingeniería y construcción, adaptados a las necesidades de cada proyecto. Conoce nuestras áreas de especialización y descubre cómo podemos contribuir al desarrollo y ejecución de tu próxima obra.',
     photo: obraThumb('instalacion-cerca-alambre-1'),
-    background: obraThumb('instalacion-cerca-alambre-1'),
   },
   heading: 'Soluciones integrales en construcción',
   intro:

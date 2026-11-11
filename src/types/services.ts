@@ -64,7 +64,7 @@ export interface Service {
   collapseRailOnTablet: boolean;
 }
 
-/** Hero de /servicios/: panel grafito, panel naranja con el texto y una foto que cruza la unión de los dos. */
+/** Hero de /servicios/: panel gris acero, panel naranja con el texto y una foto que cruza la unión de los dos. */
 export interface ServicesHeroData {
   /** Se muestran bajo el hero y se publican como BreadcrumbList. */
   breadcrumbs: Breadcrumb[];
@@ -72,8 +72,6 @@ export interface ServicesHeroData {
   text: string;
   /** Foto sobre la unión de los paneles, con la trama blanca detrás. */
   photo: ImageAsset;
-  /** Foto de fondo del panel naranja: se ve en gris, teñida de naranja. */
-  background: ImageAsset;
 }
 
 /** Textos de la página /servicios/ y del bloque de llamada a la acción del detalle. */
