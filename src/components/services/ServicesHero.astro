@@ -7,76 +7,70 @@ interface Props {
 }
 
 const { hero } = Astro.props;
+
+/** Franjas a 45° en mosaicos de 20 px: el mismo patrón que la referencia, en blanco. */
+const stripes =
+  'bg-[linear-gradient(45deg,#fff_25%,transparent_25.3%,transparent_50%,#fff_50.3%,#fff_75%,transparent_75.3%,transparent_100%)] [background-size:20px_20px]';
 ---
 
 <!--
-  Hero de /servicios/ con las medidas del banner de la referencia (severfield.com/products-and-services), en un
-  contenedor de 1200 px como máximo:
-  - Margen superior de 70 px (50 px < 1024 px). El panel grafito sube hasta arriba; la cortina naranja, no.
-  - Panel grafito: desde el borde izquierdo de la pantalla hasta 300 px dentro del contenedor.
-  - Cortina naranja: 990 px de ancho (83 % < 1280 px) pegada a la derecha del contenedor, montada sobre el grafito.
-  - Foto de 467 × 428 px (400 × 366 < 1280; 344 × 315 < 1024) con una banda de franjas de 80 px sobre su borde superior.
-  - Texto a 80 px de la foto, 510 px como máximo; título de 48 px.
-  En pantallas < 840 px se apila: la foto sobre el grafito y la cortina naranja debajo, montada bajo la foto.
+  Hero de /servicios/ copiado del banner de severfield.com/products-and-services (c-page-banner), mismos puntos de corte:
+  - Margen superior: 70 px (≥ 1024), 50 px (840–1023), 0 (< 840). Margen inferior de 25 px en < 568.
+  - Contenedor de 1200 px con relleno de 40 × 50 px (40 × 20 px en < 840; 50 px abajo en < 568).
+    Alto mínimo: 663 (≥ 1280), 600 (≥ 1024), 520 (≥ 768), 460 (≥ 640), automático (< 640).
+  - Panel gris acero: 300 px dentro del contenedor y todo lo que queda a su izquierda; sube 70/50 px; oculto en < 840.
+  - Cortina naranja lisa (sin foto): 990 px (≥ 1280), 83 % (840–1279), 100 % (< 840).
+  - Foto: 467 × 428 (≥ 1280), 400 × 366 (≥ 1024), 344 × 315 (≥ 768), 45 % de ancho (568–767), oculta (< 568).
+  - Franjas: 80 px de alto (50 px en < 768), centradas en el borde superior de la foto, 115 % de ancho y a 40 px de su
+    borde derecho. En < 568 pasan al borde inferior del banner: 65 % de ancho y a 10 px de la izquierda.
+  - Texto: 80 px de la foto (40 px en < 840), 510 px como máximo; en < 568, centrado y de 360 px como máximo.
+  - Título de 48 px (40 px en < 768, 32 px en < 640); párrafo de 18 px (20 px en 768–1023, 16 px en < 768).
 -->
-<header class="relative isolate overflow-hidden bg-ink min-[52.5rem]:bg-surface-alt min-[52.5rem]:pt-[50px] lg:pt-[70px]">
+<header class="relative isolate overflow-hidden bg-surface-alt pb-[25px] min-[35.5rem]:pb-0 min-[52.5rem]:pt-[50px] lg:pt-[70px]">
   <div
-    class="relative mx-auto max-w-[1200px] min-[52.5rem]:flex min-[52.5rem]:min-h-[520px] min-[52.5rem]:items-center min-[52.5rem]:px-[50px] min-[52.5rem]:py-[40px] lg:min-h-[600px] xl:min-h-[663px]"
+    class="relative mx-auto flex max-w-[1200px] items-center px-[20px] pt-[40px] pb-[50px] min-[35.5rem]:pb-[40px] sm:min-h-[460px] md:min-h-[520px] min-[52.5rem]:px-[50px] lg:min-h-[600px] xl:min-h-[663px]"
   >
-    <!-- Panel grafito: 300 px dentro del contenedor y todo lo que queda a su izquierda hasta el borde de la pantalla. -->
+    <!-- Panel gris acero (distinto del grafito del header): 300 px dentro del contenedor y hasta el borde izquierdo de la pantalla. -->
     <div
-      class="absolute bottom-0 left-[-50vw] hidden h-[calc(100%+50px)] w-[calc(50vw+300px)] bg-ink min-[52.5rem]:block lg:h-[calc(100%+70px)]"
+      class="absolute bottom-0 left-[-50vw] hidden h-[calc(100%+50px)] w-[calc(50vw+300px)] bg-steel min-[52.5rem]:block lg:h-[calc(100%+70px)]"
       aria-hidden="true"
     >
     </div>
 
-    <div class="relative z-10 px-[16px] pt-[48px] md:px-[24px] min-[52.5rem]:shrink-0 min-[52.5rem]:p-0">
-      <figure
-        class="relative m-0 mx-auto aspect-[467/428] max-w-[420px] min-[52.5rem]:h-[315px] min-[52.5rem]:w-[344px] min-[52.5rem]:max-w-none lg:h-[366px] lg:w-[400px] xl:h-[428px] xl:w-[467px]"
-      >
-        <img
-          src={hero.photo.src}
-          srcset={coverSrcset(hero.photo, 467 / 428)}
-          sizes="(min-width: 1280px) 467px, (min-width: 1024px) 400px, (min-width: 840px) 344px, min(420px, calc(100vw - 32px))"
-          alt={hero.photo.alt}
-          width={hero.photo.width}
-          height={hero.photo.height}
-          fetchpriority="high"
-          decoding="async"
-          class="size-full object-cover"
-        />
-        <!-- Banda de franjas centrada en el borde superior de la foto: sale por la izquierda y se detiene a 40 px de su borde derecho. -->
-        <span
-          class="absolute top-0 right-[40px] h-[50px] w-[115%] -translate-y-1/2 bg-[repeating-linear-gradient(45deg,#fff_0_7px,transparent_7px_14px)] md:h-[80px]"
-          aria-hidden="true"
-        ></span>
-      </figure>
+    <!-- Cortina naranja lisa: brand-dark para que no resulte chillona y el texto blanco tenga contraste AA (5,2:1). -->
+    <div class="absolute right-0 bottom-0 h-full w-full bg-brand-dark min-[52.5rem]:w-[83%] xl:w-[990px]" aria-hidden="true"></div>
+
+    <figure
+      class="relative z-10 m-0 hidden aspect-[467/428] w-[45%] shrink-0 bg-steel min-[35.5rem]:block md:h-[315px] md:w-[344px] lg:h-[366px] lg:w-[400px] xl:h-[428px] xl:w-[467px]"
+    >
+      <img
+        src={hero.photo.src}
+        srcset={coverSrcset(hero.photo, 467 / 428)}
+        sizes="(min-width: 1280px) 467px, (min-width: 1024px) 400px, (min-width: 768px) 344px, 45vw"
+        alt={hero.photo.alt}
+        width={hero.photo.width}
+        height={hero.photo.height}
+        fetchpriority="high"
+        decoding="async"
+        class="size-full object-cover"
+      />
+      <span class:list={['absolute top-0 right-[40px] h-[50px] w-[115%] -translate-y-1/2 md:h-[80px]', stripes]} aria-hidden="true"></span>
+    </figure>
+
+    <div
+      data-reveal-children
+      class="relative z-10 mx-auto max-w-[360px] text-white min-[35.5rem]:mx-0 min-[35.5rem]:max-w-[510px] min-[35.5rem]:pl-[40px] min-[52.5rem]:pl-[80px]"
+    >
+      <h1 class="mb-[15px] font-display text-[2rem] leading-[1.167] font-normal text-white sm:text-[2.5rem] sm:leading-[1.16] md:text-[3rem] md:leading-none">
+        {hero.title}
+      </h1>
+      <p class="mb-0 text-[1rem] leading-[1.5] text-white md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]">{hero.text}</p>
     </div>
 
-    <!-- En pantallas >= 840 px este bloque es estático: la cortina se posiciona respecto al contenedor y el texto queda en la fila. -->
-    <div class="relative -mt-[72px] min-[52.5rem]:static min-[52.5rem]:mt-0 min-[52.5rem]:max-w-[510px] min-[52.5rem]:pl-[80px]">
-      <!-- Cortina naranja: la foto de fondo, difuminada, en gris y oscurecida al 85 % (contraste AA del texto blanco), teñida con brand en modo multiplicar. La foto se amplía un 10 % para que el desenfoque no deje bordes claros. -->
-      <div
-        class="absolute inset-0 isolate overflow-hidden min-[52.5rem]:top-auto min-[52.5rem]:left-auto min-[52.5rem]:h-full min-[52.5rem]:w-[83%] xl:w-[990px]"
-        aria-hidden="true"
-      >
-        <img
-          src={hero.background.src}
-          srcset={hero.background.srcset}
-          sizes="(min-width: 1280px) 990px, (min-width: 840px) 83vw, 100vw"
-          alt=""
-          decoding="async"
-          class="absolute inset-0 size-full scale-110 object-cover blur-[6px] brightness-[0.85] grayscale"
-        />
-        <div class="absolute inset-0 bg-brand mix-blend-multiply"></div>
-      </div>
-
-      <div data-reveal-children class="relative z-10 mx-auto max-w-[620px] px-[16px] pt-[112px] pb-[56px] md:px-[24px] min-[52.5rem]:mx-0 min-[52.5rem]:p-0">
-        <h1 class="font-display text-[2rem] leading-[1.167] font-normal text-white sm:text-[2.5rem] sm:leading-[1.16] md:text-[3rem] md:leading-none">
-          {hero.title}
-        </h1>
-        <p class="mt-[15px] text-[1rem] leading-[1.5] text-white md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]">{hero.text}</p>
-      </div>
-    </div>
+    <!-- Franjas del móvil (< 568 px, sin foto): montadas sobre el borde inferior del hero. -->
+    <span
+      class:list={['absolute bottom-0 left-[10px] z-10 h-[50px] w-[65%] translate-y-1/2 min-[35.5rem]:hidden', stripes]}
+      aria-hidden="true"
+    ></span>
   </div>
 </header>

@@ -16,6 +16,7 @@
   --color-card: #1c1f22;         /* tarjetas oscuras sobre grafito */
   --color-ink: #24272b;          /* grafito: header, heros y bandas oscuras */
   --color-ink-2: #1f1f1f;
+  --color-steel: #4b5057;        /* gris acero oscuro: panel del hero de Servicios (se distingue del header grafito) */
   --color-stone: #888888;
   --color-stone-2: #a5a7aa;      /* gris acero: detalles y textos secundarios sobre grafito */
   --color-sand: #cccccc;
