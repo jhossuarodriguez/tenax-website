@@ -1,4 +1,4 @@
-import type { ImageAsset, NavItem, PageHeroData } from '@/types/common';
+import type { ImageAsset, NavItem, PageBannerData } from '@/types/common';
 
 /** Fragmento de texto enriquecido: texto plano o enlace en línea. */
 export type AboutRichSegment = string | { text: string; href: string };
@@ -39,7 +39,8 @@ export interface AboutFaqItem {
 
 export interface AboutPageData {
   seo: { title: string; description: string };
-  hero: PageHeroData;
+  hero: PageBannerData;
+  intro: AboutIntroData;
   rows: AboutFeatureRow[];
   safety: AboutSafetyData;
   faqTitle: string;
@@ -54,4 +55,18 @@ export interface AboutSafetyData {
   cta: NavItem;
   /** Tres columnas de fotos, de arriba abajo. */
   columns: ImageAsset[][];
+}
+
+/** "Somos Tenax": texto y foto (como "We are Severfield") y, debajo, quiénes somos, sectores y dónde trabajamos. */
+export interface AboutIntroData {
+  /** Ancla para el enlace "Quiénes Somos" del submenú. */
+  id: string;
+  title: string;
+  lede: string;
+  text: string;
+  image: ImageAsset;
+  who: { title: string; paragraphs: string[] };
+  sectors: { title: string; items: NavItem[] };
+  cta: NavItem;
+  where: { title: string; text: string };
 }

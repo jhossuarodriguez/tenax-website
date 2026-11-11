@@ -14,7 +14,7 @@ const stripes =
 ---
 
 <!--
-  Banner de /servicios/ copiado del de severfield.com (c-page-banner), mismos puntos de corte:
+  Banner de /servicios/ y /sobre-nosotros/ copiado del de severfield.com (c-page-banner), mismos puntos de corte:
   - Margen superior: 70 px (≥ 1024), 50 px (840–1023), 0 (< 840). Margen inferior de 25 px en < 568.
   - Contenedor de 1200 px con relleno de 40 × 50 px (40 × 20 px en < 840; 50 px abajo en < 568).
     Alto mínimo: 663 (≥ 1280), 600 (≥ 1024), 520 (≥ 768), 460 (≥ 640), automático (< 640).
@@ -24,7 +24,8 @@ const stripes =
   - Franjas: 80 px de alto (50 px en < 768), centradas en el borde superior de la foto, 115 % de ancho y a 40 px de su
     borde derecho. En < 568 pasan al borde inferior del banner: 65 % de ancho y a 10 px de la izquierda.
   - Texto: 80 px de la foto (40 px en < 840), 510 px como máximo; en < 568, centrado y de 360 px como máximo.
-  - Título de 48 px (40 px en < 768, 32 px en < 640); párrafo de 18 px (20 px en 768–1023, 16 px en < 768).
+  - Título de 48 px (40 px en < 768, 32 px en < 640); frase destacada opcional del mismo tamaño que el párrafo, con
+    24 px debajo; párrafo de 18 px (20 px en 768–1023, 16 px en < 768).
 -->
 <header class="relative isolate overflow-hidden bg-surface-alt pb-[25px] min-[35.5rem]:pb-0 min-[52.5rem]:pt-[50px] lg:pt-[70px]">
   <div
@@ -64,6 +65,7 @@ const stripes =
       <h1 class="mb-[15px] font-display text-[2rem] leading-[1.167] font-normal text-white sm:text-[2.5rem] sm:leading-[1.16] md:text-[3rem] md:leading-none">
         {banner.title}
       </h1>
+      {banner.lede && <p class="mb-[24px] text-[1rem] leading-[1.5] text-white md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]">{banner.lede}</p>}
       <p class="mb-0 text-[1rem] leading-[1.5] text-white md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]">{banner.text}</p>
     </div>
 

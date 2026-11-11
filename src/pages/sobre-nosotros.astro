@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import PageHero from '@/components/shared/PageHero.astro';
+import PageBanner from '@/components/shared/PageBanner.astro';
+import AboutIntro from '@/components/about/AboutIntro.astro';
 import AboutFeatureRowBlock from '@/components/about/AboutFeatureRow.astro';
 import AboutFaq from '@/components/about/AboutFaq.astro';
 import AboutSafety from '@/components/about/AboutSafety.astro';
@@ -10,7 +11,9 @@ import { aboutPage } from '@/data/about';
 ---
 
 <BaseLayout title={aboutPage.seo.title} description={aboutPage.seo.description} breadcrumbs={aboutPage.hero.breadcrumbs}>
-  <PageHero {...aboutPage.hero} />
+  <!-- Diseño de Tenax en Canva (pág. 18): banner y "Somos Tenax" con el formato de severfield.com/about. -->
+  <PageBanner banner={aboutPage.hero} />
+  <AboutIntro data={aboutPage.intro} breadcrumbs={aboutPage.hero.breadcrumbs} />
 
   <div class="pt-[1.6rem]">
     {aboutPage.rows.map((row) => <AboutFeatureRowBlock row={row} />)}

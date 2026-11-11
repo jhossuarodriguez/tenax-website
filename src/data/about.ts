@@ -1,6 +1,14 @@
-import type { AboutFaqItem, AboutPageData } from '@/types';
+import type { AboutFaqItem, AboutPageData, NavItem, PortfolioCategoryId } from '@/types';
 import { obraThumb } from '@/data/obras';
 import { tenaxImage } from '@/data/projects';
+import { categories } from '@/data/portfolio';
+
+/** Enlace a una categoría del portafolio; falla el build si la categoría no existe. */
+const sector = (id: PortfolioCategoryId): NavItem => {
+  const category = categories.find((c) => c.id === id);
+  if (!category) throw new Error(`Nosotros: no existe la categoría "${id}"`);
+  return { label: category.title, href: category.href };
+};
 
 /** Preguntas frecuentes de Tenax: cada respuesta es un solo párrafo. */
 const faqs: AboutFaqItem[] = [
@@ -38,31 +46,48 @@ export const aboutPage: AboutPageData = {
     description:
       'Tenax Construction S.R.L. es una constructora dominicana fundada en 2012 que administra, construye y supervisa obras civiles y naves industriales.',
   },
+  // Banner y bloque "Somos Tenax" con los textos y fotos del diseño de Tenax en Canva (pág. 18).
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Nosotros' }],
-    eyebrow: 'Tenax Construction, S.R.L.',
-    title: 'Nuestra',
-    titleEmphasis: 'Historia',
-    subtitle: 'Somos una constructora dominicana comprometida con la excelencia en la administración, construcción, diseño y supervisión de obras civiles.',
-    strip: ['Ingeniería', 'Arquitectura', 'Construcción'],
+    title: 'Sobre nosotros',
+    lede: 'Nos enorgullece lo que hemos construido. Nos entusiasma aún más lo que queda por construir.',
+    text: 'Desde 2012, Tenax Construction ha ejecutado más de 80 proyectos en la República Dominicana. Nuestra trayectoria abarca desde naves industriales y centros logísticos hasta edificaciones residenciales, comerciales e institucionales, obras del sector energético y puentes. Conoce los proyectos que han marcado nuestra historia.',
+    // Provisional: el Canva pide la foto del supervisor frente al contenedor Crowley, que aún no está en el proyecto.
+    photo: obraThumb('inicio'),
   },
-  rows: [
-    {
-      image: obraThumb('inicio'),
-      id: 'quienes-somos',
-      imageSide: 'left',
-      tone: 'light',
-      title: 'Nuestra Historia',
-      titleTone: 'brand',
+  intro: {
+    id: 'quienes-somos',
+    title: 'Somos Tenax',
+    lede: 'Ingeniería y construcción para proyectos industriales, edificaciones y obras de infraestructura.',
+    text: 'Desde 2012, hemos ejecutado más de 80 proyectos en la República Dominicana. Nuestra experiencia abarca desde naves industriales y centros logísticos hasta edificaciones comerciales, instalaciones agroindustriales y puentes.',
+    image: obraThumb('nave-industrial-6'),
+    who: {
+      title: '¿Quiénes somos?',
       paragraphs: [
-        [
-          'Somos una constructora dominicana dedicada a la administración, construcción, diseño, y supervisión de obras civiles, además de realizar estudios de viabilidad socio-económico y ambiental para respaldar cada proyecto.',
-        ],
-        [
-          'Fundada en el año 2012. Nuestra experiencia nos permite el manejo de proyectos altamente detallados, garantizando una óptima supervisión, para brindar excelentes resultados.',
-        ],
+        'Tenax Construction es una empresa dominicana de ingeniería y construcción. Integramos la oficina técnica con la ejecución en campo para coordinar los planos, la secuencia de los trabajos y el control de calidad en obra.',
+        'El alcance se define según el proyecto y puede incluir la preparación del terreno, las cimentaciones, la ejecución de estructuras y la construcción de edificaciones. Cada obra plantea condiciones distintas, desde el acceso de equipos y materiales hasta la coordinación de trabajos en instalaciones en operación.',
       ],
     },
+    sectors: {
+      title: 'Sectores en los que trabajamos',
+      items: [
+        sector('industrial'),
+        sector('residencial'),
+        sector('comercial'),
+        sector('agroindustrial'),
+        sector('energia'),
+        sector('logistica-almacenamiento'),
+        sector('institucional-educativo'),
+        sector('puentes'),
+      ],
+    },
+    cta: { label: 'Explorar nuestros proyectos', href: '/proyectos/' },
+    where: {
+      title: 'Dónde trabajamos',
+      text: 'Ejecutamos proyectos en la República Dominicana. Si tienes una obra en planificación, conversemos sobre su ubicación, alcance y etapa de desarrollo.',
+    },
+  },
+  rows: [
     {
       image: tenaxImage('crane', 'Grúa torre en una obra en construcción'),
       imageSide: 'right',
