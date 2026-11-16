@@ -11,16 +11,18 @@ const { image, class: className } = Astro.props;
 ---
 
 <!--
-  Foto de las filas de Nosotros con el mismo encuadre que la del banner (PageBanner), en una sola pieza: detrás, un
-  fondo gris acero a la izquierda y naranja (brand-dark) a la derecha, partido al 47 % del ancho. La foto (467 × 428)
-  deja ver una franja gris a su izquierda (19,5 % del ancho) y el fondo por arriba (40 px; 25 px en < 768). Encima,
-  la banda de franjas blancas centrada en el borde superior de la foto (80 px de alto; 50 px en < 768), que acaba
-  antes del borde derecho.
+  Foto de las filas de Nosotros con el mismo encuadre y tamaño que la del banner (PageBanner), en una sola pieza.
+  Medidas en ≥ 1280 px, las del banner: foto de 467 × 428 dentro de una pieza de 585 px de ancho; a su izquierda se
+  ven 114 px de gris acero y por arriba 40 px de fondo, gris hasta 160 px dentro de la foto y naranja (el primario,
+  `brand`, para que se distinga) desde ahí. Encima, la banda de franjas blancas de 80 px de alto, centrada en el
+  borde superior de la foto: empieza 110 px a su izquierda y acaba 40 px antes de su borde derecho.
+  Todo va en porcentajes del ancho de la pieza, así que se reduce en proporción: 501 px en 1024–1279 (foto de
+  400 × 366, como el banner), 45 % de la fila en 640–1023 y todo el ancho en < 640. En < 768 las franjas miden 50 px.
 -->
 <figure
   data-reveal
   class:list={[
-    'relative m-0 w-full bg-[linear-gradient(to_right,var(--color-steel)_47%,var(--color-brand-dark)_47%)]',
+    'relative m-0 w-full shrink-0 bg-[linear-gradient(to_right,var(--color-steel)_46.8%,var(--color-brand)_46.8%)] sm:w-[45%] lg:w-[501px] xl:w-[585px]',
     className,
   ]}
 >
@@ -29,7 +31,7 @@ const { image, class: className } = Astro.props;
     <img
       src={image.src}
       srcset={coverSrcset(image, 467 / 428)}
-      sizes="(min-width: 1150px) 400px, (min-width: 640px) 40vw, 80vw"
+      sizes="(min-width: 1280px) 467px, (min-width: 1024px) 400px, (min-width: 640px) 36vw, 80vw"
       alt={image.alt}
       width={image.width}
       height={image.height}
@@ -39,5 +41,5 @@ const { image, class: className } = Astro.props;
       style={image.position ? `object-position:${image.position}` : undefined}
     />
   </div>
-  <span class="bg-stripes absolute top-0 right-[7.4%] left-[4px] h-[50px] text-white md:h-[80px]" aria-hidden="true"></span>
+  <span class="bg-stripes absolute top-0 right-[7.5%] left-[4px] h-[50px] text-white md:h-[80px]" aria-hidden="true"></span>
 </figure>

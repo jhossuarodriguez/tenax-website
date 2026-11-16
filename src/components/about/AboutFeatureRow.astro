@@ -15,8 +15,9 @@ const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:t
 ---
 
 <!--
-  Mismo formato que "Somos Tenax" (AboutIntro): 1100 px como máximo; el texto ocupa la mitad y deja 100 px hasta la
-  foto (60 px en < 1150, 30 px en < 840). En < 640 se apila con la foto arriba y el texto centrado de 360 px.
+  Mismo formato que "Somos Tenax" (AboutIntro): 1100 px como máximo; la foto tiene el tamaño de la del banner
+  (AboutPhoto) y el texto ocupa el resto, a 60 px de ella (40 px en < 1280, 30 px en < 840). En < 640 se apila con
+  la foto arriba y el texto centrado de 360 px.
   Foto con el encuadre de la del banner (AboutPhoto), título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px
   (20 en < 1024). `imageSide` alterna el lado.
 -->
@@ -25,8 +26,8 @@ const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:t
     <div
       data-reveal-children
       class:list={[
-        'mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:w-1/2 sm:max-w-none sm:shrink-0',
-        imageLeft ? 'sm:ml-[30px] min-[52.5rem]:ml-[60px] min-[71.875rem]:ml-[100px]' : 'sm:mr-[30px] min-[52.5rem]:mr-[60px] min-[71.875rem]:mr-[100px]',
+        'mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:max-w-none sm:min-w-0 sm:flex-1',
+        imageLeft ? 'sm:ml-[30px] min-[52.5rem]:ml-[40px] xl:ml-[60px]' : 'sm:mr-[30px] min-[52.5rem]:mr-[40px] xl:mr-[60px]',
       ]}
     >
       <h2 class="mb-[12px] font-display text-[1.75rem] leading-[1.222] font-normal text-brand-dark sm:text-[2rem] sm:leading-[1.2] lg:text-[2.5rem]">
@@ -42,6 +43,6 @@ const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:t
       }
     </div>
 
-    <AboutPhoto image={row.image} class="mb-[24px] sm:mb-0 sm:min-w-0 sm:flex-1" />
+    <AboutPhoto image={row.image} class="mb-[24px] sm:mb-0" />
   </div>
 </div>
