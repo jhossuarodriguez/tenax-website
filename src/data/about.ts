@@ -89,7 +89,6 @@ export const aboutPage: AboutPageData = {
     {
       image: obraThumb('movimiento-tierra-pavimento-1'),
       imageSide: 'left',
-      tone: 'steel',
       title: 'Nuestra Misión',
       subtitle: 'Construimos estructuras, elevamos tu proyecto',
       paragraphs: [
@@ -104,13 +103,12 @@ export const aboutPage: AboutPageData = {
       image: { ...obraThumb('pavimento-3'), position: 'center 27%' },
       id: 'equipo',
       imageSide: 'right',
-      tone: 'brand',
       title: '¿Por qué elegirnos?',
       paragraphs: [
-        [{ strong: 'Experiencia local:' }, ' profundo conocimiento del contexto dominicano.'],
-        [{ strong: 'Equipo experto:' }, ' profesionales altamente capacitados en diversas áreas.'],
-        [{ strong: 'Compromiso con la sostenibilidad:' }, ' fomentamos prácticas responsables con el medio ambiente.'],
-        [{ strong: 'Resultados garantizados:' }, ' entregamos proyectos que superan las expectativas.'],
+        ['Experiencia local: profundo conocimiento del contexto dominicano.'],
+        ['Equipo experto: profesionales altamente capacitados en diversas áreas.'],
+        ['Compromiso con la sostenibilidad: fomentamos prácticas responsables con el medio ambiente.'],
+        ['Resultados garantizados: entregamos proyectos que superan las expectativas.'],
         ['Explora nuestros ', { text: 'proyectos', href: '/proyectos/' }, ' y la ', { text: 'galería', href: '/galeria/' }, ' para conocer nuestro trabajo.'],
       ],
     },

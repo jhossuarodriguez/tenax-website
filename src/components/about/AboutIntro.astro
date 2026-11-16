@@ -23,12 +23,12 @@ const subheading =
   - Migas de pan (c-breadcrumb): 1180 px como máximo, 30 px arriba; 60 px debajo (50 en < 1024, 40 en < 768, 30 en < 640).
   - "Somos Tenax" (c-text-and-video): 1100 px como máximo; el texto ocupa la mitad y deja 100 px hasta la foto
     (60 px en < 1150, 30 px en < 840). En < 640 se apila con la foto arriba y el texto centrado de 360 px.
-    La foto ocupa el lugar del video, con la proporción y las franjas de la del banner (AboutPhoto).
+    La foto ocupa el lugar del video, con el encuadre de la del banner (AboutPhoto).
     Título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px (20 en < 1024).
   - Debajo (c-text): columna de 896 px como máximo (todo el ancho en < 1024).
   Los márgenes inferiores de cada bloque son 80 px (60 en < 1024, 50 en < 640, 40 en < 420).
 -->
-<section class="overflow-x-clip bg-surface-alt">
+<section class="bg-surface-alt">
   <div class="mx-auto mb-[30px] max-w-[1180px] px-[20px] pt-[30px] sm:mb-[40px] md:mb-[50px] lg:mb-[60px]">
     <Breadcrumbs items={breadcrumbs} />
   </div>
@@ -48,7 +48,7 @@ const subheading =
         <p class:list={['mb-0 text-body', body]}>{data.text}</p>
       </div>
 
-      <AboutPhoto image={data.image} side="right" class="mb-[24px] sm:mb-0 sm:min-w-0 sm:flex-1" />
+      <AboutPhoto image={data.image} class="mb-[24px] sm:mb-0 sm:min-w-0 sm:flex-1 sm:self-start" />
     </div>
   </div>
 

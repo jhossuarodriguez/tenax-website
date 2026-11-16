@@ -12,25 +12,20 @@ const imageLeft = row.imageSide === 'left';
 
 /** Tamaño del texto de "Somos Tenax": 18 px (20 px en 768–1023, 16 px en < 768). */
 const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]';
-/** Relleno vertical de cada columna: el margen de los bloques de arriba (80 px; 60 en < 1024, 50 en < 640, 40 en < 420). */
-const padY = 'py-[40px] min-[26.25rem]:py-[50px] sm:py-[60px] lg:py-[80px]';
 ---
 
 <!--
   Mismo formato que "Somos Tenax" (AboutIntro): 1100 px como máximo; el texto ocupa la mitad y deja 100 px hasta la
   foto (60 px en < 1150, 30 px en < 840). En < 640 se apila con la foto arriba y el texto centrado de 360 px.
-  Título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px (20 en < 1024). `imageSide` alterna el lado.
-  La foto va sobre un panel de color del banner (`tone`: gris acero o naranja brand-dark) que ocupa todo el alto de
-  la fila, llega hasta el borde de la pantalla por el lado de la foto y cubre la mitad del espacio hasta el texto;
-  en < 640 ocupa todo el ancho. El texto queda sobre el fondo claro. Las franjas van en blanco, como en el banner.
+  Foto con el encuadre de la del banner (AboutPhoto), título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px
+  (20 en < 1024). `imageSide` alterna el lado.
 -->
-<div id={row.id} class="scroll-mt-[20px] overflow-x-clip bg-surface-alt">
-  <div class:list={['mx-auto flex max-w-[1100px] flex-col-reverse px-[20px] sm:items-stretch', imageLeft ? 'sm:flex-row-reverse' : 'sm:flex-row']}>
+<div id={row.id} class="mb-[40px] scroll-mt-[20px] min-[26.25rem]:mb-[50px] sm:mb-[60px] lg:mb-[80px]">
+  <div class:list={['mx-auto flex max-w-[1100px] flex-col-reverse items-center px-[20px] pt-[40px] sm:pt-0', imageLeft ? 'sm:flex-row-reverse' : 'sm:flex-row']}>
     <div
       data-reveal-children
       class:list={[
-        'mx-auto flex w-full max-w-[360px] flex-col justify-center sm:mx-0 sm:w-1/2 sm:max-w-none sm:shrink-0',
-        padY,
+        'mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:w-1/2 sm:max-w-none sm:shrink-0',
         imageLeft ? 'sm:ml-[30px] min-[52.5rem]:ml-[60px] min-[71.875rem]:ml-[100px]' : 'sm:mr-[30px] min-[52.5rem]:mr-[60px] min-[71.875rem]:mr-[100px]',
       ]}
     >
@@ -47,18 +42,6 @@ const padY = 'py-[40px] min-[26.25rem]:py-[50px] sm:py-[60px] lg:py-[80px]';
       }
     </div>
 
-    <div class:list={['relative flex min-w-0 items-center sm:flex-1', padY]}>
-      <span
-        class:list={[
-          'absolute inset-y-0 -right-[100vw] -left-[100vw]',
-          row.tone === 'steel' ? 'bg-steel' : 'bg-brand-dark',
-          imageLeft
-            ? 'sm:right-[-15px] min-[52.5rem]:right-[-30px] min-[71.875rem]:right-[-50px]'
-            : 'sm:left-[-15px] min-[52.5rem]:left-[-30px] min-[71.875rem]:left-[-50px]',
-        ]}
-        aria-hidden="true"
-      ></span>
-      <AboutPhoto image={row.image} side={row.imageSide} stripes="white" />
-    </div>
+    <AboutPhoto image={row.image} class="mb-[24px] sm:mb-0 sm:min-w-0 sm:flex-1" />
   </div>
 </div>

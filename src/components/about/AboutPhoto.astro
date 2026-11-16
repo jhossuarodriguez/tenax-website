@@ -4,42 +4,40 @@ import { coverSrcset } from '@/data/obras';
 
 interface Props {
   image: ImageAsset;
-  /** Lado de la fila en el que va la foto en escritorio: las franjas sobresalen hacia ese lado, lejos del texto. */
-  side: 'left' | 'right';
-  /** Color de las franjas: naranja sobre fondos claros (por defecto) o blanco sobre bandas de color, como en el banner. */
-  stripes?: 'brand' | 'white';
   class?: string;
 }
 
-const { image, side, stripes = 'brand', class: className } = Astro.props;
+const { image, class: className } = Astro.props;
 ---
 
 <!--
-  Foto de las filas de Nosotros con el tratamiento de la del banner (PageBanner): misma proporción (467 × 428) y la
-  banda de franjas centrada en su borde superior, de 80 px de alto (50 px en < 768), 115 % de ancho y a 40 px del
-  borde interior. Sobre fondo claro las franjas van en naranja (las blancas del banner no se verían); sobre una banda
-  de color, en blanco.
-  El contenedor de la fila recorta lo que sobresale (overflow-x-clip) para que no aparezca scroll horizontal.
+  Foto de las filas de Nosotros con el mismo encuadre que la del banner (PageBanner), en una sola pieza: detrás, un
+  fondo gris acero a la izquierda y naranja (brand-dark) a la derecha, partido al 47 % del ancho. La foto (467 × 428)
+  deja ver una franja gris a su izquierda (19,5 % del ancho) y el fondo por arriba (40 px; 25 px en < 768). Encima,
+  la banda de franjas blancas centrada en el borde superior de la foto (80 px de alto; 50 px en < 768), que acaba
+  antes del borde derecho.
 -->
-<figure data-reveal class:list={['relative m-0 w-full', className]}>
-  <img
-    src={image.src}
-    srcset={coverSrcset(image, 467 / 428)}
-    sizes="(min-width: 1150px) 430px, (min-width: 640px) 45vw, 100vw"
-    alt={image.alt}
-    width={image.width}
-    height={image.height}
-    loading="lazy"
-    decoding="async"
-    class="aspect-[467/428] w-full object-cover"
-    style={image.position ? `object-position:${image.position}` : undefined}
-  />
-  <span
-    class:list={[
-      'bg-stripes absolute top-0 h-[50px] w-[115%] -translate-y-1/2 md:h-[80px]',
-      stripes === 'white' ? 'text-white' : 'text-brand-dark',
-      side === 'left' ? 'right-[40px]' : 'left-[40px]',
-    ]}
-    aria-hidden="true"
-  ></span>
+<figure
+  data-reveal
+  class:list={[
+    'relative m-0 w-full bg-[linear-gradient(to_right,var(--color-steel)_47%,var(--color-brand-dark)_47%)]',
+    className,
+  ]}
+>
+  <!-- El relleno va en un contenedor propio: sus porcentajes se calculan sobre el ancho de la figura y no del de la fila. -->
+  <div class="pt-[25px] pr-[4px] pl-[19.5%] md:pt-[40px]">
+    <img
+      src={image.src}
+      srcset={coverSrcset(image, 467 / 428)}
+      sizes="(min-width: 1150px) 400px, (min-width: 640px) 40vw, 80vw"
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      loading="lazy"
+      decoding="async"
+      class="aspect-[467/428] w-full object-cover"
+      style={image.position ? `object-position:${image.position}` : undefined}
+    />
+  </div>
+  <span class="bg-stripes absolute top-0 right-[7.4%] left-[4px] h-[50px] text-white md:h-[80px]" aria-hidden="true"></span>
 </figure>
