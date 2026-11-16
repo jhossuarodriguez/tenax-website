@@ -6,15 +6,18 @@ interface Props {
   image: ImageAsset;
   /** Lado de la fila en el que va la foto en escritorio: las franjas sobresalen hacia ese lado, lejos del texto. */
   side: 'left' | 'right';
+  /** Color de las franjas: naranja sobre fondos claros (por defecto) o blanco sobre bandas de color, como en el banner. */
+  stripes?: 'brand' | 'white';
 }
 
-const { image, side } = Astro.props;
+const { image, side, stripes = 'brand' } = Astro.props;
 ---
 
 <!--
   Foto de las filas de Nosotros con el tratamiento de la del banner (PageBanner): misma proporción (467 × 428) y la
   banda de franjas centrada en su borde superior, de 80 px de alto (50 px en < 768), 115 % de ancho y a 40 px del
-  borde interior. Aquí las franjas van en naranja: sobre el fondo claro, las blancas del banner no se verían.
+  borde interior. Sobre fondo claro las franjas van en naranja (las blancas del banner no se verían); sobre una banda
+  de color, en blanco.
   El contenedor de la fila recorta lo que sobresale (overflow-x-clip) para que no aparezca scroll horizontal.
 -->
 <figure data-reveal class="relative m-0 mb-[24px] w-full sm:mb-0">
@@ -31,7 +34,11 @@ const { image, side } = Astro.props;
     style={image.position ? `object-position:${image.position}` : undefined}
   />
   <span
-    class:list={['bg-stripes absolute top-0 h-[50px] w-[115%] -translate-y-1/2 text-brand-dark md:h-[80px]', side === 'left' ? 'right-[40px]' : 'left-[40px]']}
+    class:list={[
+      'bg-stripes absolute top-0 h-[50px] w-[115%] -translate-y-1/2 md:h-[80px]',
+      stripes === 'white' ? 'text-white' : 'text-brand-dark',
+      side === 'left' ? 'right-[40px]' : 'left-[40px]',
+    ]}
     aria-hidden="true"
   ></span>
 </figure>

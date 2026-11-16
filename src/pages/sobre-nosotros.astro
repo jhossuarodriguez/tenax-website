@@ -15,8 +15,8 @@ import { aboutPage } from '@/data/about';
   <PageBanner banner={aboutPage.hero} />
   <AboutIntro data={aboutPage.intro} breadcrumbs={aboutPage.hero.breadcrumbs} />
 
-  <!-- Misión y "¿Por qué elegirnos?": mismo formato que "Somos Tenax"; cada fila deja su margen inferior. -->
-  <div class="pt-[40px] min-[26.25rem]:pt-[50px] sm:pt-[60px] lg:pt-[80px]">
+  <!-- Misión y "¿Por qué elegirnos?": mismo formato que "Somos Tenax", cada una en una banda de color del banner. -->
+  <div>
     {aboutPage.rows.map((row) => <AboutFeatureRowBlock row={row} />)}
     <!-- Trayectoria: la misma visión, cifras y valores de la portada. -->
     <div id="trayectoria" class="scroll-mt-[20px]">

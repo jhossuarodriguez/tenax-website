@@ -13,6 +13,8 @@ export interface AboutFeatureRow {
   image: ImageAsset;
   /** Lado en el que va la foto en escritorio; en móvil siempre va arriba. */
   imageSide: 'left' | 'right';
+  /** Color de la banda, de los del banner: gris acero o naranja (brand-dark). El texto y las franjas van en blanco. */
+  tone: 'steel' | 'brand';
   title: string;
   /** Frase destacada bajo el título. */
   subtitle?: string;

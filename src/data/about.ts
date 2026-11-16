@@ -89,6 +89,7 @@ export const aboutPage: AboutPageData = {
     {
       image: obraThumb('movimiento-tierra-pavimento-1'),
       imageSide: 'left',
+      tone: 'steel',
       title: 'Nuestra Misión',
       subtitle: 'Construimos estructuras, elevamos tu proyecto',
       paragraphs: [
@@ -103,6 +104,7 @@ export const aboutPage: AboutPageData = {
       image: { ...obraThumb('pavimento-3'), position: 'center 27%' },
       id: 'equipo',
       imageSide: 'right',
+      tone: 'brand',
       title: '¿Por qué elegirnos?',
       paragraphs: [
         ['Experiencia local: profundo conocimiento del contexto dominicano.'],
