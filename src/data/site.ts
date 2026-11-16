@@ -63,7 +63,7 @@ export const site: SiteConfig = {
     address: 'Av. 27 de Febrero, Esq. Calle el Seminario #261, Plaza Comercial APH, 3er Piso, Local 15, Santo Domingo',
     phone: '+1 (809) 898-6028',
     phoneHref: '+18098986028',
-    email: 'tenax.construction@gmail.com',
+    email: 'tenaxconstructionsrl@gmail.com',
     whatsapp: 'https://wa.me/18098986028',
     hours: 'Lun - Vie: 9:00 AM - 6:00 PM',
     mapsUrl: 'https://maps.app.goo.gl/sa4gHQfY2zJr4QbFA',

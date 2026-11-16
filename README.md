@@ -46,7 +46,7 @@ Brindar soluciones innovadoras y de alta calidad en el sector de la construcció
 ¿Listo para trabajar con nosotros? Ponte en contacto:
 
 - **Teléfono:** +1 (809) 898-6028
-- **Correo Electrónico:** tenax.construction@gmail.com
+- **Correo Electrónico:** tenaxconstructionsrl@gmail.com
 - **Dirección:** Av. 27 de Febrero, Esquina Calle el Seminario #261 Plaza Comercial APH, 3er Piso, Local 15, Santo Domingo, República Dominicana. Síguenos en nuestras redes sociales para más actualizaciones y proyectos destacados.
 
 ---
