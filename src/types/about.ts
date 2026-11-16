@@ -1,7 +1,7 @@
 import type { ImageAsset, NavItem, PageBannerData } from '@/types/common';
 
-/** Fragmento de texto enriquecido: texto plano o enlace en línea. */
-export type AboutRichSegment = string | { text: string; href: string };
+/** Fragmento de texto enriquecido: texto plano, enlace en línea o texto destacado en negrita. */
+export type AboutRichSegment = string | { text: string; href: string } | { strong: string };
 
 /** Párrafo compuesto por segmentos (permite enlaces dentro del texto). */
 export type AboutRichParagraph = AboutRichSegment[];
@@ -13,7 +13,7 @@ export interface AboutFeatureRow {
   image: ImageAsset;
   /** Lado en el que va la foto en escritorio; en móvil siempre va arriba. */
   imageSide: 'left' | 'right';
-  /** Color de la banda, de los del banner: gris acero o naranja (brand-dark). El texto y las franjas van en blanco. */
+  /** Color del panel que va detrás de la foto, de los del banner: gris acero o naranja (brand-dark). */
   tone: 'steel' | 'brand';
   title: string;
   /** Frase destacada bajo el título. */

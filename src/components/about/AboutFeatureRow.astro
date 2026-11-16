@@ -12,45 +12,53 @@ const imageLeft = row.imageSide === 'left';
 
 /** Tamaño del texto de "Somos Tenax": 18 px (20 px en 768–1023, 16 px en < 768). */
 const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]';
+/** Relleno vertical de cada columna: el margen de los bloques de arriba (80 px; 60 en < 1024, 50 en < 640, 40 en < 420). */
+const padY = 'py-[40px] min-[26.25rem]:py-[50px] sm:py-[60px] lg:py-[80px]';
 ---
 
 <!--
   Mismo formato que "Somos Tenax" (AboutIntro): 1100 px como máximo; el texto ocupa la mitad y deja 100 px hasta la
   foto (60 px en < 1150, 30 px en < 840). En < 640 se apila con la foto arriba y el texto centrado de 360 px.
-  Foto con las franjas del banner (AboutPhoto), título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px
-  (20 en < 1024). `imageSide` alterna el lado.
-  Cada fila es una banda a todo lo ancho con un color del banner (`tone`: gris acero o naranja brand-dark), texto
-  blanco (contraste AA: 8,1:1 y 5,2:1) y franjas blancas. El relleno vertical es el margen de los bloques de arriba:
-  80 px (60 en < 1024, 50 en < 640, 40 en < 420). Los enlaces van subrayados: el hover naranja no se vería.
+  Título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px (20 en < 1024). `imageSide` alterna el lado.
+  La foto va sobre un panel de color del banner (`tone`: gris acero o naranja brand-dark) que ocupa todo el alto de
+  la fila, llega hasta el borde de la pantalla por el lado de la foto y cubre la mitad del espacio hasta el texto;
+  en < 640 ocupa todo el ancho. El texto queda sobre el fondo claro. Las franjas van en blanco, como en el banner.
 -->
-<div
-  id={row.id}
-  class:list={[
-    'scroll-mt-[20px] overflow-x-clip py-[40px] text-white min-[26.25rem]:py-[50px] sm:py-[60px] lg:py-[80px]',
-    row.tone === 'steel' ? 'bg-steel' : 'bg-brand-dark',
-  ]}
->
-  <div class:list={['mx-auto flex max-w-[1100px] flex-col-reverse items-center px-[20px] pt-[40px] sm:pt-0', imageLeft ? 'sm:flex-row-reverse' : 'sm:flex-row']}>
+<div id={row.id} class="scroll-mt-[20px] overflow-x-clip bg-surface-alt">
+  <div class:list={['mx-auto flex max-w-[1100px] flex-col-reverse px-[20px] sm:items-stretch', imageLeft ? 'sm:flex-row-reverse' : 'sm:flex-row']}>
     <div
       data-reveal-children
       class:list={[
-        'mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:w-1/2 sm:max-w-none',
+        'mx-auto flex w-full max-w-[360px] flex-col justify-center sm:mx-0 sm:w-1/2 sm:max-w-none sm:shrink-0',
+        padY,
         imageLeft ? 'sm:ml-[30px] min-[52.5rem]:ml-[60px] min-[71.875rem]:ml-[100px]' : 'sm:mr-[30px] min-[52.5rem]:mr-[60px] min-[71.875rem]:mr-[100px]',
       ]}
     >
-      <h2 class="mb-[12px] font-display text-[1.75rem] leading-[1.222] font-normal text-white sm:text-[2rem] sm:leading-[1.2] lg:text-[2.5rem]">
+      <h2 class="mb-[12px] font-display text-[1.75rem] leading-[1.222] font-normal text-brand-dark sm:text-[2rem] sm:leading-[1.2] lg:text-[2.5rem]">
         {row.title}
       </h2>
-      {row.subtitle && <p class="mb-[24px] text-[1.25rem] leading-[1.4] text-white md:leading-[1.364] lg:text-[1.5rem] lg:leading-[1.333]">{row.subtitle}</p>}
+      {row.subtitle && <p class="mb-[24px] text-[1.25rem] leading-[1.4] text-ink md:leading-[1.364] lg:text-[1.5rem] lg:leading-[1.333]">{row.subtitle}</p>}
       {
         row.paragraphs.map((p) => (
-          <p class:list={['mb-[16px] text-white last:mb-0 [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-white [&_a:hover]:decoration-2', body]}>
+          <p class:list={['mb-[16px] text-body last:mb-0', body]}>
             <RichText paragraph={p} />
           </p>
         ))
       }
     </div>
 
-    <AboutPhoto image={row.image} side={row.imageSide} stripes="white" />
+    <div class:list={['relative flex min-w-0 items-center sm:flex-1', padY]}>
+      <span
+        class:list={[
+          'absolute inset-y-0 -right-[100vw] -left-[100vw]',
+          row.tone === 'steel' ? 'bg-steel' : 'bg-brand-dark',
+          imageLeft
+            ? 'sm:right-[-15px] min-[52.5rem]:right-[-30px] min-[71.875rem]:right-[-50px]'
+            : 'sm:left-[-15px] min-[52.5rem]:left-[-30px] min-[71.875rem]:left-[-50px]',
+        ]}
+        aria-hidden="true"
+      ></span>
+      <AboutPhoto image={row.image} side={row.imageSide} stripes="white" />
+    </div>
   </div>
 </div>

@@ -8,9 +8,10 @@ interface Props {
   side: 'left' | 'right';
   /** Color de las franjas: naranja sobre fondos claros (por defecto) o blanco sobre bandas de color, como en el banner. */
   stripes?: 'brand' | 'white';
+  class?: string;
 }
 
-const { image, side, stripes = 'brand' } = Astro.props;
+const { image, side, stripes = 'brand', class: className } = Astro.props;
 ---
 
 <!--
@@ -20,7 +21,7 @@ const { image, side, stripes = 'brand' } = Astro.props;
   de color, en blanco.
   El contenedor de la fila recorta lo que sobresale (overflow-x-clip) para que no aparezca scroll horizontal.
 -->
-<figure data-reveal class="relative m-0 mb-[24px] w-full sm:mb-0">
+<figure data-reveal class:list={['relative m-0 w-full', className]}>
   <img
     src={image.src}
     srcset={coverSrcset(image, 467 / 428)}

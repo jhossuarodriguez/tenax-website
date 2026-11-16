@@ -12,6 +12,8 @@ const { paragraph } = Astro.props;
   paragraph.map((segment) =>
     typeof segment === 'string' ? (
       segment
+    ) : 'strong' in segment ? (
+      <strong class="font-medium text-ink">{segment.strong}</strong>
     ) : (
       <a href={segment.href} class="text-inherit hover:text-brand">
         {segment.text}

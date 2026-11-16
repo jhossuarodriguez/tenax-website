@@ -39,7 +39,7 @@ const subheading =
     >
       <div
         data-reveal-children
-        class="mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:mr-[30px] sm:w-1/2 sm:max-w-none min-[52.5rem]:mr-[60px] min-[71.875rem]:mr-[100px]"
+        class="mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:mr-[30px] sm:w-1/2 sm:max-w-none sm:shrink-0 min-[52.5rem]:mr-[60px] min-[71.875rem]:mr-[100px]"
       >
         <h2 class="mb-[12px] font-display text-[1.75rem] leading-[1.222] font-normal text-brand-dark sm:text-[2rem] sm:leading-[1.2] lg:text-[2.5rem]">
           {data.title}
@@ -48,7 +48,7 @@ const subheading =
         <p class:list={['mb-0 text-body', body]}>{data.text}</p>
       </div>
 
-      <AboutPhoto image={data.image} side="right" />
+      <AboutPhoto image={data.image} side="right" class="mb-[24px] sm:mb-0 sm:min-w-0 sm:flex-1" />
     </div>
   </div>
 
