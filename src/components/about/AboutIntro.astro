@@ -21,10 +21,11 @@ const subheading =
 <!--
   Bajo el banner, con las medidas de severfield.com/about:
   - Migas de pan (c-breadcrumb): 1180 px como máximo, 30 px arriba; 60 px debajo (50 en < 1024, 40 en < 768, 30 en < 640).
-  - "Somos Tenax" (c-text-and-video): 1100 px como máximo; la foto tiene el tamaño de la del banner y el texto
-    ocupa el resto, a 60 px de ella (40 px en < 1280, 30 px en < 840). En < 640 se apila con la foto arriba y el
-    texto centrado de 360 px.
-    La foto ocupa el lugar del video, con el encuadre de la del banner (AboutPhoto).
+  - "Somos Tenax" (c-text-and-video): 1100 px como máximo; la foto tiene el tamaño y las franjas de la del banner
+    (AboutPhoto) y el texto ocupa el resto, dejando libre el tramo de franjas que sobresale a la izquierda de la
+    foto: 130 px (120 en < 1280; 6 % + 56 px en < 1024). En < 640 se apila con la foto arriba y el texto centrado
+    de 360 px.
+    La foto ocupa el lugar del video.
     Título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px (20 en < 1024).
   - Debajo (c-text): columna de 896 px como máximo (todo el ancho en < 1024).
   Los márgenes inferiores de cada bloque son 80 px (60 en < 1024, 50 en < 640, 40 en < 420).
@@ -40,7 +41,7 @@ const subheading =
     >
       <div
         data-reveal-children
-        class="mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:mr-[30px] sm:max-w-none sm:min-w-0 sm:flex-1 min-[52.5rem]:mr-[40px] xl:mr-[60px]"
+        class="mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:mr-[calc(6%+56px)] sm:max-w-none sm:min-w-0 sm:flex-1 lg:mr-[120px] xl:mr-[130px]"
       >
         <h2 class="mb-[12px] font-display text-[1.75rem] leading-[1.222] font-normal text-brand-dark sm:text-[2rem] sm:leading-[1.2] lg:text-[2.5rem]">
           {data.title}

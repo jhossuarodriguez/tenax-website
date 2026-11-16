@@ -15,11 +15,12 @@ const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:t
 ---
 
 <!--
-  Mismo formato que "Somos Tenax" (AboutIntro): 1100 px como máximo; la foto tiene el tamaño de la del banner
-  (AboutPhoto) y el texto ocupa el resto, a 60 px de ella (40 px en < 1280, 30 px en < 840). En < 640 se apila con
-  la foto arriba y el texto centrado de 360 px.
-  Foto con el encuadre de la del banner (AboutPhoto), título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px
-  (20 en < 1024). `imageSide` alterna el lado.
+  Mismo formato que "Somos Tenax" (AboutIntro): 1100 px como máximo; la foto tiene el tamaño y las franjas de la
+  del banner (AboutPhoto) y el texto ocupa el resto. Con la foto a la derecha, el texto deja libre el tramo de
+  franjas que sobresale a la izquierda de la foto más 16–20 px: 130 px (120 en < 1280; 6 % + 56 px en < 1024). Con
+  la foto a la izquierda las franjas salen hacia el margen y el texto queda a 80 px (60 en < 1280, 30 en < 1024).
+  En < 640 se apila con la foto arriba y el texto centrado de 360 px.
+  Título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px (20 en < 1024). `imageSide` alterna el lado.
 -->
 <div id={row.id} class="mb-[40px] scroll-mt-[20px] min-[26.25rem]:mb-[50px] sm:mb-[60px] lg:mb-[80px]">
   <div class:list={['mx-auto flex max-w-[1100px] flex-col-reverse items-center px-[20px] pt-[40px] sm:pt-0', imageLeft ? 'sm:flex-row-reverse' : 'sm:flex-row']}>
@@ -27,7 +28,7 @@ const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:t
       data-reveal-children
       class:list={[
         'mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:max-w-none sm:min-w-0 sm:flex-1',
-        imageLeft ? 'sm:ml-[30px] min-[52.5rem]:ml-[40px] xl:ml-[60px]' : 'sm:mr-[30px] min-[52.5rem]:mr-[40px] xl:mr-[60px]',
+        imageLeft ? 'sm:ml-[30px] lg:ml-[60px] xl:ml-[80px]' : 'sm:mr-[calc(6%+56px)] lg:mr-[120px] xl:mr-[130px]',
       ]}
     >
       <h2 class="mb-[12px] font-display text-[1.75rem] leading-[1.222] font-normal text-brand-dark sm:text-[2rem] sm:leading-[1.2] lg:text-[2.5rem]">

@@ -11,35 +11,26 @@ const { image, class: className } = Astro.props;
 ---
 
 <!--
-  Foto de las filas de Nosotros con el mismo encuadre y tamaño que la del banner (PageBanner), en una sola pieza.
-  Medidas en ≥ 1280 px, las del banner: foto de 467 × 428 dentro de una pieza de 585 px de ancho; a su izquierda se
-  ven 114 px de gris acero y por arriba 40 px de fondo, gris hasta 160 px dentro de la foto y naranja (el primario,
-  `brand`, para que se distinga) desde ahí. Encima, la banda de franjas blancas de 80 px de alto, centrada en el
-  borde superior de la foto: empieza 110 px a su izquierda y acaba 40 px antes de su borde derecho.
-  Todo va en porcentajes del ancho de la pieza, así que se reduce en proporción: 501 px en 1024–1279 (foto de
-  400 × 366, como el banner), 45 % de la fila en 640–1023 y todo el ancho en < 640. En < 768 las franjas miden 50 px.
+  Foto de las filas de Nosotros, igual que la del banner (PageBanner): mismo tamaño y misma banda de franjas.
+  - Foto: 467 × 428 (≥ 1280) y 400 × 366 (1024–1279), como el banner; el 40 % de la fila en 640–1023 y todo el ancho
+    (467 px como máximo) en < 640, con la misma proporción.
+  - Franjas: 80 px de alto (50 px en < 768), centradas en el borde superior de la foto, 115 % de su ancho y a 40 px
+    de su borde derecho; sobresalen por la izquierda (110 px con la foto de 467). Van en el naranja primario (`brand`)
+    y no en blanco como en el banner, para que se distingan sobre el fondo claro.
+  Sin fondo propio: la fila deja libre el espacio que ocupan las franjas a la izquierda de la foto.
 -->
-<figure
-  data-reveal
-  class:list={[
-    'relative m-0 w-full shrink-0 bg-[linear-gradient(to_right,var(--color-steel)_46.8%,var(--color-brand)_46.8%)] sm:w-[45%] lg:w-[501px] xl:w-[585px]',
-    className,
-  ]}
->
-  <!-- El relleno va en un contenedor propio: sus porcentajes se calculan sobre el ancho de la figura y no del de la fila. -->
-  <div class="pt-[25px] pr-[4px] pl-[19.5%] md:pt-[40px]">
-    <img
-      src={image.src}
-      srcset={coverSrcset(image, 467 / 428)}
-      sizes="(min-width: 1280px) 467px, (min-width: 1024px) 400px, (min-width: 640px) 36vw, 80vw"
-      alt={image.alt}
-      width={image.width}
-      height={image.height}
-      loading="lazy"
-      decoding="async"
-      class="aspect-[467/428] w-full object-cover"
-      style={image.position ? `object-position:${image.position}` : undefined}
-    />
-  </div>
-  <span class="bg-stripes absolute top-0 right-[7.5%] left-[4px] h-[50px] text-white md:h-[80px]" aria-hidden="true"></span>
+<figure data-reveal class:list={['relative m-0 w-full max-w-[467px] shrink-0 sm:w-[40%] lg:w-[400px] xl:w-[467px]', className]}>
+  <img
+    src={image.src}
+    srcset={coverSrcset(image, 467 / 428)}
+    sizes="(min-width: 1280px) 467px, (min-width: 1024px) 400px, (min-width: 640px) 40vw, (min-width: 507px) 467px, 92vw"
+    alt={image.alt}
+    width={image.width}
+    height={image.height}
+    loading="lazy"
+    decoding="async"
+    class="aspect-[467/428] w-full object-cover"
+    style={image.position ? `object-position:${image.position}` : undefined}
+  />
+  <span class="bg-stripes absolute top-0 right-[40px] h-[50px] w-[115%] -translate-y-1/2 text-brand md:h-[80px]" aria-hidden="true"></span>
 </figure>
