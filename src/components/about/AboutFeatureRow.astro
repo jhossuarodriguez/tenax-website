@@ -1,7 +1,7 @@
 ---
 import type { AboutFeatureRow } from '@/types';
 import RichText from '@/components/about/RichText.astro';
-import { coverSrcset } from '@/data/obras';
+import AboutPhoto from '@/components/about/AboutPhoto.astro';
 
 interface Props {
   row: AboutFeatureRow;
@@ -17,9 +17,10 @@ const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:t
 <!--
   Mismo formato que "Somos Tenax" (AboutIntro): 1100 px como máximo; el texto ocupa la mitad y deja 100 px hasta la
   foto (60 px en < 1150, 30 px en < 840). En < 640 se apila con la foto arriba y el texto centrado de 360 px.
-  Foto 16:9, título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px (20 en < 1024). `imageSide` alterna el lado.
+  Foto con las franjas del banner (AboutPhoto), título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px
+  (20 en < 1024). `imageSide` alterna el lado.
 -->
-<div id={row.id} class="mb-[40px] scroll-mt-[20px] min-[26.25rem]:mb-[50px] sm:mb-[60px] lg:mb-[80px]">
+<div id={row.id} class="mb-[40px] scroll-mt-[20px] overflow-x-clip min-[26.25rem]:mb-[50px] sm:mb-[60px] lg:mb-[80px]">
   <div class:list={['mx-auto flex max-w-[1100px] flex-col-reverse items-center px-[20px] pt-[40px] sm:pt-0', imageLeft ? 'sm:flex-row-reverse' : 'sm:flex-row']}>
     <div
       data-reveal-children
@@ -41,19 +42,6 @@ const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:t
       }
     </div>
 
-    <figure data-reveal class="m-0 mb-[24px] w-full sm:mb-0">
-      <img
-        src={row.image.src}
-        srcset={coverSrcset(row.image, 16 / 9)}
-        sizes="(min-width: 1150px) 430px, (min-width: 640px) 45vw, 100vw"
-        alt={row.image.alt}
-        width={row.image.width}
-        height={row.image.height}
-        loading="lazy"
-        decoding="async"
-        class="aspect-video w-full object-cover"
-        style={row.image.position ? `object-position:${row.image.position}` : undefined}
-      />
-    </figure>
+    <AboutPhoto image={row.image} side={row.imageSide} />
   </div>
 </div>

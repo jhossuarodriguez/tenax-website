@@ -99,7 +99,7 @@ export const aboutPage: AboutPageData = {
       ],
     },
     {
-      // Foto vertical: el recorte 16:9 se centra en la cuadrilla y el camión hormigonera.
+      // Foto vertical: el recorte (467 × 428, como la del banner) se centra en la cuadrilla y el camión hormigonera.
       image: { ...obraThumb('pavimento-3'), position: 'center 27%' },
       id: 'equipo',
       imageSide: 'right',
