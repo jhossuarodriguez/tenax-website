@@ -6,18 +6,15 @@ export type AboutRichSegment = string | { text: string; href: string };
 /** Párrafo compuesto por segmentos (permite enlaces dentro del texto). */
 export type AboutRichParagraph = AboutRichSegment[];
 
-/** Fila "imagen + tarjeta con cuadrícula" de Sobre nosotros. */
+/** Fila de texto y foto de Sobre nosotros, con el formato de "Somos Tenax". */
 export interface AboutFeatureRow {
   /** Ancla para los enlaces del submenú de Nosotros. */
   id?: string;
   image: ImageAsset;
-  /** Lado en el que va la imagen; también define el orden al apilarse en móvil. */
+  /** Lado en el que va la foto en escritorio; en móvil siempre va arriba. */
   imageSide: 'left' | 'right';
-  /** light: fondo gris muy claro. white: fondo blanco. */
-  tone: 'light' | 'white';
   title: string;
-  /** brand: título rojo. heading: título gris oscuro. */
-  titleTone: 'brand' | 'heading';
+  /** Frase destacada bajo el título. */
   subtitle?: string;
   paragraphs: AboutRichParagraph[];
 }

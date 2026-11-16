@@ -1,0 +1,36 @@
+---
+import type { ImageAsset } from '@/types';
+import { coverSrcset } from '@/data/obras';
+
+interface Props {
+  image: ImageAsset;
+  class?: string;
+}
+
+const { image, class: className } = Astro.props;
+---
+
+<!--
+  Foto de las filas de Nosotros, igual que la del banner (PageBanner): mismo tamaño y misma banda de franjas.
+  - Foto: 467 × 428 (≥ 1280) y 400 × 366 (1024–1279), como el banner; el 40 % de la fila en 640–1023 y todo el ancho
+    (467 px como máximo) en < 640, con la misma proporción.
+  - Franjas: 80 px de alto (50 px en < 768), centradas en el borde superior de la foto, 115 % de su ancho y a 40 px
+    de su borde derecho; sobresalen por la izquierda (110 px con la foto de 467). Van en el naranja primario (`brand`)
+    y no en blanco como en el banner, para que se distingan sobre el fondo claro.
+  Sin fondo propio: la fila deja libre el espacio que ocupan las franjas a la izquierda de la foto.
+-->
+<figure data-reveal class:list={['relative m-0 w-full max-w-[467px] shrink-0 sm:w-[40%] lg:w-[400px] xl:w-[467px]', className]}>
+  <img
+    src={image.src}
+    srcset={coverSrcset(image, 467 / 428)}
+    sizes="(min-width: 1280px) 467px, (min-width: 1024px) 400px, (min-width: 640px) 40vw, (min-width: 507px) 467px, 92vw"
+    alt={image.alt}
+    width={image.width}
+    height={image.height}
+    loading="lazy"
+    decoding="async"
+    class="aspect-[467/428] w-full object-cover"
+    style={image.position ? `object-position:${image.position}` : undefined}
+  />
+  <span class="bg-stripes absolute top-0 right-[40px] h-[50px] w-[115%] -translate-y-1/2 text-brand md:h-[80px]" aria-hidden="true"></span>
+</figure>

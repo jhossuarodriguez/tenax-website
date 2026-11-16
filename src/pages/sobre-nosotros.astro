@@ -15,10 +15,11 @@ import { aboutPage } from '@/data/about';
   <PageBanner banner={aboutPage.hero} />
   <AboutIntro data={aboutPage.intro} breadcrumbs={aboutPage.hero.breadcrumbs} />
 
-  <div class="pt-[1.6rem]">
+  <!-- Misión y "¿Por qué elegirnos?": mismo formato que "Somos Tenax"; cada fila deja su margen inferior. -->
+  <div class="pt-[40px] min-[26.25rem]:pt-[50px] sm:pt-[60px] lg:pt-[80px]">
     {aboutPage.rows.map((row) => <AboutFeatureRowBlock row={row} />)}
     <!-- Trayectoria: la misma visión, cifras y valores de la portada. -->
-    <div id="trayectoria" class="mt-[1.6rem] scroll-mt-[20px]">
+    <div id="trayectoria" class="scroll-mt-[20px]">
       <HomeVision data={home.vision} />
     </div>
     <AboutSafety data={aboutPage.safety} />

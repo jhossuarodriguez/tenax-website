@@ -8,9 +8,8 @@ interface Props {
 
 const { banner } = Astro.props;
 
-/** Franjas a 45° en mosaicos de 20 px: el mismo patrón que la referencia, en blanco. */
-const stripes =
-  'bg-[linear-gradient(45deg,#fff_25%,transparent_25.3%,transparent_50%,#fff_50.3%,#fff_75%,transparent_75.3%,transparent_100%)] [background-size:20px_20px]';
+/** Franjas a 45° en mosaicos de 20 px (.bg-stripes de global.css): el mismo patrón que la referencia, en blanco. */
+const stripes = 'bg-stripes text-white';
 ---
 
 <!--
