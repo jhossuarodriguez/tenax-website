@@ -1,6 +1,5 @@
 import type { AboutFaqItem, AboutPageData, NavItem, PortfolioCategoryId } from '@/types';
 import { obraThumb } from '@/data/obras';
-import { tenaxImage } from '@/data/projects';
 import { categories } from '@/data/portfolio';
 
 /** Enlace a una categoría del portafolio; falla el build si la categoría no existe. */
@@ -88,11 +87,9 @@ export const aboutPage: AboutPageData = {
   },
   rows: [
     {
-      image: tenaxImage('crane', 'Grúa torre en una obra en construcción'),
-      imageSide: 'right',
-      tone: 'white',
+      image: obraThumb('movimiento-tierra-pavimento-1'),
+      imageSide: 'left',
       title: 'Nuestra Misión',
-      titleTone: 'heading',
       subtitle: 'Construimos estructuras, elevamos tu proyecto',
       paragraphs: [
         [
@@ -102,12 +99,11 @@ export const aboutPage: AboutPageData = {
       ],
     },
     {
-      image: tenaxImage('drawing', 'Diseño de planos de un proyecto'),
+      // Foto vertical: el recorte 16:9 se centra en la cuadrilla y el camión hormigonera.
+      image: { ...obraThumb('pavimento-3'), position: 'center 27%' },
       id: 'equipo',
-      imageSide: 'left',
-      tone: 'white',
+      imageSide: 'right',
       title: '¿Por qué elegirnos?',
-      titleTone: 'brand',
       paragraphs: [
         ['Experiencia local: profundo conocimiento del contexto dominicano.'],
         ['Equipo experto: profesionales altamente capacitados en diversas áreas.'],
