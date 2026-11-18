@@ -1,11 +1,11 @@
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 import { site } from '@/data/site';
+import { validateQuote } from '@/lib/quote-schema';
+import { TURNSTILE_FIELD, verifyTurnstile } from '@/lib/turnstile';
 
 // Se ejecuta en el servidor (función de Vercel); el resto del sitio es estático.
 export const prerender = false;
-
-const REQUIRED = ['nombre', 'email', 'telefono', 'tipoProyecto', 'descripcion'] as const;
 
 /** Escapa el texto del cliente antes de insertarlo en el HTML del correo. */
 const escapeHtml = (value: string): string =>
@@ -14,17 +14,31 @@ const escapeHtml = (value: string): string =>
 const json = (body: object, status: number): Response =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
-export const POST: APIRoute = async ({ request }) => {
-  const formData = await request.formData();
-  const field = (name: string): string => formData.get(name)?.toString().trim() ?? '';
-
-  if (REQUIRED.some((name) => !field(name))) {
-    return json({ success: false, message: 'Completa todos los campos obligatorios.' }, 400);
+export const POST: APIRoute = async ({ request, clientAddress }) => {
+  let formData: FormData;
+  try {
+    formData = await request.formData();
+  } catch {
+    // Cuerpo que no es un formulario (JSON, vacío…).
+    return json({ success: false, message: 'Solicitud no válida.' }, 400);
   }
 
-  const email = field('email');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return json({ success: false, message: 'El correo electrónico no es válido.' }, 400);
+  // Mismas reglas que aplica el navegador; `errors` trae el aviso de cada campo que falla.
+  const quote = validateQuote(formData);
+  if (!quote.ok) {
+    return json({ success: false, message: 'Revisa los campos marcados.', errors: quote.errors }, 400);
+  }
+
+  // Anti-bots: sin TURNSTILE_SECRET_KEY el formulario sigue funcionando, pero sin protección.
+  const turnstileSecret = import.meta.env.TURNSTILE_SECRET_KEY;
+  if (turnstileSecret) {
+    const token = formData.get(TURNSTILE_FIELD);
+    const verified = await verifyTurnstile(typeof token === 'string' ? token : '', turnstileSecret, clientAddress);
+    if (!verified) {
+      return json({ success: false, message: 'No pudimos verificar que eres una persona. Inténtalo de nuevo.' }, 403);
+    }
+  } else {
+    console.warn('cotizacion: falta TURNSTILE_SECRET_KEY; el formulario se acepta sin verificación anti-bots');
   }
 
   // RESEND_FROM debe usar un dominio verificado en Resend; QUOTE_TO_EMAIL es el buzón que recibe las cotizaciones.
@@ -36,16 +50,17 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ success: false, message: 'Error al enviar la cotización.' }, 500);
   }
 
+  const { email } = quote.data;
   const data = {
-    nombre: escapeHtml(field('nombre')),
+    nombre: escapeHtml(quote.data.nombre),
     email: escapeHtml(email),
-    telefono: escapeHtml(field('telefono')),
-    tipoProyecto: escapeHtml(field('tipoProyecto')),
-    ubicacion: escapeHtml(field('ubicacion') || 'No especificado'),
-    // El monto y la moneda llegan en campos separados; sin monto no se muestra la moneda.
-    presupuesto: escapeHtml(field('presupuesto') ? [field('moneda'), field('presupuesto')].filter(Boolean).join(' ') : 'No especificado'),
-    fechaInicio: escapeHtml(field('fechaInicio') || 'No especificado'),
-    descripcion: escapeHtml(field('descripcion')).replace(/\n/g, '<br>'),
+    telefono: escapeHtml(quote.data.telefono),
+    tipoProyecto: escapeHtml(quote.data.tipoProyecto),
+    ubicacion: escapeHtml(quote.data.ubicacion || 'No especificado'),
+    // El monto y la moneda llegan en campos separados; el esquema exige la moneda cuando hay monto.
+    presupuesto: escapeHtml(quote.data.presupuesto ? `${quote.data.moneda} ${quote.data.presupuesto}` : 'No especificado'),
+    fechaInicio: escapeHtml(quote.data.fechaInicio || 'No especificado'),
+    descripcion: escapeHtml(quote.data.descripcion).replace(/\n/g, '<br>'),
   };
 
   const messageReceived = `
