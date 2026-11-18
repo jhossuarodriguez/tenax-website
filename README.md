@@ -69,13 +69,17 @@ pnpm build    # genera el sitio estático en dist/
 
 ### Variables de entorno
 
-El formulario de cotización (`/api/cotizacion`) envía los correos con [Resend](https://resend.com). Configúralas en Vercel (Production y Preview) o en un `.env` local; ver `.env.example`.
+El formulario de cotización (`/api/cotizacion`) valida los datos con [zod](https://zod.dev) (el mismo esquema en el navegador y en el servidor, `src/lib/quote-schema.ts`), comprueba el reto anti-bots de [Cloudflare Turnstile](https://developers.cloudflare.com/turnstile/) y envía los correos con [Resend](https://resend.com). Configura las variables en Vercel (Production y Preview) o en un `.env` local; ver `.env.example`.
 
 | Variable | Uso |
 |---|---|
 | `RESEND_API_KEY` | Clave de API de Resend |
 | `RESEND_FROM` | Remitente, con un dominio verificado en Resend. Ej.: `Tenax Construction <cotizaciones@tenaxconstruction.com.do>` |
 | `QUOTE_TO_EMAIL` | Buzón que recibe las solicitudes de cotización |
+| `PUBLIC_TURNSTILE_SITE_KEY` | Clave pública del widget de Turnstile. Se lee al compilar: hay que redesplegar al cambiarla |
+| `TURNSTILE_SECRET_KEY` | Clave secreta de Turnstile, con la que el servidor verifica el token |
+
+Si faltan las dos claves de Turnstile, el formulario funciona sin el reto anti-bots (el servidor lo avisa en los logs). Para probar en local sirven las claves de prueba de Cloudflare que trae `.env.example`.
 
 ---
 

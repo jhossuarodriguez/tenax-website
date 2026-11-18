@@ -1,12 +1,8 @@
 import type { ContactPageData } from '@/types';
 import { site } from '@/data/site';
+import { CURRENCIES, PROJECT_TYPES } from '@/lib/quote-schema';
 
 const { contact } = site;
-
-/** Tipos de proyecto y monedas del presupuesto del formulario de cotización de Tenax. */
-const projectTypes = ['Casa Residencial', 'Edificio/Apartamentos', 'Proyecto Comercial', 'Nave Industrial', 'Remodelación', 'Otro'];
-// El cliente escribe el monto y elige la moneda: Tenax cotiza tanto en dólares como en pesos.
-const currencies = ['US$', 'RD$'];
 
 export const contactPage: ContactPageData = {
   seo: {
@@ -40,11 +36,11 @@ export const contactPage: ContactPageData = {
       ],
       [
         { name: 'ubicacion', label: 'Ubicación del Proyecto', placeholder: 'Ciudad, Sector', type: 'text', required: false, autocomplete: 'address-level2' },
-        { name: 'tipoProyecto', label: 'Tipo de Proyecto', placeholder: 'Selecciona el tipo de proyecto', type: 'select', options: projectTypes, required: true },
+        { name: 'tipoProyecto', label: 'Tipo de Proyecto', placeholder: 'Selecciona el tipo de proyecto', type: 'select', options: PROJECT_TYPES, required: true },
       ],
       [
         { name: 'presupuesto', label: 'Presupuesto Estimado', placeholder: 'Ej. 150,000', type: 'text', required: false },
-        { name: 'moneda', label: 'Moneda', placeholder: 'Selecciona la moneda', type: 'select', options: currencies, required: false },
+        { name: 'moneda', label: 'Moneda', placeholder: 'Selecciona la moneda', type: 'select', options: CURRENCIES, required: false },
       ],
       [{ name: 'fechaInicio', label: 'Fecha Deseada de Inicio', placeholder: '', type: 'date', required: false }],
       [

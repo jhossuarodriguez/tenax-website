@@ -17,7 +17,7 @@ export interface ContactPageFormField {
   /** Filas del textarea. */
   rows?: number;
   /** Opciones del select; el placeholder se muestra como primera opción deshabilitada. */
-  options?: string[];
+  options?: readonly string[];
 }
 
 /** Fila del formulario: uno o dos campos (dos van lado a lado en escritorio). */

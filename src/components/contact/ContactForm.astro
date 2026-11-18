@@ -8,16 +8,20 @@ interface Props {
 
 const { form } = Astro.props;
 
+// Clave pública de Cloudflare Turnstile; sin ella el formulario se muestra sin el reto anti-bots.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
 const id = (field: ContactPageFormField): string => `contact-${field.name}`;
+const errorId = (field: ContactPageFormField): string => `${id(field)}-error`;
 const controlClass =
-  'block w-full rounded-[7px] font-sans border border-[#dadbdd] bg-[#fafafa] px-[15px] py-[11px] text-[17px] leading-[17px] text-[#606266] transition-colors placeholder:text-[#868e96] focus:border-brand focus:bg-white focus:outline-none';
+  'block w-full rounded-[7px] font-sans border border-[#dadbdd] bg-[#fafafa] px-[15px] py-[11px] text-[17px] leading-[17px] text-[#606266] transition-colors placeholder:text-[#868e96] focus:border-brand focus:bg-white focus:outline-none aria-invalid:border-brand-dark';
 ---
 
 <div class="rounded-xl bg-white p-[30px]">
   <h2 class="mb-2 text-[1.8rem] font-bold">{form.title[0]}<br />{form.title[1]}</h2>
   <p class="my-6 text-[17px] leading-[1.6] text-[#555]">{form.description}</p>
 
-  <form action={form.action} method="post" novalidate={false} data-contact-form data-error={form.errorMessage}>
+  <form action={form.action} method="post" data-contact-form data-error={form.errorMessage}>
     {
       form.rows.map((row) => (
         <div class:list={[row.length === 2 && 'md:grid md:grid-cols-2 md:gap-4']}>
@@ -33,7 +37,13 @@ const controlClass =
                 )}
               </label>
               {field.type === 'select' ? (
-                <select id={id(field)} name={field.name} required={field.required} class:list={[controlClass, 'h-[43px]']}>
+                <select
+                  id={id(field)}
+                  name={field.name}
+                  required={field.required}
+                  aria-describedby={errorId(field)}
+                  class:list={[controlClass, 'h-[43px]']}
+                >
                   <option value="" disabled selected>{field.placeholder}</option>
                   {field.options?.map((o) => <option value={o}>{o}</option>)}
                 </select>
@@ -44,6 +54,7 @@ const controlClass =
                   rows={field.rows ?? 4}
                   placeholder={field.placeholder}
                   required={field.required}
+                  aria-describedby={errorId(field)}
                   class:list={[controlClass, 'resize-y']}
                 />
               ) : (
@@ -54,14 +65,20 @@ const controlClass =
                   placeholder={field.placeholder}
                   required={field.required}
                   autocomplete={field.autocomplete}
+                  aria-describedby={errorId(field)}
                   class:list={[controlClass, 'h-[43px]']}
                 />
               )}
+              {/* Aviso de validación del campo; lo rellena quote-form.ts con el mensaje del esquema zod. */}
+              <p id={errorId(field)} hidden class="mt-[5px] text-[15px] leading-[1.4] text-brand-dark" data-field-error={field.name} />
             </div>
           ))}
         </div>
       ))
     }
+
+    {/* Reto anti-bots de Turnstile: quote-form.ts carga el script de Cloudflare y dibuja aquí el widget. */}
+    {turnstileSiteKey && <div class="mb-5 leading-none" data-turnstile data-sitekey={turnstileSiteKey} />}
 
     <button
       type="submit"
