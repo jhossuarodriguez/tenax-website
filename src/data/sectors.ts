@@ -21,7 +21,8 @@ const seeds: SectorSeed[] = [
     code: 'PS',
     title: categoryLabels['paneles-solares'],
     categories: ['paneles-solares'],
-    description: 'Hincado, montaje y colocación de paneles solares en parques fotovoltaicos para fábricas agroindustriales, desde las bases estructurales hasta la instalación final.',
+    description:
+      'Ejecución de trabajos de hincado de perfiles metálicos, ensamblaje y montaje de estructuras de soporte e instalación de módulos fotovoltaicos, con control de alineación, nivelación, inclinación y fijaciones conforme a las especificaciones técnicas del sistema.',
     image: obraThumb('parque-fotovoltaico-sabana-de-la-mar'),
     badge: 'signal',
   },
@@ -48,7 +49,8 @@ const seeds: SectorSeed[] = [
     code: 'RE',
     title: 'Remodelaciones',
     categories: ['remodelacion', 'estructura-metalica'],
-    description: 'Remodelaciones de oficinas con verjas perimetrales metálicas.',
+    description:
+      'Ejecución de remodelaciones y adecuaciones de edificaciones existentes, incluyendo demoliciones controladas, modificaciones de distribución interior, intervenciones en elementos constructivos, trabajos de albañilería, revestimientos y terminaciones, conforme a las especificaciones técnicas y necesidades funcionales de cada espacio.',
     image: obraThumb('remodelaciones'),
     badge: 'ink',
   },
