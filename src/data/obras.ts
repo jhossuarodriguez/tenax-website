@@ -232,6 +232,8 @@ export const obraPhotos = {
   'retrofit-3': { title: 'Retrofit', alt: 'Obrero aplicando mortero sobre un elemento reforzado' },
   'retrofit-4': { title: 'Retrofit', alt: 'Obrero dando el acabado de mortero a una columna reforzada' },
 
+  remodelaciones: { title: 'Remodelación', alt: 'Obreros retirando el piso de un local en remodelación, con la estructura metálica del techo a la vista' },
+
   'muro-contencion-ab-1': {
     title: 'Construcción de muro de contención tipo AB',
     location: 'Km 13, Autopista Duarte',
