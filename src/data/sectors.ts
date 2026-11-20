@@ -1,6 +1,6 @@
 import type { ImageAsset, Sector, SectorBadgeVariant, SectorsPageData } from '@/types';
 import { obraThumb } from '@/data/obras';
-import { categoryLabels, projectPhoto, projectPhotos, shortLocation, type ProjectCategory } from '@/data/projects';
+import { categoryLabels, projectPhotos, shortLocation, type ProjectCategory } from '@/data/projects';
 
 interface SectorSeed {
   id: string;
@@ -22,7 +22,7 @@ const seeds: SectorSeed[] = [
     title: categoryLabels['paneles-solares'],
     categories: ['paneles-solares'],
     description: 'Hincado, montaje y colocación de paneles solares en parques fotovoltaicos para fábricas agroindustriales, desde las bases estructurales hasta la instalación final.',
-    image: projectPhoto('Paneles-1'),
+    image: obraThumb('parque-fotovoltaico-sabana-de-la-mar'),
     badge: 'signal',
   },
   {
@@ -40,7 +40,7 @@ const seeds: SectorSeed[] = [
     title: categoryLabels['pavimentos-cimentaciones'],
     categories: ['pavimentos-cimentaciones'],
     description: 'Ejecutamos obras de hormigón armado con los más altos estándares de calidad, desde cimentaciones hasta estructuras completas.',
-    image: obraThumb('envarillado-losa-1'),
+    image: obraThumb('pavimento-1'),
     badge: 'steel',
   },
   {
@@ -49,7 +49,7 @@ const seeds: SectorSeed[] = [
     title: 'Remodelaciones y Control de Acceso',
     categories: ['remodelacion', 'estructura-metalica'],
     description: 'Remodelación de oficinas y obras de control de acceso con verjas perimetrales metálicas.',
-    image: projectPhoto('Remodelacion-1'),
+    image: obraThumb('remodelaciones'),
     badge: 'ink',
   },
 ];
