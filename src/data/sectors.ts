@@ -46,9 +46,9 @@ const seeds: SectorSeed[] = [
   {
     id: 'remodelaciones',
     code: 'RE',
-    title: 'Remodelaciones y Control de Acceso',
+    title: 'Remodelaciones',
     categories: ['remodelacion', 'estructura-metalica'],
-    description: 'Remodelación de oficinas y obras de control de acceso con verjas perimetrales metálicas.',
+    description: 'Remodelaciones de oficinas con verjas perimetrales metálicas.',
     image: obraThumb('remodelaciones'),
     badge: 'ink',
   },
