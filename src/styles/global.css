@@ -98,14 +98,6 @@
     @apply mx-auto w-full max-w-site px-5;
   }
 
-  /* Fondo cuadriculado de los heros interiores. */
-  .bg-grid-ink {
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-    background-size: 46px 46px;
-  }
-
   /* Franjas a 45° en mosaicos de 20 px (banner y fotos de Nosotros); toman el color del texto (text-white, text-brand-dark…). */
   .bg-stripes {
     background-image: linear-gradient(
