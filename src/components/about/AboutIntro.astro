@@ -25,7 +25,6 @@ const heading =
     nombre y el cargo debajo.
   - Banda marfil a todo lo ancho con los sectores en dos columnas y, a la derecha, el botón a los proyectos (debajo
     de la lista en < 1024).
-  - "Dónde trabajamos", sobre blanco, antes de las filas de Misión.
 -->
 <section>
   <div class="mx-auto mb-[30px] max-w-[1180px] px-[20px] pt-[30px] sm:mb-[40px]">
@@ -98,10 +97,5 @@ const heading =
       </div>
       <HomeButton href={data.cta.href} variant="outline" class="shrink-0">{data.cta.label}</HomeButton>
     </div>
-  </div>
-
-  <div data-reveal-children class="mx-auto max-w-[1100px] px-[20px] pt-[40px] min-[26.25rem]:pt-[50px] sm:pt-[60px] lg:pt-[80px]">
-    <h2 class:list={['mb-[20px]', heading]}>{data.where.title}</h2>
-    <p class:list={['mb-0 max-w-[56rem] text-body', body]}>{data.where.text}</p>
   </div>
 </section>

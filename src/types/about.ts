@@ -6,7 +6,7 @@ export type AboutRichSegment = string | { text: string; href: string };
 /** Párrafo compuesto por segmentos (permite enlaces dentro del texto). */
 export type AboutRichParagraph = AboutRichSegment[];
 
-/** Fila de texto y foto con franjas de Sobre nosotros (Misión y "¿Por qué elegirnos?"). */
+/** Fila de texto y foto con franjas de Sobre nosotros (Misión y "Planificación y ejecución coordinadas"). */
 export interface AboutFeatureRow {
   /** Ancla para los enlaces del submenú de Nosotros. */
   id?: string;
@@ -62,8 +62,8 @@ export interface AboutTeamMember {
 }
 
 /**
- * Bajo el banner (Canva, pág. 19): "¿Quiénes somos?" y "Nuestro equipo" en dos columnas, la banda de sectores con
- * el botón a los proyectos y "Dónde trabajamos".
+ * Bajo el banner (Canva, pág. 19): "¿Quiénes somos?" y "Nuestro equipo" en dos columnas y la banda de sectores con
+ * el botón a los proyectos.
  */
 export interface AboutIntroData {
   /** Ancla para el enlace "Quiénes Somos" del submenú. */
@@ -78,5 +78,4 @@ export interface AboutIntroData {
   };
   sectors: { title: string; items: NavItem[] };
   cta: NavItem;
-  where: { title: string; text: string };
 }

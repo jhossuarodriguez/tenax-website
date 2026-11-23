@@ -14,8 +14,8 @@ const sector = (id: PortfolioCategoryId): NavItem => {
 const portraits = import.meta.glob<{ default: ImageMetadata }>('/src/assets/equipo/*.avif', { eager: true });
 
 /**
- * Retrato de src/assets/equipo/ (fuera del catálogo de obras, para que no salga en la galería). Cada archivo ya viene
- * recortado a 113 : 127 con el encuadre del Canva (pág. 19), así que se muestra centrado.
+ * Foto de src/assets/equipo/ (fuera del catálogo de obras, para que no salga en la galería). Los retratos de "Nuestro
+ * equipo" ya vienen recortados a 113 : 127 con el encuadre del Canva (pág. 19), así que se muestran centrados.
  */
 const portrait = async (file: string, alt: string): Promise<ImageAsset> => {
   const image = portraits[`/src/assets/equipo/${file}.avif`];
@@ -114,35 +114,38 @@ export const aboutPage: AboutPageData = {
       ],
     },
     cta: { label: 'Explorar nuestros proyectos', href: '/proyectos/' },
-    where: {
-      title: 'Dónde trabajamos',
-      text: 'Ejecutamos proyectos en la República Dominicana. Si tienes una obra en planificación, conversemos sobre su ubicación, alcance y etapa de desarrollo.',
-    },
   },
+  // Textos y fotos de Misión y "Planificación y ejecución coordinadas" del diseño de Tenax en Canva (pág. 20). Las
+  // fotos son verticales: `position` elige la franja que se ve en el recorte de 467 × 428.
   rows: [
     {
-      image: obraThumb('movimiento-tierra-pavimento-1'),
+      image: {
+        ...(await portrait('mision', 'Colaboradora de Tenax Construction atendiendo el teléfono en la recepción de la oficina')),
+        position: 'center 15%',
+      },
       imageSide: 'left',
       title: 'Nuestra Misión',
       subtitle: 'Construimos estructuras, elevamos tu proyecto',
       paragraphs: [
         [
-          'Brindar soluciones innovadoras y de alta calidad en el sector de la construcción, adaptándonos a las necesidades de nuestros clientes y contribuyendo al desarrollo sostenible de la República Dominicana.',
+          'Desarrollar proyectos de ingeniería y construcción mediante la coordinación de recursos, la ejecución de los procesos constructivos y el control técnico de los trabajos, atendiendo las especificaciones, condiciones y objetivos de cada proyecto.',
         ],
-        ['Contamos con equipos especializados y maquinaria pesada de última generación para realizar proyectos con eficiencia y precisión.'],
       ],
     },
     {
-      // Foto vertical: el recorte (467 × 428, como la del banner) se centra en la cuadrilla y el camión hormigonera.
-      image: { ...obraThumb('pavimento-3'), position: 'center 27%' },
+      image: {
+        ...(await portrait('planificacion_y_ejecucion_coordinadas', 'Colaboradora de Tenax Construction trabajando en su escritorio de la oficina')),
+        position: 'center 90%',
+      },
       imageSide: 'right',
-      title: '¿Por qué elegirnos?',
+      title: 'Planificación y ejecución coordinadas',
       paragraphs: [
-        ['Experiencia local: profundo conocimiento del contexto dominicano.'],
-        ['Equipo experto: profesionales altamente capacitados en diversas áreas.'],
-        ['Compromiso con la sostenibilidad: fomentamos prácticas responsables con el medio ambiente.'],
-        ['Resultados garantizados: entregamos proyectos que superan las expectativas.'],
-        ['Explora nuestros ', { text: 'proyectos', href: '/proyectos/' }, ' y la ', { text: 'galería', href: '/galeria/' }, ' para conocer nuestro trabajo.'],
+        [
+          'El desarrollo de cada obra requiere organizar las actividades constructivas, coordinar personal, equipos y suministros, y dar seguimiento al avance de los trabajos.',
+        ],
+        [
+          'La participación conjunta de la oficina técnica y el equipo de campo facilita la revisión de planos, cantidades de obra y condiciones de ejecución, así como la atención de ajustes durante el proceso constructivo.',
+        ],
       ],
     },
   ],

@@ -13,7 +13,7 @@ import { aboutPage } from '@/data/about';
   <PageBanner banner={aboutPage.hero} />
   <AboutIntro data={aboutPage.intro} breadcrumbs={aboutPage.hero.breadcrumbs} />
 
-  <!-- Misión y "¿Por qué elegirnos?": texto y foto con franjas; cada fila deja su margen inferior. -->
+  <!-- Misión y "Planificación y ejecución coordinadas" (Canva, pág. 20): texto y foto con franjas; cada fila deja su margen inferior. -->
   <div class="pt-[40px] min-[26.25rem]:pt-[50px] sm:pt-[60px] lg:pt-[80px]">
     {aboutPage.rows.map((row) => <AboutFeatureRowBlock row={row} />)}
     <AboutSafety data={aboutPage.safety} />
