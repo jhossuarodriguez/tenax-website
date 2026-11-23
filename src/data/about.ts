@@ -120,8 +120,8 @@ export const aboutPage: AboutPageData = {
   rows: [
     {
       image: {
-        ...(await portrait('mision', 'Colaboradora de Tenax Construction atendiendo el teléfono en la recepción de la oficina')),
-        position: 'center 15%',
+        ...(await portrait('mision_2', 'Colaboradora de Tenax Construction atendiendo el teléfono en la recepción de la oficina')),
+        position: 'center 78%',
       },
       imageSide: 'left',
       title: 'Nuestra Misión',
