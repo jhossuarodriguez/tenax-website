@@ -149,20 +149,16 @@ export const aboutPage: AboutPageData = {
       ],
     },
   ],
-  // Texto provisional: Tenax tiene pendiente desarrollar esta sección.
+  // Texto y foto del diseño de Tenax en Canva (pág. 21).
   safety: {
     id: 'seguridad-calidad-medio-ambiente',
     title: 'Seguridad, calidad y medio ambiente',
+    lede: 'Control y responsabilidad durante la ejecución.',
     paragraphs: [
-      'La seguridad de nuestro personal, la calidad de cada obra y el cuidado del entorno guían la forma en que planificamos y ejecutamos nuestros proyectos.',
-      'Trabajamos con equipo de protección personal, supervisión en campo y control de obra en cada etapa, y fomentamos prácticas responsables con el medio ambiente.',
+      'La seguridad del personal, la calidad de los trabajos y el cuidado del entorno forman parte de la planificación de las actividades en obra.',
+      'El uso de equipos de protección personal, la supervisión de los frentes de trabajo y la verificación de las especificaciones técnicas contribuyen a mantener condiciones de ejecución adecuadas y reducir riesgos durante las operaciones.',
     ],
-    cta: { label: 'Ver proyectos', href: '/proyectos/' },
-    columns: [
-      [obraThumb('control-acceso-1'), obraThumb('parque-fotovoltaico-calabaza'), obraThumb('estructura-acero-epp-1')],
-      [obraThumb('inicio'), obraThumb('izaje-viga-1'), obraThumb('nivelacion-terreno-3')],
-      [obraThumb('vallado-perimetral-3'), obraThumb('colocacion-hormigon-2'), obraThumb('parque-fotovoltaico-sabana-de-la-mar'), obraThumb('retrofit-4')],
-    ],
+    image: obraThumb('seguridad_y_calidad'),
   },
   faqTitle: 'Preguntas Frecuentes',
   faqs,
