@@ -328,6 +328,11 @@ export const obraPhotos = {
     location: 'Haina',
     alt: 'Patio de contenedores con pavimento terminado y contenedores azules al fondo',
   },
+  // Foto de "Seguridad, calidad y medio ambiente" de Nosotros (Canva, pág. 21).
+  seguridad_y_calidad: {
+    title: 'Seguridad y calidad',
+    alt: 'Tres obreros con casco amarillo y chaleco reflectante naranja trabajan en el armado de acero de un muro',
+  },
   // Foto del banner de Nosotros (Canva, pág. 18).
   arq_gilberto_ramirez: {
     title: 'Supervisión en patio de contenedores',

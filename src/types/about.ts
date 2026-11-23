@@ -44,14 +44,14 @@ export interface AboutPageData {
   faqs: AboutFaqItem[];
 }
 
-/** "Seguridad, calidad y medio ambiente": collage de fotos de obra y texto a la derecha. */
+/** "Seguridad, calidad y medio ambiente" (Canva, pág. 21): banda grafito con una foto que sobresale por debajo y el texto. */
 export interface AboutSafetyData {
   id: string;
   title: string;
+  /** Frase destacada en negrita bajo el título. */
+  lede: string;
   paragraphs: string[];
-  cta: NavItem;
-  /** Tres columnas de fotos, de arriba abajo. */
-  columns: ImageAsset[][];
+  image: ImageAsset;
 }
 
 /** Integrante de "Nuestro equipo": retrato, nombre con su título y cargo. */
