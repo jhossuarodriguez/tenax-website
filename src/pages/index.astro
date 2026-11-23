@@ -10,7 +10,10 @@ import HomeShowcase from '@/components/home/HomeShowcase.astro';
 
 <BaseLayout title={home.seo.title} description={home.seo.description}>
   <HomeHero hero={home.hero} />
-  <HomeVision data={home.vision} />
+  <!-- Ancla de "Nuestra Trayectoria" (submenú de Nosotros y pie): la visión, las cifras y los valores solo van aquí. -->
+  <div id="trayectoria" class="scroll-mt-[20px]">
+    <HomeVision data={home.vision} />
+  </div>
 
   <!-- Movimientos de tierras -->
   <FeatureBand data={home.earthworks} />

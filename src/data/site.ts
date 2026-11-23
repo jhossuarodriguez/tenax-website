@@ -40,7 +40,7 @@ export const site: SiteConfig = {
           { label: 'Quiénes Somos', href: '/sobre-nosotros/#quienes-somos' },
           { label: 'Capacidades y Equipos', href: '/equipos/' },
           { label: 'Seguridad, Calidad y Medio Ambiente', href: '/sobre-nosotros/#seguridad-calidad-medio-ambiente' },
-          { label: 'Nuestra Trayectoria', href: '/sobre-nosotros/#trayectoria' },
+          { label: 'Nuestra Trayectoria', href: '/#trayectoria' },
           { label: 'Nuestro Equipo', href: '/sobre-nosotros/#equipo' },
         ],
         image: obraThumb('izaje-contenedor-1'),

@@ -68,7 +68,7 @@ export const footer: FooterData = {
         title: 'Sobre Tenax',
         links: [
           { label: 'Quiénes somos', href: '/sobre-nosotros/#quienes-somos' },
-          { label: 'Trayectoria', href: '/sobre-nosotros/#trayectoria' },
+          { label: 'Trayectoria', href: '/#trayectoria' },
           { label: 'Equipo', href: '/sobre-nosotros/#equipo' },
         ],
       },

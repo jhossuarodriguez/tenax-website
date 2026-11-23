@@ -6,7 +6,7 @@ export type AboutRichSegment = string | { text: string; href: string };
 /** Párrafo compuesto por segmentos (permite enlaces dentro del texto). */
 export type AboutRichParagraph = AboutRichSegment[];
 
-/** Fila de texto y foto de Sobre nosotros, con el formato de "Somos Tenax". */
+/** Fila de texto y foto con franjas de Sobre nosotros (Misión y "¿Por qué elegirnos?"). */
 export interface AboutFeatureRow {
   /** Ancla para los enlaces del submenú de Nosotros. */
   id?: string;
@@ -54,15 +54,28 @@ export interface AboutSafetyData {
   columns: ImageAsset[][];
 }
 
-/** "Somos Tenax": texto y foto (como "We are Severfield") y, debajo, quiénes somos, sectores y dónde trabajamos. */
+/** Integrante de "Nuestro equipo": retrato, nombre con su título y cargo. */
+export interface AboutTeamMember {
+  name: string;
+  role: string;
+  photo: ImageAsset;
+}
+
+/**
+ * Bajo el banner (Canva, pág. 19): "¿Quiénes somos?" y "Nuestro equipo" en dos columnas, la banda de sectores con
+ * el botón a los proyectos y "Dónde trabajamos".
+ */
 export interface AboutIntroData {
   /** Ancla para el enlace "Quiénes Somos" del submenú. */
   id: string;
-  title: string;
-  lede: string;
-  text: string;
-  image: ImageAsset;
   who: { title: string; paragraphs: string[] };
+  team: {
+    /** Ancla para el enlace "Nuestro Equipo" del submenú. */
+    id: string;
+    title: string;
+    text: string;
+    members: AboutTeamMember[];
+  };
   sectors: { title: string; items: NavItem[] };
   cta: NavItem;
   where: { title: string; text: string };

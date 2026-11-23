@@ -1,4 +1,6 @@
-import type { AboutFaqItem, AboutPageData, NavItem, PortfolioCategoryId } from '@/types';
+import type { ImageMetadata } from 'astro';
+import type { AboutFaqItem, AboutPageData, ImageAsset, NavItem, PortfolioCategoryId } from '@/types';
+import { imageVersions } from '@/data/images';
 import { obraThumb } from '@/data/obras';
 import { categories } from '@/data/portfolio';
 
@@ -7,6 +9,16 @@ const sector = (id: PortfolioCategoryId): NavItem => {
   const category = categories.find((c) => c.id === id);
   if (!category) throw new Error(`Nosotros: no existe la categoría "${id}"`);
   return { label: category.title, href: category.href };
+};
+
+const portraits = import.meta.glob<{ default: ImageMetadata }>('/src/assets/equipo/*.avif', { eager: true });
+
+/** Retrato de src/assets/equipo/ (fuera del catálogo de obras, para que no salga en la galería). */
+const portrait = async (file: string, alt: string): Promise<ImageAsset> => {
+  const image = portraits[`/src/assets/equipo/${file}.avif`];
+  if (!image) throw new Error(`Nosotros: falta el retrato "${file}" en src/assets/equipo/`);
+  const { thumb, srcset, width, height } = await imageVersions(image.default);
+  return { src: thumb, srcset, alt, width, height };
 };
 
 /** Preguntas frecuentes de Tenax: cada respuesta es un solo párrafo. */
@@ -45,25 +57,44 @@ export const aboutPage: AboutPageData = {
     description:
       'Tenax Construction S.R.L. es una constructora dominicana fundada en 2012 que administra, construye y supervisa obras civiles y naves industriales.',
   },
-  // Banner y bloque "Somos Tenax" con los textos y fotos del diseño de Tenax en Canva (pág. 18).
+  // Banner, "¿Quiénes somos?" y "Nuestro equipo" con los textos y fotos del diseño de Tenax en Canva (pág. 19).
   hero: {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Nosotros' }],
     title: 'Sobre nosotros',
-    lede: 'Nos enorgullece lo que hemos construido. Nos entusiasma aún más lo que queda por construir.',
-    text: 'Desde 2012, Tenax Construction ha ejecutado más de 80 proyectos en la República Dominicana. Nuestra trayectoria abarca desde naves industriales y centros logísticos hasta edificaciones residenciales, comerciales e institucionales, obras del sector energético y puentes. Conoce los proyectos que han marcado nuestra historia.',
+    rule: true,
+    lede: 'Empresa de ingeniería y construcción con amplia experiencia en el desarrollo de proyectos de alto valor en distintos sectores del país.',
+    text: 'Ejecutamos soluciones constructivas integrales, desde naves industriales y centros logísticos hasta edificaciones residenciales, comerciales, institucionales, obras del sector energético y puentes.',
     photo: obraThumb('arq_gilberto_ramirez'),
   },
   intro: {
     id: 'quienes-somos',
-    title: 'Somos Tenax',
-    lede: 'Ingeniería y construcción para proyectos industriales, edificaciones y obras de infraestructura.',
-    text: 'Desde 2012, hemos ejecutado más de 80 proyectos en la República Dominicana. Nuestra experiencia abarca desde naves industriales y centros logísticos hasta edificaciones comerciales, instalaciones agroindustriales y puentes.',
-    image: obraThumb('nave-industrial-6'),
     who: {
       title: '¿Quiénes somos?',
       paragraphs: [
-        'Tenax Construction es una empresa dominicana de ingeniería y construcción. Integramos la oficina técnica con la ejecución en campo para coordinar los planos, la secuencia de los trabajos y el control de calidad en obra.',
-        'El alcance se define según el proyecto y puede incluir la preparación del terreno, las cimentaciones, la ejecución de estructuras y la construcción de edificaciones. Cada obra plantea condiciones distintas, desde el acceso de equipos y materiales hasta la coordinación de trabajos en instalaciones en operación.',
+        'Firma dominicana de ingeniería y construcción que integra la oficina técnica y la ejecución en campo para coordinar el diseño, la planificación, la secuencia de trabajos y el control de calidad de cada proyecto.',
+        'El alcance abarca desde la preparación del terreno y cimentaciones hasta la ejecución de estructuras y edificaciones, adaptándonos a las condiciones y requerimientos de cada obra.',
+      ],
+    },
+    team: {
+      id: 'equipo',
+      title: 'Nuestro equipo',
+      text: 'Profesionales con experiencia en ingeniería, arquitectura, construcción y gestión de proyectos.',
+      members: [
+        {
+          name: 'Ing. Ransel de la Rosa',
+          role: 'Gerente General',
+          photo: await portrait('ransel-de-la-rosa', 'Ing. Ransel de la Rosa, gerente general de Tenax Construction'),
+        },
+        {
+          name: 'Arq. Darlin Tejada',
+          role: 'Gerente Administrativa',
+          photo: await portrait('darlin-tejada', 'Arq. Darlin Tejada, gerente administrativa de Tenax Construction'),
+        },
+        {
+          name: 'Arq. Gilberto Ramírez',
+          role: 'Coordinador de proyectos',
+          photo: await portrait('gilberto-ramirez', 'Arq. Gilberto Ramírez, coordinador de proyectos de Tenax Construction'),
+        },
       ],
     },
     sectors: {
@@ -101,7 +132,6 @@ export const aboutPage: AboutPageData = {
     {
       // Foto vertical: el recorte (467 × 428, como la del banner) se centra en la cuadrilla y el camión hormigonera.
       image: { ...obraThumb('pavimento-3'), position: 'center 27%' },
-      id: 'equipo',
       imageSide: 'right',
       title: '¿Por qué elegirnos?',
       paragraphs: [

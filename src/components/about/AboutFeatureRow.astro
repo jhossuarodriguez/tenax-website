@@ -10,12 +10,12 @@ interface Props {
 const { row } = Astro.props;
 const imageLeft = row.imageSide === 'left';
 
-/** Tamaño del texto de "Somos Tenax": 18 px (20 px en 768–1023, 16 px en < 768). */
+/** Tamaño del texto: 18 px (20 px en 768–1023, 16 px en < 768). */
 const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]';
 ---
 
 <!--
-  Mismo formato que "Somos Tenax" (AboutIntro): 1100 px como máximo; la foto tiene el tamaño y las franjas de la
+  Fila de texto y foto de Nosotros: 1100 px como máximo; la foto tiene el tamaño y las franjas de la
   del banner (AboutPhoto) y el texto ocupa el resto. Con la foto a la derecha, el texto deja libre el tramo de
   franjas que sobresale a la izquierda de la foto más 16–20 px: 130 px (120 en < 1280; 6 % + 56 px en < 1024). Con
   la foto a la izquierda las franjas salen hacia el margen y el texto queda a 80 px (60 en < 1280, 30 en < 1024).
