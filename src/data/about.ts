@@ -65,8 +65,8 @@ export const aboutPage: AboutPageData = {
     breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Nosotros' }],
     title: 'Sobre nosotros',
     rule: true,
-    lede: 'Empresa de ingeniería y construcción con amplia experiencia en el desarrollo de proyectos de alto valor en distintos sectores del país.',
-    text: 'Ejecutamos soluciones constructivas integrales, desde naves industriales y centros logísticos hasta edificaciones residenciales, comerciales, institucionales, obras del sector energético y puentes.',
+    lede: 'Desde 2012, en Tenax desarrollamos proyectos de ingeniería y construcción, combinando experiencia técnica, capacidad operativa y compromiso con la ejecución de cada obra.',
+    text: 'A lo largo de nuestra trayectoria hemos participado en más de 80 proyectos, construyendo relaciones de confianza con clientes de distintos sectores productivos de la República Dominicana.',
     photo: obraThumb('arq_gilberto_ramirez'),
   },
   intro: {
