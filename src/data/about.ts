@@ -13,7 +13,10 @@ const sector = (id: PortfolioCategoryId): NavItem => {
 
 const portraits = import.meta.glob<{ default: ImageMetadata }>('/src/assets/equipo/*.avif', { eager: true });
 
-/** Retrato de src/assets/equipo/ (fuera del catálogo de obras, para que no salga en la galería). */
+/**
+ * Retrato de src/assets/equipo/ (fuera del catálogo de obras, para que no salga en la galería). Cada archivo ya viene
+ * recortado a 113 : 127 con el encuadre del Canva (pág. 19), así que se muestra centrado.
+ */
 const portrait = async (file: string, alt: string): Promise<ImageAsset> => {
   const image = portraits[`/src/assets/equipo/${file}.avif`];
   if (!image) throw new Error(`Nosotros: falta el retrato "${file}" en src/assets/equipo/`);
@@ -83,17 +86,17 @@ export const aboutPage: AboutPageData = {
         {
           name: 'Ing. Ransel de la Rosa',
           role: 'Gerente General',
-          photo: await portrait('ransel-de-la-rosa', 'Ing. Ransel de la Rosa, gerente general de Tenax Construction'),
+          photo: await portrait('ing_ransel_de_la_rosa_nosotros', 'Ing. Ransel de la Rosa, gerente general de Tenax Construction'),
         },
         {
           name: 'Arq. Darlin Tejada',
           role: 'Gerente Administrativa',
-          photo: await portrait('darlin-tejada', 'Arq. Darlin Tejada, gerente administrativa de Tenax Construction'),
+          photo: await portrait('arq_darlin_tejada_nosotros', 'Arq. Darlin Tejada, gerente administrativa de Tenax Construction'),
         },
         {
           name: 'Arq. Gilberto Ramírez',
           role: 'Coordinador de proyectos',
-          photo: await portrait('gilberto-ramirez', 'Arq. Gilberto Ramírez, coordinador de proyectos de Tenax Construction'),
+          photo: await portrait('arq_gilberto_ramirez_nosotros', 'Arq. Gilberto Ramírez, coordinador de proyectos de Tenax Construction'),
         },
       ],
     },
