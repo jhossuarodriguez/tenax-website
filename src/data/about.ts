@@ -74,8 +74,8 @@ export const aboutPage: AboutPageData = {
     who: {
       title: '¿Quiénes somos?',
       paragraphs: [
-        'Firma dominicana de ingeniería y construcción que integra la oficina técnica y la ejecución en campo para coordinar el diseño, la planificación, la secuencia de trabajos y el control de calidad de cada proyecto.',
-        'El alcance abarca desde la preparación del terreno y cimentaciones hasta la ejecución de estructuras y edificaciones, adaptándonos a las condiciones y requerimientos de cada obra.',
+        'Somos Tenax Construction, S.R.L., una empresa dominicana conformada por profesionales de la ingeniería, la arquitectura y la construcción, respaldados por personal técnico especializado y recursos operativos propios.',
+        'Nos involucramos directamente en cada proyecto, integrando la planificación, la coordinación técnica y la ejecución en campo. Nuestra estructura de trabajo nos permite adaptarnos a las particularidades de cada obra, mantener un seguimiento cercano de los procesos constructivos y responder con soluciones prácticas a los desafíos de su ejecución.',
       ],
     },
     team: {
