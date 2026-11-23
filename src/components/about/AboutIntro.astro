@@ -2,7 +2,6 @@
 import type { AboutIntroData, Breadcrumb } from '@/types';
 import Breadcrumbs from '@/components/shared/Breadcrumbs.astro';
 import HomeButton from '@/components/home/HomeButton.astro';
-import AboutPhoto from '@/components/about/AboutPhoto.astro';
 
 interface Props {
   data: AboutIntroData;
@@ -11,72 +10,98 @@ interface Props {
 
 const { data, breadcrumbs } = Astro.props;
 
-/** Tamaño del texto de la referencia (el color va aparte): 18 px (20 px en 768–1023, 16 px en < 768). */
+/** Texto: 18 px (20 px en 768–1023, 16 px en < 768). */
 const body = 'text-[1rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]';
-/** Subtítulos del bloque de texto: 32 px (28 px en < 1024, 24 px en < 768). */
-const subheading =
-  'mb-[24px] font-display text-[1.5rem] leading-[1.333] font-normal text-brand-dark md:text-[1.75rem] md:leading-[1.308] lg:text-[2rem] lg:leading-[1.2]';
+/** Títulos de cada bloque: 32 px (28 px en < 1024, 24 px en < 768). */
+const heading =
+  'font-display text-[1.5rem] leading-[1.333] font-normal text-brand-dark md:text-[1.75rem] md:leading-[1.308] lg:text-[2rem] lg:leading-[1.2]';
 ---
 
 <!--
-  Bajo el banner, con las medidas de severfield.com/about:
-  - Migas de pan (c-breadcrumb): 1180 px como máximo, 30 px arriba; 60 px debajo (50 en < 1024, 40 en < 768, 30 en < 640).
-  - "Somos Tenax" (c-text-and-video): 1100 px como máximo; la foto tiene el tamaño y las franjas de la del banner
-    (AboutPhoto) y el texto ocupa el resto, dejando libre el tramo de franjas que sobresale a la izquierda de la
-    foto: 130 px (120 en < 1280; 6 % + 56 px en < 1024). En < 640 se apila con la foto arriba y el texto centrado
-    de 360 px.
-    La foto ocupa el lugar del video.
-    Título de 40 px (32 en < 1024, 28 en < 640) y frase de 24 px (20 en < 1024).
-  - Debajo (c-text): columna de 896 px como máximo (todo el ancho en < 1024).
-  Los márgenes inferiores de cada bloque son 80 px (60 en < 1024, 50 en < 640, 40 en < 420).
+  Bajo el banner, según el diseño de Tenax en Canva (pág. 19), en el contenedor de 1100 px de las filas de Nosotros:
+  - Migas de pan: 1180 px como máximo, 30 px arriba; 30 px debajo (40 en ≥ 640).
+  - "¿Quiénes somos?" y "Nuestro equipo" en dos columnas (5 : 6) separadas por una línea vertical, sobre blanco; en
+    < 1024 se apilan y la línea pasa a ser horizontal. El equipo va en tres columnas de retratos (113 : 127) con el
+    nombre y el cargo debajo.
+  - Banda marfil a todo lo ancho con los sectores en dos columnas y, a la derecha, el botón a los proyectos (debajo
+    de la lista en < 1024).
+  - "Dónde trabajamos", sobre blanco, antes de las filas de Misión.
 -->
-<section class="bg-surface-alt">
-  <div class="mx-auto mb-[30px] max-w-[1180px] px-[20px] pt-[30px] sm:mb-[40px] md:mb-[50px] lg:mb-[60px]">
+<section>
+  <div class="mx-auto mb-[30px] max-w-[1180px] px-[20px] pt-[30px] sm:mb-[40px]">
     <Breadcrumbs items={breadcrumbs} />
   </div>
 
-  <div id={data.id} class="mb-[40px] scroll-mt-[20px] min-[26.25rem]:mb-[50px] sm:mb-[60px] lg:mb-[80px]">
-    <div
-      class="mx-auto flex max-w-[1100px] flex-col-reverse items-center px-[20px] pt-[40px] sm:flex-row sm:items-stretch sm:pt-0"
-    >
-      <div
-        data-reveal-children
-        class="mx-auto flex w-full max-w-[360px] flex-col sm:mx-0 sm:mr-[calc(6%+56px)] sm:max-w-none sm:min-w-0 sm:flex-1 lg:mr-[120px] xl:mr-[130px]"
-      >
-        <h2 class="mb-[12px] font-display text-[1.75rem] leading-[1.222] font-normal text-brand-dark sm:text-[2rem] sm:leading-[1.2] lg:text-[2.5rem]">
-          {data.title}
-        </h2>
-        <p class="mb-[24px] text-[1.25rem] leading-[1.4] text-ink md:leading-[1.364] lg:text-[1.5rem] lg:leading-[1.333]">{data.lede}</p>
-        <p class:list={['mb-0 text-body', body]}>{data.text}</p>
-      </div>
+  <div
+    id={data.id}
+    class="mx-auto grid max-w-[1100px] scroll-mt-[20px] px-[20px] pb-[40px] sm:pb-[50px] lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]"
+  >
+    <div data-reveal-children class="lg:pr-[50px]">
+      <h2 class:list={['mb-[20px]', heading]}>{data.who.title}</h2>
+      {data.who.paragraphs.map((p) => <p class:list={['mb-[20px] text-body last:mb-0', body]}>{p}</p>)}
+    </div>
 
-      <AboutPhoto image={data.image} class="mb-[24px] sm:mb-0 sm:self-start" />
+    <div
+      id={data.team.id}
+      data-reveal-children
+      class="mt-[40px] scroll-mt-[20px] border-t border-sand pt-[40px] lg:mt-0 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-[50px]"
+    >
+      <h2 class:list={['mb-[8px]', heading]}>{data.team.title}</h2>
+      <p class:list={['mb-[24px] text-body', body]}>{data.team.text}</p>
+      <ul class="grid max-w-[560px] grid-cols-3 gap-[12px]">
+        {
+          data.team.members.map((member) => (
+            <li>
+              <figure class="m-0">
+                <img
+                  src={member.photo.src}
+                  srcset={member.photo.srcset}
+                  sizes="(min-width: 600px) 180px, 30vw"
+                  alt={member.photo.alt}
+                  width={member.photo.width}
+                  height={member.photo.height}
+                  loading="lazy"
+                  decoding="async"
+                  class="aspect-[113/127] w-full bg-surface object-cover"
+                />
+                <figcaption class="mt-[10px]">
+                  <span class="block text-[0.8125rem] leading-[1.3] font-semibold text-brand-dark sm:text-[0.875rem]">{member.name}</span>
+                  <span class="mt-[2px] block text-[0.75rem] leading-[1.35] text-ink sm:text-[0.8125rem]">{member.role}</span>
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </div>
 
-  <div
-    data-reveal-children
-    class="mx-auto px-[20px] pb-[40px] min-[26.25rem]:pb-[50px] sm:pb-[60px] lg:max-w-[56rem] lg:pb-[80px]"
-  >
-    <h3 class:list={[subheading]}>{data.who.title}</h3>
-    {data.who.paragraphs.map((p) => <p class:list={['mb-[24px] text-body', body]}>{p}</p>)}
+  <div class="bg-surface">
+    <div
+      data-reveal-children
+      class="mx-auto flex max-w-[1100px] flex-col items-start gap-[24px] px-[20px] py-[36px] lg:flex-row lg:items-center lg:justify-between lg:gap-[40px] lg:py-[44px]"
+    >
+      <div class="w-full lg:max-w-[760px] lg:flex-1">
+        <h2 class:list={['mb-[16px]', heading]}>{data.sectors.title}</h2>
+        <ul class="grid gap-x-[40px] sm:grid-cols-2">
+          {
+            data.sectors.items.map((item) => (
+              <li class="mb-[6px]">
+                <a href={item.href} class:list={['inline-flex gap-[14px] text-ink hover:text-brand-dark', body]}>
+                  <span class="text-brand" aria-hidden="true">→</span>
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <HomeButton href={data.cta.href} variant="outline" class="shrink-0">{data.cta.label}</HomeButton>
+    </div>
+  </div>
 
-    <h3 class:list={['mt-[1.5em]', subheading]}>{data.sectors.title}</h3>
-    <ul class="mb-[24px] grid gap-x-[40px] sm:grid-cols-2">
-      {
-        data.sectors.items.map((item) => (
-          <li class="mb-[8px]">
-            <a href={item.href} class:list={['inline-flex gap-[10px] text-ink hover:text-brand-dark', body]}>
-              <span class="text-brand-dark" aria-hidden="true">→</span>
-              {item.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <HomeButton href={data.cta.href} variant="cta">{data.cta.label}</HomeButton>
-
-    <h3 class:list={['mt-[1.5em]', subheading]}>{data.where.title}</h3>
-    <p class:list={['mb-0 text-body', body]}>{data.where.text}</p>
+  <div data-reveal-children class="mx-auto max-w-[1100px] px-[20px] pt-[40px] min-[26.25rem]:pt-[50px] sm:pt-[60px] lg:pt-[80px]">
+    <h2 class:list={['mb-[20px]', heading]}>{data.where.title}</h2>
+    <p class:list={['mb-0 max-w-[56rem] text-body', body]}>{data.where.text}</p>
   </div>
 </section>

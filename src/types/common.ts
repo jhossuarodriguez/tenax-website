@@ -118,6 +118,8 @@ export interface PageBannerData {
   /** Se muestran bajo el banner y se publican como BreadcrumbList. */
   breadcrumbs: Breadcrumb[];
   title: string;
+  /** Raya corta bajo el título (Nosotros). */
+  rule?: boolean;
   /** Frase destacada bajo el título, más grande que el texto. */
   lede?: string;
   text: string;

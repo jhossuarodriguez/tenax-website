@@ -23,7 +23,8 @@ const stripes = 'bg-stripes text-white';
   - Franjas: 80 px de alto (50 px en < 768), centradas en el borde superior de la foto, 115 % de ancho y a 40 px de su
     borde derecho. En < 568 pasan al borde inferior del banner: 65 % de ancho y a 10 px de la izquierda.
   - Texto: 80 px de la foto (40 px en < 840), 510 px como máximo; en < 568, centrado y de 360 px como máximo.
-  - Título de 48 px (40 px en < 768, 32 px en < 640); frase destacada opcional del mismo tamaño que el párrafo, con
+  - Título de 48 px (40 px en < 768, 32 px en < 640) con una raya ámbar opcional de 100 × 6 px debajo (Nosotros,
+    Canva pág. 19); frase destacada opcional del mismo tamaño que el párrafo, con
     24 px debajo; párrafo de 18 px (20 px en 768–1023, 16 px en < 768).
 -->
 <header class="relative isolate overflow-hidden bg-surface-alt pb-[25px] min-[35.5rem]:pb-0 min-[52.5rem]:pt-[50px] lg:pt-[70px]">
@@ -64,6 +65,7 @@ const stripes = 'bg-stripes text-white';
       <h1 class="mb-[15px] font-display text-[2rem] leading-[1.167] font-normal text-white sm:text-[2.5rem] sm:leading-[1.16] md:text-[3rem] md:leading-none">
         {banner.title}
       </h1>
+      {banner.rule && <span class="mb-[20px] block h-[6px] w-[100px] bg-[#fa9204]" aria-hidden="true"></span>}
       {banner.lede && <p class="mb-[24px] text-[1rem] leading-[1.5] text-white md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]">{banner.lede}</p>}
       <p class="mb-0 text-[1rem] leading-[1.5] text-white md:text-[1.25rem] md:leading-[1.53] lg:text-[1.125rem] lg:leading-[1.556]">{banner.text}</p>
     </div>

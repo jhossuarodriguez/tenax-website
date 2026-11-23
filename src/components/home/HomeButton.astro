@@ -4,10 +4,11 @@
  * - white: blanco del hero; al pasar el cursor se vuelve naranja.
  * - brand: naranja del hero; se invierte a fondo blanco.
  * - cta: naranja de secciones; al pasar el cursor se oscurece.
+ * - outline: blanco con borde y texto naranja (banda de sectores de Nosotros); al pasar el cursor se rellena.
  */
 interface Props {
   href: string;
-  variant: 'white' | 'brand' | 'cta';
+  variant: 'white' | 'brand' | 'cta' | 'outline';
   class?: string;
 }
 
@@ -17,6 +18,7 @@ const variants: Record<Props['variant'], string> = {
   white: 'bg-white text-ink hover:bg-brand hover:text-white',
   brand: 'bg-brand text-white hover:bg-white hover:text-brand',
   cta: 'bg-brand text-white hover:bg-brand-dark hover:text-white',
+  outline: 'bg-white text-brand-dark ring-[1.5px] ring-brand-dark ring-inset font-medium hover:bg-brand-dark hover:text-white',
 };
 ---
 

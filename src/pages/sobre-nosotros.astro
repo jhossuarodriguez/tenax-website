@@ -5,23 +5,17 @@ import AboutIntro from '@/components/about/AboutIntro.astro';
 import AboutFeatureRowBlock from '@/components/about/AboutFeatureRow.astro';
 import AboutFaq from '@/components/about/AboutFaq.astro';
 import AboutSafety from '@/components/about/AboutSafety.astro';
-import HomeVision from '@/components/home/HomeVision.astro';
-import { home } from '@/data/home';
 import { aboutPage } from '@/data/about';
 ---
 
 <BaseLayout title={aboutPage.seo.title} description={aboutPage.seo.description} breadcrumbs={aboutPage.hero.breadcrumbs}>
-  <!-- Diseño de Tenax en Canva (pág. 18): banner y "Somos Tenax" con el formato de severfield.com/about. -->
+  <!-- Diseño de Tenax en Canva (pág. 19): banner, "¿Quiénes somos?" con "Nuestro equipo" y la banda de sectores. -->
   <PageBanner banner={aboutPage.hero} />
   <AboutIntro data={aboutPage.intro} breadcrumbs={aboutPage.hero.breadcrumbs} />
 
-  <!-- Misión y "¿Por qué elegirnos?": mismo formato que "Somos Tenax"; cada fila deja su margen inferior. -->
+  <!-- Misión y "¿Por qué elegirnos?": texto y foto con franjas; cada fila deja su margen inferior. -->
   <div class="pt-[40px] min-[26.25rem]:pt-[50px] sm:pt-[60px] lg:pt-[80px]">
     {aboutPage.rows.map((row) => <AboutFeatureRowBlock row={row} />)}
-    <!-- Trayectoria: la misma visión, cifras y valores de la portada. -->
-    <div id="trayectoria" class="scroll-mt-[20px]">
-      <HomeVision data={home.vision} />
-    </div>
     <AboutSafety data={aboutPage.safety} />
     <div class="mt-[1.6rem]">
       <AboutFaq title={aboutPage.faqTitle} items={aboutPage.faqs} />
