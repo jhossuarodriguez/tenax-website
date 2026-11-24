@@ -328,6 +328,11 @@ export const obraPhotos = {
     location: 'Haina',
     alt: 'Patio de contenedores con pavimento terminado y contenedores azules al fondo',
   },
+  // Foto de la banda de movimientos de tierras de la portada.
+  mov_de_tierra: {
+    title: 'Movimiento de tierras',
+    alt: 'Excavadora naranja cargando tierra en un camión volteo amarillo frente a un complejo de edificios residenciales',
+  },
   // Foto del menú desplegable de Proyectos.
   infraestructura_vial_y_puentes_rio_cachon: {
     title: 'Infraestructura vial y puentes',
