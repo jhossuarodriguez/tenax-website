@@ -9,7 +9,7 @@ export const site: SiteConfig = {
   ogImage: '/images/tenax/og-default.jpg',
   business: {
     legalName: 'Tenax Construction SRL',
-    streetAddress: 'Av. 27 de Febrero, Esq. Calle el Seminario #261, Plaza Comercial APH, 3er Piso, Local 15',
+    streetAddress: 'Av. 27 de Febrero, Esq. Calle el Seminario #261, Plaza Comercial APH, 3er Piso, Local 15, Ensanche Piantini',
     locality: 'Santo Domingo',
     country: 'DO',
     geo: { latitude: 18.465466, longitude: -69.9316248 },
@@ -60,7 +60,7 @@ export const site: SiteConfig = {
   ],
   cta: { label: 'Solicitar cotización', href: '/contacto/' },
   contact: {
-    address: 'Av. 27 de Febrero, Esq. Calle el Seminario #261, Plaza Comercial APH, 3er Piso, Local 15, Santo Domingo',
+    address: 'Av. 27 de Febrero, Esq. Calle el Seminario #261, Plaza Comercial APH, 3er Piso, Local 15, Ensanche Piantini, Santo Domingo',
     phone: '+1 (809) 898-6028',
     phoneHref: '+18098986028',
     email: 'tenaxconstructionsrl@gmail.com',
