@@ -33,14 +33,18 @@ export interface HomeVisionData {
 }
 
 /** Banda oscura con texto a la izquierda y foto (o video) a la derecha. */
+/** Diapositiva de la banda de servicio: un video (pasa a la siguiente al terminar) o una foto. */
+export type HomeFeatureSlide =
+  | { kind: 'video'; mp4: string; /** Primer fotograma, mientras carga. */ poster: string }
+  | { kind: 'image'; image: ImageAsset };
+
 export interface HomeFeatureBandData {
   eyebrow: string;
   title: string;
   text: string;
   cta: NavItem;
-  image: ImageAsset;
-  /** Video opcional sobre la foto (pendiente: el del dron en Las Terrenas). */
-  video?: { mp4: string; webm?: string };
+  /** Se muestran una tras otra, en este orden, y vuelven a empezar. */
+  slides: HomeFeatureSlide[];
 }
 
 /** Foto con pie y enlace: tarjetas de especialidades y de proyectos destacados de la portada. */

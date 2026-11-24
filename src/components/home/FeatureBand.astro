@@ -8,7 +8,12 @@ interface Props {
 const { data } = Astro.props;
 ---
 
-<!-- Banda de servicio (como la de la página de referencia): texto sobre grafito y foto o video a la derecha. -->
+<!--
+  Banda de servicio (como la de la página de referencia): texto sobre grafito y, a la derecha, las diapositivas una
+  tras otra con un fundido. El video pasa a la siguiente al terminar y cada foto se queda 5 s; al final vuelve a
+  empezar. Solo corre mientras la banda está en pantalla. Con movimiento reducido no hay pase automático: se queda la
+  primera foto.
+-->
 <section class="grid bg-ink md:grid-cols-2">
   <div data-reveal-children class="flex flex-col justify-center px-[24px] py-[56px] md:py-[72px] md:pr-[48px] md:pl-[max(24px,calc((100vw-1200px)/2))]">
     <p class="font-mono text-[0.74rem] tracking-[0.06em] text-brand uppercase">{data.eyebrow}</p>
@@ -19,23 +24,100 @@ const { data } = Astro.props;
       <span aria-hidden="true">↗</span>
     </a>
   </div>
-  <div class="relative min-h-[300px] md:min-h-[420px]">
-    <img
-      src={data.image.src}
-      srcset={data.image.srcset}
-      sizes="(min-width: 768px) 50vw, 100vw"
-      alt={data.image.alt}
-      loading="lazy"
-      decoding="async"
-      class="absolute inset-0 size-full object-cover"
-    />
+  <div data-feature-slides class="relative min-h-[300px] overflow-hidden md:min-h-[420px]">
     {
-      data.video && (
-        <video class="absolute inset-0 size-full object-cover" autoplay muted loop playsinline preload="none" aria-hidden="true">
-          {data.video.webm && <source src={data.video.webm} type="video/webm" />}
-          <source src={data.video.mp4} type="video/mp4" />
-        </video>
+      data.slides.map((slide, i) =>
+        slide.kind === 'video' ? (
+          <video
+            data-slide
+            class:list={['absolute inset-0 size-full object-cover transition-opacity duration-700', i > 0 && 'opacity-0']}
+            poster={slide.poster}
+            muted
+            playsinline
+            preload="none"
+            aria-hidden="true"
+          >
+            <source src={slide.mp4} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            data-slide
+            src={slide.image.src}
+            srcset={slide.image.srcset}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            alt={slide.image.alt}
+            loading="lazy"
+            decoding="async"
+            class:list={['absolute inset-0 size-full object-cover transition-opacity duration-700', i > 0 && 'opacity-0']}
+          />
+        ),
       )
     }
   </div>
 </section>
+
+<script>
+  const PHOTO_MS = 5000;
+
+  document.querySelectorAll<HTMLElement>('[data-feature-slides]').forEach((root) => {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    if (slides.length < 2) return;
+
+    let current = 0;
+    let timer: number | undefined;
+    let running = false;
+
+    const show = (index: number) => {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('opacity-0', i !== index);
+        if (i !== index && slide instanceof HTMLVideoElement) slide.pause();
+      });
+      current = index;
+    };
+
+    const next = () => {
+      window.clearTimeout(timer);
+      show((current + 1) % slides.length);
+      play();
+    };
+
+    // Reproduce la diapositiva actual: el video desde el principio, o desde donde se quedó al volver a la pantalla (5 s
+    // si el navegador no deja reproducirlo), y la foto durante 5 s.
+    const play = (restart = true) => {
+      if (!running) return;
+      const slide = slides[current];
+      if (slide instanceof HTMLVideoElement) {
+        if (restart) slide.currentTime = 0;
+        slide.play().catch(() => (timer = window.setTimeout(next, PHOTO_MS)));
+      } else {
+        timer = window.setTimeout(next, PHOTO_MS);
+      }
+    };
+
+    slides.forEach((slide) => {
+      if (slide instanceof HTMLVideoElement) slide.addEventListener('ended', next);
+    });
+
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const firstPhoto = slides.findIndex((slide) => !(slide instanceof HTMLVideoElement));
+      if (firstPhoto >= 0) show(firstPhoto);
+      return;
+    }
+
+    // Solo mientras se ve: al salir de pantalla se detiene y al volver sigue con la diapositiva en la que estaba.
+    new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !running) {
+          running = true;
+          play(false);
+        } else if (!entry.isIntersecting && running) {
+          running = false;
+          window.clearTimeout(timer);
+          const slide = slides[current];
+          if (slide instanceof HTMLVideoElement) slide.pause();
+        }
+      },
+      { threshold: 0.25 },
+    ).observe(root);
+  });
+</script>
