@@ -328,6 +328,12 @@ export const obraPhotos = {
     location: 'Haina',
     alt: 'Patio de contenedores con pavimento terminado y contenedores azules al fondo',
   },
+  // Foto del menú desplegable de Proyectos.
+  infraestructura_vial_y_puentes_rio_cachon: {
+    title: 'Infraestructura vial y puentes',
+    location: 'Río Cachón',
+    alt: 'Vista aérea de un puente metálico sobre el río Cachón que sostiene una tubería verde, con una excavadora en la orilla',
+  },
   // Foto de "Seguridad, calidad y medio ambiente" de Nosotros (Canva, pág. 21).
   seguridad_y_calidad: {
     title: 'Seguridad y calidad',
