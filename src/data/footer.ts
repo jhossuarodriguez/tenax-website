@@ -58,8 +58,6 @@ export const footer: FooterData = {
         title: 'Ubicaciones',
         links: [
           { label: 'Oficina principal', href: site.contact.mapsUrl },
-          { label: 'Proyectos en ejecución', href: '/proyectos/' },
-          { label: 'Cobertura nacional', href: '/sectores/' },
         ],
       },
     ],
