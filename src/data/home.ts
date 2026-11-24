@@ -115,7 +115,7 @@ export const home: HomeContent = {
         href: '/servicios/movimiento-tierra/',
         wide: true,
       },
-      { image: obraThumb('puente-alcantarillado-4'), caption: 'Obras civiles', href: '/servicios/' },
+      { image: obraThumb('puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama'), caption: 'Obras civiles', href: '/servicios/' },
     ],
   },
   showcase: {

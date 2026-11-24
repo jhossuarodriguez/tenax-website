@@ -333,6 +333,12 @@ export const obraPhotos = {
     title: 'Movimiento de tierras',
     alt: 'Excavadora naranja cargando tierra en un camión volteo amarillo frente a un complejo de edificios residenciales',
   },
+  // Foto de "Obras civiles" en las especialidades de la portada.
+  puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama: {
+    title: 'Superestructura de puente para tubería',
+    location: 'Río Ozama',
+    alt: 'Puente de estructura metálica azul con barandas amarillas sobre el río Ozama, que lleva una tubería verde entre dos estribos de hormigón',
+  },
   // Foto del menú desplegable de Proyectos.
   infraestructura_vial_y_puentes_rio_cachon: {
     title: 'Infraestructura vial y puentes',
