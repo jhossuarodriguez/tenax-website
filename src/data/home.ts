@@ -65,8 +65,8 @@ export const home: HomeContent = {
     // Pasan en orden: el video (hasta que termina) y luego cada foto.
     slides: [
       { kind: 'video', mp4: '/videos/movimiento_de_tierra.mp4', poster: '/videos/movimiento_de_tierra_poster.avif' },
-      { kind: 'image', image: obraThumb('nivelacion-terreno-2') },
       { kind: 'image', image: obraThumb('mov_de_tierra') },
+      { kind: 'image', image: obraThumb('nivelacion-terreno-2') },
     ],
   },
   // Diseño de Tenax en Canva (págs. 8-12): especialidades y proyectos destacados; sale lo demás.
