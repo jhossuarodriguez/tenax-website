@@ -333,6 +333,17 @@ export const obraPhotos = {
     title: 'Movimiento de tierras',
     alt: 'Excavadora naranja cargando tierra en un camión volteo amarillo frente a un complejo de edificios residenciales',
   },
+  // Portada y foto a todo el ancho del proyecto "Puente sobre el Arroyo Cachón" (Canva, pág. 26).
+  puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama_portada: {
+    title: 'Puente para tubería de impulsión',
+    location: 'Santo Domingo Este',
+    alt: 'Vista cenital del puente que cruza el arroyo con la tubería verde sobre el tablero, entre vegetación y la zona de obra',
+  },
+  puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama_2: {
+    title: 'Puente para tubería de impulsión',
+    location: 'Santo Domingo Este',
+    alt: 'Puente de acero azul con barandas amarillas y escalera de acceso, con la tubería verde que entra por el estribo de hormigón',
+  },
   // Foto de "Obras civiles" en las especialidades de la portada.
   puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama: {
     title: 'Superestructura de puente para tubería',

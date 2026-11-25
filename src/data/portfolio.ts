@@ -358,6 +358,32 @@ const seeds: ProjectSeed[] = [
 
   // Puentes
   {
+    // Canva, pág. 26: textos y datos leídos de la miniatura del diseño. PENDIENTE: la tabla "Datos técnicos adicionales".
+    slug: 'puente-arroyo-cachon',
+    category: 'puentes',
+    servicio: 'puentes-alcantarillados',
+    title: 'Puente sobre el Arroyo Cachón',
+    location: 'Santo Domingo Este',
+    lead: 'Infraestructura de puente para el cruce de la línea de impulsión del Acueducto Oriental.',
+    body: [
+      'El proyecto comprende la construcción de un puente estructural sobre el arroyo Cachón, destinado al soporte y cruce de una tubería de impulsión de 48 pulgadas de diámetro, como parte del programa de ampliación del Acueducto Oriental y Transferencia a Santo Domingo Este.',
+      'El sistema estructural comprende cimentaciones profundas mediante pilotes metálicos HP14×73, zapatas, pilas y estribos de hormigón armado, integrados a una superestructura de acero estructural.',
+      'La infraestructura se complementa con un tablero de hormigón armado, apoyos para la tubería, escaleras de acceso y barandas de seguridad, facilitando las labores de inspección y mantenimiento de la conducción hidráulica.',
+    ],
+    specs: [
+      { label: 'Proyecto', value: 'Ampliación del Acueducto Oriental' },
+      { label: 'Diámetro de tubería', value: '48 pulgadas' },
+      { label: 'Cimentación profunda', value: 'Pilotes metálicos HP14×73' },
+      { label: 'Entidad promotora', value: 'CAASD' },
+    ],
+    fotos: [
+      'puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama_portada',
+      'puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama_2',
+      'puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama',
+      'infraestructura_vial_y_puentes_rio_cachon',
+    ],
+  },
+  {
     slug: 'puente-alcantarillado',
     category: 'puentes',
     servicio: 'puentes-alcantarillados',
