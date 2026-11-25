@@ -19,13 +19,13 @@ const categories = [
 type CategoryId = (typeof categories)[number]['id'];
 
 /**
- * Máquina con su foto de src/assets/equipos/ (`file`, sin extensión) y su ficha técnica (misma clave en
- * machine-sheets.ts). `type` y `model` juntos forman el nombre de la imagen original de Tenax. Falla el build si
- * falta la foto o la ficha.
+ * Máquina con su ficha técnica (clave `file` en machine-sheets.ts) y su foto de src/assets/equipos/ (`photoFile`, sin
+ * extensión; por defecto, la misma clave). `type` y `model` juntos forman el nombre de la imagen original de Tenax.
+ * Falla el build si falta la foto o la ficha.
  */
-const machine = async (type: string, model: string, file: string, category: CategoryId): Promise<Machine> => {
-  const photo = photos[`/src/assets/equipos/${file}.avif`];
-  if (!photo) throw new Error(`Equipos: falta la foto "${file}" en src/assets/equipos/`);
+const machine = async (type: string, model: string, file: string, category: CategoryId, photoFile = file): Promise<Machine> => {
+  const photo = photos[`/src/assets/equipos/${photoFile}.avif`];
+  if (!photo) throw new Error(`Equipos: falta la foto "${photoFile}" en src/assets/equipos/`);
   const sheet = machineSheets[file];
   if (!sheet) throw new Error(`Equipos: falta la ficha técnica "${file}" en src/data/machine-sheets.ts`);
   const { thumb, srcset, original, width, height } = await imageVersions(photo.default);
@@ -48,7 +48,7 @@ const machine = async (type: string, model: string, file: string, category: Cate
 const machines = await Promise.all([
   machine('Excavadora', 'Doosan DX225', 'excavadora_doosan_dx225', 'excavacion'),
   machine('Excavadora', 'Sany SY330H', 'excavadora_sany_sy330h', 'excavacion'),
-  machine('Motoniveladora', 'CAT 120', 'motoniveladora_cat_120', 'nivelacion-compactacion'),
+  machine('Motoniveladora', 'Caterpillar 120G', 'motoniveladora_caterpillar_120g', 'nivelacion-compactacion', 'motoniveladora_caterpillar_120g_en_obra'),
   machine('Rodillo compactador', 'CAT 553', 'rodillo_compactador_cat_553', 'nivelacion-compactacion'),
   machine('Rodillo compactador', 'CAT 563', 'rodillo_compactador_cat_563', 'nivelacion-compactacion'),
   machine('Camión volteo', 'Forland', 'camion_volteo_forland', 'transporte'),
