@@ -333,6 +333,27 @@ export const obraPhotos = {
     title: 'Movimiento de tierras',
     alt: 'Excavadora naranja cargando tierra en un camión volteo amarillo frente a un complejo de edificios residenciales',
   },
+  // Fotos del proyecto "Armadura estructural de edificio corporativo y comercial" (Canva, pág. 30).
+  comercial_armadura_en_losa_para_edificio_corporativo_en_punta_cana_3: {
+    title: 'Armadura estructural de edificio corporativo',
+    location: 'Punta Cana, La Altagracia',
+    alt: 'Obreros con casco y chaleco naranja amarrando la armadura de una viga de hormigón sobre el encofrado',
+  },
+  comercial_armadura_en_losa_para_edificio_corporativo_en_punta_cana: {
+    title: 'Armadura estructural de edificio corporativo',
+    location: 'Punta Cana, La Altagracia',
+    alt: 'Armadura de acero de una losa extendida sobre el encofrado, con arranques de columnas y un edificio blanco al fondo',
+  },
+  comercial_armadura_en_losa_para_edificio_corporativo_en_punta_cana_2: {
+    title: 'Armadura estructural de edificio corporativo',
+    location: 'Punta Cana, La Altagracia',
+    alt: 'Obrero con casco blanco revisando la armadura de una viga junto a los arranques de las columnas',
+  },
+  comercial_armadura_en_losa_para_edificio_corporativo_en_punta_cana_4: {
+    title: 'Armadura estructural de edificio corporativo',
+    location: 'Punta Cana, La Altagracia',
+    alt: 'Obrero agachado amarrando la armadura de la losa, con edificios y palmeras de Punta Cana al fondo',
+  },
   // Portada y foto a todo el ancho del proyecto "Puente sobre el Arroyo Cachón" (Canva, pág. 26).
   puentes_superestructura_puente_para_uso_tuberia_sobre_rio_ozama_portada: {
     title: 'Puente para tubería de impulsión',

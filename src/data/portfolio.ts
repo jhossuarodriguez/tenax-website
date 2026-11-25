@@ -128,6 +128,29 @@ const seeds: ProjectSeed[] = [
 
   // Comercial
   {
+    // Canva, pág. 30: textos y datos leídos de la miniatura del diseño.
+    slug: 'armadura-edificio-corporativo-punta-cana',
+    category: 'comercial',
+    servicio: 'hormigon-armado',
+    title: 'Armadura estructural de edificio corporativo y comercial',
+    location: 'Punta Cana, La Altagracia',
+    lead: 'Habilitación y montaje de acero de refuerzo para estructuras de hormigón armado.',
+    body: [
+      'El proyecto comprende trabajos de armado y colocación de acero de refuerzo para vigas y losas estructurales de un edificio corporativo y comercial ubicado en Punta Cana.',
+      'El alcance contempla la disposición de barras longitudinales y transversales, conformación y colocación de estribos, amarre de armaduras y colocación de separadores para el recubrimiento del acero.',
+      'Los trabajos incluyen la integración de las armaduras de vigas y losas con los elementos verticales de la edificación, así como la coordinación con los sistemas de encofrado y las instalaciones embebidas, previo al vaciado del hormigón.',
+    ],
+    closing: [
+      'La intervención refleja la capacidad técnica y operativa de Tenax Construction para ejecutar trabajos especializados de armado estructural, integrando elementos de refuerzo de distinta configuración en edificaciones de uso corporativo y comercial.',
+    ],
+    specs: [
+      { label: 'Intervención', value: 'Vigas y losas estructurales' },
+      { label: 'Sistema constructivo', value: 'Hormigón armado' },
+      { label: 'Año', value: '2026' },
+    ],
+    fotos: ['comercial_armadura_en_losa_para_edificio_corporativo_en_punta_cana_3', 'comercial_armadura_en_losa_para_edificio_corporativo_en_punta_cana', 'comercial_armadura_en_losa_para_edificio_corporativo_en_punta_cana_2', 'comercial_armadura_en_losa_para_edificio_corporativo_en_punta_cana_4'],
+  },
+  {
     slug: 'nave-comercial-ceramitejas-villa-mella',
     category: 'comercial',
     servicio: 'naves-industriales',
