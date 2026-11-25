@@ -1,4 +1,4 @@
-import type { ImageAsset, PageHeroData } from '@/types/common';
+import type { Breadcrumb, ImageAsset } from '@/types/common';
 
 /** Botón de filtro de la maquinaria (Canva, pág. 30). */
 export interface MachineCategory {
@@ -71,7 +71,8 @@ export interface ServiceEquipmentSection {
 export interface EquipmentPageData {
   /** Título (sin el sufijo de la marca) y descripción para buscadores y redes. */
   seo: { title: string; description: string };
-  hero: PageHeroData;
+  /** La página no tiene encabezado propio: las migas solo van en los datos estructurados. */
+  breadcrumbs: Breadcrumb[];
   machinery: MachinerySection;
   byService: ServiceEquipmentSection;
 }

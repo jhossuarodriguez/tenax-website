@@ -1,15 +1,14 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import PageHero from '@/components/shared/PageHero.astro';
 import MachinerySection from '@/components/equipment/MachinerySection.astro';
 import EquipmentByService from '@/components/equipment/EquipmentByService.astro';
 import { equipmentPage } from '@/data/equipment';
 
-const { seo, hero, machinery, byService } = equipmentPage;
+const { seo, breadcrumbs, machinery, byService } = equipmentPage;
 ---
 
-<BaseLayout title={seo.title} description={seo.description} breadcrumbs={hero.breadcrumbs}>
-  <PageHero {...hero} />
+<BaseLayout title={seo.title} description={seo.description} breadcrumbs={breadcrumbs}>
+  <!-- Sin encabezado: la página empieza en la maquinaria, cuyo título es el principal (h1). -->
   <MachinerySection data={machinery} />
   <EquipmentByService data={byService} />
 </BaseLayout>

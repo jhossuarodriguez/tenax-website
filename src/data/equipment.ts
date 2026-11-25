@@ -72,15 +72,7 @@ export const equipmentPage: EquipmentPageData = {
     description:
       'Excavadoras hidráulicas, rodillos compactadores, camiones volteo y camiones grúa: la maquinaria con la que ejecutamos cada obra en República Dominicana.',
   },
-  hero: {
-    breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Equipos' }],
-    eyebrow: 'Equipos',
-    title: 'Maquinaria y',
-    titleEmphasis: 'capacidad operativa',
-    subtitle:
-      'Contamos con personal técnico especializado, maquinaria pesada y experiencia en campo para ofrecer soluciones adaptadas a los requerimientos de cada proyecto.',
-    strip: ['Excavadoras hidráulicas', 'Rodillos compactadores', 'Camiones volteo', 'Camiones grúa'],
-  },
+  breadcrumbs: [{ label: 'Inicio', href: '/' }, { label: 'Equipos' }],
   machinery: {
     kicker: '// Maquinaria en obra',
     title: 'Equipos especializados y maquinaria pesada',
