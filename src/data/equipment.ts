@@ -52,7 +52,7 @@ const machines = await Promise.all([
   machine('Rodillo compactador', 'CAT 553', 'rodillo_compactador_cat_553', 'nivelacion-compactacion'),
   machine('Rodillo compactador', 'CAT 563', 'rodillo_compactador_cat_563', 'nivelacion-compactacion'),
   machine('Camión volteo', 'Forland', 'camion_volteo_forland', 'transporte'),
-  machine('Minicargador frontal', 'Bobcat T140', 'minicargador_frontal_bobcat_t140', 'excavacion'),
+  machine('Minicargador frontal', 'Bobcat T140', 'minicargador_frontal_bobcat_t140', 'excavacion', 'cargadora_bobcat_t140_en_obra'),
   machine('Manipulador telescópico', 'VR642', 'manipulador_telescopico_vr642', 'manipulacion-elevacion'),
   machine('Manipulador telescópico', '10051', 'manipulador_telescopico_10051', 'manipulacion-elevacion'),
   machine('Camión hormigonera', 'International 7 m³', 'camion_hormigonera_international_7_m3', 'hormigon'),
