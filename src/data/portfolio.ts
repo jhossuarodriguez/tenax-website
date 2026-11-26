@@ -169,10 +169,30 @@ const seeds: ProjectSeed[] = [
     fotos: ['supermercado-villa-mella'],
   },
   {
+    // Canva, pág. 31: texto de la captura de Tenax; el cierre se leyó de la miniatura del diseño.
     slug: 'escalera-emergencia',
     category: 'comercial',
     servicio: 'estructura-metalica',
-    body: ['Escalera exterior de acero con descansos y barandas en cada nivel, adosada a la fachada como ruta de evacuación del edificio.'],
+    title: 'Escalera de emergencia y reforzamiento estructural de torre corporativa',
+    location: 'Av. Abraham Lincoln, Santo Domingo',
+    lead: 'Construcción de escalera metálica de emergencia y pórtico de reforzamiento estructural en torre corporativa.',
+    body: [
+      'El proyecto comprende la incorporación de una escalera metálica de emergencia y un pórtico de refuerzo estructural en una torre corporativa ubicada en la avenida Abraham Lincoln, Santo Domingo.',
+      'El alcance contempla demoliciones localizadas, excavación en roca y construcción de cimentaciones de hormigón armado mediante zapatas, vigas de atado y pedestales para el soporte de las nuevas estructuras metálicas.',
+      'La intervención incluye la fabricación y montaje de perfiles de acero estructural, placas de conexión, pernos de anclaje y conectores de cortante, así como peldaños de chapa corrugada, descansos, cerramientos laterales galvanizados y barandas de seguridad.',
+      'Los elementos metálicos contemplan un tratamiento de protección anticorrosiva y terminación en esmalte.',
+    ],
+    closing: [
+      'Este proyecto representa la integración de soluciones de reforzamiento estructural y construcción metálica aplicadas a edificaciones existentes, orientadas a mejorar sus condiciones de seguridad, funcionalidad y evacuación.',
+    ],
+    specs: [
+      { label: 'Sistema constructivo', value: 'Acero estructural y hormigón armado' },
+      { label: 'Elementos metálicos', value: '36.50 toneladas' },
+      { label: 'Volumen de hormigón', value: '49.56 m³' },
+      { label: 'Peldaños metálicos', value: '162 unidades' },
+      { label: 'Cierre lateral', value: '143.90 m²' },
+      { label: 'Barandas', value: '107.55 m lineales' },
+    ],
     fotos: [
       'escalera-emergencia-1',
       'escalera-emergencia-2',
