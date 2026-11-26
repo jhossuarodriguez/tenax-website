@@ -210,6 +210,23 @@ export const obraPhotos = {
     title: 'Escalera de emergencia',
     alt: 'Vista lateral de la escalera de emergencia metálica con descansos en cada nivel',
   },
+  // Proceso y terminación de la escalera de emergencia del edificio corporativo de la Av. Abraham Lincoln.
+  escalera_metalica_emergencia_av_abraham_lincoln_1: {
+    title: 'Escalera de emergencia',
+    alt: 'Montaje de la estructura metálica de la escalera de emergencia junto a la fachada, con la pluma de una grúa al lado',
+  },
+  escalera_metalica_emergencia_av_abraham_lincoln_2: {
+    title: 'Escalera de emergencia',
+    alt: 'Estructura de acero de la escalera de emergencia con sus tramos y descansos, adosada a un edificio blanco',
+  },
+  escalera_metalica_emergencia_av_abraham_lincoln_3: {
+    title: 'Escalera de emergencia',
+    alt: 'Escalera de emergencia terminada en azul claro, de varios niveles, entre dos edificios blancos frente al parqueo',
+  },
+  escalera_metalica_emergencia_av_abraham_lincoln_4: {
+    title: 'Escalera de emergencia',
+    alt: 'Detalle de los tramos, descansos y barandas de la escalera de emergencia metálica pintada en azul claro',
+  },
   'escalera-metalica-exterior-moderna': {
     title: 'Escalera metálica exterior',
     alt: 'Escalera metálica exterior pintada de azul claro, con descansos y barandas horizontales, adosada a la fachada de un edificio',

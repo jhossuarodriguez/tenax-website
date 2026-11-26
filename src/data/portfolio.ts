@@ -173,7 +173,14 @@ const seeds: ProjectSeed[] = [
     category: 'comercial',
     servicio: 'estructura-metalica',
     body: ['Escalera exterior de acero con descansos y barandas en cada nivel, adosada a la fachada como ruta de evacuación del edificio.'],
-    fotos: ['escalera-emergencia-1', 'escalera-emergencia-2'],
+    fotos: [
+      'escalera-emergencia-1',
+      'escalera-emergencia-2',
+      'escalera_metalica_emergencia_av_abraham_lincoln_1',
+      'escalera_metalica_emergencia_av_abraham_lincoln_2',
+      'escalera_metalica_emergencia_av_abraham_lincoln_3',
+      'escalera_metalica_emergencia_av_abraham_lincoln_4',
+    ],
   },
   {
     slug: 'showroom',
