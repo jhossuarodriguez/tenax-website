@@ -215,10 +215,6 @@ export const obraPhotos = {
     title: 'Escalera de emergencia',
     alt: 'Montaje de la estructura metálica de la escalera de emergencia junto a la fachada, con la pluma de una grúa al lado',
   },
-  escalera_metalica_emergencia_av_abraham_lincoln_2: {
-    title: 'Escalera de emergencia',
-    alt: 'Estructura de acero de la escalera de emergencia con sus tramos y descansos, adosada a un edificio blanco',
-  },
   escalera_metalica_emergencia_av_abraham_lincoln_3: {
     title: 'Escalera de emergencia',
     alt: 'Escalera de emergencia terminada en azul claro, de varios niveles, entre dos edificios blancos frente al parqueo',

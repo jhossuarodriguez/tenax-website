@@ -201,7 +201,6 @@ const seeds: ProjectSeed[] = [
       'escalera-emergencia-1',
       'escalera-emergencia-2',
       'escalera_metalica_emergencia_av_abraham_lincoln_1',
-      'escalera_metalica_emergencia_av_abraham_lincoln_2',
       'escalera_metalica_emergencia_av_abraham_lincoln_3',
       'escalera_metalica_emergencia_av_abraham_lincoln_4',
     ],
