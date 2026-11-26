@@ -244,6 +244,15 @@ export const obraPhotos = {
   'retrofit-2': { title: 'Retrofit', alt: 'Columnas con empresillado metálico en el interior de un edificio en rehabilitación' },
   'retrofit-3': { title: 'Retrofit', alt: 'Obrero aplicando mortero sobre un elemento reforzado' },
   'retrofit-4': { title: 'Retrofit', alt: 'Obrero dando el acabado de mortero a una columna reforzada' },
+  // Fotos nuevas del reforzamiento de la torre corporativa de la Av. Abraham Lincoln (Canva, pág. 32).
+  retrofit_5: {
+    title: 'Reforzamiento estructural (Retrofit)',
+    alt: 'Obrero con casco, mascarilla y protección auditiva retirando el recubrimiento de un muro de hormigón con cincel',
+  },
+  retrofit_anclajes: {
+    title: 'Reforzamiento estructural (Retrofit)',
+    alt: 'Columna con el recubrimiento retirado, anclajes colocados con resina y franjas marcadas para las platabandas de acero',
+  },
 
   remodelaciones: { title: 'Remodelación', alt: 'Obreros retirando el piso de un local en remodelación, con la estructura metálica del techo a la vista' },
 

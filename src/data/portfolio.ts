@@ -213,11 +213,34 @@ const seeds: ProjectSeed[] = [
     fotos: ['showroom-1'],
   },
   {
+    // Canva, pág. 32: texto de la captura de Tenax.
     slug: 'retrofit',
     category: 'comercial',
     servicio: 'retrofit',
-    body: ['Reforzamiento de columnas existentes con empresillado metálico (ángulos y platinas de acero) y acabado de mortero, sin demoler la estructura.'],
-    fotos: ['retrofit-2', 'retrofit-1', 'retrofit-3', 'retrofit-4'],
+    title: 'Reforzamiento estructural (Retrofit) de torre corporativa',
+    location: 'Av. Abraham Lincoln, Santo Domingo',
+    lead: 'Reforzamiento estructural mediante empresillado metálico en los niveles 1 y 2 de una torre corporativa de 12 pisos.',
+    body: [
+      'Tenax Construction ejecutó trabajos de reforzamiento estructural en los dos primeros niveles de una torre corporativa de 12 pisos, ubicada en la avenida Abraham Lincoln, Santo Domingo.',
+      'La intervención comprende el reforzamiento de columnas existentes de hormigón armado mediante empresillado metálico, conformado por perfiles angulares longitudinales y platabandas transversales de acero, orientado a incrementar su capacidad resistente y confinamiento.',
+      'El proceso constructivo incluyó la preparación de superficies, retiro de recubrimientos, colocación de refuerzos metálicos y restitución de acabados.',
+      'En el segundo nivel, la intervención se complementó con el reforzamiento de muros estructurales mediante elementos de acero, sistemas de anclaje, resina epóxica y mortero grout.',
+    ],
+    closing: [
+      'El reforzamiento se concentra en los dos primeros niveles de la torre, donde los elementos verticales soportan las cargas gravitacionales acumuladas de los niveles superiores. La incorporación del empresillado metálico en columnas y de refuerzos anclados en muros busca mejorar la capacidad resistente y el confinamiento de los elementos intervenidos, manteniendo su integración con el sistema estructural existente.',
+    ],
+    specs: [
+      { label: 'Niveles de la edificación', value: '12 niveles' },
+      { label: 'Niveles intervenidos', value: 'Primer y segundo nivel' },
+      { label: 'Elementos intervenidos', value: 'Columnas y muros estructurales' },
+      { label: 'Estructura existente', value: 'Hormigón armado' },
+      { label: 'Sistema de refuerzo', value: 'Empresillado metálico' },
+      { label: 'Materiales', value: 'Perfiles angulares, platabandas de acero, anclajes, resina epóxica y mortero grout' },
+      { label: 'Estatus', value: 'Ejecutado' },
+    ],
+    // Portada: retiro de recubrimientos; la foto grande (vertical) va entera bajo los párrafos.
+    fotos: ['retrofit_5', 'retrofit-2', 'retrofit_anclajes', 'retrofit-1', 'retrofit-3', 'retrofit-4'],
+    featureInline: true,
   },
   {
     slug: 'envarillado-losa',
