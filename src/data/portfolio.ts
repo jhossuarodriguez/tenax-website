@@ -195,13 +195,13 @@ const seeds: ProjectSeed[] = [
       { label: 'Cierre lateral', value: '143.90 m²' },
       { label: 'Barandas', value: '107.55 m lineales' },
     ],
-    // La foto de la estructura es vertical: va entera bajo los párrafos y no recortada a todo el ancho.
+    // La foto grande es vertical: va entera bajo los párrafos y no recortada a todo el ancho.
     featureInline: true,
     fotos: [
       'escalera-emergencia-1',
-      'escalera-emergencia-2',
-      'escalera_metalica_emergencia_av_abraham_lincoln_1',
       'escalera_metalica_emergencia_av_abraham_lincoln_3',
+      'escalera_metalica_emergencia_av_abraham_lincoln_1',
+      'escalera-emergencia-2',
       'escalera_metalica_emergencia_av_abraham_lincoln_4',
     ],
   },
