@@ -95,13 +95,30 @@ const seoTitle = project.location ? `${project.title}, ${project.location}` : pr
         <div data-reveal-children class="max-w-[760px]">
           {project.lead && <h2 class="mb-[20px] text-[clamp(1.3rem,2.4vw,1.6rem)] leading-[1.35] font-semibold text-brand-dark">{project.lead}</h2>}
           {project.body.map((p) => <p class="mb-[1em] text-[1.02rem] leading-[1.7] text-body">{p}</p>)}
+          {
+            feature && project.featureInline && (
+              <button type="button" class="mt-[12px] block w-full cursor-zoom-in" data-lightbox-src={feature.fullSrc ?? feature.src} data-lightbox-srcset={feature.srcset} data-lightbox-alt={feature.alt} aria-label="Ampliar imagen">
+                <img
+                  src={feature.src}
+                  srcset={feature.srcset}
+                  sizes="(min-width: 1100px) 760px, (min-width: 768px) calc(100vw - 344px), calc(100vw - 40px)"
+                  alt={feature.alt}
+                  width={feature.width}
+                  height={feature.height}
+                  loading="lazy"
+                  decoding="async"
+                  class="h-auto w-full"
+                />
+              </button>
+            )
+          }
         </div>
       </div>
     </div>
   </section>
 
   {
-    feature && (
+    feature && !project.featureInline && (
       <section class="bg-white px-[20px] pb-[48px]">
         <div class="mx-auto max-w-[1200px]">
           <button type="button" class="block w-full cursor-zoom-in" data-lightbox-src={feature.fullSrc ?? feature.src} data-lightbox-srcset={feature.srcset} data-lightbox-alt={feature.alt} aria-label="Ampliar imagen">

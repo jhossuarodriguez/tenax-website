@@ -58,6 +58,8 @@ interface ProjectSeed {
   specs?: ProjectSpec[];
   /** La primera es la portada y la segunda va a todo el ancho de la ficha. */
   fotos: [ObraPhotoId, ...ObraPhotoId[]];
+  /** La segunda foto va entera bajo los párrafos, sin el recorte panorámico (fotos verticales). */
+  featureInline?: boolean;
 }
 
 /**
@@ -193,6 +195,8 @@ const seeds: ProjectSeed[] = [
       { label: 'Cierre lateral', value: '143.90 m²' },
       { label: 'Barandas', value: '107.55 m lineales' },
     ],
+    // La foto de la estructura es vertical: va entera bajo los párrafos y no recortada a todo el ancho.
+    featureInline: true,
     fotos: [
       'escalera-emergencia-1',
       'escalera-emergencia-2',
@@ -477,6 +481,7 @@ export const portfolio: PortfolioProject[] = seeds.map((p) => {
     specs: p.specs ?? [],
     cover: obraThumb(main),
     feature: feature ? obraThumb(feature) : undefined,
+    featureInline: p.featureInline ?? false,
     gallery: rest.map(obraThumb),
   };
 });

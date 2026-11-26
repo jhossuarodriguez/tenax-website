@@ -45,6 +45,8 @@ export interface PortfolioProject {
   cover: ImageAsset;
   /** Segunda foto, a todo el ancho de la ficha. */
   feature?: ImageAsset;
+  /** La segunda foto va entera bajo los párrafos, en la columna del texto (para fotos verticales que no admiten el recorte panorámico). */
+  featureInline: boolean;
   /** Resto de fotos del proceso constructivo. */
   gallery: ImageAsset[];
 }
